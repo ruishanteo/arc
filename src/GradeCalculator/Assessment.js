@@ -59,9 +59,16 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-export function Assessment({ index, deleteModule }) {
-  const [arr, setArr] = useState([]);
-
+export function Assessment({
+  assessmentIndex,
+  deleteModule,
+  newComponent,
+  deleteComponent,
+  getText,
+  updateText,
+  getComponents,
+}) {
+  const arr = getComponents(assessmentIndex);
   const [curr, setCurr] = useState("");
   const [result, setResult] = useState("");
   const [value, setValue] = useState(0);
@@ -72,24 +79,6 @@ export function Assessment({ index, deleteModule }) {
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-
-  function getText(index, dataKey) {
-    const value = arr[index][dataKey];
-    return typeof value === "number" && !isNaN(value) ? value : 0;
-  }
-
-  function updateText(index, dataKey, value) {
-    const parsed = parseInt(value);
-    if (parsed != null) {
-      arr[index][dataKey] = parsed;
-      setArr([...arr]);
-    }
-  }
-
-  function newComponent() {
-    arr.push({ score: 0, total: 0, weight: 0, isDeleted: false });
-    setArr([...arr]);
-  }
 
   function calculateGrade() {
     const totalScore = arr
@@ -105,11 +94,6 @@ export function Assessment({ index, deleteModule }) {
       sgoal <= 0 ? "-" : ((sgoal - totalScore) / (100 - totalWeight)) * 100;
     const finalNeed = needed < 0 ? "Too Low" : needed;
     setResult(`Score Required: ${finalNeed.toFixed(2)}`);
-  }
-
-  function deleteComponent(index) {
-    arr[index].isDeleted = true;
-    setArr([...arr]);
   }
 
   return (
@@ -130,7 +114,7 @@ export function Assessment({ index, deleteModule }) {
           <header align="left">
             <Button
               type="button"
-              onClick={() => deleteModule(index)}
+              onClick={() => deleteModule(assessmentIndex)}
               sx={{ backgroundColor: "#fcf4d4", color: "black" }}
             >
               <DeleteOutlineIcon />
@@ -149,7 +133,7 @@ export function Assessment({ index, deleteModule }) {
           <form>
             <Button
               variant="contained"
-              onClick={newComponent}
+              onClick={() => newComponent(assessmentIndex)}
               sx={{ mt: 2, mb: 1 }}
               color="neutral"
             >
@@ -191,15 +175,26 @@ export function Assessment({ index, deleteModule }) {
               </TableHead>
 
               <TableBody>
-                {arr.map((element, index) => {
+                {arr.map((element, componentIndex) => {
                   return (
-                    <tr key={index}>
+                    <tr key={componentIndex}>
                       {!element.isDeleted && (
                         <AssessmentComponent
-                          index={index}
-                          getText={getText}
-                          updateText={updateText}
-                          deleteComponent={deleteComponent}
+                          index={componentIndex}
+                          getText={(componentIndex, dataKey) =>
+                            getText(assessmentIndex, componentIndex, dataKey)
+                          }
+                          updateText={(componentIndex, dataKey, value) =>
+                            updateText(
+                              assessmentIndex,
+                              componentIndex,
+                              dataKey,
+                              value
+                            )
+                          }
+                          deleteComponent={(componentIndex) =>
+                            deleteComponent(assessmentIndex, componentIndex)
+                          }
                         />
                       )}
                     </tr>
