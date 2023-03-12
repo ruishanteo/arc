@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LooksIcon from "@mui/icons-material/Looks";
 import { Link } from "react-router-dom";
+import { useAuth } from "../Login/Firebase.js";
 
 const pages = ["GradeCalculator"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -20,6 +21,14 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 export function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const currentUser = useAuth();
+  const [photoURL, setPhotoURL] = React.useState("/static/images/avatar/2.jpg");
+
+  React.useEffect(() => {
+    if (currentUser && currentUser.photoURL) {
+      setPhotoURL(currentUser.photoURL);
+    }
+  }, [currentUser])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -149,7 +158,7 @@ export function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={photoURL} />
               </IconButton>
             </Tooltip>
             <Menu

@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
@@ -9,6 +10,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -53,6 +55,7 @@ const signInWithGoogle = async () => {
         name: user.displayName,
         authProvider: "google",
         email: user.email,
+        photoURL: user.photoURL
       });
     }
   } catch (err) {
@@ -79,6 +82,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
+      photoURL: "/static/images/avatar/2.jpg"
     });
   } catch (err) {
     console.error(err);
@@ -100,6 +104,17 @@ const logout = () => {
   signOut(auth);
 };
 
+function useAuth() {
+  const[currentUser, setCurrentUser] = useState();
+  
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, user => setCurrentUser(user));
+    return unsub;
+  }, []);
+
+  return currentUser;
+}
+
 export {
   auth,
   db,
@@ -108,4 +123,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  useAuth
 };
