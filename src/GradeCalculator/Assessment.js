@@ -90,10 +90,11 @@ export function Assessment({
     const currentScore = (totalScore / totalWeight) * 100;
     setCurr(`Current Score: ${currentScore.toFixed(2)}`);
     const sgoal = value;
-    const needed =
-      sgoal <= 0 ? "-" : ((sgoal - totalScore) / (100 - totalWeight)) * 100;
-    const finalNeed = needed < 0 ? "Too Low" : needed;
-    setResult(`Score Required: ${finalNeed.toFixed(2)}`);
+    const needed = ((sgoal - totalScore) / (100 - totalWeight)) * 100;
+    const finalNeed =
+      needed < 0
+        ? setResult(`Desired score is too low!`)
+        : setResult(`Score Required: ${needed.toFixed(2)}`);
   }
 
   return (
@@ -205,7 +206,7 @@ export function Assessment({
 
             <Grid container>
               <Grid item>
-                <Typography sx={{ mt: 4 }}>Desired Grade:</Typography>
+                <Typography sx={{ mt: 4 }}>Desired Score:</Typography>
               </Grid>
 
               <Grid item>

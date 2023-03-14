@@ -55,7 +55,7 @@ const signInWithGoogle = async () => {
         name: user.displayName,
         authProvider: "google",
         email: user.email,
-        photoURL: user.photoURL
+        photoURL: user.photoURL,
       });
     }
   } catch (err) {
@@ -82,7 +82,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
-      photoURL: "/static/images/avatar/2.jpg"
+      photoURL: "/static/images/avatar/2.jpg",
     });
   } catch (err) {
     console.error(err);
@@ -105,10 +105,10 @@ const logout = () => {
 };
 
 function useAuth() {
-  const[currentUser, setCurrentUser] = useState();
-  
+  const [currentUser, setCurrentUser] = useState();
+
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, user => setCurrentUser(user));
+    const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
     return unsub;
   }, []);
 
@@ -123,5 +123,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
-  useAuth
+  useAuth,
 };

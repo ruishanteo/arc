@@ -52,7 +52,6 @@ export function AssessmentComponent({
           onChange={(event) => {
             var value = parseInt(event.target.value, 10);
 
-            if (value > max) value = max;
             if (value < min) value = min;
 
             onChange(value, "score");
@@ -74,7 +73,6 @@ export function AssessmentComponent({
           onChange={(event) => {
             var value = parseInt(event.target.value, 10);
 
-            if (value > max) value = max;
             if (value < min) value = min;
 
             onChange(value, "total");
