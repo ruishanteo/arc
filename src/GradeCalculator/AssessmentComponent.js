@@ -36,6 +36,10 @@ export function AssessmentComponent({
           }}
           type="text"
           id="component"
+          value={getText(index, "componentTitle")}
+          onChange={(event) => {
+            onChange(event.target.value, "componentTitle");
+          }}
         />
       </TableCell>
 

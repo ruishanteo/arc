@@ -67,6 +67,8 @@ export function Assessment({
   getText,
   updateText,
   getComponents,
+  setModuleTitle,
+  getModuleTitle,
 }) {
   const arr = getComponents(assessmentIndex);
   const [curr, setCurr] = useState("");
@@ -91,10 +93,9 @@ export function Assessment({
     setCurr(`Current Score: ${currentScore.toFixed(2)}`);
     const sgoal = value;
     const needed = ((sgoal - totalScore) / (100 - totalWeight)) * 100;
-    const finalNeed =
-      needed < 0
-        ? setResult(`Desired score is too low!`)
-        : setResult(`Score Required: ${needed.toFixed(2)}`);
+    needed < 0
+      ? setResult(`Desired score is too low!`)
+      : setResult(`Score Required: ${needed.toFixed(2)}`);
   }
 
   return (
@@ -126,7 +127,11 @@ export function Assessment({
             <TextField
               inputProps={{ style: { fontSize: 30, textAlign: "center" } }}
               placeholder="Module Name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+                setModuleTitle(assessmentIndex, e.target.value);
+              }}
+              value={getModuleTitle(assessmentIndex)}
               variant="standard"
             />
           </header>

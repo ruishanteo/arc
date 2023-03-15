@@ -10,13 +10,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export function ModuleAssessment() {
   const [assessments, setAssessments] = useState([]);
+  const [name, setName] = useState("");
   const auth = getAuth();
-  let name = 0;
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       user.providerData.forEach((profile) => {
-        name = profile.email;
+        setName(profile.email);
       });
     }
   });
@@ -24,9 +24,32 @@ export function ModuleAssessment() {
   const saveAll = async (e) => {
     e.preventDefault();
     await setDoc(doc(db, "assessments", name), {
-      assessments: assessments,
+      assessments: assessments
+        .filter((assessment) => !assessment.isDeleted)
+        .map((assessment) => {
+          return {
+            ...assessment,
+            components: assessment.components.filter(
+              (component) => !component.isDeleted
+            ),
+          };
+        }),
     });
   };
+
+  const getAll = async () => {
+    if (name) {
+      const docRef = doc(db, "assessments", name);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setAssessments(docSnap.data().assessments);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getAll();
+  }, [name]);
 
   function getComponents(assessmentIndex) {
     return assessments[assessmentIndex].components;
@@ -35,19 +58,19 @@ export function ModuleAssessment() {
   function getText(assessmentIndex, componentIndex, dataKey) {
     const value =
       assessments[assessmentIndex].components[componentIndex][dataKey];
-    return typeof value === "number" && !isNaN(value) ? value : 0;
+    return value;
   }
 
   function updateText(assessmentIndex, componentIndex, dataKey, value) {
-    const parsed = parseInt(value);
-    if (parsed != null) {
-      assessments[assessmentIndex].components[componentIndex][dataKey] = parsed;
+    if (value != null) {
+      assessments[assessmentIndex].components[componentIndex][dataKey] = value;
       setAssessments([...assessments]);
     }
   }
 
   function newComponent(assessmentIndex) {
     assessments[assessmentIndex].components.push({
+      componentTitle: "",
       score: 0,
       total: 0,
       weight: 0,
@@ -65,7 +88,7 @@ export function ModuleAssessment() {
     setAssessments([
       ...assessments,
       {
-        title: `Assessment ${assessments.length + 1}`,
+        title: "",
         isDeleted: false,
         components: [],
       },
@@ -76,6 +99,16 @@ export function ModuleAssessment() {
     const updatedAssessments = [...assessments];
     updatedAssessments[index].isDeleted = true;
     setAssessments(updatedAssessments);
+  };
+
+  const setModuleTitle = (index, moduleTitle) => {
+    const updatedAssessments = [...assessments];
+    updatedAssessments[index].title = moduleTitle;
+    setAssessments(updatedAssessments);
+  };
+
+  const getModuleTitle = (index) => {
+    return assessments[index].title;
   };
 
   return (
@@ -104,22 +137,22 @@ export function ModuleAssessment() {
 
       {assessments.map((_, assessmentIndex) => {
         return (
-          <>
+          <div key={assessmentIndex}>
             {!assessments[assessmentIndex].isDeleted && (
-              <div key={assessmentIndex}>
-                <Assessment
-                  key={assessmentIndex}
-                  assessmentIndex={assessmentIndex}
-                  deleteModule={deleteModule}
-                  newComponent={newComponent}
-                  deleteComponent={deleteComponent}
-                  getText={getText}
-                  updateText={updateText}
-                  getComponents={getComponents}
-                />
-              </div>
+              <Assessment
+                key={assessmentIndex}
+                assessmentIndex={assessmentIndex}
+                deleteModule={deleteModule}
+                newComponent={newComponent}
+                deleteComponent={deleteComponent}
+                getText={getText}
+                updateText={updateText}
+                getComponents={getComponents}
+                setModuleTitle={setModuleTitle}
+                getModuleTitle={getModuleTitle}
+              />
             )}
-          </>
+          </div>
         );
       })}
       <Button
