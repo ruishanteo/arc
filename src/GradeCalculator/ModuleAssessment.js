@@ -1,29 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Assessment } from "./Assessment";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
+
+import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { db } from "../Login/Firebase.js";
-import { doc, setDoc, getDoc, collection } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export function ModuleAssessment() {
   const [assessments, setAssessments] = useState([]);
-  const [name, setName] = useState("");
   const auth = getAuth();
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      user.providerData.forEach((profile) => {
-        setName(profile.email);
-      });
-    }
-  });
+  const user = auth.currentUser;
 
   const saveAll = async (e) => {
     e.preventDefault();
-    await setDoc(doc(db, "assessments", name), {
+    await setDoc(doc(db, "assessments", user.email), {
       assessments: assessments
         .filter((assessment) => !assessment.isDeleted)
         .map((assessment) => {
@@ -37,19 +31,17 @@ export function ModuleAssessment() {
     });
   };
 
-  const getAll = async () => {
-    if (name) {
-      const docRef = doc(db, "assessments", name);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setAssessments(docSnap.data().assessments);
-      }
+  const getAll = useCallback(async () => {
+    const docRef = doc(db, "assessments", user.email);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setAssessments(docSnap.data().assessments);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     getAll();
-  }, [name]);
+  }, [user, getAll]);
 
   function getComponents(assessmentIndex) {
     return assessments[assessmentIndex].components;
@@ -111,6 +103,10 @@ export function ModuleAssessment() {
     return assessments[index].title;
   };
 
+  if (!user) {
+    return;
+  }
+
   return (
     <Container maxWidth="lg">
       <Box
@@ -122,17 +118,21 @@ export function ModuleAssessment() {
           height: 100,
         }}
       >
-        <Typography variant="h4" sx={{ mt: 5, fontWeight: 450 }}>
+        <Typography variant="h4" sx={{ fontWeight: 450, minWidth: 250 }}>
           Grade Calculator
         </Typography>
-        <Button
-          variant="contained"
-          align="right"
-          sx={{ ml: 100, mt: 5, backgroundColor: "#fcf4d4", color: "black" }}
-          onClick={saveAll}
-        >
-          Save All
-        </Button>
+        <Grid container sx={{ display: "flex", justifyContent: "right" }}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#fcf4d4",
+              color: "black",
+            }}
+            onClick={saveAll}
+          >
+            Save All
+          </Button>
+        </Grid>
       </Box>
 
       {assessments.map((_, assessmentIndex) => {
