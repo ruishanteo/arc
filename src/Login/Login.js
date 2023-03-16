@@ -14,9 +14,9 @@ import Typography from "@mui/material/Typography";
 import LooksIcon from "@mui/icons-material/Looks";
 
 export function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const [email, setEmail] = useState("111@gmail.com");
+  const [password, setPassword] = useState("123456");
+  const [user, loading] = useAuthState(auth);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -25,7 +25,7 @@ export function Login() {
       return;
     }
     if (user) navigate("/dashboard");
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   return (
     <div className="login" align="center">
