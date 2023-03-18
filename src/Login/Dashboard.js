@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import { auth, db, logout } from "./Firebase.js";
+import { auth, db } from "./Firebase.js";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -53,7 +53,7 @@ export function Dashboard() {
       >
         <img src={background} alt="Logo" />
         <Typography sx={{ ml: 20, mt: -30 }} variant="h3">
-          Welcome, {name}!
+          Welcome, {name ? name : "___"}!
         </Typography>
         <Typography sx={{ ml: 20 }} variant="h6">
           Let's get started.

@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,22 +12,47 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LooksIcon from "@mui/icons-material/Looks";
 import { Link } from "react-router-dom";
-import { useAuth } from "../Login/Firebase.js";
+import { auth, db, useAuth, logout } from "../Login/Firebase.js";
+import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
+import { query, collection, getDocs, where } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["GradeCalculator"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [user, loading, error] = useAuthState(auth);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [name, setName] = useState("");
   const currentUser = useAuth();
-  const [photoURL, setPhotoURL] = React.useState("/static/images/avatar/2.jpg");
+  const [photoURL, setPhotoURL] = useState("/static/images/avatar/2.jpg");
+  const navigate = useNavigate();
+
+  const fetchUserName = async () => {
+    try {
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+      setName(data.name);
+    } catch (err) {
+      console.error(err);
+      alert("An error occured while fetching user data");
+    }
+  };
+
+  useEffect(() => {
+    if (loading) return;
+    if (!user) return navigate("/");
+    fetchUserName();
+  }, [user, loading]);
 
   React.useEffect(() => {
     if (currentUser && currentUser.photoURL) {
       setPhotoURL(currentUser.photoURL);
     }
-  }, [currentUser])
+  }, [currentUser]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -158,7 +182,7 @@ export function Header() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={photoURL} />
+                <Avatar alt={name} src={photoURL} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -177,11 +201,12 @@ export function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem component="a" href="/dashboard">
+                <Typography textAlign="center">Dashboard</Typography>
+              </MenuItem>
+              <MenuItem onClick={logout}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
