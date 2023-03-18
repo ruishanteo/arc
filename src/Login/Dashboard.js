@@ -4,8 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 import { auth, db, logout } from "./Firebase.js";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
+import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
+import background from "../background.jpg";
 
 export function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
@@ -31,27 +40,94 @@ export function Dashboard() {
   }, [user, loading]);
 
   return (
-    <div className="dashboard">
+    <Container maxWidth="lg" align="center">
       <Box
         sx={{
-          marginTop: 22,
+          marginTop: 5,
           display: "flex",
           flexDirection: "column",
+          width: 1100,
+          height: 300,
+        }}
+        align="left"
+      >
+        <img src={background} alt="Logo" />
+        <Typography sx={{ ml: 20, mt: -30 }} variant="h3">
+          Welcome, {name}!
+        </Typography>
+        <Typography sx={{ ml: 20 }} variant="h6">
+          Let's get started.
+        </Typography>
+      </Box>
+      <Box
+        align="center"
+        sx={{
+          mt: 5,
+          display: "flex",
+          flexDirection: "row",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        Logged in as
-        <div>{name}</div>
-        <div>{user?.email}</div>
-        <Button
-          className="dashboard__btn"
-          onClick={logout}
-          sx={{ mt: 4, backgroundColor: "#ffe0f7", color: "black" }}
-          variant="contained"
+        <Card
+          style={{ border: "none", boxShadow: "none" }}
+          sx={{ maxWidth: 345 }}
         >
-          Logout
-        </Button>
+          <CardActionArea href="/GradeCalculator">
+            <CalculateOutlinedIcon
+              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Grade Calculator
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Keep track of scores attained for every assessment component.
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+
+        <Card
+          style={{ border: "none", boxShadow: "none" }}
+          sx={{ maxWidth: 345 }}
+        >
+          <CardActionArea>
+            <AutoStoriesOutlinedIcon
+              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Module Planner
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Plan your modules for each semester to meet your degree
+                requirements.
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+
+        <Card
+          style={{ border: "none", boxShadow: "none" }}
+          sx={{ maxWidth: 345 }}
+        >
+          <CardActionArea>
+            <ForumOutlinedIcon
+              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Forum
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Discuss school related experiences and look for advice on the
+                forum.
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
       </Box>
-    </div>
+    </Container>
   );
 }
