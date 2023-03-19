@@ -5,6 +5,7 @@ import { Header } from "./NavBar/Header.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./Login/Login.js";
 import { Register } from "./Login/Register.js";
+import { Landing } from "./Login/Landing.js";
 import { Dashboard } from "./Login/Dashboard.js";
 import { Reset } from "./Login/Reset.js";
 import React from "react";
@@ -56,6 +57,7 @@ function App() {
             <div className="App">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/GradeCalculator" element={<GradeCalculator />} />
               </Routes>
@@ -63,10 +65,11 @@ function App() {
           </>
         ) : (
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset" element={<Reset />} />
-            <Route path="*" element={<Login />} />
+            <Route path="*" element={<Landing />} />
           </Routes>
         )}
       </Router>
