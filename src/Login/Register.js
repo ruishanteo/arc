@@ -134,7 +134,7 @@ export function Register() {
           <Grid container alignItems="center">
             <Grid item container direction="column" xs={12}>
               <Typography textAlign="center">
-                Already have an account? <Link to="/">Login</Link> now.
+                Already have an account? <Link to="/Login">Login</Link> now.
               </Typography>
             </Grid>
           </Grid>
