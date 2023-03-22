@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import { auth, db } from "./Firebase.js";
+import { auth, db } from "../UserAuth/Firebase.js";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -16,8 +16,8 @@ import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import background from "../background.jpg";
 
-export function Dashboard() {
-  const [user, loading, error] = useAuthState(auth);
+export function Home() {
+  const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ export function Dashboard() {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   return (
     <Container maxWidth="lg" align="center">

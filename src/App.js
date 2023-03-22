@@ -3,13 +3,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Header } from "./NavBar/Header.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Login } from "./Login/Login.js";
-import { Register } from "./Login/Register.js";
-import { Landing } from "./Login/Landing.js";
-import { Dashboard } from "./Login/Dashboard.js";
-import { Reset } from "./Login/Reset.js";
+import { Login } from "./UserAuth/Login.js";
+import { Register } from "./UserAuth/Register.js";
+import { Landing } from "./NavPages/Landing.js";
+import { Home } from "./NavPages/Home.js";
+import { Reset } from "./UserAuth/Reset.js";
 import React from "react";
-import { auth } from "./Login/Firebase.js";
+import { auth } from "./UserAuth/Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const theme = createTheme({
@@ -56,10 +56,10 @@ function App() {
             <Header />
             <div className="App">
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/GradeCalculator" element={<GradeCalculator />} />
               </Routes>
             </div>
