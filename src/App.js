@@ -5,6 +5,7 @@ import { Header } from "./NavBar/Header.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./UserAuth/Login.js";
 import { Register } from "./UserAuth/Register.js";
+import { Profile } from "./UserAuth/Profile.js";
 import { Landing } from "./NavPages/Landing.js";
 import { Home } from "./NavPages/Home.js";
 import { Reset } from "./UserAuth/Reset.js";
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/GradeCalculator" element={<GradeCalculator />} />
               </Routes>
             </div>

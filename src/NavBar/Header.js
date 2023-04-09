@@ -19,7 +19,6 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const pages = ["GradeCalculator"];
-const settings = ["Profile", "Account", "Home", "Logout"];
 
 export function Header() {
   const [user, loading] = useAuthState(auth);
@@ -203,6 +202,9 @@ export function Header() {
             >
               <MenuItem component="a" href="/home">
                 <Typography textAlign="center">Home</Typography>
+              </MenuItem>
+              <MenuItem component="a" href="/profile">
+                <Typography textAlign="center">Profile</Typography>
               </MenuItem>
               <MenuItem onClick={logout}>
                 <Typography textAlign="center">Logout</Typography>
