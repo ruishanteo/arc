@@ -1,4 +1,4 @@
-import { TableCell, TextField, Button } from "@mui/material";
+import { Button, TableCell, TextField } from "@mui/material";
 
 const min = 0;
 const max = 100;

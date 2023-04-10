@@ -2,18 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import { auth, db } from "../UserAuth/Firebase.js";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+import { auth, db } from "../UserAuth/Firebase.js";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
-import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  Container,
+  Typography,
+} from "@mui/material";
+
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
+
 import background from "../background.jpg";
 
 export function Home() {

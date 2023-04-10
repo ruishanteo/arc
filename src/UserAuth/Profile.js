@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { upload, useAuth } from "./Firebase.js";
+
 import {
   Avatar,
   Box,
@@ -6,10 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Send, PhotoCamera } from "@mui/icons-material";
-
-import { useEffect, useState } from "react";
-import { useAuth, upload } from "./Firebase.js";
+import { PhotoCamera, Send } from "@mui/icons-material";
 
 export function Profile() {
   const currentUser = useAuth();
