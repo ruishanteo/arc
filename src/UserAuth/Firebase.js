@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
+  EmailAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
-  GoogleAuthProvider,
   onAuthStateChanged,
+  reauthenticateWithCredential,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   signInWithPopup,
+  updateEmail,
   updateProfile,
 } from "firebase/auth";
 import {
@@ -118,29 +121,45 @@ function useAuth() {
   return currentUser;
 }
 
-async function upload(file, currentUser, setLoading) {
-  const fileRef = ref(storage, currentUser.uid + ".png");
-
+async function changeProfile(file, username, email, currentUser, setLoading) {
   setLoading(true);
 
-  const snapshot = await uploadBytes(fileRef, file);
-  const photoURL = await getDownloadURL(fileRef);
+  if (username) {
+    await updateProfile(currentUser, { displayName: username });
+  }
 
-  updateProfile(currentUser, { photoURL });
+  if (email) {
+    await updateEmail(currentUser, email);
+  }
+
+  if (file) {
+    const fileRef = ref(storage, currentUser.uid + ".png");
+    const photoURL = await getDownloadURL(fileRef);
+    await updateProfile(currentUser, { photoURL: photoURL });
+  }
 
   setLoading(false);
-  alert("Upload success!");
+  alert("Change success!");
+}
+
+async function onReAuth(password, email, currentUser) {
+  const credential = EmailAuthProvider.credential(email, password);
+
+  await reauthenticateWithCredential(currentUser, credential)
+    .then(() => {})
+    .catch((error) => alert(error));
 }
 
 export {
   auth,
   db,
   storage,
+  changeProfile,
+  onReAuth,
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
   useAuth,
-  upload,
 };
