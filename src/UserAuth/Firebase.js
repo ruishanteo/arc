@@ -15,6 +15,7 @@ import {
   signOut,
   signInWithPopup,
   updateEmail,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import {
@@ -155,7 +156,14 @@ function useAuth() {
   return currentUser;
 }
 
-async function changeProfile(file, username, email, currentUser, setLoading) {
+async function changeProfile(
+  file,
+  username,
+  email,
+  newPassword,
+  currentUser,
+  setLoading
+) {
   setLoading(true);
 
   if (username) {
@@ -171,6 +179,10 @@ async function changeProfile(file, username, email, currentUser, setLoading) {
     await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
     await updateProfile(currentUser, { photoURL: photoURL });
+  }
+
+  if (newPassword) {
+    await updatePassword(currentUser, newPassword);
   }
 
   setLoading(false);

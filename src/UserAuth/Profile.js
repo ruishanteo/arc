@@ -25,6 +25,7 @@ export function Profile() {
   const [photoURL, setPhotoURL] = useState();
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
+  const [newPassword, setNewPassword] = useState();
 
   const [confirmPW, setConfirmPW] = useState();
   const [open, setOpen] = useState(false);
@@ -45,6 +46,10 @@ export function Profile() {
     setEmail(e.target.value);
   }
 
+  function handlePasswordChange(e) {
+    setNewPassword(e.target.value);
+  }
+
   function handleClick() {
     setOpen(true);
   }
@@ -59,7 +64,14 @@ export function Profile() {
 
   async function onConfirmChange(e) {
     await onReAuth(confirmPW, currentUser.email, currentUser);
-    await changeProfile(photo, username, email, currentUser, setLoading);
+    await changeProfile(
+      photo,
+      username,
+      email,
+      newPassword,
+      currentUser,
+      setLoading
+    );
     setOpen(false);
   }
 
@@ -108,13 +120,21 @@ export function Profile() {
         label="Email"
       />
 
+      <TextField
+        defaultValue={email}
+        onChange={handlePasswordChange}
+        sx={{ maxWidth: "40vw", mt: "10px" }}
+        label="Password"
+      />
+
       <Button
         variant="contained"
         disabled={
           loading ||
           (!photo &&
             (!username || username === currentUser?.displayName) &&
-            (!email || email === currentUser?.email))
+            (!email || email === currentUser?.email) &&
+            !newPassword)
         }
         onClick={handleClick}
         sx={{ backgroundColor: "#ffe0f7", width: 120, height: 40, mt: 2 }}
