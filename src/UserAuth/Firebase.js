@@ -7,13 +7,14 @@ import {
   EmailAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   onAuthStateChanged,
   reauthenticateWithCredential,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  signOut,
   signInWithPopup,
+  signOut,
   updateEmail,
   updatePassword,
   updateProfile,
@@ -27,6 +28,8 @@ import {
   where,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+
+import { useNotificationStore } from "../Notifications/NotificationsStore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -52,7 +55,7 @@ const storage = getStorage();
 
 const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogle = async () => {
+const useSignInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
@@ -68,33 +71,49 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
+    let message = "";
+
     if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
-      alert("Sorry, the password is incorrect. Please recover your password.");
-    }
-    if (err.code === AuthErrorCodes.USER_DELETED) {
-      alert(
-        "Sorry, we couldn't find an account with the email. Please register for an account."
-      );
+      message =
+        "Sorry, the password is incorrect. Please recover your password.";
+    } else if (err.code === AuthErrorCodes.USER_DELETED) {
+      message =
+        "Sorry, we couldn't find an account with the email. Please register for an account.";
     } else {
-      console.log(err.message);
+      message = "An unknown error has occurred. Please try again later.";
     }
+
+    useNotificationStore.getState().addNotification({
+      severity: "error",
+      message: message,
+    });
+
+    console.log(err.message);
   }
 };
 
-const logInWithEmailAndPassword = async (email, password) => {
+const useLogInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
+    let message = "";
+
     if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
-      alert("Sorry, the password is incorrect. Please recover your password.");
-    }
-    if (err.code === AuthErrorCodes.USER_DELETED) {
-      alert(
-        "Sorry, we couldn't find an account with the email. Please register for an account."
-      );
+      message =
+        "Sorry, the password is incorrect. Please recover your password.";
+    } else if (err.code === AuthErrorCodes.USER_DELETED) {
+      message =
+        "Sorry, we couldn't find an account with the email. Please register for an account.";
     } else {
-      console.log(err.message);
+      message = "An unknown error has occurred. Please try again later.";
     }
+
+    useNotificationStore.getState().addNotification({
+      severity: "error",
+      message: message,
+    });
+
+    console.log(err.message);
   }
 };
 
@@ -110,19 +129,26 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       photoURL: "/static/images/avatar/2.jpg",
     });
   } catch (err) {
+    let message = "";
+
     if (err.code === AuthErrorCodes.EMAIL_EXISTS) {
-      alert(
-        "There is already an account registered with the email. Please login."
-      );
+      message =
+        "There is already an account registered with the email. Please login.";
     }
     if (err.code === AuthErrorCodes.INVALID_EMAIL) {
-      alert("The email entered is invalid. Please enter a valid email.");
+      message = "The email entered is invalid. Please enter a valid email.";
     }
     if (err.code === AuthErrorCodes.INTERNAL_ERROR) {
-      alert("Please fill in all the fields.");
+      message = "Please fill in all the fields.";
     } else {
-      console.log(err.message);
+      message = "An unknown error has occurred. Please try again later.";
     }
+    useNotificationStore.getState().addNotification({
+      severity: "error",
+      message: message,
+    });
+
+    console.log(err.message);
   }
 };
 
@@ -131,13 +157,19 @@ const sendPasswordReset = async (email) => {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
   } catch (err) {
+    let message = "";
     if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
-      alert(
-        "Password entered is too weak. Please enter a password with at least 6 characters."
-      );
+      message =
+        "Password entered is too weak. Please enter a password with at least 6 characters.";
     } else {
-      console.log(err.message);
+      message = "An unknown error has occurred. Please try again later.";
     }
+    useNotificationStore.getState().addNotification({
+      severity: "error",
+      message: message,
+    });
+
+    console.log(err.message);
   }
 };
 
@@ -197,14 +229,19 @@ async function onReAuth(password, email, currentUser) {
     .catch((err) => alert(err.message));
 }
 
+function onDeleteUser(currentUser) {
+  deleteUser(currentUser);
+}
+
 export {
   auth,
   db,
   storage,
   changeProfile,
+  onDeleteUser,
   onReAuth,
-  signInWithGoogle,
-  logInWithEmailAndPassword,
+  useSignInWithGoogle as signInWithGoogle,
+  useLogInWithEmailAndPassword as logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,

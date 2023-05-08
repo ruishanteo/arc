@@ -13,6 +13,8 @@ import { Profile } from "./UserAuth/Profile.js";
 import { Register } from "./UserAuth/Register.js";
 import { Reset } from "./UserAuth/Reset.js";
 
+import { Notifications } from "./Notifications";
+
 import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
 const theme = createTheme({
@@ -57,6 +59,8 @@ function App() {
         {user ? (
           <>
             <Header />
+            <Notifications />
+
             <div className="App">
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -69,13 +73,17 @@ function App() {
             </div>
           </>
         ) : (
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/reset" element={<Reset />} />
-            <Route path="*" element={<Landing />} />
-          </Routes>
+          <>
+            <Notifications />
+
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/reset" element={<Reset />} />
+              <Route path="*" element={<Landing />} />
+            </Routes>
+          </>
         )}
       </Router>
     </ThemeProvider>

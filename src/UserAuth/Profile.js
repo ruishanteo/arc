@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { changeProfile, onReAuth, useAuth } from "./Firebase.js";
+import { changeProfile, onDeleteUser, onReAuth, useAuth } from "./Firebase.js";
+import { useNotificationStore } from "../Notifications/NotificationsStore.js";
 
 import {
   Avatar,
@@ -16,7 +17,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import { PhotoCamera, Send } from "@mui/icons-material";
+import { Delete, PhotoCamera, Send } from "@mui/icons-material";
 
 export function Profile() {
   const currentUser = useAuth();
@@ -29,8 +30,11 @@ export function Profile() {
 
   const [confirmPW, setConfirmPW] = useState();
   const [open, setOpen] = useState(false);
+  const [openPW, setOpenPW] = useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const { addNotification } = useNotificationStore();
 
   function handlePicChange(e) {
     if (e.target.files[0]) {
@@ -51,18 +55,30 @@ export function Profile() {
   }
 
   function handleClick() {
-    setOpen(true);
+    addNotification({
+      severity: "info",
+      message: "BLUBLUBLU",
+    });
+    // setOpen(true);
   }
 
-  const handleClose = () => {
+  function handleClose() {
     setOpen(false);
-  };
+  }
+
+  function handleClickPW() {
+    setOpenPW(true);
+  }
+
+  function handleClosePW() {
+    setOpenPW(false);
+  }
 
   function handleConfirmChange(e) {
     setConfirmPW(e.target.value);
   }
 
-  async function onConfirmChange(e) {
+  async function onConfirmChange() {
     await onReAuth(confirmPW, currentUser.email, currentUser);
     await changeProfile(
       photo,
@@ -75,6 +91,11 @@ export function Profile() {
     setOpen(false);
   }
 
+  async function onConfirmChangePW() {
+    onDeleteUser(currentUser);
+    setOpenPW(false);
+  }
+
   useEffect(() => {
     if (currentUser?.photoURL) {
       setPhotoURL(currentUser.photoURL);
@@ -83,8 +104,12 @@ export function Profile() {
 
   return (
     <Box
-      sx={{ marginTop: 8, display: "flex", flexDirection: "column" }}
-      align="center"
+      sx={{
+        marginTop: 8,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
     >
       <Button component="label" onChange={handlePicChange}>
         <Avatar
@@ -109,21 +134,21 @@ export function Profile() {
       <TextField
         placeholder={username}
         onChange={handleNameChange}
-        sx={{ maxWidth: "40vw" }}
+        sx={{ mt: "10px", minWidth: "40vw" }}
         label="Username"
       />
 
       <TextField
         defaultValue={email}
         onChange={handleEmailChange}
-        sx={{ maxWidth: "40vw", mt: "10px" }}
+        sx={{ mt: "10px", minWidth: "40vw" }}
         label="Email"
       />
 
       <TextField
         defaultValue={email}
         onChange={handlePasswordChange}
-        sx={{ maxWidth: "40vw", mt: "10px" }}
+        sx={{ mt: "10px", minWidth: "40vw" }}
         label="Password"
       />
 
@@ -137,10 +162,19 @@ export function Profile() {
             !newPassword)
         }
         onClick={handleClick}
-        sx={{ backgroundColor: "#ffe0f7", width: 120, height: 40, mt: 2 }}
+        sx={{ backgroundColor: "#b7b0f5", mt: 2, minWidth: "20vw" }}
       >
         <Typography sx={{ marginRight: 1 }}>Submit</Typography>
         <Send />
+      </Button>
+
+      <Button
+        variant="contained"
+        onClick={handleClickPW}
+        sx={{ backgroundColor: "#ffe0f7", mt: 2, minWidth: "20vw" }}
+      >
+        <Typography> Delete Account</Typography>
+        <Delete />
       </Button>
 
       <Dialog
@@ -162,12 +196,54 @@ export function Profile() {
         <DialogActions>
           <Button
             variant="contained"
+            sx={{ backgroundColor: "#cff8df" }}
             autoFocus
-            onClick={(e) => onConfirmChange(e)}
+            onClick={onConfirmChange}
           >
             Confirm
           </Button>
-          <Button variant="contained" onClick={handleClose} autoFocus>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            sx={{ backgroundColor: "#fcf4d4" }}
+            autoFocus
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        fullScreen={fullScreen}
+        open={openPW}
+        onClose={handleClosePW}
+        aria-labelledby="responsive-dialog-title"
+        display="flex"
+        justifycontent="center"
+      >
+        <DialogTitle id="responsive-dialog-title">
+          {"Please enter your password to confirm."}
+        </DialogTitle>
+
+        <DialogContent>
+          <TextField label="password" onChange={handleConfirmChange} />
+        </DialogContent>
+
+        <DialogActions>
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "#cff8df" }}
+            autoFocus
+            onClick={onConfirmChangePW}
+          >
+            Confirm
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleClosePW}
+            sx={{ backgroundColor: "#fcf4d4" }}
+            autoFocus
+          >
             Close
           </Button>
         </DialogActions>
