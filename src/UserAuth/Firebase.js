@@ -168,6 +168,7 @@ async function changeProfile(file, username, email, currentUser, setLoading) {
 
   if (file) {
     const fileRef = ref(storage, currentUser.uid + ".png");
+    await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
     await updateProfile(currentUser, { photoURL: photoURL });
   }
