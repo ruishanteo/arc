@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 
-import { query, collection, getDocs, where } from "firebase/firestore";
-import { auth, db, useAuth } from "../UserAuth/Firebase.js";
+import { useAuth } from "../UserAuth/Firebase.js";
 
 import {
   Box,
@@ -22,7 +19,6 @@ import background from "../background.jpg";
 
 export function Home() {
   const [name, setName] = useState("");
-  const navigate = useNavigate();
   const currentUser = useAuth();
 
   useEffect(() => {
@@ -66,9 +62,7 @@ export function Home() {
           sx={{ maxWidth: 345 }}
         >
           <CardActionArea href="/GradeCalculator">
-            <CalculateOutlinedIcon
-              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
-            />
+            <CalculateOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Grade Calculator
@@ -85,9 +79,7 @@ export function Home() {
           sx={{ maxWidth: 345 }}
         >
           <CardActionArea>
-            <AutoStoriesOutlinedIcon
-              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
-            />
+            <AutoStoriesOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Module Planner
@@ -105,9 +97,7 @@ export function Home() {
           sx={{ maxWidth: 345 }}
         >
           <CardActionArea>
-            <ForumOutlinedIcon
-              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
-            />
+            <ForumOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Forum
