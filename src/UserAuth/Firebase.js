@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
+  AuthErrorCodes,
   EmailAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -25,6 +26,7 @@ import {
   where,
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -65,8 +67,16 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
+      alert("Sorry, the password is incorrect. Please recover your password.");
+    }
+    if (err.code === AuthErrorCodes.USER_DELETED) {
+      alert(
+        "Sorry, we couldn't find an account with the email. Please register for an account."
+      );
+    } else {
+      console.log(err.message);
+    }
   }
 };
 
@@ -74,8 +84,16 @@ const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
+      alert("Sorry, the password is incorrect. Please recover your password.");
+    }
+    if (err.code === AuthErrorCodes.USER_DELETED) {
+      alert(
+        "Sorry, we couldn't find an account with the email. Please register for an account."
+      );
+    } else {
+      console.log(err.message);
+    }
   }
 };
 
@@ -91,8 +109,19 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       photoURL: "/static/images/avatar/2.jpg",
     });
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    if (err.code === AuthErrorCodes.EMAIL_EXISTS) {
+      alert(
+        "There is already an account registered with the email. Please login."
+      );
+    }
+    if (err.code === AuthErrorCodes.INVALID_EMAIL) {
+      alert("The email entered is invalid. Please enter a valid email.");
+    }
+    if (err.code === AuthErrorCodes.INTERNAL_ERROR) {
+      alert("Please fill in all the fields.");
+    } else {
+      console.log(err.message);
+    }
   }
 };
 
@@ -101,8 +130,13 @@ const sendPasswordReset = async (email) => {
     await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+      alert(
+        "Password entered is too weak. Please enter a password with at least 6 characters."
+      );
+    } else {
+      console.log(err.message);
+    }
   }
 };
 
@@ -147,7 +181,7 @@ async function onReAuth(password, email, currentUser) {
 
   await reauthenticateWithCredential(currentUser, credential)
     .then(() => {})
-    .catch((error) => alert(error));
+    .catch((err) => alert(err.message));
 }
 
 export {

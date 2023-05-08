@@ -19,7 +19,6 @@ export function Register() {
   const navigate = useNavigate();
 
   const register = () => {
-    if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
   };
 
