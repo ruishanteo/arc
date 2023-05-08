@@ -20,12 +20,10 @@ export function Landing() {
             sx={{
               flexDirection: "row",
               flexGrow: 4,
-              display: { xs: "none", md: "flex" },
+              display: "flex",
             }}
           >
-            <LooksIcon
-              sx={{ fontSize: 40, display: { xs: "none", md: "flex" }, mr: 1 }}
-            />
+            <LooksIcon sx={{ fontSize: 40, display: "flex", mr: 1 }} />
             <Typography
               variant="h5"
               sx={{
@@ -44,7 +42,7 @@ export function Landing() {
                 mr: 2,
                 justifyContent: "right",
                 flexGrow: 1,
-                display: { xs: "none", md: "flex" },
+                display: "flex",
               }}
             >
               <Button
