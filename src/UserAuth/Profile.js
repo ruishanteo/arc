@@ -55,11 +55,7 @@ export function Profile() {
   }
 
   function handleClick() {
-    addNotification({
-      severity: "info",
-      message: "BLUBLUBLU",
-    });
-    // setOpen(true);
+    setOpen(true);
   }
 
   function handleClose() {
