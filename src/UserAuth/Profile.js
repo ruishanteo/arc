@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { changeProfile, onDeleteUser, onReAuth, useAuth } from "./Firebase.js";
-import { useNotificationStore } from "../Notifications/NotificationsStore.js";
 
 import {
   Avatar,
@@ -33,8 +32,6 @@ export function Profile() {
   const [openPW, setOpenPW] = useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  const { addNotification } = useNotificationStore();
 
   function handlePicChange(e) {
     if (e.target.files[0]) {

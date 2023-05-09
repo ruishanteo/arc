@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { getAnalytics } from "firebase/analytics";
 import {
   AuthErrorCodes,
   EmailAuthProvider,
@@ -48,7 +48,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage();
@@ -153,11 +153,15 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 };
 
 const sendPasswordReset = async (email) => {
+  let message = "";
   try {
     await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
+    message = "Password reset link sent!";
+    useNotificationStore.getState().addNotification({
+      severity: "success",
+      message: message,
+    });
   } catch (err) {
-    let message = "";
     if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
       message =
         "Password entered is too weak. Please enter a password with at least 6 characters.";
@@ -218,7 +222,14 @@ async function changeProfile(
   }
 
   setLoading(false);
-  alert("Change success!");
+  let message = "";
+
+  message = "Change success!";
+
+  useNotificationStore.getState().addNotification({
+    severity: "success",
+    message: message,
+  });
 }
 
 async function onReAuth(password, email, currentUser) {
