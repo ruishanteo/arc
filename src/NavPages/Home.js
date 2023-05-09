@@ -15,7 +15,7 @@ import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 
-import background from "../background.jpg";
+import background from "../Images/background.jpg";
 
 export function Home() {
   const [name, setName] = useState("");
