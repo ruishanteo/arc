@@ -19,6 +19,7 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const pages = ["GradeCalculator"];
+
 const settings = ["Profile", "Account", "Home", "Logout"];
 
 export function Header() {
@@ -27,6 +28,7 @@ export function Header() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [name, setName] = useState("");
   const currentUser = useAuth();
+
   const [photoURL, setPhotoURL] = useState("/static/images/avatar/2.jpg");
   const navigate = useNavigate();
 
@@ -54,6 +56,7 @@ export function Header() {
     }
   }, [currentUser]);
 
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -68,6 +71,10 @@ export function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogOut = () => {
+    logout();
+  }
 
   return (
     <AppBar position="static">
