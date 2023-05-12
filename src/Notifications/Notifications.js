@@ -1,4 +1,4 @@
-import { Alert, Box, Snackbar, Stack } from "@mui/material";
+import { Alert, Box, Snackbar } from "@mui/material";
 
 import { useNotificationStore } from "./NotificationsStore.js";
 

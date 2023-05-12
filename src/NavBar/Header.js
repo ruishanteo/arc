@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { auth, db, logout, useAuth } from "../UserAuth/Firebase.js";
+import { logout, useAuth } from "../UserAuth/Firebase.js";
 
 import {
   AppBar,
@@ -25,14 +23,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 const pages = ["GradeCalculator"];
 
 export function Header() {
-  const [user, loading] = useAuthState(auth);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [name, setName] = useState("");
   const currentUser = useAuth();
 
   const [photoURL, setPhotoURL] = useState("/static/images/avatar/2.jpg");
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
@@ -45,7 +41,6 @@ export function Header() {
       setPhotoURL(currentUser.photoURL);
     }
   }, [currentUser]);
-
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -61,10 +56,6 @@ export function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const handleLogOut = () => {
-    logout();
-  }
 
   return (
     <AppBar position="static">
