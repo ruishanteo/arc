@@ -201,13 +201,42 @@ async function changeProfile(
   setLoading
 ) {
   setLoading(true);
+  let message = "";
 
   if (username) {
     await updateProfile(currentUser, { displayName: username });
+    message = "Change success!";
+
+    useNotificationStore.getState().addNotification({
+      severity: "success",
+      message: message,
+    });
   }
 
   if (email) {
-    await updateEmail(currentUser, email);
+    try {
+      await updateEmail(currentUser, email);
+      message = "Change success!";
+
+      useNotificationStore.getState().addNotification({
+        severity: "success",
+        message: message,
+      });
+    } catch (err) {
+      if (err.code === AuthErrorCodes.EMAIL_EXISTS) {
+        message =
+          "There is already an account registered with the email. Please login.";
+      }
+      if (err.code === AuthErrorCodes.INVALID_EMAIL) {
+        message = "The email entered is invalid. Please enter a valid email.";
+      } else {
+        message = "An unknown error has occurred. Please try again later.";
+      }
+      useNotificationStore.getState().addNotification({
+        severity: "error",
+        message: message,
+      });
+    }
   }
 
   if (file) {
@@ -215,21 +244,36 @@ async function changeProfile(
     await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
     await updateProfile(currentUser, { photoURL: photoURL });
+    message = "Change success!";
+    useNotificationStore.getState().addNotification({
+      severity: "success",
+      message: message,
+    });
   }
 
   if (newPassword) {
-    await updatePassword(currentUser, newPassword);
+    try {
+      await updatePassword(currentUser, newPassword);
+      message = "Change success!";
+      useNotificationStore.getState().addNotification({
+        severity: "success",
+        message: message,
+      });
+    } catch (err) {
+      if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+        message =
+          "Password entered is too weak. Please enter a password with at least 6 characters.";
+      } else {
+        message = "An unknown error has occurred. Please try again later.";
+      }
+      useNotificationStore.getState().addNotification({
+        severity: "error",
+        message: message,
+      });
+    }
   }
 
   setLoading(false);
-  let message = "";
-
-  message = "Change success!";
-
-  useNotificationStore.getState().addNotification({
-    severity: "success",
-    message: message,
-  });
 }
 
 async function onReAuth(password, email, currentUser) {
