@@ -279,9 +279,15 @@ async function changeProfile(
 async function onReAuth(password, email, currentUser) {
   const credential = EmailAuthProvider.credential(email, password);
 
-  await reauthenticateWithCredential(currentUser, credential)
+  return await reauthenticateWithCredential(currentUser, credential)
     .then(() => {})
-    .catch((err) => alert(err.message));
+    .catch((err) => {
+      useNotificationStore.getState().addNotification({
+        severity: "error",
+        message: "Password entered is incorrect. Please try again.",
+      });
+      return "err";
+    });
 }
 
 function onDeleteUser(currentUser) {

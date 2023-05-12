@@ -72,15 +72,17 @@ export function Profile() {
   }
 
   async function onConfirmChange() {
-    await onReAuth(confirmPW, currentUser.email, currentUser);
-    await changeProfile(
-      photo,
-      username,
-      email,
-      newPassword,
-      currentUser,
-      setLoading
-    );
+    const err = await onReAuth(confirmPW, currentUser.email, currentUser);
+    if (err !== "err") {
+      await changeProfile(
+        photo,
+        username,
+        email,
+        newPassword,
+        currentUser,
+        setLoading
+      );
+    }
     setOpen(false);
   }
 
