@@ -30,6 +30,7 @@ export function Header() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [name, setName] = useState("");
   const currentUser = useAuth();
+
   const [photoURL, setPhotoURL] = useState("/static/images/avatar/2.jpg");
   const navigate = useNavigate();
 
@@ -45,6 +46,7 @@ export function Header() {
     }
   }, [currentUser]);
 
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -59,6 +61,10 @@ export function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogOut = () => {
+    logout();
+  }
 
   return (
     <AppBar position="static">
