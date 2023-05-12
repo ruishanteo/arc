@@ -1,43 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 
-import { auth, db } from "../UserAuth/Firebase.js";
-import { query, collection, getDocs, where } from "firebase/firestore";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+import { useAuth } from "../UserAuth/Firebase.js";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
-import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  Container,
+  Typography,
+} from "@mui/material";
+
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
-import background from "../background.jpg";
+
+import background from "../Images/background.jpg";
 
 export function Home() {
-  const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
-  const navigate = useNavigate();
-
-  const fetchUserName = async () => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
-    } catch (err) {
-      console.error(err);
-      alert("An error occured while fetching user data");
-    }
-  };
+  const currentUser = useAuth();
 
   useEffect(() => {
-    if (loading) return;
-    if (!user) return navigate("/");
-    fetchUserName();
-  }, [user, loading, navigate]);
+    if (currentUser) {
+      setName(currentUser.displayName);
+    }
+  }, [currentUser]);
 
   return (
     <Container maxWidth="lg" align="center">
@@ -74,9 +62,7 @@ export function Home() {
           sx={{ maxWidth: 345 }}
         >
           <CardActionArea href="/GradeCalculator">
-            <CalculateOutlinedIcon
-              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
-            />
+            <CalculateOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Grade Calculator
@@ -93,9 +79,7 @@ export function Home() {
           sx={{ maxWidth: 345 }}
         >
           <CardActionArea>
-            <AutoStoriesOutlinedIcon
-              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
-            />
+            <AutoStoriesOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Module Planner
@@ -113,9 +97,7 @@ export function Home() {
           sx={{ maxWidth: 345 }}
         >
           <CardActionArea>
-            <ForumOutlinedIcon
-              sx={{ fontSize: 80, display: { xs: "none", md: "flex" } }}
-            />
+            <ForumOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Forum

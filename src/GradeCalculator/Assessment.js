@@ -1,24 +1,23 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import { AssessmentComponent } from "./AssessmentComponent.js";
 
-import { styled } from "@mui/material/styles";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import {
+  Button,
+  Grid,
+  styled,
   Table,
   TableHead,
   TableBody,
   TableRow,
   TableCell,
   TextField,
-  Button,
-  Grid,
+  Typography,
 } from "@mui/material";
+import MuiAccordion from "@mui/material/Accordion";
+import MuiAccordionDetails from "@mui/material/AccordionDetails";
+import MuiAccordionSummary from "@mui/material/AccordionSummary";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const min = 0;
 const max = 100;

@@ -1,27 +1,46 @@
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { useEffect, useState } from "react";
+
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+
 import LooksIcon from "@mui/icons-material/Looks";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import landing from "../landing.jpg";
+
+import desktopImage from "../Images/landingDesktop.jpeg";
+import mobileImage from "../Images/landingMobile.jpeg";
 
 export function Landing() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const imageURL = windowWidth >= 915 ? desktopImage : mobileImage;
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url(${imageURL})`,
+        height: "100vh",
+        backgroundSize: "cover",
+        overflowY: "scroll",
+      }}
+    >
       <AppBar position="static">
         <Toolbar>
           <Box
             sx={{
               flexDirection: "row",
               flexGrow: 4,
-              display: { xs: "none", md: "flex" },
+              display: "flex",
             }}
           >
-            <LooksIcon
-              sx={{ fontSize: 40, display: { xs: "none", md: "flex" }, mr: 1 }}
-            />
+            <LooksIcon sx={{ fontSize: 40, display: "flex", mr: 1 }} />
             <Typography
               variant="h5"
               sx={{
@@ -40,7 +59,7 @@ export function Landing() {
                 mr: 2,
                 justifyContent: "right",
                 flexGrow: 1,
-                display: { xs: "none", md: "flex" },
+                display: "flex",
               }}
             >
               <Button
@@ -63,41 +82,44 @@ export function Landing() {
           </Box>
         </Toolbar>
       </AppBar>
+      <Box display="flex" flexDirection="column">
+        <Box minHeight="10vh" />
 
-      <Container maxWidth="lg" align="center">
-        <Box
-          sx={{
-            marginTop: 2,
-            display: "flex",
-            flexDirection: "column",
-            width: 1200,
-            height: 450,
-          }}
-          align="left"
-        >
-          <img src={landing} alt="Logo" />
-          <Box sx={{ ml: 20, display: "flex", flexDirection: "column" }}>
-            <Typography
-              sx={{
-                mt: -55,
-                color: "black",
-                fontFamily: "monospace",
-                fontWeight: 700,
-                fontSize: 70,
-                letterSpacing: ".3rem",
-              }}
-              variant="h3"
-            >
+        <Box display="flex" flexDirection="row">
+          <Box minWidth="25vw" />
+
+          <Box
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              flexDirection: "column",
+              width: "80vw",
+              height: "55vh",
+              alignItems: "center",
+            }}
+          >
+            <Box display="flex" flexDirection="row">
               <LooksIcon
                 sx={{
-                  fontSize: 70,
-                  display: { xs: "none", md: "flex" },
-                  mr: 1,
+                  fontSize: 100,
+                  mr: 2.5,
                 }}
               />
-              ARC
-            </Typography>
-            <Typography sx={{ color: "black" }} variant="h8">
+              <Typography
+                sx={{
+                  color: "black",
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: "1.4rem",
+                  mt: 1.5,
+                }}
+                variant="h1"
+              >
+                ARC
+              </Typography>
+            </Box>
+
+            <Typography sx={{ color: "black" }} variant="h5">
               Your one-stop planning needs.
             </Typography>
             <Button
@@ -110,20 +132,14 @@ export function Landing() {
             </Button>
           </Box>
         </Box>
-
-        <Box
-          align="right"
-          sx={{
-            marginTop: -5,
-            mr: 20,
-          }}
-        >
+        <Box minHeight="10vh" />
+        <Box minHeight="12vh" backgroundColor="white" align="center">
           <Typography sx={{ color: "black" }} variant="h4">
             Boost your productivity.
           </Typography>
           <Typography>Some description about the place.</Typography>
         </Box>
-      </Container>
+      </Box>
     </div>
   );
 }

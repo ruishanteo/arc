@@ -1,16 +1,21 @@
-import { GradeCalculator } from "./GradeCalculator/GradeCalculator.js";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { Header } from "./NavBar/Header.js";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Login } from "./UserAuth/Login.js";
-import { Register } from "./UserAuth/Register.js";
-import { Landing } from "./NavPages/Landing.js";
-import { Home } from "./NavPages/Home.js";
-import { Reset } from "./UserAuth/Reset.js";
 import React from "react";
-import { auth } from "./UserAuth/Firebase.js";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import { useAuthState } from "react-firebase-hooks/auth";
+
+import { auth } from "./UserAuth/Firebase.js";
+import { GradeCalculator } from "./GradeCalculator/GradeCalculator.js";
+import { Header } from "./NavBar/Header.js";
+import { Home } from "./NavPages/Home.js";
+import { Landing } from "./NavPages/Landing.js";
+import { Login } from "./UserAuth/Login.js";
+import { Profile } from "./UserAuth/Profile.js";
+import { Register } from "./UserAuth/Register.js";
+import { Reset } from "./UserAuth/Reset.js";
+
+import { Notifications } from "./Notifications";
+
+import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
 const theme = createTheme({
   typography: {
@@ -54,24 +59,31 @@ function App() {
         {user ? (
           <>
             <Header />
+            <Notifications />
+
             <div className="App">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/GradeCalculator" element={<GradeCalculator />} />
               </Routes>
             </div>
           </>
         ) : (
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/reset" element={<Reset />} />
-            <Route path="*" element={<Landing />} />
-          </Routes>
+          <>
+            <Notifications />
+
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/reset" element={<Reset />} />
+              <Route path="*" element={<Landing />} />
+            </Routes>
+          </>
         )}
       </Router>
     </ThemeProvider>

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "./Firebase.js";
-import { TextField, Button } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import LooksIcon from "@mui/icons-material/Looks";
 
 export function Register() {
@@ -20,7 +19,6 @@ export function Register() {
   const navigate = useNavigate();
 
   const register = () => {
-    if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
   };
 

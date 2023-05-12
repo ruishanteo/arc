@@ -1,5 +1,5 @@
-import { ModuleAssessment } from "./ModuleAssessment.js";
 import React from "react";
+import { ModuleAssessment } from "./ModuleAssessment.js";
 
 export function GradeCalculator() {
   return (

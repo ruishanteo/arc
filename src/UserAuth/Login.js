@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import {
   auth,
   logInWithEmailAndPassword,
   signInWithGoogle,
 } from "./Firebase.js";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { TextField, Button } from "@mui/material";
 
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import LooksIcon from "@mui/icons-material/Looks";
 
 export function Login() {

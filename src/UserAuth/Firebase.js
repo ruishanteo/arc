@@ -1,25 +1,36 @@
 // Import the functions you need from the SDKs you need
 import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { getAnalytics } from "firebase/analytics";
 import {
+  AuthErrorCodes,
+  EmailAuthProvider,
   GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
+  deleteUser,
+  getAuth,
   onAuthStateChanged,
+  reauthenticateWithCredential,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateEmail,
+  updatePassword,
+  updateProfile,
 } from "firebase/auth";
 import {
+  addDoc,
+  collection,
+  getDocs,
   getFirestore,
   query,
-  getDocs,
-  collection,
   where,
-  addDoc,
 } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+
+import { useNotificationStore } from "../Notifications/NotificationsStore.js";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -37,13 +48,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage();
 
 const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogle = async () => {
+const useSignInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
@@ -59,17 +71,49 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    let message = "";
+
+    if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
+      message =
+        "Sorry, the password is incorrect. Please recover your password.";
+    } else if (err.code === AuthErrorCodes.USER_DELETED) {
+      message =
+        "Sorry, we couldn't find an account with the email. Please register for an account.";
+    } else {
+      message = "An unknown error has occurred. Please try again later.";
+    }
+
+    useNotificationStore.getState().addNotification({
+      severity: "error",
+      message: message,
+    });
+
+    console.log(err.message);
   }
 };
 
-const logInWithEmailAndPassword = async (email, password) => {
+const useLogInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    let message = "";
+
+    if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
+      message =
+        "Sorry, the password is incorrect. Please recover your password.";
+    } else if (err.code === AuthErrorCodes.USER_DELETED) {
+      message =
+        "Sorry, we couldn't find an account with the email. Please register for an account.";
+    } else {
+      message = "An unknown error has occurred. Please try again later.";
+    }
+
+    useNotificationStore.getState().addNotification({
+      severity: "error",
+      message: message,
+    });
+
+    console.log(err.message);
   }
 };
 
@@ -85,18 +129,51 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       photoURL: "/static/images/avatar/2.jpg",
     });
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    let message = "";
+
+    if (err.code === AuthErrorCodes.EMAIL_EXISTS) {
+      message =
+        "There is already an account registered with the email. Please login.";
+    }
+    if (err.code === AuthErrorCodes.INVALID_EMAIL) {
+      message = "The email entered is invalid. Please enter a valid email.";
+    }
+    if (err.code === AuthErrorCodes.INTERNAL_ERROR) {
+      message = "Please fill in all the fields.";
+    } else {
+      message = "An unknown error has occurred. Please try again later.";
+    }
+    useNotificationStore.getState().addNotification({
+      severity: "error",
+      message: message,
+    });
+
+    console.log(err.message);
   }
 };
 
 const sendPasswordReset = async (email) => {
+  let message = "";
   try {
     await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
+    message = "Password reset link sent!";
+    useNotificationStore.getState().addNotification({
+      severity: "success",
+      message: message,
+    });
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+      message =
+        "Password entered is too weak. Please enter a password with at least 6 characters.";
+    } else {
+      message = "An unknown error has occurred. Please try again later.";
+    }
+    useNotificationStore.getState().addNotification({
+      severity: "error",
+      message: message,
+    });
+
+    console.log(err.message);
   }
 };
 
@@ -115,11 +192,67 @@ function useAuth() {
   return currentUser;
 }
 
+async function changeProfile(
+  file,
+  username,
+  email,
+  newPassword,
+  currentUser,
+  setLoading
+) {
+  setLoading(true);
+
+  if (username) {
+    await updateProfile(currentUser, { displayName: username });
+  }
+
+  if (email) {
+    await updateEmail(currentUser, email);
+  }
+
+  if (file) {
+    const fileRef = ref(storage, currentUser.uid + ".png");
+    await uploadBytes(fileRef, file);
+    const photoURL = await getDownloadURL(fileRef);
+    await updateProfile(currentUser, { photoURL: photoURL });
+  }
+
+  if (newPassword) {
+    await updatePassword(currentUser, newPassword);
+  }
+
+  setLoading(false);
+  let message = "";
+
+  message = "Change success!";
+
+  useNotificationStore.getState().addNotification({
+    severity: "success",
+    message: message,
+  });
+}
+
+async function onReAuth(password, email, currentUser) {
+  const credential = EmailAuthProvider.credential(email, password);
+
+  await reauthenticateWithCredential(currentUser, credential)
+    .then(() => {})
+    .catch((err) => alert(err.message));
+}
+
+function onDeleteUser(currentUser) {
+  deleteUser(currentUser);
+}
+
 export {
   auth,
   db,
-  signInWithGoogle,
-  logInWithEmailAndPassword,
+  storage,
+  changeProfile,
+  onDeleteUser,
+  onReAuth,
+  useSignInWithGoogle as signInWithGoogle,
+  useLogInWithEmailAndPassword as logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
