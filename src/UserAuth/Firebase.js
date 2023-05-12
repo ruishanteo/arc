@@ -201,27 +201,16 @@ async function changeProfile(
   setLoading
 ) {
   setLoading(true);
-  let message = "";
+  let message = "Change success!";
+  let severity = "success";
 
   if (username) {
     await updateProfile(currentUser, { displayName: username });
-    message = "Change success!";
-
-    useNotificationStore.getState().addNotification({
-      severity: "success",
-      message: message,
-    });
   }
 
   if (email) {
     try {
       await updateEmail(currentUser, email);
-      message = "Change success!";
-
-      useNotificationStore.getState().addNotification({
-        severity: "success",
-        message: message,
-      });
     } catch (err) {
       if (err.code === AuthErrorCodes.EMAIL_EXISTS) {
         message =
@@ -232,10 +221,7 @@ async function changeProfile(
       } else {
         message = "An unknown error has occurred. Please try again later.";
       }
-      useNotificationStore.getState().addNotification({
-        severity: "error",
-        message: message,
-      });
+      severity = "error";
     }
   }
 
@@ -244,21 +230,11 @@ async function changeProfile(
     await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
     await updateProfile(currentUser, { photoURL: photoURL });
-    message = "Change success!";
-    useNotificationStore.getState().addNotification({
-      severity: "success",
-      message: message,
-    });
   }
 
   if (newPassword) {
     try {
       await updatePassword(currentUser, newPassword);
-      message = "Change success!";
-      useNotificationStore.getState().addNotification({
-        severity: "success",
-        message: message,
-      });
     } catch (err) {
       if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
         message =
@@ -266,12 +242,14 @@ async function changeProfile(
       } else {
         message = "An unknown error has occurred. Please try again later.";
       }
-      useNotificationStore.getState().addNotification({
-        severity: "error",
-        message: message,
-      });
+      severity = "error";
     }
   }
+
+  useNotificationStore.getState().addNotification({
+    severity: severity,
+    message: message,
+  });
 
   setLoading(false);
 }
