@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -16,6 +16,9 @@ import { Reset } from "./UserAuth/Reset.js";
 import { Notifications } from "./Notifications";
 
 import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
+
+import desktopImage from "./Images/backgroundDesktop.jpg";
+import mobileImage from "./Images/backgroundMobile.jpg";
 
 const theme = createTheme({
   typography: {
@@ -49,44 +52,72 @@ const theme = createTheme({
 
 function App() {
   const [user, loading] = useAuthState(auth);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const imageURL = windowWidth >= 915 ? desktopImage : mobileImage;
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   if (loading) return;
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <div
+      style={{
+        backgroundImage: `url(${imageURL})`,
+        height: "100vh",
+        width: "100vw",
+        backgroundSize: "cover",
+        overflowY: "scroll",
+        overflowX: "scroll",
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-      <Router>
-        {user ? (
-          <>
-            <Header />
-            <Notifications />
+        <Router>
+          {user ? (
+            <>
+              <Header />
+              <Notifications />
 
-            <div className="App">
+              <div className="App">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route
+                    path="/GradeCalculator"
+                    element={<GradeCalculator />}
+                  />
+                </Routes>
+              </div>
+            </>
+          ) : (
+            <>
+              <Notifications />
+
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/GradeCalculator" element={<GradeCalculator />} />
+                <Route path="/reset" element={<Reset />} />
+                <Route path="*" element={<Landing />} />
               </Routes>
-            </div>
-          </>
-        ) : (
-          <>
-            <Notifications />
-
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/reset" element={<Reset />} />
-              <Route path="*" element={<Landing />} />
-            </Routes>
-          </>
-        )}
-      </Router>
-    </ThemeProvider>
+            </>
+          )}
+        </Router>
+      </ThemeProvider>
+    </div>
   );
 }
 
