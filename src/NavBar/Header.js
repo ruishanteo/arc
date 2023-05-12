@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LooksIcon from "@mui/icons-material/Looks";
 import { Link } from "react-router-dom";
+
 import { auth, db, useAuth, logout } from "../Login/Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import React, { useEffect, useState } from "react";
@@ -19,7 +20,7 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const pages = ["GradeCalculator"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account"];
 
 export function Header() {
   const [user, loading, error] = useAuthState(auth);
@@ -27,6 +28,7 @@ export function Header() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [name, setName] = useState("");
   const currentUser = useAuth();
+
   const [photoURL, setPhotoURL] = useState("/static/images/avatar/2.jpg");
   const navigate = useNavigate();
 
@@ -54,6 +56,7 @@ export function Header() {
     }
   }, [currentUser]);
 
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -68,6 +71,10 @@ export function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogOut = () => {
+    logout();
+  }
 
   return (
     <AppBar position="static">
