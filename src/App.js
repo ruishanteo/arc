@@ -3,12 +3,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Header } from "./NavBar/Header.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Login } from "./Login/Login.js";
-import { Register } from "./Login/Register.js";
-import { Dashboard } from "./Login/Dashboard.js";
-import { Reset } from "./Login/Reset.js";
+import { Login } from "./UserAuth/Login.js";
+import { Register } from "./UserAuth/Register.js";
+import { Landing } from "./NavPages/Landing.js";
+import { Home } from "./NavPages/Home.js";
+import { Reset } from "./UserAuth/Reset.js";
 import React from "react";
-import { auth } from "./Login/Firebase.js";
+import { auth } from "./UserAuth/Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const theme = createTheme({
@@ -42,7 +43,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   if (loading) return;
   return (
@@ -55,18 +56,21 @@ function App() {
             <Header />
             <div className="App">
               <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/GradeCalculator" element={<GradeCalculator />} />
               </Routes>
             </div>
           </>
         ) : (
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset" element={<Reset />} />
-            <Route path="*" element={<Login />} />
+            <Route path="*" element={<Landing />} />
           </Routes>
         )}
       </Router>

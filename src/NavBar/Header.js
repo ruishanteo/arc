@@ -13,17 +13,18 @@ import MenuItem from "@mui/material/MenuItem";
 import LooksIcon from "@mui/icons-material/Looks";
 import { Link } from "react-router-dom";
 
-import { auth, db, useAuth, logout } from "../Login/Firebase.js";
+import { auth, db, useAuth, logout } from "../UserAuth/Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import React, { useEffect, useState } from "react";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const pages = ["GradeCalculator"];
-const settings = ["Profile", "Account"];
+
+const settings = ["Profile", "Account", "Home", "Logout"];
 
 export function Header() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [name, setName] = useState("");
@@ -48,7 +49,7 @@ export function Header() {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   React.useEffect(() => {
     if (currentUser && currentUser.photoURL) {
@@ -87,7 +88,7 @@ export function Header() {
             variant="h6"
             noWrap
             component="a"
-            href="/dashboard"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -152,7 +153,7 @@ export function Header() {
             variant="h5"
             noWrap
             component="a"
-            href="/dashboard"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -208,8 +209,8 @@ export function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem component="a" href="/dashboard">
-                <Typography textAlign="center">Dashboard</Typography>
+              <MenuItem component="a" href="/home">
+                <Typography textAlign="center">Home</Typography>
               </MenuItem>
               <MenuItem onClick={logout}>
                 <Typography textAlign="center">Logout</Typography>
