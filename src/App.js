@@ -7,6 +7,7 @@ import { SnackbarProvider } from "notistack";
 
 import { auth } from "./UserAuth/Firebase.js";
 import { GradeCalculator } from "./GradeCalculator/GradeCalculator.js";
+import { ModulePlanner } from "./ModulePlanner/ModulePlanner.js";
 
 import { Forum } from "./Forum/Forum.js";
 import { NewPost } from "./Forum/NewPost.js";
