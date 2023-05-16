@@ -29,7 +29,7 @@ export function AssessmentComponent({
         <TextField
           placeholder={`Assessment `}
           sx={{
-            width: { sm: 200, md: 250 },
+            width: "100%",
             "& .MuiInputBase-root": {
               height: 50,
             },
@@ -46,7 +46,7 @@ export function AssessmentComponent({
       <TableCell align="center">
         <TextField
           sx={{
-            width: { sm: 100, md: 150 },
+            width: "100%",
             "& .MuiInputBase-root": {
               height: 50,
             },
@@ -67,7 +67,7 @@ export function AssessmentComponent({
       <TableCell align="center">
         <TextField
           sx={{
-            width: { sm: 100, md: 150 },
+            width: "100%",
             "& .MuiInputBase-root": {
               height: 50,
             },
@@ -88,7 +88,7 @@ export function AssessmentComponent({
       <TableCell align="center">
         <TextField
           sx={{
-            width: { sm: 100, md: 150 },
+            width: "100%",
             "& .MuiInputBase-root": {
               height: 50,
             },

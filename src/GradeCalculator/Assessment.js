@@ -162,19 +162,63 @@ export function Assessment({
                   </TableCell>
                   <TableCell align="center">
                     {" "}
-                    <Typography>ASSESSMENT</Typography>{" "}
+                    <Typography
+                      sx={{
+                        fontSize: {
+                          lg: 18,
+                          md: 18,
+                          sm: 15,
+                          xs: 11,
+                        },
+                      }}
+                    >
+                      ASSESSMENT
+                    </Typography>{" "}
                   </TableCell>
                   <TableCell align="center">
                     {" "}
-                    <Typography>SCORE</Typography>{" "}
+                    <Typography
+                      sx={{
+                        fontSize: {
+                          lg: 18,
+                          md: 18,
+                          sm: 15,
+                          xs: 11,
+                        },
+                      }}
+                    >
+                      SCORE
+                    </Typography>{" "}
                   </TableCell>
                   <TableCell align="center">
                     {" "}
-                    <Typography>TOTAL</Typography>{" "}
+                    <Typography
+                      sx={{
+                        fontSize: {
+                          lg: 18,
+                          md: 18,
+                          sm: 15,
+                          xs: 11,
+                        },
+                      }}
+                    >
+                      TOTAL
+                    </Typography>{" "}
                   </TableCell>
                   <TableCell align="center">
                     {" "}
-                    <Typography>WEIGHTAGE</Typography>{" "}
+                    <Typography
+                      sx={{
+                        fontSize: {
+                          lg: 18,
+                          md: 18,
+                          sm: 15,
+                          xs: 11,
+                        },
+                      }}
+                    >
+                      WEIGHTAGE
+                    </Typography>{" "}
                   </TableCell>
                 </TableRow>
               </TableHead>
