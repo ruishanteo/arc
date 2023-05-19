@@ -1,17 +1,23 @@
-/*
-import { Button, TableCell, TextField } from "@mui/material";
+import { Autocomplete, Button, TableCell, TextField } from "@mui/material";
 
-const min = 0;
-const max = 100;
+const mods = [
+  { title: '', code: '', id: 0 },
+  { title: 'CS1010', code: 'CS', id: 1 },
+  { title: 'CS1010S', code: 'CS', id: 2 },
+  { title: 'CS1010E', code: 'CS', id: 3},
+  { title: 'CS1101S', code: 'CS', id: 4}
+ ]
+
 
 export function ModuleComponent({
   index,
-  updateText,
-  getText,
-  deleteComponent,
+  updateModule,
+  getModuleId,
+  deleteModule,
 }) {
-  function onChange(value, dataKey) {
-    updateText(index, dataKey, value);
+
+  function onChange(value) {
+    updateModule(index, value);
   }
 
   return (
@@ -19,7 +25,7 @@ export function ModuleComponent({
       <TableCell align="center">
         <Button
           type="button"
-          onClick={() => deleteComponent(index)}
+          onClick={() => deleteModule(index)}
           sx={{ backgroundColor: "#fcf4d4", color: "black" }}
         >
           —
@@ -27,87 +33,20 @@ export function ModuleComponent({
       </TableCell>
 
       <TableCell align="center">
-        <TextField
-          placeholder={`Assessment `}
-          sx={{
-            width: { sm: 200, md: 250 },
-            "& .MuiInputBase-root": {
-              height: 50,
-            },
-          }}
-          type="text"
-          id="component"
-          value={getText(index, "componentTitle")}
-          onChange={(event) => {
-            onChange(event.target.value, "componentTitle");
-          }}
-        />
-      </TableCell>
-
-      <TableCell align="center">
-        <TextField
-          sx={{
-            width: { sm: 100, md: 150 },
-            "& .MuiInputBase-root": {
-              height: 50,
-            },
-          }}
-          type="number"
-          value={getText(index, "score")}
-          onChange={(event) => {
-            var value = parseInt(event.target.value, 10);
-
-            if (value < min) value = min;
-
-            onChange(value, "score");
-          }}
-          inputProps={{ min, max }}
-        />
-      </TableCell>
-
-      <TableCell align="center">
-        <TextField
-          sx={{
-            width: { sm: 100, md: 150 },
-            "& .MuiInputBase-root": {
-              height: 50,
-            },
-          }}
-          type="number"
-          value={getText(index, "total")}
-          onChange={(event) => {
-            var value = parseInt(event.target.value, 10);
-
-            if (value < min) value = min;
-
-            onChange(value, "total");
-          }}
-          inputProps={{ min, max }}
-        />
-      </TableCell>
-
-      <TableCell align="center">
-        <TextField
-          sx={{
-            width: { sm: 100, md: 150 },
-            "& .MuiInputBase-root": {
-              height: 50,
-            },
-          }}
-          type="number"
-          value={getText(index, "weight")}
-          onChange={(event) => {
-            var value = parseInt(event.target.value, 10);
-
-            if (value > max) value = max;
-            if (value < min) value = min;
-
-            onChange(value, "weight");
-          }}
-          inputProps={{ min, max }}
-        />
+        <Autocomplete
+            disablePortal
+            id="module-selector"           
+            options={mods.sort((a, b) => -b.title.localeCompare(a.title))}
+            groupBy={(mods) => mods.code}
+            getOptionLabel={(mods) => mods.title}
+            sx={{ width: 300 }}
+            value={mods[getModuleId(index)]  || null}
+            onChange={(_, value) => {
+              onChange(value);
+            }}
+            renderInput={(params) => <TextField {...params} label="Select Module" />}
+            />
       </TableCell>
     </>
   );
 }
-*/
