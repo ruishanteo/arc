@@ -29,7 +29,8 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
-import { useNotificationStore } from "../Notifications/NotificationsStore.js";
+import { store } from "../stores/store";
+import { addNotification } from "../Notifications";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -83,11 +84,12 @@ const useSignInWithGoogle = async () => {
       message = "An unknown error has occurred. Please try again later.";
     }
 
-    useNotificationStore.getState().addNotification({
-      severity: "error",
-      message: message,
-    });
-
+    store.dispatch(
+      addNotification({
+        message: message,
+        variant: "error",
+      })
+    );
     console.log(err.message);
   }
 };
@@ -108,11 +110,12 @@ const useLogInWithEmailAndPassword = async (email, password) => {
       message = "An unknown error has occurred. Please try again later.";
     }
 
-    useNotificationStore.getState().addNotification({
-      severity: "error",
-      message: message,
-    });
-
+    store.dispatch(
+      addNotification({
+        message: message,
+        variant: "error",
+      })
+    );
     console.log(err.message);
   }
 };
@@ -134,20 +137,21 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     if (err.code === AuthErrorCodes.EMAIL_EXISTS) {
       message =
         "There is already an account registered with the email. Please login.";
-    }
-    if (err.code === AuthErrorCodes.INVALID_EMAIL) {
+    } else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+      message = "Your password is too weak! Please use at least 6 characters.";
+    } else if (err.code === AuthErrorCodes.INVALID_EMAIL) {
       message = "The email entered is invalid. Please enter a valid email.";
-    }
-    if (err.code === AuthErrorCodes.INTERNAL_ERROR) {
+    } else if (err.code === AuthErrorCodes.INTERNAL_ERROR) {
       message = "Please fill in all the fields.";
     } else {
       message = "An unknown error has occurred. Please try again later.";
     }
-    useNotificationStore.getState().addNotification({
-      severity: "error",
-      message: message,
-    });
-
+    store.dispatch(
+      addNotification({
+        message: message,
+        variant: "error",
+      })
+    );
     console.log(err.message);
   }
 };
@@ -157,10 +161,12 @@ const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
     message = "Password reset link sent!";
-    useNotificationStore.getState().addNotification({
-      severity: "success",
-      message: message,
-    });
+    store.dispatch(
+      addNotification({
+        message: message,
+        variant: "success",
+      })
+    );
   } catch (err) {
     if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
       message =
@@ -168,11 +174,12 @@ const sendPasswordReset = async (email) => {
     } else {
       message = "An unknown error has occurred. Please try again later.";
     }
-    useNotificationStore.getState().addNotification({
-      severity: "error",
-      message: message,
-    });
-
+    store.dispatch(
+      addNotification({
+        message: message,
+        variant: "error",
+      })
+    );
     console.log(err.message);
   }
 };
@@ -246,10 +253,12 @@ async function changeProfile(
     }
   }
 
-  useNotificationStore.getState().addNotification({
-    severity: severity,
-    message: message,
-  });
+  store.dispatch(
+    addNotification({
+      message: message,
+      variant: severity,
+    })
+  );
 
   setLoading(false);
 }
@@ -260,10 +269,12 @@ async function onReAuth(password, email, currentUser) {
   return await reauthenticateWithCredential(currentUser, credential)
     .then(() => {})
     .catch((err) => {
-      useNotificationStore.getState().addNotification({
-        severity: "error",
-        message: "Password entered is incorrect. Please try again.",
-      });
+      store.dispatch(
+        addNotification({
+          message: "Password entered is incorrect. Please try again.",
+          variant: "error",
+        })
+      );
       return "err";
     });
 }
