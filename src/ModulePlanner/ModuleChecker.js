@@ -10,12 +10,13 @@ import { Autocomplete, Box, Button, Container, TableContainer, Grid, Typography,
 
 // temporarily hard-coded
 const degrees = [
-  { title: 'Computer Science', faculty: 'SOC', id : 1 },
-  { title: 'Business Analytics', faculty: 'SOC', id: 2 },
-  { title: 'Information Systems', faculty: 'SOC', id : 3},
-  { title: 'Computer Engineering', faculty: 'SOC', id: 4},
-  { title: 'Information Security', faculty: 'SOC', id: 5},
-  { title: 'Others', faculty: 'others', id : 0} ]
+  { title: 'Computer Science', faculty: 'SOC', id : 2 },
+  { title: 'Business Analytics', faculty: 'SOC', id: 3 },
+  { title: 'Information Systems', faculty: 'SOC', id : 4},
+  { title: 'Computer Engineering', faculty: 'SOC', id: 5},
+  { title: 'Information Security', faculty: 'SOC', id: 6},
+  { title: 'Others', faculty: 'others', id : 1},
+  { title: '', faculty: '', id: 0 } ]
 
 const options = degrees.map((option) => {
   const firstLetter = option.faculty.toUpperCase();
@@ -25,12 +26,12 @@ const options = degrees.map((option) => {
   };
 })
 
-const MIN = 1;
+const MIN = 0;
 
 export function ModuleChecker() {
   const [semesters, setSemesters] = useState([]);
   const [degrees, setDegrees] = useState([]);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [header, setHeader] = useState("Y1S1");
   const auth = getAuth();
   const user = auth.currentUser;
@@ -70,8 +71,8 @@ export function ModuleChecker() {
     const docRef2 = doc(db, "programme", user.email);
     const docSnap2 = await getDoc(docRef2);
     if (docSnap2.exists()) {
-     setDegrees(docSnap2.data().degrees)
-    }
+      setDegrees(docSnap2.data().degrees);
+    } 
   }, [user]);
 
   const delSem = async (c) => {
@@ -155,7 +156,7 @@ export function ModuleChecker() {
   };
 
   function deleteSemester() {
-    count <= MIN ? setCount(1) : setCount(count - 1);
+    count <= MIN ? setCount(0) : setCount(count - 1);
     const c = count <= MIN ? 1 : count - 1;
     const year = c % 2 === 1 ? Math.ceil(c / 2) : (c / 2);
     const sem = c % 2 === 1 ? 1 : 2
@@ -238,7 +239,7 @@ export function ModuleChecker() {
             options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
-            sx={{ width: 300 }}   
+            sx={{ width: 300 }}
             value={options[getDegree(0)] || null}         
             onChange={(_, value) => {
               updateDegree(0, value);
@@ -299,7 +300,6 @@ export function ModuleChecker() {
                 variant="contained"
                 onClick= {() => {
                   addSemester();
-                  console.log(count);
                   addSem(count);}}
                 sx={{ mt: 2, mb: 10 }}
                 color="neutral"
