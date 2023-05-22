@@ -82,12 +82,16 @@ export function Profile() {
         currentUser,
         setLoading
       );
+      window.location.reload();
     }
     setOpen(false);
   }
 
   async function onConfirmChangePW() {
-    onDeleteUser(currentUser);
+    const err = await onReAuth(confirmPW, currentUser.email, currentUser);
+    if (err !== "err") {
+      onDeleteUser(currentUser);
+    }
     setOpenPW(false);
   }
 
@@ -126,25 +130,29 @@ export function Profile() {
         <input hidden accept="image/*" multiple type="file" />
       </Button>
 
+      <Box sx={{ mt: 2 }}>
+        <Typography variant="h4">Edit your particulars</Typography>
+      </Box>
+
       <TextField
         placeholder={username}
         onChange={handleNameChange}
         sx={{ mt: "10px", minWidth: "40vw" }}
-        label="Username"
+        label="New Username"
       />
 
       <TextField
         defaultValue={email}
         onChange={handleEmailChange}
         sx={{ mt: "10px", minWidth: "40vw" }}
-        label="Email"
+        label="New Email"
       />
 
       <TextField
         defaultValue={email}
         onChange={handlePasswordChange}
         sx={{ mt: "10px", minWidth: "40vw" }}
-        label="Password"
+        label="New Password"
       />
 
       <Button
@@ -185,7 +193,7 @@ export function Profile() {
         </DialogTitle>
 
         <DialogContent>
-          <TextField label="password" onChange={handleConfirmChange} />
+          <TextField label="Password" onChange={handleConfirmChange} />
         </DialogContent>
 
         <DialogActions>
@@ -221,7 +229,7 @@ export function Profile() {
         </DialogTitle>
 
         <DialogContent>
-          <TextField label="password" onChange={handleConfirmChange} />
+          <TextField label="Password" onChange={handleConfirmChange} />
         </DialogContent>
 
         <DialogActions>
