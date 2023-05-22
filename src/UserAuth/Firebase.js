@@ -280,7 +280,23 @@ async function onReAuth(password, email, currentUser) {
 }
 
 function onDeleteUser(currentUser) {
-  deleteUser(currentUser);
+  deleteUser(currentUser).then(() =>
+    store
+      .dispatch(
+        addNotification({
+          message: "Account is successfully deleted.",
+          variant: "success",
+        })
+      )
+      .then((err) =>
+        store.dispatch(
+          addNotification({
+            message: "Account cannot be deleted. Please try again later.",
+            variant: "error",
+          })
+        )
+      )
+  );
 }
 
 export {

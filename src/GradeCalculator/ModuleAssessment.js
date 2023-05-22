@@ -1,10 +1,12 @@
 import { useEffect, useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 import { Assessment } from "./Assessment";
 import { db } from "../UserAuth/Firebase.js";
+import { addNotification } from "../Notifications";
 
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 
@@ -12,6 +14,7 @@ export function ModuleAssessment() {
   const [assessments, setAssessments] = useState([]);
   const auth = getAuth();
   const user = auth.currentUser;
+  const dispatch = useDispatch();
 
   const saveAll = async (e) => {
     e.preventDefault();
@@ -26,7 +29,23 @@ export function ModuleAssessment() {
             ),
           };
         }),
-    });
+    })
+      .then(() =>
+        dispatch(
+          addNotification({
+            message: "Saved successfully!",
+            variant: "success",
+          })
+        )
+      )
+      .catch((err) =>
+        dispatch(
+          addNotification({
+            message: `Failed to save: ${err}`,
+            variant: "error",
+          })
+        )
+      );
   };
 
   const getAll = useCallback(async () => {
