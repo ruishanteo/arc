@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Provider as ReduxProvider } from "react-redux";
+import { SnackbarProvider } from "notistack";
 
 import { auth } from "./UserAuth/Firebase.js";
 import { GradeCalculator } from "./GradeCalculator/GradeCalculator.js";
@@ -13,7 +15,8 @@ import { Profile } from "./UserAuth/Profile.js";
 import { Register } from "./UserAuth/Register.js";
 import { Reset } from "./UserAuth/Reset.js";
 
-import { Notifications } from "./Notifications";
+import { DismissIconButton, Notifier } from "./Notifications/";
+import { store } from "./stores/store.js";
 
 import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
@@ -80,42 +83,51 @@ function App() {
       }}
     >
       <ThemeProvider theme={theme}>
-        <CssBaseline />
+        <ReduxProvider store={store}>
+          <SnackbarProvider
+            maxSnack={5}
+            action={(id) => <DismissIconButton id={id} />}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+          >
+            <CssBaseline />
+            <Notifier />
 
-        <Router>
-          {user ? (
-            <>
-              <Header />
-              <Notifications />
+            <Router>
+              {user ? (
+                <>
+                  <Header />
 
-              <div className="App">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/home" element={<Home />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route
-                    path="/GradeCalculator"
-                    element={<GradeCalculator />}
-                  />
-                </Routes>
-              </div>
-            </>
-          ) : (
-            <>
-              <Notifications />
-
-              <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/reset" element={<Reset />} />
-                <Route path="*" element={<Landing />} />
-              </Routes>
-            </>
-          )}
-        </Router>
+                  <div className="App">
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/login" element={<Login />} />
+                      <Route path="/register" element={<Register />} />
+                      <Route path="/home" element={<Home />} />
+                      <Route path="/profile" element={<Profile />} />
+                      <Route
+                        path="/GradeCalculator"
+                        element={<GradeCalculator />}
+                      />
+                    </Routes>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/reset" element={<Reset />} />
+                    <Route path="*" element={<Landing />} />
+                  </Routes>
+                </>
+              )}
+            </Router>
+          </SnackbarProvider>
+        </ReduxProvider>
       </ThemeProvider>
     </div>
   );
