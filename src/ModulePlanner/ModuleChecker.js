@@ -1,13 +1,12 @@
 import { useEffect, useCallback, useState } from "react";
 
 import { getAuth } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { arrayUnion, arrayRemove, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 
 import { Semester } from "./Semester";
 import { db } from "../UserAuth/Firebase.js";
 
-import { Autocomplete, Box, Button, Container, Grid, Typography, TextField } from "@mui/material";
-//import { SaveAltOutlined } from "@mui/icons-material";
+import { Autocomplete, Box, Button, Container, TableContainer, Grid, Typography, TextField } from "@mui/material";
 
 // temporarily hard-coded
 const degrees = [
@@ -27,7 +26,6 @@ const options = degrees.map((option) => {
 })
 
 const MIN = 1;
-
 
 export function ModuleChecker() {
   const [semesters, setSemesters] = useState([]);
@@ -72,13 +70,45 @@ export function ModuleChecker() {
     const docRef2 = doc(db, "programme", user.email);
     const docSnap2 = await getDoc(docRef2);
     if (docSnap2.exists()) {
-      /*
-      const ind = docSnap2.data().degrees.degree.id;
-      setDegrees(options[ind]);
-      */
      setDegrees(docSnap2.data().degrees)
     }
   }, [user]);
+
+  const delSem = async (c) => {
+    try {
+      const listingRef = doc(db, "semesters", user.email);
+      await updateDoc(listingRef, {
+        semesters: arrayRemove(semesters[c])
+      });
+      const docSnap = await getDoc(listingRef);
+      if (docSnap.exists()) {
+        setSemesters(docSnap.data().semesters);
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+
+  const addSem = async (c) => {
+    try {
+      const listingRef = doc(db, "semesters", user.email);
+      await setDoc(listingRef, {
+        semesters: semesters
+        .filter((semester) => !semester.isDeleted)
+        .map((semester) => {
+          return {
+            ...semester,
+            modules: semester.modules.filter(
+              (modules) => !modules.isDeleted
+            ),
+          };
+        }),
+      });
+      
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
 
   useEffect(() => {
     getAll();
@@ -95,45 +125,46 @@ export function ModuleChecker() {
     setDegrees(updatedDegree);
   }
 
-  function increaseCount() {
-    setCount(count + 1);
-  }
-
-  function decreaseCount() {
-    count <= MIN ? setCount(1) :
-    setCount(count + 1);
-  }
-
+  /*
   function updateHeader() {
     const c = count;
-    const year = Math.floor(c / 2);
+    console.log(c);
+    const year = c % 2 === 1 ? Math.floor(c + 1 / 2) : (c / 2);
     const sem = c % 2 === 1 ? 1 : 2
     setHeader(`Y${year}S${sem}`);
   }
+  */
 
   function addSemester() {
-    increaseCount();
-    updateHeader();
+    setCount(count + 1);
+    const c = count + 1;
+    const year = c % 2 === 1 ? Math.ceil(c / 2) : (c / 2);
+    const sem = c % 2 === 1 ? 1 : 2
+    setHeader(`Y${year}S${sem}`);
+    const head = `Y${year}S${sem}`;
     setSemesters([
       ...semesters,
       {
-        title: header,
+        header: head,
+        count: count,
         isDeleted: false,
         modules: [],
       },
     ]);
+    
   };
 
-  function deleteSemester(index) {
-    decreaseCount();
-    updateHeader();
-    const updatedSemesters = [...semesters];
-    updatedSemesters[index].isDeleted = true;
-    setSemesters(updatedSemesters);
+  function deleteSemester() {
+    count <= MIN ? setCount(1) : setCount(count - 1);
+    const c = count <= MIN ? 1 : count - 1;
+    const year = c % 2 === 1 ? Math.ceil(c / 2) : (c / 2);
+    const sem = c % 2 === 1 ? 1 : 2
+    setHeader(`Y${year}S${sem}`);
+    delSem(c);
   };
 
-  const getHeader = () => {
-    return header;
+  function getHeader(index) {
+    return semesters[index].header;
   };
 
   function getAllModules(semIndex) {
@@ -165,19 +196,6 @@ export function ModuleChecker() {
     semesters[semIndex].modules[moduleIndex].isDeleted = true;
     setSemesters([...semesters]);
   }
-
-  /*
-  const setModuleTitle = (index, moduleTitle) => {
-    const updatedAssessments = [...assessments];
-    updatedAssessments[index].title = moduleTitle;
-    setAssessments(updatedAssessments);
-  };
-  
-
-  const getModuleTitle = (index) => {
-    return assessments[index].title;
-  };
-  */
 
   if (!user) {
     return;
@@ -274,32 +292,60 @@ export function ModuleChecker() {
         </Grid>
       </Box>
 
-      {semesters.map((_, semIndex) => {
+      <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={1}>
+            <Grid item xs={2}>
+              <Button
+                variant="contained"
+                onClick= {() => {
+                  addSemester();
+                  console.log(count);
+                  addSem(count);}}
+                sx={{ mt: 2, mb: 10 }}
+                color="neutral"
+              >
+                + Semesters
+              </Button>
+            </Grid>
+
+            <Grid item xs={2}>
+              <Button
+                variant="contained"
+                onClick= {() => deleteSemester()}
+                sx={{ mt: 2, mb: 10 }}
+                color="neutral"
+              >
+                - Semesters
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+
+      <Grid container spacing={2}>
+        {semesters.map((_, semIndex) => {
         return (
-          <div key={semIndex}>
+          <Grid item sm={6} key={semIndex}>
             {!semesters[semIndex].isDeleted && (
               <Semester
                 key={semIndex}
                 semIndex={semIndex}
-                
                 deleteModule={deleteModule}
                 getModuleId={getModuleId}
                 updateModule={updateModule}
                 getAllModules={getAllModules}
+                newModule={newModule}
+                getHeader={getHeader}
               />
             )}
-          </div>
+          </Grid>
         );
       })}
+      </Grid>
       
     </Container>
   );
 }
 
 /*
-newModule={newModule}
 
-                addSemester={addSemester}
-                deleteSemester={deleteSemester}
-                getHeader={getHeader}
       */
