@@ -6,18 +6,14 @@ import {
   Button,
   Grid,
   Table,
+  TableContainer,
   TableHead,
   TableBody,
   TableRow,
   TableCell,
   Typography,
 } from "@mui/material";
-//import MuiAccordion from "@mui/material/Accordion";
-//import MuiAccordionDetails from "@mui/material/AccordionDetails";
-//import MuiAccordionSummary from "@mui/material/AccordionSummary";
-//import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-//import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-//newModule,
+
 
 export function Semester({
   semIndex,
@@ -25,11 +21,78 @@ export function Semester({
   getModuleId,
   updateModule,
   getAllModules,
+  newModule,
+  getHeader,
 }) {
   const arr = getAllModules(semIndex);
   //const [selected, setSelected] = useState([]);
-  
   return (
+    
+    <TableContainer>
+      <form>
+        <Table aria-label="mod-table">
+          <TableHead
+          sx={{
+            "& th": {
+              backgroundColor: "#cff8df",
+              color: "black",
+              fontSize: "1.2rem",
+            },
+          }}>
+            <TableRow>
+
+              <TableCell align="center" colSpan={6}>
+                {" "}
+                <Typography>{getHeader(semIndex)}</Typography>{" "}
+              </TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {arr.map((element, moduleIndex) => {
+              return (
+                <TableRow key={moduleIndex}>
+                  {!element.isDeleted && (
+                    <ModuleComponent
+                    index={moduleIndex}
+                    updateModule={(moduleIndex, value) =>
+                      updateModule(
+                        semIndex,
+                        moduleIndex,
+                        value
+                      )}
+                    getModuleId={(moduleIndex) =>
+                      getModuleId(semIndex, moduleIndex)}
+                    deleteModule={(moduleIndex) =>
+                      deleteModule(semIndex, moduleIndex)}
+                    />
+                  )}
+                </TableRow>
+              )
+            })}
+            <TableRow>
+            <TableCell align="center">
+                <Button
+                  type="button" 
+                  variant="contained"
+                  onClick={() => newModule(semIndex)}
+                  sx={{ backgroundColor: "#fcf4d4", color: "neutral" }}
+                >
+                <Typography>+ Module</Typography>{" "}
+                </Button>
+            </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </form>
+    </TableContainer>
+    
+  )
+}
+  
+
+/*
+return (
     <div className="title">
       <form>
         <Table aria-label="mod-table">
@@ -42,11 +105,11 @@ export function Semester({
             },
           }}>
             <TableRow>
-              <TableCell aligh="center">
+              <TableCell align="center">
                 {" "}
                 <Typography> </Typography>{" "}
               </TableCell>
-              <TableCell aligh="center">
+              <TableCell align="center">
                 {" "}
                 <Typography>Header</Typography>{" "}
               </TableCell>
@@ -75,7 +138,7 @@ export function Semester({
                 </tr>
               )
             })}
-            <TableCell aligh="center">
+            <TableCell align="center">
                 <Button
                   type="button" 
                   variant="contained"
@@ -117,8 +180,6 @@ export function Semester({
     </div>
   )
 }
-
-/*
 return (
     <div className="title">
       <form>
@@ -132,11 +193,11 @@ return (
             },
           }}>
             <TableRow>
-              <TableCell aligh="center">
+              <TableCell align="center">
                 {" "}
                 <Typography> </Typography>{" "}
               </TableCell>
-              <TableCell aligh="center">
+              <TableCell align="center">
                 {" "}
                 <Typography>{getHeader}</Typography>{" "}
               </TableCell>
@@ -165,7 +226,7 @@ return (
                 </tr>
               )
             })}
-            <TableCell aligh="center">
+            <TableCell align="center">
                 <Button
                   type="button" 
                   variant="contained"
