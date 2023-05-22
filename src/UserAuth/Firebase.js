@@ -1,9 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-//import { getAnalytics } from "firebase/analytics";
 import {
-  AuthErrorCodes,
   EmailAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -19,18 +16,12 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  getDocs,
-  getFirestore,
-  query,
-  where,
-} from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { store } from "../stores/store";
 import { addNotification } from "../Notifications";
+import { getStatusMessage } from "./StatusMessages";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -49,143 +40,84 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage();
 
 const googleProvider = new GoogleAuthProvider();
 
+const handleErrorMessage = (err) => {
+  store.dispatch(
+    addNotification({
+      message: getStatusMessage(err.code),
+      variant: "error",
+    })
+  );
+  console.log(err.message);
+};
+
 const useSignInWithGoogle = async () => {
-  try {
-    const res = await signInWithPopup(auth, googleProvider);
-    const user = res.user;
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const docs = await getDocs(q);
-    if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        name: user.displayName,
-        authProvider: "google",
-        email: user.email,
-        photoURL: user.photoURL,
-      });
-    }
-  } catch (err) {
-    let message = "";
-
-    if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
-      message =
-        "Sorry, the password is incorrect. Please recover your password.";
-    } else if (err.code === AuthErrorCodes.USER_DELETED) {
-      message =
-        "Sorry, we couldn't find an account with the email. Please register for an account.";
-    } else {
-      message = "An unknown error has occurred. Please try again later.";
-    }
-
-    store.dispatch(
-      addNotification({
-        message: message,
-        variant: "error",
-      })
-    );
-    console.log(err.message);
-  }
+  return await signInWithPopup(auth, googleProvider)
+    .then((res) =>
+      store.dispatch(
+        addNotification({
+          message: "You have successfully logged in.",
+          variant: "success",
+        })
+      )
+    )
+    .catch((err) => handleErrorMessage(err));
 };
 
 const useLogInWithEmailAndPassword = async (email, password) => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    let message = "";
-
-    if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
-      message =
-        "Sorry, the password is incorrect. Please recover your password.";
-    } else if (err.code === AuthErrorCodes.USER_DELETED) {
-      message =
-        "Sorry, we couldn't find an account with the email. Please register for an account.";
-    } else {
-      message = "An unknown error has occurred. Please try again later.";
-    }
-
-    store.dispatch(
-      addNotification({
-        message: message,
-        variant: "error",
-      })
-    );
-    console.log(err.message);
-  }
+  return await signInWithEmailAndPassword(auth, email, password)
+    .then((res) =>
+      store.dispatch(
+        addNotification({
+          message: "You have successfully logged in.",
+          variant: "success",
+        })
+      )
+    )
+    .catch((err) => handleErrorMessage(err));
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      name,
-      authProvider: "local",
-      email,
-      photoURL: "/static/images/avatar/2.jpg",
-    });
-  } catch (err) {
-    let message = "";
-
-    if (err.code === AuthErrorCodes.EMAIL_EXISTS) {
-      message =
-        "There is already an account registered with the email. Please login.";
-    } else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
-      message = "Your password is too weak! Please use at least 6 characters.";
-    } else if (err.code === AuthErrorCodes.INVALID_EMAIL) {
-      message = "The email entered is invalid. Please enter a valid email.";
-    } else if (err.code === AuthErrorCodes.INTERNAL_ERROR) {
-      message = "Please fill in all the fields.";
-    } else {
-      message = "An unknown error has occurred. Please try again later.";
-    }
-    store.dispatch(
-      addNotification({
-        message: message,
-        variant: "error",
-      })
-    );
-    console.log(err.message);
-  }
+  return await createUserWithEmailAndPassword(auth, email, password)
+    .then((response) => {
+      store.dispatch(
+        addNotification({
+          message: "You have successfully registered your account!",
+          variant: "success",
+        })
+      );
+      updateProfile(response.user, { displayName: name });
+    })
+    .catch((err) => handleErrorMessage(err));
 };
 
 const sendPasswordReset = async (email) => {
-  let message = "";
-  try {
-    await sendPasswordResetEmail(auth, email);
-    message = "Password reset link sent!";
-    store.dispatch(
-      addNotification({
-        message: message,
-        variant: "success",
-      })
-    );
-  } catch (err) {
-    if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
-      message =
-        "Password entered is too weak. Please enter a password with at least 6 characters.";
-    } else {
-      message = "An unknown error has occurred. Please try again later.";
-    }
-    store.dispatch(
-      addNotification({
-        message: message,
-        variant: "error",
-      })
-    );
-    console.log(err.message);
-  }
+  return await sendPasswordResetEmail(auth, email)
+    .then((res) =>
+      store.dispatch(
+        addNotification({
+          message: "Password reset link sent!",
+          variant: "success",
+        })
+      )
+    )
+    .catch((err) => handleErrorMessage(err));
 };
 
 const logout = () => {
-  signOut(auth);
+  return signOut(auth).then((res) =>
+    store.dispatch(
+      addNotification({
+        message: "You have logged out.",
+        variant: "success",
+      })
+    )
+  );
 };
 
 function useAuth() {
@@ -208,79 +140,49 @@ async function changeProfile(
   setLoading
 ) {
   setLoading(true);
-  let message = "Change success!";
-  let severity = "success";
 
   if (username) {
-    await updateProfile(currentUser, { displayName: username });
+    await updateProfile(currentUser, { displayName: username }).catch((err) =>
+      handleErrorMessage(err)
+    );
   }
 
   if (email) {
-    try {
-      await updateEmail(currentUser, email);
-    } catch (err) {
-      if (err.code === AuthErrorCodes.EMAIL_EXISTS) {
-        message =
-          "There is already an account registered with the email. Please login.";
-      }
-      if (err.code === AuthErrorCodes.INVALID_EMAIL) {
-        message = "The email entered is invalid. Please enter a valid email.";
-      } else {
-        message = "An unknown error has occurred. Please try again later.";
-      }
-      severity = "error";
-    }
+    await updateEmail(currentUser, email).catch((err) =>
+      handleErrorMessage(err)
+    );
   }
 
   if (file) {
     const fileRef = ref(storage, currentUser.uid + ".png");
     await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
-    await updateProfile(currentUser, { photoURL: photoURL });
+    await updateProfile(currentUser, { photoURL: photoURL }).catch((err) =>
+      handleErrorMessage(err)
+    );
   }
 
   if (newPassword) {
-    try {
-      await updatePassword(currentUser, newPassword);
-    } catch (err) {
-      if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
-        message =
-          "Password entered is too weak. Please enter a password with at least 6 characters.";
-      } else {
-        message = "An unknown error has occurred. Please try again later.";
-      }
-      severity = "error";
-    }
+    updatePassword(currentUser, newPassword).catch((err) =>
+      handleErrorMessage(err)
+    );
   }
-
-  store.dispatch(
-    addNotification({
-      message: message,
-      variant: severity,
-    })
-  );
 
   setLoading(false);
 }
 
 async function onReAuth(password, email, currentUser) {
   const credential = EmailAuthProvider.credential(email, password);
-
   return await reauthenticateWithCredential(currentUser, credential)
     .then(() => {})
     .catch((err) => {
-      store.dispatch(
-        addNotification({
-          message: "Password entered is incorrect. Please try again.",
-          variant: "error",
-        })
-      );
+      handleErrorMessage(err);
       return "err";
     });
 }
 
 function onDeleteUser(currentUser) {
-  deleteUser(currentUser).then(() =>
+  return deleteUser(currentUser).then(() =>
     store
       .dispatch(
         addNotification({
@@ -288,14 +190,7 @@ function onDeleteUser(currentUser) {
           variant: "success",
         })
       )
-      .then((err) =>
-        store.dispatch(
-          addNotification({
-            message: "Account cannot be deleted. Please try again later.",
-            variant: "error",
-          })
-        )
-      )
+      .then((err) => handleErrorMessage(err))
   );
 }
 
