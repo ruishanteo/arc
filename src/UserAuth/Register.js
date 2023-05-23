@@ -24,7 +24,10 @@ export function Register() {
 
   useEffect(() => {
     if (loading) return;
-    if (user) navigate("/home");
+    if (user) {
+      navigate("/home");
+      window.location.reload();
+    }
   }, [user, loading, navigate]);
 
   return (

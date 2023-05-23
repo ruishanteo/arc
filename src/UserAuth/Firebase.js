@@ -29,13 +29,12 @@ import { getStatusMessage } from "./StatusMessages";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAsg7SU5SlU8QMus3pGkE5wbUyBzL8ur5k",
-  authDomain: "orbital-96ac8.firebaseapp.com",
-  projectId: "orbital-96ac8",
-  storageBucket: "orbital-96ac8.appspot.com",
-  messagingSenderId: "751532494109",
-  appId: "1:751532494109:web:50427f42f31f040bb3e5f4",
-  measurementId: "G-7C3QV4XQBH",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase
