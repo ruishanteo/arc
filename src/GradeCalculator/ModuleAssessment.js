@@ -6,15 +6,37 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 
 import { Assessment } from "./Assessment";
 import { db, deleteContent } from "../UserAuth/Firebase.js";
+
+import { store } from "../stores/store";
 import { addNotification } from "../Notifications";
 
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Grid,
+  Typography,
+} from "@mui/material";
 
 export function ModuleAssessment() {
   const [assessments, setAssessments] = useState([]);
+  const [open, setOpen] = useState(false);
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const saveAll = async (e) => {
     e.preventDefault();
@@ -120,6 +142,20 @@ export function ModuleAssessment() {
     return assessments[index].title;
   };
 
+  const handleClear = () => {
+    deleteContent(user.email);
+    handleClose();
+    store.dispatch(
+      addNotification({
+        message: "Deleted successfully!",
+        variant: "success",
+      })
+    );
+    setTimeout(() => {
+      window.location.reload();
+    }, 2500);
+  };
+
   if (!user) {
     return;
   }
@@ -145,7 +181,8 @@ export function ModuleAssessment() {
               backgroundColor: "#fcf4d4",
               color: "black",
             }}
-            onClick={() => deleteContent(user.email)}
+            onClick={handleClickOpen}
+            disabled={assessments.length === 0}
           >
             Clear
           </Button>
@@ -162,6 +199,28 @@ export function ModuleAssessment() {
             Save All
           </Button>
         </Grid>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Doing so will delete all your saved data. Click confirm to
+              proceed.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} sx={{ color: "#b7b0f5" }}>
+              Cancel
+            </Button>
+            <Button onClick={handleClear} autoFocus variant="contained">
+              Confirm
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Box>
 
       {assessments.map((_, assessmentIndex) => {

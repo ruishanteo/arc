@@ -74,8 +74,7 @@ export function Assessment({
   const [result, setResult] = useState("");
   const [value, setValue] = useState(0);
 
-  const [name, setName] = React.useState("");
-  const [expanded, setExpanded] = React.useState("panel1");
+  const [expanded, setExpanded] = useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -108,7 +107,7 @@ export function Assessment({
           id="panel1d-header"
           sx={{ backgroundColor: "#ffe0f7" }}
         >
-          <Typography>{name}</Typography>
+          <Typography>{getModuleTitle(assessmentIndex)}</Typography>
         </AccordionSummary>
 
         <AccordionDetails>
@@ -127,7 +126,6 @@ export function Assessment({
               inputProps={{ style: { fontSize: 30, textAlign: "center" } }}
               placeholder="Module Name"
               onChange={(e) => {
-                setName(e.target.value);
                 setModuleTitle(assessmentIndex, e.target.value);
               }}
               value={getModuleTitle(assessmentIndex)}
