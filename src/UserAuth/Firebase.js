@@ -16,7 +16,7 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { doc, deleteDoc, getFirestore } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { store } from "../stores/store";
@@ -29,13 +29,12 @@ import { getStatusMessage } from "./StatusMessages";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAsg7SU5SlU8QMus3pGkE5wbUyBzL8ur5k",
-  authDomain: "orbital-96ac8.firebaseapp.com",
-  projectId: "orbital-96ac8",
-  storageBucket: "orbital-96ac8.appspot.com",
-  messagingSenderId: "751532494109",
-  appId: "1:751532494109:web:50427f42f31f040bb3e5f4",
-  measurementId: "G-7C3QV4XQBH",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase
@@ -83,17 +82,24 @@ const useLogInWithEmailAndPassword = async (email, password) => {
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
-  return await createUserWithEmailAndPassword(auth, email, password)
-    .then((response) => {
-      store.dispatch(
+  return name
+    ? await createUserWithEmailAndPassword(auth, email, password)
+        .then(async (response) => {
+          store.dispatch(
+            addNotification({
+              message: "You have successfully registered your account!",
+              variant: "success",
+            })
+          );
+          await updateProfile(response.user, { displayName: name });
+        })
+        .catch((err) => handleErrorMessage(err))
+    : store.dispatch(
         addNotification({
-          message: "You have successfully registered your account!",
-          variant: "success",
+          message: "Please fill in all the fields!",
+          variant: "error",
         })
       );
-      updateProfile(response.user, { displayName: name });
-    })
-    .catch((err) => handleErrorMessage(err));
 };
 
 const sendPasswordReset = async (email) => {
@@ -181,17 +187,24 @@ async function onReAuth(password, email, currentUser) {
     });
 }
 
+const deleteContent = async (key) => {
+  await deleteDoc(doc(db, "assessments", key)).catch((err) =>
+    handleErrorMessage(err)
+  );
+};
+
 function onDeleteUser(currentUser) {
-  return deleteUser(currentUser).then(() =>
-    store
-      .dispatch(
+  deleteContent(currentUser.email);
+  setTimeout(() => {
+    return deleteUser(currentUser).then(() =>
+      store.dispatch(
         addNotification({
           message: "Account is successfully deleted.",
           variant: "success",
         })
       )
-      .then((err) => handleErrorMessage(err))
-  );
+    );
+  }, 2000);
 }
 
 export {
@@ -199,6 +212,7 @@ export {
   db,
   storage,
   changeProfile,
+  deleteContent,
   onDeleteUser,
   onReAuth,
   useSignInWithGoogle as signInWithGoogle,

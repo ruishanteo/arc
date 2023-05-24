@@ -5,7 +5,7 @@ import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 import { Assessment } from "./Assessment";
-import { db } from "../UserAuth/Firebase.js";
+import { db, deleteContent } from "../UserAuth/Firebase.js";
 import { addNotification } from "../Notifications";
 
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
@@ -143,6 +143,18 @@ export function ModuleAssessment() {
             variant="contained"
             sx={{
               backgroundColor: "#fcf4d4",
+              color: "black",
+            }}
+            onClick={() => deleteContent(user.email)}
+          >
+            Clear
+          </Button>
+
+          <Button
+            variant="contained"
+            sx={{
+              ml: 2,
+              backgroundColor: "#cff8df",
               color: "black",
             }}
             onClick={saveAll}

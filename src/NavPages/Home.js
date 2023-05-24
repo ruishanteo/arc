@@ -17,6 +17,8 @@ import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import desktopImage from "../Images/homeDesktop.jpg";
 import mobileImage from "../Images/homeMobile.jpg";
 
+import Typewriter from "typewriter-effect";
+
 export function Home() {
   const [name, setName] = useState("");
   const currentUser = useAuth();
@@ -60,7 +62,15 @@ export function Home() {
           }}
           align="left"
         >
-          <Typography variant="h3">Welcome, {name ? name : "___"}!</Typography>
+          {name && (
+            <Typography variant="h3">
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter.typeString("Welcome, " + name + "!").start();
+                }}
+              />
+            </Typography>
+          )}
           <Typography variant="h6">Let's get started.</Typography>
         </Box>
       </Box>
