@@ -77,7 +77,9 @@ export function ModuleChecker() {
     const docRef = doc(db, "semesters", user.email);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      setSemesters(docSnap.data().semesters);
+      const sem = docSnap.data().semesters
+      setSemesters(sem);
+      setCount(sem[sem.length-1]?.count + 1 || 0);
     }
     const docRef2 = doc(db, "programme", user.email);
     const docSnap2 = await getDoc(docRef2);
