@@ -13,9 +13,9 @@ export function ProgRequirements({
     ], 
     'Business Analytics': [
       { title: 'BT1101', code: 'BT', id: 1 },
-      { title: 'CS1010S', code: 'CS', id: 3 },
-      { title: 'BT2101', code: 'BT', id: 4},
-      { title: 'BT2102', code: 'BT', id: 3}
+      { title: 'CS1010S', code: 'CS', id: 4 },
+      { title: 'BT2101', code: 'BT', id: 3},
+      { title: 'BT2102', code: 'BT', id: 2}
     ], 
     'Information Systems': [
       { title: 'BT1101', code: 'BT', id: 1 },
@@ -57,9 +57,8 @@ export function ProgRequirements({
             )
           }))
       } else {
-        console.log(deg);
         return (
-              <TableRow>
+              <TableRow key = {1}>
               <TableCell align="center" sx={{
                   backgroundColor: '#FFFFFF',
                   color: "black",
