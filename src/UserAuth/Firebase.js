@@ -16,7 +16,7 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { doc, deleteDoc, getFirestore } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { store } from "../stores/store";
@@ -82,17 +82,24 @@ const useLogInWithEmailAndPassword = async (email, password) => {
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
-  return await createUserWithEmailAndPassword(auth, email, password)
-    .then((response) => {
-      store.dispatch(
+  return name
+    ? await createUserWithEmailAndPassword(auth, email, password)
+        .then(async (response) => {
+          store.dispatch(
+            addNotification({
+              message: "You have successfully registered your account!",
+              variant: "success",
+            })
+          );
+          await updateProfile(response.user, { displayName: name });
+        })
+        .catch((err) => handleErrorMessage(err))
+    : store.dispatch(
         addNotification({
-          message: "You have successfully registered your account!",
-          variant: "success",
+          message: "Please fill in all the fields!",
+          variant: "error",
         })
       );
-      updateProfile(response.user, { displayName: name });
-    })
-    .catch((err) => handleErrorMessage(err));
 };
 
 const sendPasswordReset = async (email) => {
@@ -180,17 +187,24 @@ async function onReAuth(password, email, currentUser) {
     });
 }
 
+const deleteContent = async (key) => {
+  await deleteDoc(doc(db, "assessments", key)).catch((err) =>
+    handleErrorMessage(err)
+  );
+};
+
 function onDeleteUser(currentUser) {
-  return deleteUser(currentUser).then(() =>
-    store
-      .dispatch(
+  deleteContent(currentUser.email);
+  setTimeout(() => {
+    return deleteUser(currentUser).then(() =>
+      store.dispatch(
         addNotification({
           message: "Account is successfully deleted.",
           variant: "success",
         })
       )
-      .then((err) => handleErrorMessage(err))
-  );
+    );
+  }, 2000);
 }
 
 export {
@@ -198,6 +212,7 @@ export {
   db,
   storage,
   changeProfile,
+  deleteContent,
   onDeleteUser,
   onReAuth,
   useSignInWithGoogle as signInWithGoogle,
