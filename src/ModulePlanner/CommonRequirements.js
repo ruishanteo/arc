@@ -4,12 +4,15 @@ export function CommonRequirements({
     checkPresent
 }) {
     const commonMods = [
-        
-        { title: 'CS1010', code: 'GES', id: 1 },
-        { title: 'CS1010S', code: 'IS', id: 3 },
-        { title: 'CS1010E', code: 'CS', id: 2},
-        { title: 'CS1101S', code: 'CS', id: 4}
+        { title: 'GEC', code: 'GEC', id: 1 },
+        { title: 'GEX', code: 'GEX', id: 2 },
+        { title: 'GEA', code: 'GEA', id: 3},
+        { title: 'GESS', code: 'GESS', id: 4},
+        { title: 'GEN', code: 'GEN', id: 5},
+        { title: 'IS1108', code: 'IS', id: 6}
+
     ]
+
 
     return (
         <>
