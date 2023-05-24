@@ -139,6 +139,13 @@ export function ModuleChecker() {
     setDegrees(updatedDegree);
   }
 
+  function getDegreeTitle() {
+    if (typeof degrees[0]?.title != 'undefined') {
+      return degrees[0]?.title;;
+    }
+    return "";
+  }
+
   /*
   function updateHeader() {
     const c = count;
@@ -394,6 +401,7 @@ export function ModuleChecker() {
           <div>
             {<ProgRequirements
                 checkPresent={checkPresent}
+                getDegreeTitle={getDegreeTitle}
               />
             }
             </div>
