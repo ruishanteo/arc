@@ -9,11 +9,11 @@ export function ModuleComponent({
 }) {
 
   const mods = [
-    { title: '', code: '', id: 0 },
-    { title: 'CS1010', code: 'CS', id: 1 },
-    { title: 'CS1010S', code: 'CS', id: 3 },
-    { title: 'CS1010E', code: 'CS', id: 2},
-    { title: 'CS1101S', code: 'CS', id: 4}
+    { title: '', code: '', id: 0, mc: 0 },
+    { title: 'CS1010', code: 'CS', id: 1, mc: 4  },
+    { title: 'CS1010S', code: 'CS', id: 3, mc: 4  },
+    { title: 'CS1010E', code: 'CS', id: 2, mc: 4 },
+    { title: 'CS1101S', code: 'CS', id: 4, mc: 4 }
    ]
 
   function onChange(value) {
