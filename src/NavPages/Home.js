@@ -7,6 +7,7 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  Grid,
   Typography,
 } from "@mui/material";
 
@@ -18,6 +19,7 @@ import desktopImage from "../Images/homeDesktop.jpg";
 import mobileImage from "../Images/homeMobile.jpg";
 
 import Typewriter from "typewriter-effect";
+import { AspectRatio } from "@mui/icons-material";
 
 export function Home() {
   const [name, setName] = useState("");
@@ -47,7 +49,7 @@ export function Home() {
     <div
       style={{
         backgroundImage: `url(${imageURL})`,
-        height: "90vh",
+        height: "93vh",
         backgroundSize: "cover",
         overflowY: "scroll",
       }}
@@ -74,70 +76,138 @@ export function Home() {
           <Typography variant="h6">Let's get started.</Typography>
         </Box>
       </Box>
-      <Box minHeight="40vh" />
-      <Box
-        align="center"
-        sx={{
-          mt: 5,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+      <Box minHeight="45vh" />
+      <Grid
+        container
+        justifyContent="center"
+        spacing={3}
+        sx={{ backgroundColor: "rgba(255,255,255,0.7)" }}
       >
-        <Card
-          style={{ border: "none", boxShadow: "none" }}
-          sx={{ maxWidth: "20vw", maxHeight: "25vh", mr: 5 }}
-        >
-          <CardActionArea href="/GradeCalculator">
-            <CalculateOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Grade Calculator
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Keep track of scores attained for every assessment component.
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        <Grid key={"calc"} item>
+          <Card
+            style={{
+              border: "none",
+              boxShadow: "none",
+              backgroundColor: "transparent",
+            }}
+            sx={{ maxWidth: "20vw", overflow: "auto" }}
+          >
+            <CardActionArea href="/GradeCalculator">
+              <Box
+                align="center"
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  maxHeight: "10vh",
+                }}
+              >
+                <CalculateOutlinedIcon sx={{ fontSize: "10vh" }} />
+              </Box>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  align="center"
+                >
+                  Grade Calculator
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  Keep track of scores attained for every assessment component.
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
 
-        <Card
-          style={{ border: "none", boxShadow: "none" }}
-          sx={{ maxWidth: "20vw", maxHeight: "25vh", mr: 5 }}
-        >
-          <CardActionArea>
-            <AutoStoriesOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Module Planner
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Plan your modules for each semester to meet your degree
-                requirements.
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        <Grid key={"planner"} item>
+          <Card
+            style={{
+              border: "none",
+              boxShadow: "none",
+              backgroundColor: "transparent",
+            }}
+            sx={{ maxWidth: "20vw", overflow: "auto" }}
+          >
+            <CardActionArea>
+              <Box
+                align="center"
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  maxHeight: "10vh",
+                }}
+              >
+                <AutoStoriesOutlinedIcon sx={{ fontSize: "10vh" }} />
+              </Box>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  align="center"
+                >
+                  Module Planner
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  Plan your modules for each semester to meet your degree
+                  requirements.
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
 
-        <Card
-          style={{ border: "none", boxShadow: "none" }}
-          sx={{ maxWidth: "20vw", maxHeight: "25vh", mr: 5 }}
-        >
-          <CardActionArea>
-            <ForumOutlinedIcon sx={{ fontSize: 80, display: "flex" }} />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Forum
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Discuss school related experiences and look for advice on the
-                forum.
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Box>
+        <Grid key={"forum"} item>
+          <Card
+            style={{
+              border: "none",
+              boxShadow: "none",
+              backgroundColor: "transparent",
+            }}
+            sx={{ maxWidth: "20vw", overflow: "auto" }}
+          >
+            <CardActionArea>
+              <Box
+                align="center"
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  maxHeight: "10vh",
+                }}
+              >
+                <ForumOutlinedIcon sx={{ fontSize: "10vh" }} />
+              </Box>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  align="center"
+                >
+                  Forum
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  Discuss school related experiences and look for advice on the
+                  forum.
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 }
