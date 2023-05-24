@@ -4,6 +4,9 @@ import { getAuth } from "firebase/auth";
 import { arrayUnion, arrayRemove, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 
 import { Semester } from "./Semester";
+import { ProgRequirements } from "./ProgRequirements";
+import { CommonRequirements } from "./CommonRequirements";
+import { UnrestrictedRequirements } from "./UnrestrictedRequirements";
 import { db } from "../UserAuth/Firebase.js";
 
 import { Autocomplete, Box, Button, Container, TableContainer, Grid, Typography, TextField } from "@mui/material";
@@ -26,6 +29,13 @@ const options = degrees.map((option) => {
   };
 })
 
+const progs = [
+  { title: '', id : 0 },
+  { title: 'RC', id : 1 },
+  { title: 'NUSC', id : 2 }
+]
+
+
 const MIN = 0;
 
 export function ModuleChecker() {
@@ -33,6 +43,7 @@ export function ModuleChecker() {
   const [degrees, setDegrees] = useState([]);
   const [count, setCount] = useState(0);
   const [header, setHeader] = useState("Y1S1");
+  const [modTitles, setModTitles] = useState([]);
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -183,6 +194,7 @@ export function ModuleChecker() {
       semesters[semIndex].modules[moduleIndex].modInfo = value;
       setSemesters([...semesters]);
     }
+    updateModTitles();
   }
 
   function newModule(semIndex) {
@@ -191,11 +203,30 @@ export function ModuleChecker() {
       isDeleted: false,
     });
     setSemesters([...semesters]);
+    updateModTitles();
   }
 
   function deleteModule(semIndex, moduleIndex) {
-    semesters[semIndex].modules[moduleIndex].isDeleted = true;
-    setSemesters([...semesters]);
+    //semesters[semIndex].modules[moduleIndex].isDeleted = true;
+    semesters[semIndex].modules.splice(moduleIndex, 1);
+    updateModTitles();
+  }
+
+  function updateModTitles() {
+    const arr = [];
+    semesters.forEach((semester) => semester.modules.forEach((mod) => arr.push(mod.modInfo.title)));
+    console.log(arr);
+    setModTitles(arr);
+  }
+
+  function checkPresent(title) {
+    const color = "#cff8df";
+    const arr = modTitles;
+    if (arr.includes(title)) {
+      return color;
+    } else {
+      return "#FFFFFF";
+    }
   }
 
   if (!user) {
@@ -260,7 +291,7 @@ export function ModuleChecker() {
             onChange={(_, value) => {
               updateDegree(1, value);
             }}
-            renderInput={(params) => <TextField {...params} label="Select Add-On" />}
+            renderInput={(params) => <TextField {...params} label="2nd Degree/Major?" />}
             />
           </Grid>
           
@@ -268,15 +299,14 @@ export function ModuleChecker() {
             <Autocomplete
             disablePortal
             id="addon2-selector"           
-            options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-            groupBy={(option) => option.firstLetter}
+            options={progs.sort((a, b) => -b.title.localeCompare(a.title))}
             getOptionLabel={(option) => option.title}
             sx={{ width: 200 }}
-            value={options[getDegree(2)] || null}         
+            value={progs[getDegree(2)] || null}         
             onChange={(_, value) => {
               updateDegree(2, value);
             }}
-            renderInput={(params) => <TextField {...params} label="Select Add-On" />}
+            renderInput={(params) => <TextField {...params} label="Select Programme" />}
             />
           </Grid>
 
@@ -342,6 +372,47 @@ export function ModuleChecker() {
       })}
       </Grid>
       
+      <hr />
+    <Box
+      align="center"
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        height: 100,
+      }}
+    >
+      <Typography variant="h4" sx={{ fontWeight: 450, minWidth: 250 }}>
+        Degree Requirements
+      </Typography>
+    </Box>
+
+    <Grid container spacing={2}>
+      <Grid item sm={4} >
+          <div>
+            {<ProgRequirements
+                checkPresent={checkPresent}
+              />
+            }
+            </div>
+      </Grid>
+
+      <Grid item sm={4} >
+          <div>
+            {<CommonRequirements
+                checkPresent={checkPresent}
+              />
+            }
+            </div>
+      </Grid>
+
+      <Grid item sm={4} >
+        <div>
+            
+        </div>
+      </Grid>
+    </Grid>
+
     </Container>
   );
 }
