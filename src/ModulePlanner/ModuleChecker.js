@@ -247,6 +247,10 @@ export function ModuleChecker() {
     }
   }
 
+  function getUe() {
+    return [{ title: 'To Be Updated', code: '', id: 0, mc: 0 }];
+  }
+
   if (!user) {
     return;
   }
@@ -427,7 +431,10 @@ export function ModuleChecker() {
 
       <Grid item sm={4} >
         <div>
-            
+        {<UnrestrictedRequirements
+                getUe={getUe}
+              />
+            }
         </div>
       </Grid>
     </Grid>
