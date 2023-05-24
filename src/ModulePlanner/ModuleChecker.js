@@ -31,8 +31,8 @@ const options = degrees.map((option) => {
 
 const progs = [
   { title: '', id : 0 },
-  { title: 'RC', id : 1 },
-  { title: 'NUSC', id : 2 }
+  { title: 'RC', id : 2 },
+  { title: 'NUSC', id : 1 }
 ]
 
 
@@ -43,6 +43,9 @@ export function ModuleChecker() {
   const [degrees, setDegrees] = useState([]);
   const [count, setCount] = useState(0);
   const [header, setHeader] = useState("Y1S1");
+  const [deg1, setDeg1] = useState(options[0]);
+  const [deg2, setDeg2] = useState(options[0]);
+  const [deg3, setDeg3] = useState(progs[0]);
   const [modTitles, setModTitles] = useState([]);
   const auth = getAuth();
   const user = auth.currentUser;
@@ -85,6 +88,9 @@ export function ModuleChecker() {
     const docSnap2 = await getDoc(docRef2);
     if (docSnap2.exists()) {
       setDegrees(docSnap2.data().degrees);
+      setDeg1(options[docSnap2.data().degrees[0]?.['id']]);
+      setDeg2(options[docSnap2.data().degrees[1]?.['id']]);
+      setDeg3(progs[docSnap2.data().degrees[2]?.['id']]);
     } 
   }, [user]);
 
@@ -137,6 +143,9 @@ export function ModuleChecker() {
     const updatedDegree = degrees;
     updatedDegree[degreeInd] = value;
     setDegrees(updatedDegree);
+    setDeg1(options[getDegree(0)]);
+    setDeg2(options[getDegree(1)]);
+    setDeg3(progs[getDegree(2)])
   }
 
   function getDegreeTitle() {
@@ -280,7 +289,7 @@ export function ModuleChecker() {
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
             sx={{ width: 300 }}
-            value={options[getDegree(0)] || null}         
+            value={deg1 || null}         
             onChange={(_, value) => {
               updateDegree(0, value);
             }}
@@ -296,7 +305,7 @@ export function ModuleChecker() {
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
             sx={{ width: 300 }}
-            value={options[getDegree(1)] || null}         
+            value={deg2 || null}         
             onChange={(_, value) => {
               updateDegree(1, value);
             }}
@@ -311,7 +320,7 @@ export function ModuleChecker() {
             options={progs.sort((a, b) => -b.title.localeCompare(a.title))}
             getOptionLabel={(option) => option.title}
             sx={{ width: 200 }}
-            value={progs[getDegree(2)] || null}         
+            value={deg3 || null}         
             onChange={(_, value) => {
               updateDegree(2, value);
             }}
