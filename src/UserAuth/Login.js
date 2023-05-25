@@ -12,8 +12,8 @@ import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import LooksIcon from "@mui/icons-material/Looks";
 
 export function Login() {
-  const [email, setEmail] = useState("111@gmail.com");
-  const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [user, loading] = useAuthState(auth);
 
   const navigate = useNavigate();
