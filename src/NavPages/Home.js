@@ -15,11 +15,10 @@ import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 
-import desktopImage from "../Images/homeDesktop.jpg";
-import mobileImage from "../Images/homeMobile.jpg";
+import desktopImage from "../Images/homeDesktop.jpeg";
+import mobileImage from "../Images/homeMobile.jpeg";
 
 import Typewriter from "typewriter-effect";
-import { AspectRatio } from "@mui/icons-material";
 
 export function Home() {
   const [name, setName] = useState("");
