@@ -31,13 +31,14 @@ import {
 
 // temporarily hard-coded
 const degrees = [
+  { title: '', faculty: '', id: 0 },
   { title: 'Computer Science', faculty: 'SOC', id : 2 },
   { title: 'Business Analytics', faculty: 'SOC', id: 3 },
   { title: 'Information Systems', faculty: 'SOC', id : 4},
   { title: 'Computer Engineering', faculty: 'SOC', id: 5},
   { title: 'Information Security', faculty: 'SOC', id: 6},
-  { title: 'Others', faculty: 'others', id : 1},
-  { title: '', faculty: '', id: 0 } ]
+  { title: 'Others', faculty: 'others', id : 1}
+  ]
 
 const options = degrees.map((option) => {
   const firstLetter = option.faculty.toUpperCase();
@@ -157,7 +158,7 @@ export function ModuleChecker() {
       setDeg1(options[docSnap2.data().degrees[0]?.['id']]);
       setDeg2(options[docSnap2.data().degrees[1]?.['id']]);
       setDeg3(progs[docSnap2.data().degrees[2]?.['id']]);
-    } 
+    }
   }, [user]);
 
   const delSem = async (c) => {
