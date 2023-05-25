@@ -2,7 +2,7 @@ import { useEffect, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { getAuth } from "firebase/auth";
-import { arrayUnion, arrayRemove, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { arrayRemove, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 
 import { Semester } from "./Semester";
 import { ProgRequirements } from "./ProgRequirements";
@@ -23,11 +23,12 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TableContainer, 
   Grid, 
+  LinearProgress,
   Typography, 
   TextField 
 } from "@mui/material";
+
 
 // temporarily hard-coded
 const degrees = [
@@ -67,6 +68,7 @@ export function ModuleChecker() {
   const [deg3, setDeg3] = useState(progs[0]);
   const [modTitles, setModTitles] = useState([]);
   const [open, setOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();
@@ -264,6 +266,7 @@ export function ModuleChecker() {
     const sem = c % 2 === 1 ? 1 : 2
     setHeader(`Y${year}S${sem}`);
     delSem(c);
+    updateProg();
   };
 
   function getHeader(index) {
@@ -286,11 +289,12 @@ export function ModuleChecker() {
       setSemesters([...semesters]);
     }
     updateModTitles();
+    updateProg();
   }
 
   function newModule(semIndex) {
     semesters[semIndex].modules.push({
-      modInfo:{ title: '', code: '', id: 0 },
+      modInfo:{ title: '', code: '', id: 0, mc: 0 },
       isDeleted: false,
     });
     setSemesters([...semesters]);
@@ -301,6 +305,7 @@ export function ModuleChecker() {
     //semesters[semIndex].modules[moduleIndex].isDeleted = true;
     semesters[semIndex].modules.splice(moduleIndex, 1);
     updateModTitles();
+    updateProg();
   }
 
   function updateModTitles() {
@@ -322,6 +327,24 @@ export function ModuleChecker() {
 
   function getUe() {
     return [{ title: 'To Be Updated', code: '', id: 0, mc: 0 }];
+  }
+
+  function countMc() {
+    let mc = 0;
+    semesters.forEach((semester) => semester.modules.forEach((mod) => {
+      mc += mod.modInfo.mc }))
+    if (isNaN(mc)) {
+      return 0;
+    }
+    return mc;
+  }
+
+  function updateProg() {
+    let mc = countMc();
+    if (mc > 160) {
+      mc = 160;
+    }
+    setProgress((mc/160)*100);
   }
 
   const handleClear = () => {
@@ -530,8 +553,32 @@ export function ModuleChecker() {
         Degree Requirements
       </Typography>
     </Box>
+    
+    <Box>
+    <LinearProgress 
+      variant='determinate'
+      color="neutral"
+      size="sm"
+      value={progress}
+      sx={{
+        height: '2.5rem',
+        borderRadius: 10,
+        boxShadow: 'sm',
+        borderColor: 'neutral.500',
+      }}
+    ></LinearProgress>
+      <Typography
+        level="body3"
+        fontWeight="xl"
+        sx={{ fontWeight: 450, minWidth: 250 }}
+        align='right'
+      >
+        {`${countMc()}`} MCs
+      </Typography>
+    
+    </Box>
 
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ mt: '1rem' }}>
       <Grid item sm={4} >
           <div>
             {<ProgRequirements

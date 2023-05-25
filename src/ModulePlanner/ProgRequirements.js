@@ -1,5 +1,4 @@
 import { TableContainer, TableHead, TableBody, Table, TableCell, TableRow, Typography } from "@mui/material";
-import { tab } from "@testing-library/user-event/dist/tab";
 
 export function ProgRequirements({
     checkPresent,
