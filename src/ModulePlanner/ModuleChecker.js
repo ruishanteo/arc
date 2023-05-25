@@ -1,4 +1,5 @@
 import { useEffect, useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { getAuth } from "firebase/auth";
 import { arrayUnion, arrayRemove, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
@@ -7,9 +8,26 @@ import { Semester } from "./Semester";
 import { ProgRequirements } from "./ProgRequirements";
 import { CommonRequirements } from "./CommonRequirements";
 import { UnrestrictedRequirements } from "./UnrestrictedRequirements";
-import { db } from "../UserAuth/Firebase.js";
+import { db, deleteContentPlanner } from "../UserAuth/Firebase.js";
 
-import { Autocomplete, Box, Button, Container, TableContainer, Grid, Typography, TextField } from "@mui/material";
+import { store } from "../stores/store";
+import { addNotification } from "../Notifications";
+
+import { 
+  Autocomplete, 
+  Box, 
+  Button, 
+  Container, 
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TableContainer, 
+  Grid, 
+  Typography, 
+  TextField 
+} from "@mui/material";
 
 // temporarily hard-coded
 const degrees = [
@@ -47,33 +65,81 @@ export function ModuleChecker() {
   const [deg2, setDeg2] = useState(options[0]);
   const [deg3, setDeg3] = useState(progs[0]);
   const [modTitles, setModTitles] = useState([]);
+  const [open, setOpen] = useState(false);
   const auth = getAuth();
   const user = auth.currentUser;
+  const dispatch = useDispatch();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const saveProg = async () => {
+    await setDoc(doc(db, "semesters", user.email), {
+      semesters: semesters
+      .filter((semester) => !semester.isDeleted)
+      .map((semester) => {
+        return {
+          ...semester,
+          modules: semester.modules.filter(
+            (modules) => !modules.isDeleted
+          ),
+        };
+      }),
+  });
+  }
+
+  const saveSem = async () => {
+    await setDoc(doc(db, "programme", user.email), {
+      degrees: degrees
+      });
+  }
 
   const saveAll = async (e) => {
     e.preventDefault();
-    await setDoc(doc(db, "semesters", user.email), {
-        semesters: semesters
-        .filter((semester) => !semester.isDeleted)
-        .map((semester) => {
-          return {
-            ...semester,
-            modules: semester.modules.filter(
-              (modules) => !modules.isDeleted
-            ),
-          };
-        }),
-    });
-    await setDoc(doc(db, "programme", user.email), {
-      degrees: degrees
-  });
+    await Promise.all([saveProg(), saveSem()])
+    .then(() =>
+      dispatch(
+        addNotification({
+          message: "Saved successfully!",
+          variant: "success",
+        })
+      )
+    )
+    .catch((err) =>
+      dispatch(
+        addNotification({
+          message: `Failed to save: ${err}`,
+          variant: "error",
+        })
+      )
+    );
   };
 
   const saveDegree = async (e) => {
     e.preventDefault();
     await setDoc(doc(db, "programme", user.email), {
       degrees: degrees
-    });
+    }).then(() =>
+    dispatch(
+      addNotification({
+        message: "Saved successfully!",
+        variant: "success",
+      })
+    )
+  )
+  .catch((err) =>
+    dispatch(
+      addNotification({
+        message: `Failed to save: ${err}`,
+        variant: "error",
+      })
+    )
+  );
   };
 
   const getAll = useCallback(async () => {
@@ -124,7 +190,6 @@ export function ModuleChecker() {
           };
         }),
       });
-      
     } catch (e) {
       console.log(e.message);
     }
@@ -258,6 +323,20 @@ export function ModuleChecker() {
     return [{ title: 'To Be Updated', code: '', id: 0, mc: 0 }];
   }
 
+  const handleClear = () => {
+    deleteContentPlanner(user.email);
+    handleClose();
+    store.dispatch(
+      addNotification({
+        message: "Deleted successfully!",
+        variant: "success",
+      })
+    );
+    setTimeout(() => {
+      window.location.reload();
+    }, 2500);
+  };
+
   if (!user) {
     return;
   }
@@ -283,11 +362,46 @@ export function ModuleChecker() {
               backgroundColor: "#fcf4d4",
               color: "black",
             }}
+            onClick={handleClickOpen}
+            disabled={semesters.length === 0 && degrees.length === 0}
+          >
+            Clear
+          </Button>
+
+          <Button
+            variant="contained"
+            sx={{
+              ml: 2,
+              backgroundColor: "#fcf4d4",
+              color: "black",
+            }}
             onClick= {saveAll}
           >
             Save All
           </Button>
         </Grid>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Doing so will delete all your saved data. Click confirm to
+              proceed.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} sx={{ color: "#b7b0f5" }}>
+              Cancel
+            </Button>
+            <Button onClick={handleClear} autoFocus variant="contained">
+              Confirm
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Box>
             
      <Box sx={{ flexGrow: 1}}>
