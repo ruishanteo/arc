@@ -91,7 +91,7 @@ export function Home() {
             }}
             sx={{ maxWidth: "20vw", overflow: "auto" }}
           >
-            <CardActionArea href="/GradeCalculator">
+            <CardActionArea>
               <Box
                 align="center"
                 sx={{

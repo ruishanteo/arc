@@ -20,7 +20,7 @@ import {
 import LooksIcon from "@mui/icons-material/Looks";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const pages = ["GradeCalculator"];
+const pages = ["GradeCalculator", "Module Planner", "Forum"];
 
 export function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -114,14 +114,7 @@ export function Header() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link
-                      style={{ textDecoration: "none", color: "black" }}
-                      to={`/${page}`}
-                    >
-                      {page}
-                    </Link>
-                  </Typography>
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -192,7 +185,7 @@ export function Header() {
               <MenuItem component="a" href="/home">
                 <Typography textAlign="center">Home</Typography>
               </MenuItem>
-              <MenuItem component="a" href="/profile">
+              <MenuItem>
                 <Typography textAlign="center">Profile</Typography>
               </MenuItem>
               <MenuItem onClick={logout}>
