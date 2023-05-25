@@ -155,6 +155,13 @@ export function ModuleChecker() {
     return "";
   }
 
+  function getDegreeFaculty() {
+    if (typeof degrees[0]?.faculty != 'undefined') {
+      return degrees[0]?.faculty;;
+    }
+    return "";
+  }
+
   /*
   function updateHeader() {
     const c = count;
@@ -424,6 +431,7 @@ export function ModuleChecker() {
           <div>
             {<CommonRequirements
                 checkPresent={checkPresent}
+                getDegreeFaculty={getDegreeFaculty}
               />
             }
             </div>

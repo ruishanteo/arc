@@ -1,7 +1,8 @@
 import { TableContainer, TableHead, TableBody, Table, TableCell, TableRow, Typography } from "@mui/material";
 
 export function CommonRequirements({
-    checkPresent
+    checkPresent,
+    getDegreeFaculty
 }) {
     const commonMods = [
         { title: 'GEC', code: 'GEC', id: 1 },
@@ -13,6 +14,38 @@ export function CommonRequirements({
 
     ]
 
+    const deg = getDegreeFaculty();
+
+    const tab = () => {
+      if (deg === "SOC") {
+        return (
+        commonMods.map((module) => {
+            return (
+            <TableRow key={module.id}>
+            <TableCell align="center" sx={{
+                backgroundColor: checkPresent(module.title),
+                color: "black",
+                fontSize: "1.0rem",
+            }}>
+                {module.title}
+            </TableCell>
+            </TableRow>
+            )
+        }))
+      } else {
+        return (
+              <TableRow key = {1}>
+              <TableCell align="center" sx={{
+                  backgroundColor: '#FFFFFF',
+                  color: "black",
+                  fontSize: "1.0rem",
+              }}>
+                  {"Please select a degree"}
+              </TableCell>
+              </TableRow>
+          );
+      }
+    }
 
     return (
         <>
@@ -36,20 +69,8 @@ export function CommonRequirements({
             </TableHead>
 
             <TableBody>
-            {commonMods.map((module) => {
-                return (
-                <TableRow key={module.id}>
-                <TableCell align="center" sx={{
-                    backgroundColor: checkPresent(module.title),
-                    color: "black",
-                    fontSize: "1.0rem",
-                }}>
-                    {module.title}
-                </TableCell>
-                </TableRow>
-                )
-            })}
-            </TableBody>
+              {tab()}
+          </TableBody>
         </Table>
         </form>
     </TableContainer>
