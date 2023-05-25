@@ -115,6 +115,10 @@ function App() {
                       path="/GradeCalculator"
                       element={<GradeCalculator />}
                     />
+                    <Route
+                      path="/ModulePlanner"
+                      element={<ModulePlanner />}
+                    />
                     <Route path="/forum" element={<Forum />} />
                     <Route exact path="/forum/new" element={<NewPost />} />
                     <Route exact path="forum/:id" element={<Post />} />
