@@ -6,6 +6,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 
 import { Assessment } from "./Assessment";
 import { db, deleteContent } from "../UserAuth/Firebase.js";
+import { LoadingSpinner } from "../Components/LoadingSpinner";
 
 import { store } from "../stores/store";
 import { addNotification } from "../Notifications";
@@ -22,23 +23,22 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Add, Save } from "@mui/icons-material";
 
 export function ModuleAssessment() {
-  const [assessments, setAssessments] = useState([]);
-  const [open, setOpen] = useState(false);
   const auth = getAuth();
-  const user = auth.currentUser;
   const dispatch = useDispatch();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const [assessments, setAssessments] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [isActionLoading, setIsActionLoading] = useState(false);
+  const [isFetchingData, setIsFetchingData] = useState(true);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const user = auth.currentUser;
 
   const saveAll = async (e) => {
+    setIsActionLoading(true);
     e.preventDefault();
     await setDoc(doc(db, "assessments", user.email), {
       assessments: assessments
@@ -67,15 +67,33 @@ export function ModuleAssessment() {
             variant: "error",
           })
         )
-      );
+      )
+      .finally(() => setIsActionLoading(false));
+  };
+
+  const clearAll = async () => {
+    setIsActionLoading(true);
+    await deleteContent(user.email);
+    setIsActionLoading(false);
+    setOpen(false);
+    setAssessments([]);
+
+    store.dispatch(
+      addNotification({
+        message: "Deleted successfully!",
+        variant: "success",
+      })
+    );
   };
 
   const getAll = useCallback(async () => {
+    setIsFetchingData(true);
     const docRef = doc(db, "assessments", user.email);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setAssessments(docSnap.data().assessments);
     }
+    setIsFetchingData(false);
   }, [user]);
 
   useEffect(() => {
@@ -142,22 +160,12 @@ export function ModuleAssessment() {
     return assessments[index].title;
   };
 
-  const handleClear = () => {
-    deleteContent(user.email);
-    handleClose();
-    store.dispatch(
-      addNotification({
-        message: "Deleted successfully!",
-        variant: "success",
-      })
-    );
-    setTimeout(() => {
-      window.location.reload();
-    }, 2500);
-  };
-
   if (!user) {
     return;
+  }
+
+  if (isFetchingData) {
+    return <LoadingSpinner />;
   }
 
   return (
@@ -175,19 +183,20 @@ export function ModuleAssessment() {
           Grade Calculator
         </Typography>
         <Grid container sx={{ display: "flex", justifyContent: "right" }}>
-          <Button
+          <LoadingButton
             variant="contained"
             sx={{
               backgroundColor: "#fcf4d4",
               color: "black",
             }}
-            onClick={handleClickOpen}
+            onClick={() => setOpen(true)}
+            loading={isActionLoading}
             disabled={assessments.length === 0}
           >
-            Clear
-          </Button>
+            <span>Clear</span>
+          </LoadingButton>
 
-          <Button
+          <LoadingButton
             variant="contained"
             sx={{
               ml: 2,
@@ -195,13 +204,16 @@ export function ModuleAssessment() {
               color: "black",
             }}
             onClick={saveAll}
+            loading={isActionLoading}
+            loadingPosition="end"
+            endIcon={<Save />}
           >
-            Save All
-          </Button>
+            <span>Save</span>
+          </LoadingButton>
         </Grid>
         <Dialog
           open={open}
-          onClose={handleClose}
+          onClose={() => setOpen(false)}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
@@ -213,10 +225,10 @@ export function ModuleAssessment() {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} sx={{ color: "#b7b0f5" }}>
+            <Button onClick={() => setOpen(false)} sx={{ color: "#b7b0f5" }}>
               Cancel
             </Button>
-            <Button onClick={handleClear} autoFocus variant="contained">
+            <Button onClick={clearAll} autoFocus variant="contained">
               Confirm
             </Button>
           </DialogActions>
@@ -248,8 +260,9 @@ export function ModuleAssessment() {
         onClick={addModule}
         sx={{ mt: 2, mb: 10 }}
         color="neutral"
+        startIcon={<Add />}
       >
-        + Module
+        Module
       </Button>
     </Container>
   );

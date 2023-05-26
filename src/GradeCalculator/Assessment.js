@@ -16,6 +16,7 @@ import {
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
+import AddIcon from "@mui/icons-material/Add";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
@@ -137,10 +138,11 @@ export function Assessment({
             <Button
               variant="contained"
               onClick={() => newComponent(assessmentIndex)}
+              startIcon={<AddIcon />}
               sx={{ mt: 2, mb: 1 }}
               color="neutral"
             >
-              + Component
+              Component
             </Button>
 
             <Table>
