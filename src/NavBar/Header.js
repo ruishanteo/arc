@@ -20,7 +20,7 @@ import {
 import LooksIcon from "@mui/icons-material/Looks";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const pages = ["GradeCalculator"];
+const pages = ["GradeCalculator", "Forum"];
 
 export function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
