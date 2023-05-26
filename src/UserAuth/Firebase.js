@@ -193,6 +193,15 @@ const deleteContent = async (key) => {
   );
 };
 
+const deleteContentPlanner = async (key) => {
+  await deleteDoc(doc(db, "semesters", key)).catch((err) =>
+    handleErrorMessage(err)
+  );
+  await deleteDoc(doc(db, "programme", key)).catch((err) =>
+    handleErrorMessage(err)
+  );
+};
+
 function onDeleteUser(currentUser) {
   deleteContent(currentUser.email);
   setTimeout(() => {
@@ -213,6 +222,7 @@ export {
   storage,
   changeProfile,
   deleteContent,
+  deleteContentPlanner,
   onDeleteUser,
   onReAuth,
   useSignInWithGoogle as signInWithGoogle,

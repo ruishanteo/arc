@@ -7,6 +7,8 @@ import { SnackbarProvider } from "notistack";
 
 import { auth } from "./UserAuth/Firebase.js";
 import { GradeCalculator } from "./GradeCalculator/GradeCalculator.js";
+import { ModulePlanner } from "./ModulePlanner/ModulePlanner.js";
+import { Forum } from "./Forum/Forum.js";
 import { Header } from "./NavBar/Header.js";
 import { Home } from "./NavPages/Home.js";
 import { Landing } from "./NavPages/Landing.js";
@@ -104,7 +106,9 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/home" element={<Home />} />
-                    <Route path="/GradeCalculator" element={<Home />} />
+                    <Route path="/GradeCalculator" element={<GradeCalculator />} />
+                    <Route path="/ModulePlanner" element={<ModulePlanner />} />
+                    <Route path="/Forum" element={<Forum />} />
                     <Route path="*" element={<Home />} />
                   </Routes>
                 </>

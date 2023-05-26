@@ -230,7 +230,7 @@ export function ModuleAssessment() {
               <Assessment
                 key={assessmentIndex}
                 assessmentIndex={assessmentIndex}
-                deleteModule={deleteModule}
+                deleteModule={() => {}}
                 newComponent={newComponent}
                 deleteComponent={deleteComponent}
                 getText={getText}
@@ -245,7 +245,7 @@ export function ModuleAssessment() {
       })}
       <Button
         variant="contained"
-        onClick={addModule}
+        onClick={() => {}}
         sx={{ mt: 2, mb: 10 }}
         color="neutral"
       >
