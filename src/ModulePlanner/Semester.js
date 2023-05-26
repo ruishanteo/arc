@@ -71,7 +71,7 @@ export function Semester({
               )
             })}
             <TableRow>
-            <TableCell align="center">
+            <TableCell align="left">
                 <Button
                   type="button" 
                   variant="contained"
