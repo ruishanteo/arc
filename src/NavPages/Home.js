@@ -174,7 +174,7 @@ export function Home() {
             }}
             sx={{ maxWidth: "20vw", overflow: "auto" }}
           >
-            <CardActionArea href="/Forum">
+            <CardActionArea href="/forum">
               <Box
                 align="center"
                 sx={{
