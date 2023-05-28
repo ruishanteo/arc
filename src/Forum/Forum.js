@@ -1,10 +1,13 @@
 import { useEffect, useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getAuth } from "@firebase/auth";
-import { collection, getDocs } from "@firebase/firestore";
-import { db } from "../UserAuth/Firebase";
+import { useAuth } from "../UserAuth/FirebaseHooks";
+
+import { fetchPosts } from "./ForumStore";
+import { store } from "../stores/store";
+
 import { LoadingSpinner } from "../Components/LoadingSpinner.js";
 
 import { useTheme } from "@mui/material/styles";
@@ -13,6 +16,7 @@ import {
   Box,
   Button,
   Container,
+  IconButton,
   Paper,
   Table,
   TableBody,
@@ -24,13 +28,13 @@ import {
   TableRow,
   Typography,
 } from "@mui/material/";
-
-import { Add } from "@mui/icons-material";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import IconButton from "@mui/material/IconButton";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
+import {
+  Add,
+  FirstPage,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+  LastPage,
+} from "@mui/icons-material";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -59,7 +63,7 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPage /> : <FirstPage />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
@@ -88,7 +92,7 @@ function TablePaginationActions(props) {
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPage /> : <LastPage />}
       </IconButton>
     </Box>
   );
@@ -118,39 +122,78 @@ function TableRows({ postList, page, rowsPerPage }) {
       return (
         <TableRow key={row.id}>
           <TableCell component="th" scope="row" align="center">
-            <Link
-              to={`/forum/${row.id}`}
-              style={{ color: "black", textDecoration: "none" }}
+            <Box
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "6",
+                WebkitBoxOrient: "vertical",
+              }}
             >
-              {row.title}
-            </Link>
+              <Typography variant="subtitle2">
+                <Link
+                  to={`/forum/${row.id}`}
+                  style={{ color: "black", textDecoration: "none" }}
+                >
+                  {row.title}
+                </Link>
+              </Typography>
+            </Box>
           </TableCell>
-          <TableCell style={{ width: "40vw" }} align="center">
-            <Link
-              to={`/forum/${row.id}`}
-              style={{ color: "black", textDecoration: "none" }}
+          <TableCell align="center">
+            <Box
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "3",
+                WebkitBoxOrient: "vertical",
+                width: "25vw",
+              }}
             >
-              {row.post}
-            </Link>
+              <Typography variant="subtitle2">
+                <Link
+                  to={`/forum/${row.id}`}
+                  style={{ color: "black", textDecoration: "none" }}
+                >
+                  {row.post}
+                </Link>
+              </Typography>
+            </Box>
           </TableCell>
           <TableCell style={{ width: 160 }} align="center">
             <Box
               display="flex"
               flexDirection="row"
               alignItems="center"
-              sx={{ justifyContent: "center" }}
+              sx={{
+                justifyContent: "center",
+              }}
             >
               <Avatar
                 sx={{ mr: 1 }}
                 src={row.author.profilePic}
                 alt="profilepic"
               />
-              <Link
-                to={`/forum/${row.id}`}
-                style={{ color: "black", textDecoration: "none" }}
+              <Box
+                sx={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "1",
+                  WebkitBoxOrient: "vertical",
+                }}
               >
-                {row.author.username}
-              </Link>
+                <Typography variant="subtitle2">
+                  <Link
+                    to={`/forum/${row.id}`}
+                    style={{ color: "black", textDecoration: "none" }}
+                  >
+                    {row.author.username}
+                  </Link>
+                </Typography>
+              </Box>
             </Box>
           </TableCell>
           <TableCell style={{ width: 160 }} align="center">
@@ -168,17 +211,26 @@ function TableRows({ postList, page, rowsPerPage }) {
 }
 
 export function Forum() {
-  const auth = getAuth();
-  const [postList, setPostList] = useState([]);
+  const user = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const navigate = useNavigate();
-  const user = auth.currentUser;
+
+  const posts = useSelector((state) => state.forum.posts);
+
+  const onUpdate = useCallback(() => {
+    setLoading(true);
+    store.dispatch(fetchPosts).finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    onUpdate();
+  }, [user, onUpdate]);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - postList.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - posts.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -188,19 +240,6 @@ export function Forum() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const getPosts = useCallback(async () => {
-    setLoading(true);
-
-    const data = await getDocs(collection(db, "posts"));
-
-    setLoading(false);
-    setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  }, []);
-
-  useEffect(() => {
-    getPosts();
-  }, [user, getPosts]);
 
   return (
     <Container maxWidth="lg">
@@ -248,7 +287,7 @@ export function Forum() {
               ) : (
                 <>
                   <TableRows
-                    postList={postList}
+                    postList={posts}
                     page={page}
                     rowsPerPage={rowsPerPage}
                   />
@@ -271,7 +310,7 @@ export function Forum() {
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                  count={postList.length}
+                  count={posts.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{
