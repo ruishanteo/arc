@@ -203,7 +203,8 @@ const deleteContentPlanner = async (key) => {
 };
 
 function onDeleteUser(currentUser) {
-  deleteContent(currentUser.email);
+  deleteContent(currentUser.uid);
+  deleteContentPlanner(currentUser.uid);
   setTimeout(() => {
     return deleteUser(currentUser).then(() =>
       store.dispatch(
