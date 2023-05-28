@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { auth, sendPasswordReset } from "./Firebase.js";
+import { auth } from "./Firebase.js";
+import { sendPasswordReset } from "./FirebaseHooks.js";
+
 import { Box, Button, TextField, Typography } from "@mui/material";
 import LooksIcon from "@mui/icons-material/Looks";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { logout, useAuth } from "../UserAuth/Firebase.js";
+import { logout, useAuth } from "../UserAuth/FirebaseHooks.js";
 
 import {
   AppBar,

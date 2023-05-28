@@ -1,11 +1,12 @@
 import { useEffect, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 import { Assessment } from "./Assessment";
-import { db, deleteContent } from "../UserAuth/Firebase.js";
+import { db } from "../UserAuth/Firebase.js";
+import { deleteContent, useAuth } from "../UserAuth/FirebaseHooks";
+
 import { LoadingSpinner } from "../Components/LoadingSpinner";
 
 import { store } from "../stores/store";
@@ -27,7 +28,7 @@ import { LoadingButton } from "@mui/lab";
 import { Add, Save } from "@mui/icons-material";
 
 export function ModuleAssessment() {
-  const auth = getAuth();
+  const user = useAuth();
   const dispatch = useDispatch();
 
   const [assessments, setAssessments] = useState([]);
@@ -35,12 +36,10 @@ export function ModuleAssessment() {
   const [isActionLoading, setIsActionLoading] = useState(false);
   const [isFetchingData, setIsFetchingData] = useState(true);
 
-  const user = auth.currentUser;
-
   const saveAll = async (e) => {
     setIsActionLoading(true);
     e.preventDefault();
-    await setDoc(doc(db, "assessments", user.email), {
+    await setDoc(doc(db, "assessments", user.uid), {
       assessments: assessments
         .filter((assessment) => !assessment.isDeleted)
         .map((assessment) => {
@@ -73,7 +72,7 @@ export function ModuleAssessment() {
 
   const clearAll = async () => {
     setIsActionLoading(true);
-    await deleteContent(user.email);
+    await deleteContent(user.uid);
     setIsActionLoading(false);
     setOpen(false);
     setAssessments([]);
@@ -88,7 +87,7 @@ export function ModuleAssessment() {
 
   const getAll = useCallback(async () => {
     setIsFetchingData(true);
-    const docRef = doc(db, "assessments", user.email);
+    const docRef = doc(db, "assessments", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setAssessments(docSnap.data().assessments);
@@ -97,7 +96,7 @@ export function ModuleAssessment() {
   }, [user]);
 
   useEffect(() => {
-    getAll();
+    if (user) getAll();
   }, [user, getAll]);
 
   function getComponents(assessmentIndex) {

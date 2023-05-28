@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { changeProfile, onDeleteUser, onReAuth, useAuth } from "./Firebase.js";
+import {
+  changeProfile,
+  onDeleteUser,
+  onReAuth,
+  useAuth,
+} from "./FirebaseHooks.js";
 
 import {
   Avatar,
