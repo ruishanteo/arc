@@ -1,21 +1,21 @@
 import { useState } from "react";
 
-import { addDoc, collection } from "firebase/firestore";
-
-import { db, useAuth } from "../UserAuth/Firebase.js";
+import { useAuth } from "../UserAuth/FirebaseHooks.js";
 
 import { store } from "../stores/store.js";
+import { createComment } from "./ForumStore.js";
 import { addNotification } from "../Notifications/index.js";
 
 import { LoadingButton } from "@mui/lab";
 import { Box, TextField } from "@mui/material";
+import { Send } from "@mui/icons-material";
 
-export function NewComment({ postId, getComments }) {
+export function NewComment({ postId, posterId, onUpdate }) {
+  const user = useAuth();
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
-  const user = useAuth();
 
-  const addComment = async () => {
+  const handleCreateComment = () => {
     setLoading(true);
     if (!comment) {
       store.dispatch(
@@ -25,27 +25,26 @@ export function NewComment({ postId, getComments }) {
         })
       );
     } else {
-      await addDoc(collection(db, "comments"), {
-        postId: postId,
-        text: comment,
-        author: {
-          username: user.displayName,
-          email: user.email,
-          profilePic: user.photoURL,
-          userId: user.uid,
-        },
-        datetime: new Date().toLocaleString(),
-      });
-
-      getComments();
-      store.dispatch(
-        addNotification({
-          message: "Commented successfully!",
-          variant: "success",
-        })
-      );
+      store
+        .dispatch(
+          createComment({
+            postId: postId,
+            posterId: posterId,
+            text: comment,
+            author: {
+              username: user.displayName,
+              email: user.email,
+              profilePic: user.photoURL,
+              userId: user.uid,
+            },
+            datetime: new Date().toLocaleString(),
+          })
+        )
+        .finally(() => {
+          onUpdate();
+          setLoading(false);
+        });
     }
-    setLoading(false);
   };
 
   return (
@@ -59,17 +58,17 @@ export function NewComment({ postId, getComments }) {
         placeholder="Enter reply here."
         multiline
         rows={3}
-        backgroundColor="gray"
         fullWidth
       />
 
       <LoadingButton
         sx={{ mt: 3, mb: 3, backgroundColor: "#cff8df" }}
         variant="contained"
-        onClick={addComment}
+        onClick={handleCreateComment}
         loading={loading}
       >
         Submit
+        <Send />
       </LoadingButton>
     </Box>
   );

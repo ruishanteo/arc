@@ -1,27 +1,23 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { getAuth } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
-
-import { db } from "../UserAuth/Firebase.js";
+import { useAuth } from "../UserAuth/FirebaseHooks.js";
 
 import { store } from "../stores/store.js";
+import { createPost } from "./ForumStore.js";
 import { addNotification } from "../Notifications/index.js";
 
 import { LoadingButton } from "@mui/lab";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 
 export function NewPost() {
+  const navigate = useNavigate();
+  const user = useAuth();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const auth = getAuth();
-  const user = auth.currentUser;
 
-  const addPost = async () => {
-    setLoading(true);
+  const handleCreatePost = () => {
     if (!title || !text) {
       store.dispatch(
         addNotification({
@@ -30,27 +26,23 @@ export function NewPost() {
         })
       );
     } else {
-      await addDoc(collection(db, "posts"), {
-        title: title,
-        post: text,
-        author: {
-          username: user.displayName,
-          email: user.email,
-          profilePic: user.photoURL,
-          userId: user.uid,
-        },
-        datetime: new Date().toLocaleString(),
-      });
-
-      store.dispatch(
-        addNotification({
-          message: "Posted successfully!",
-          variant: "success",
-        })
-      );
-      navigate("/forum");
+      setLoading(true);
+      store
+        .dispatch(
+          createPost({
+            title: title,
+            post: text,
+            author: {
+              username: user.displayName,
+              email: user.email,
+              profilePic: user.photoURL,
+              userId: user.uid,
+            },
+            datetime: new Date().toLocaleString(),
+          })
+        )
+        .finally(() => navigate("/forum"));
     }
-    setLoading(false);
   };
 
   return (
@@ -87,7 +79,7 @@ export function NewPost() {
           <LoadingButton
             sx={{ mr: 3, backgroundColor: "#cff8df" }}
             variant="contained"
-            onClick={addPost}
+            onClick={handleCreatePost}
             loading={loading}
           >
             Submit
