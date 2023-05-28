@@ -40,7 +40,7 @@ export function ModuleAssessment() {
 
   const saveAll = async (e) => {
     e.preventDefault();
-    await setDoc(doc(db, "assessments", user.email), {
+    await setDoc(doc(db, "assessments", user.uid), {
       assessments: assessments
         .filter((assessment) => !assessment.isDeleted)
         .map((assessment) => {
@@ -71,7 +71,7 @@ export function ModuleAssessment() {
   };
 
   const getAll = useCallback(async () => {
-    const docRef = doc(db, "assessments", user.email);
+    const docRef = doc(db, "assessments", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setAssessments(docSnap.data().assessments);
@@ -143,7 +143,7 @@ export function ModuleAssessment() {
   };
 
   const handleClear = () => {
-    deleteContent(user.email);
+    deleteContent(user.uid);
     handleClose();
     store.dispatch(
       addNotification({

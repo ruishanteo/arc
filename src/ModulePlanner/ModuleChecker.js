@@ -82,7 +82,7 @@ export function ModuleChecker() {
   };
 
   const saveProg = async () => {
-    await setDoc(doc(db, "semesters", user.email), {
+    await setDoc(doc(db, "semesters", user.uid), {
       semesters: semesters
       .filter((semester) => !semester.isDeleted)
       .map((semester) => {
@@ -97,7 +97,7 @@ export function ModuleChecker() {
   }
 
   const saveSem = async () => {
-    await setDoc(doc(db, "programme", user.email), {
+    await setDoc(doc(db, "programme", user.uid), {
       degrees: degrees
       });
   }
@@ -125,7 +125,7 @@ export function ModuleChecker() {
 
   const saveDegree = async (e) => {
     e.preventDefault();
-    await setDoc(doc(db, "programme", user.email), {
+    await setDoc(doc(db, "programme", user.uid), {
       degrees: degrees
     }).then(() =>
     dispatch(
@@ -146,14 +146,14 @@ export function ModuleChecker() {
   };
 
   const getAll = useCallback(async () => {
-    const docRef = doc(db, "semesters", user.email);
+    const docRef = doc(db, "semesters", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const sem = docSnap.data().semesters
       setSemesters(sem);
       setCount(sem[sem.length-1]?.count + 1 || 0);
     }
-    const docRef2 = doc(db, "programme", user.email);
+    const docRef2 = doc(db, "programme", user.uid);
     const docSnap2 = await getDoc(docRef2);
     if (docSnap2.exists()) {
       setDegrees(docSnap2.data().degrees);
@@ -165,7 +165,7 @@ export function ModuleChecker() {
 
   const delSem = async (c) => {
     try {
-      const listingRef = doc(db, "semesters", user.email);
+      const listingRef = doc(db, "semesters", user.uid);
       await updateDoc(listingRef, {
         semesters: arrayRemove(semesters[c])
       });
@@ -180,7 +180,7 @@ export function ModuleChecker() {
 
   const addSem = async (c) => {
     try {
-      const listingRef = doc(db, "semesters", user.email);
+      const listingRef = doc(db, "semesters", user.uid);
       await setDoc(listingRef, {
         semesters: semesters
         .filter((semester) => !semester.isDeleted)
@@ -348,7 +348,7 @@ export function ModuleChecker() {
   }
 
   const handleClear = () => {
-    deleteContentPlanner(user.email);
+    deleteContentPlanner(user.uid);
     handleClose();
     store.dispatch(
       addNotification({
