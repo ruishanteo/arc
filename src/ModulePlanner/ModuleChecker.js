@@ -32,13 +32,13 @@ import {
 
 // temporarily hard-coded
 const degrees = [
-  { title: '', faculty: '', id: 0 },
-  { title: 'Computer Science', faculty: 'SOC', id : 2 },
-  { title: 'Business Analytics', faculty: 'SOC', id: 3 },
-  { title: 'Information Systems', faculty: 'SOC', id : 4},
-  { title: 'Computer Engineering', faculty: 'SOC', id: 5},
-  { title: 'Information Security', faculty: 'SOC', id: 6},
-  { title: 'Others', faculty: 'others', id : 1}
+  { title: '', faculty: '' },
+  { title: 'Computer Science', faculty: 'SOC' },
+  { title: 'Business Analytics', faculty: 'SOC' },
+  { title: 'Information Systems', faculty: 'SOC'},
+  { title: 'Computer Engineering', faculty: 'SOC'},
+  { title: 'Information Security', faculty: 'SOC'},
+  { title: 'Others', faculty: 'others'}
   ]
 
 const options = degrees.map((option) => {
@@ -49,12 +49,35 @@ const options = degrees.map((option) => {
   };
 })
 
+options.sort((a, b) => {
+  // Sort by faculty
+  if (a.faculty !== b.faculty) {
+    return a.faculty.localeCompare(b.faculty);
+  }
+  
+  // Sort by title if faculties are the same
+  return a.title.localeCompare(b.title);
+});
+options.forEach((options, index) => {
+  options.id = index;
+});
+
 const progs = [
-  { title: '', id : 0 },
-  { title: 'RC', id : 2 },
-  { title: 'NUSC', id : 1 }
+  { title: '' },
+  { title: 'RC4' },
+  { title: 'CAPT' },
+  { title: 'Tembusu College' },
+  { title: 'RVRC' },
+  { title: 'NUSC'}
 ]
 
+progs.sort((a, b) => a.title.localeCompare(b.title));
+
+progs.forEach((prog, index) => {
+  prog.id = index;
+});
+
+console.log(options);
 
 const MIN = 0;
 
@@ -82,7 +105,7 @@ export function ModuleChecker() {
   };
 
   const saveProg = async () => {
-    await setDoc(doc(db, "semesters", user.email), {
+    await setDoc(doc(db, "semesters", user.uid), {
       semesters: semesters
       .filter((semester) => !semester.isDeleted)
       .map((semester) => {
@@ -97,7 +120,7 @@ export function ModuleChecker() {
   }
 
   const saveSem = async () => {
-    await setDoc(doc(db, "programme", user.email), {
+    await setDoc(doc(db, "programme", user.uid), {
       degrees: degrees
       });
   }
@@ -125,7 +148,7 @@ export function ModuleChecker() {
 
   const saveDegree = async (e) => {
     e.preventDefault();
-    await setDoc(doc(db, "programme", user.email), {
+    await setDoc(doc(db, "programme", user.uid), {
       degrees: degrees
     }).then(() =>
     dispatch(
@@ -146,14 +169,14 @@ export function ModuleChecker() {
   };
 
   const getAll = useCallback(async () => {
-    const docRef = doc(db, "semesters", user.email);
+    const docRef = doc(db, "semesters", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const sem = docSnap.data().semesters
       setSemesters(sem);
       setCount(sem[sem.length-1]?.count + 1 || 0);
     }
-    const docRef2 = doc(db, "programme", user.email);
+    const docRef2 = doc(db, "programme", user.uid);
     const docSnap2 = await getDoc(docRef2);
     if (docSnap2.exists()) {
       setDegrees(docSnap2.data().degrees);
@@ -165,7 +188,7 @@ export function ModuleChecker() {
 
   const delSem = async (c) => {
     try {
-      const listingRef = doc(db, "semesters", user.email);
+      const listingRef = doc(db, "semesters", user.uid);
       await updateDoc(listingRef, {
         semesters: arrayRemove(semesters[c])
       });
@@ -180,7 +203,7 @@ export function ModuleChecker() {
 
   const addSem = async (c) => {
     try {
-      const listingRef = doc(db, "semesters", user.email);
+      const listingRef = doc(db, "semesters", user.uid);
       await setDoc(listingRef, {
         semesters: semesters
         .filter((semester) => !semester.isDeleted)
@@ -348,7 +371,7 @@ export function ModuleChecker() {
   }
 
   const handleClear = () => {
-    deleteContentPlanner(user.email);
+    deleteContentPlanner(user.uid);
     handleClose();
     store.dispatch(
       addNotification({
