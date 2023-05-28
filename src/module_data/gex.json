@@ -1,0 +1,416 @@
+[
+    {
+        "moduleCode": "GEX1000"
+    },
+    {
+        "moduleCode": "GEX1001"
+    },
+    {
+        "moduleCode": "GEX1002"
+    },
+    {
+        "moduleCode": "GEX1003"
+    },
+    {
+        "moduleCode": "GEX1004"
+    },
+    {
+        "moduleCode": "GEX1005"
+    },
+    {
+        "moduleCode": "GEX1006"
+    },
+    {
+        "moduleCode": "GEX1007"
+    },
+    {
+        "moduleCode": "GEX1008"
+    },
+    {
+        "moduleCode": "GEX1009"
+    },
+    {
+        "moduleCode": "GEX1010"
+    },
+    {
+        "moduleCode": "GEX1011"
+    },
+    {
+        "moduleCode": "GEX1012"
+    },
+    {
+        "moduleCode": "GEX1013"
+    },
+    {
+        "moduleCode": "GEX1014"
+    },
+    {
+        "moduleCode": "GEX1015"
+    },
+    {
+        "moduleCode": "GEX1016"
+    },
+    {
+        "moduleCode": "GEX1017"
+    },
+    {
+        "moduleCode": "GEX1018"
+    },
+    {
+        "moduleCode": "GEX1019"
+    },
+    {
+        "moduleCode": "GEX1020"
+    },
+    {
+        "moduleCode": "GEX1021"
+    },
+    {
+        "moduleCode": "GEX1022"
+    },
+    {
+        "moduleCode": "GEX1023"
+    },
+    {
+        "moduleCode": "GEX1024"
+    },
+    {
+        "moduleCode": "GEX1025"
+    },
+    {
+        "moduleCode": "GEX1026"
+    },
+    {
+        "moduleCode": "GEX1027"
+    },
+    {
+        "moduleCode": "GEX1028"
+    },
+    {
+        "moduleCode": "GEX1029"
+    },
+    {
+        "moduleCode": "GEX1030"
+    },
+    {
+        "moduleCode": "GEX1031"
+    },
+    {
+        "moduleCode": "GEX1032"
+    },
+    {
+        "moduleCode": "ES2631"
+    },
+    {
+        "moduleCode": "ES2660"
+    },
+    {
+        "moduleCode": "HSH1000"
+    },
+    {
+        "moduleCode": "NGN2001"
+    },
+    {
+        "moduleCode": "RVX1000"
+    },
+    {
+        "moduleCode": "RVX1001"
+    },
+    {
+        "moduleCode": "RVX1002"
+    },
+    {
+        "moduleCode": "RVX1003"
+    },
+    {
+        "moduleCode": "UWC2101A"
+    },
+    {
+        "moduleCode": "UWC2101B"
+    },
+    {
+        "moduleCode": "NTW2002"
+    },
+    {
+        "moduleCode": "UWC2101C"
+    },
+    {
+        "moduleCode": "NTW2003"
+    },
+    {
+        "moduleCode": "UWC2101D"
+    },
+    {
+        "moduleCode": "NTW2004"
+    },
+    {
+        "moduleCode": "UWC2101E"
+    },
+    {
+        "moduleCode": "NTW2005"
+    },
+    {
+        "moduleCode": "UWC2101F"
+    },
+    {
+        "moduleCode": "NTW2006"
+    },
+    {
+        "moduleCode": "UWC2101G"
+    },
+    {
+        "moduleCode": "NTW2007"
+    },
+    {
+        "moduleCode": "UWC2101H"
+    },
+    {
+        "moduleCode": "NTW2008"
+    },
+    {
+        "moduleCode": "UWC2101I"
+    },
+    {
+        "moduleCode": "NTW2009"
+    },
+    {
+        "moduleCode": "UWC2101J"
+    },
+    {
+        "moduleCode": "NTW2010"
+    },
+    {
+        "moduleCode": "UWC2101K"
+    },
+    {
+        "moduleCode": "NTW2011"
+    },
+    {
+        "moduleCode": "UWC2101L"
+    },
+    {
+        "moduleCode": "NTW2012"
+    },
+    {
+        "moduleCode": "UWC2101M"
+    },
+    {
+        "moduleCode": "NTW2013"
+    },
+    {
+        "moduleCode": "UWC2101N"
+    },
+    {
+        "moduleCode": "NTW2014"
+    },
+    {
+        "moduleCode": "UWC2101P"
+    },
+    {
+        "moduleCode": "NTW2015"
+    },
+    {
+        "moduleCode": "UWC2101Q"
+    },
+    {
+        "moduleCode": "NTW2016"
+    },
+    {
+        "moduleCode": "UWC2101R"
+    },
+    {
+        "moduleCode": "NTW2017"
+    },
+    {
+        "moduleCode": "UWC2101S"
+    },
+    {
+        "moduleCode": "NTW2018"
+    },
+    {
+        "moduleCode": "UWC2101T"
+    },
+    {
+        "moduleCode": "NTW2019"
+    },
+    {
+        "moduleCode": "UWC2101U"
+    },
+    {
+        "moduleCode": "NTW2020"
+    },
+    {
+        "moduleCode": "UWC2101V"
+    },
+    {
+        "moduleCode": "NTW2021"
+    },
+    {
+        "moduleCode": "UWC2101W"
+    },
+    {
+        "moduleCode": "NTW2022"
+    },
+    {
+        "moduleCode": "UWC2101X"
+    },
+    {
+        "moduleCode": "NTW2023"
+    },
+    {
+        "moduleCode": "UWC2101Y"
+    },
+    {
+        "moduleCode": "NTW2024"
+    },
+    {
+        "moduleCode": "UWC2101Z"
+    },
+    {
+        "moduleCode": "NTW2025"
+    },
+    {
+        "moduleCode": "UWC2101AA"
+    },
+    {
+        "moduleCode": "NTW2026"
+    },
+    {
+        "moduleCode": "UWC2101AB"
+    },
+    {
+        "moduleCode": "NTW2027"
+    },
+    {
+        "moduleCode": "UWC2101AC"
+    },
+    {
+        "moduleCode": "NTW2028"
+    },
+    {
+        "moduleCode": "NTW2029"
+    },
+    {
+        "moduleCode": "NTW2030"
+    },
+    {
+        "moduleCode": "NTW2031"
+    },
+    {
+        "moduleCode": "NTW2032"
+    },
+    {
+        "moduleCode": "NTW2033"
+    },
+    {
+        "moduleCode": "NTW2034"
+    },
+    {
+        "moduleCode": "UAR2206"
+    },
+    {
+        "moduleCode": "NHS2008"
+    },
+    {
+        "moduleCode": "UAR2207"
+    },
+    {
+        "moduleCode": "NHS2009"
+    },
+    {
+        "moduleCode": "UAR2208"
+    },
+    {
+        "moduleCode": "NHS2010"
+    },
+    {
+        "moduleCode": "ULT2298D"
+    },
+    {
+        "moduleCode": "NHS2001"
+    },
+    {
+        "moduleCode": "ULT2299A"
+    },
+    {
+        "moduleCode": "NHS2002"
+    },
+    {
+        "moduleCode": "ULT2299C"
+    },
+    {
+        "moduleCode": "NHS2003"
+    },
+    {
+        "moduleCode": "ULT2299D"
+    },
+    {
+        "moduleCode": "NHS2004"
+    },
+    {
+        "moduleCode": "ULT2299E"
+    },
+    {
+        "moduleCode": "NHS2005"
+    },
+    {
+        "moduleCode": "ULT2299F"
+    },
+    {
+        "moduleCode": "NHS2006"
+    },
+    {
+        "moduleCode": "ULT2299G"
+    },
+    {
+        "moduleCode": "NHS2007"
+    },
+    {
+        "moduleCode": "UPI2205"
+    },
+    {
+        "moduleCode": "NHS2011"
+    },
+    {
+        "moduleCode": "UPI2207"
+    },
+    {
+        "moduleCode": "NHS2012"
+    },
+    {
+        "moduleCode": "UPI2208"
+    },
+    {
+        "moduleCode": "NHS2013"
+    },
+    {
+        "moduleCode": "UPI2210"
+    },
+    {
+        "moduleCode": "NHS2014"
+    },
+    {
+        "moduleCode": "UPI2211"
+    },
+    {
+        "moduleCode": "NHS2015"
+    },
+    {
+        "moduleCode": "UPI2212"
+    },
+    {
+        "moduleCode": "NHS2016"
+    },
+    {
+        "moduleCode": "UPI2213"
+    },
+    {
+        "moduleCode": "NHS2017"
+    },
+    {
+        "moduleCode": "UPI2214"
+    },
+    {
+        "moduleCode": "NHS201"
+    }
+]

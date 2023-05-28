@@ -1,0 +1,305 @@
+[
+    {
+        "moduleCode": "GEC1000"
+    },
+    {
+        "moduleCode": "GEC1001"
+    },
+    {
+        "moduleCode": "GEC1002"
+    },
+    {
+        "moduleCode": "GEC1003"
+    },
+    {
+        "moduleCode": "GEC1004"
+    },
+    {
+        "moduleCode": "GEC1005"
+    },
+    {
+        "moduleCode": "GEC1006"
+    },
+    {
+        "moduleCode": "GEC1007"
+    },
+    {
+        "moduleCode": "GEC1008"
+    },
+    {
+        "moduleCode": "GEC1009"
+    },
+    {
+        "moduleCode": "GEC1010"
+    },
+    {
+        "moduleCode": "GEC1011"
+    },
+    {
+        "moduleCode": "GEC1012"
+    },
+    {
+        "moduleCode": "GEC1013"
+    },
+    {
+        "moduleCode": "GEC1014"
+    },
+    {
+        "moduleCode": "GEC1015"
+    },
+    {
+        "moduleCode": "GEC1016"
+    },
+    {
+        "moduleCode": "GEC1017"
+    },
+    {
+        "moduleCode": "GEC1018"
+    },
+    {
+        "moduleCode": "GEC1019"
+    },
+    {
+        "moduleCode": "GEC1020"
+    },
+    {
+        "moduleCode": "GEC1021"
+    },
+    {
+        "moduleCode": "GEC1022"
+    },
+    {
+        "moduleCode": "GEC1023"
+    },
+    {
+        "moduleCode": "GEC1024"
+    },
+    {
+        "moduleCode": "GEC1025"
+    },
+    {
+        "moduleCode": "GEC1026"
+    },
+    {
+        "moduleCode": "GEC1027"
+    },
+    {
+        "moduleCode": "GEC1028"
+    },
+    {
+        "moduleCode": "GEC1029"
+    },
+    {
+        "moduleCode": "GEC1030"
+    },
+    {
+        "moduleCode": "GEC1031"
+    },
+    {
+        "moduleCode": "GEC1032"
+    },
+    {
+        "moduleCode": "GEC1033"
+    },
+    {
+        "moduleCode": "GEC1034"
+    },
+    {
+        "moduleCode": "GEC1034T"
+    },
+    {
+        "moduleCode": "GEC1035"
+    },
+    {
+        "moduleCode": "GEC1036"
+    },
+    {
+        "moduleCode": "GEC1037"
+    },
+    {
+        "moduleCode": "GEC1038"
+    },
+    {
+        "moduleCode": "GEC1039"
+    },
+    {
+        "moduleCode": "GEC1040"
+    },
+    {
+        "moduleCode": "GEC1040T"
+    },
+    {
+        "moduleCode": "GEC1041"
+    },
+    {
+        "moduleCode": "GEC1042"
+    },
+    {
+        "moduleCode": "GEC1043"
+    },
+    {
+        "moduleCode": "GEC1044"
+    },
+    {
+        "moduleCode": "HSA1000"
+    },
+    {
+        "moduleCode": "RVC1000"
+    },
+    {
+        "moduleCode": "RVC1001"
+    },
+    {
+        "moduleCode": "RVC2000"
+    },
+    {
+        "moduleCode": "UHB2204"
+    },
+    {
+        "moduleCode": "NHS2019"
+    },
+    {
+        "moduleCode": "UHB2206"
+    },
+    {
+        "moduleCode": "NHS2020"
+    },
+    {
+        "moduleCode": "UHB2207"
+    },
+    {
+        "moduleCode": "NHS2021"
+    },
+    {
+        "moduleCode": "UHB2208"
+    },
+    {
+        "moduleCode": "NHS2022"
+    },
+    {
+        "moduleCode": "UHB2209"
+    },
+    {
+        "moduleCode": "NHS2023"
+    },
+    {
+        "moduleCode": "UHB2210"
+    },
+    {
+        "moduleCode": "NHS2024"
+    },
+    {
+        "moduleCode": "UHB2211"
+    },
+    {
+        "moduleCode": "NHS2025"
+    },
+    {
+        "moduleCode": "UHB2214"
+    },
+    {
+        "moduleCode": "NHS2026"
+    },
+    {
+        "moduleCode": "USE2209"
+    },
+    {
+        "moduleCode": "NHS2029"
+    },
+    {
+        "moduleCode": "USE2305"
+    },
+    {
+        "moduleCode": "NHS2031"
+    },
+    {
+        "moduleCode": "USE2306"
+    },
+    {
+        "moduleCode": "NHS2032"
+    },
+    {
+        "moduleCode": "USE2307"
+    },
+    {
+        "moduleCode": "NHS2033"
+    },
+    {
+        "moduleCode": "USE2308"
+    },
+    {
+        "moduleCode": "NHS2034"
+    },
+    {
+        "moduleCode": "USE2309"
+    },
+    {
+        "moduleCode": "NHS2035"
+    },
+    {
+        "moduleCode": "USE2310"
+    },
+    {
+        "moduleCode": "NHS2036"
+    },
+    {
+        "moduleCode": "USE2313"
+    },
+    {
+        "moduleCode": "NHS2039"
+    },
+    {
+        "moduleCode": "USE2314"
+    },
+    {
+        "moduleCode": "NHS2040"
+    },
+    {
+        "moduleCode": "USE2315"
+    },
+    {
+        "moduleCode": "NHS2041"
+    },
+    {
+        "moduleCode": "USE2316"
+    },
+    {
+        "moduleCode": "NHS2042"
+    },
+    {
+        "moduleCode": "USE2319"
+    },
+    {
+        "moduleCode": "NHS2045"
+    },
+    {
+        "moduleCode": "USE2322"
+    },
+    {
+        "moduleCode": "NHS2048"
+    },
+    {
+        "moduleCode": "USE2323"
+    },
+    {
+        "moduleCode": "NHS2049"
+    },
+    {
+        "moduleCode": "USE2324"
+    },
+    {
+        "moduleCode": "NHS2050"
+    },
+    {
+        "moduleCode": "USE2325"
+    },
+    {
+        "moduleCode": "NHS2051"
+    },
+    {
+        "moduleCode": "USP3501"
+    },
+    {
+        "moduleCode": "NHS3001"
+    }
+]
