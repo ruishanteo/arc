@@ -23,6 +23,7 @@ export function Semester({
   getAllModules,
   newModule,
   getHeader,
+  getSemester,
 }) {
   const arr = getAllModules(semIndex);
   //const [selected, setSelected] = useState([]);
@@ -43,7 +44,16 @@ export function Semester({
 
               <TableCell align="center" colSpan={6}>
                 {" "}
-                <Typography>{getHeader(semIndex)}</Typography>{" "}
+                <Typography 
+                sx={{
+                  fontSize: {
+                    lg: 18,
+                    md: 18,
+                    sm: 15,
+                    xs: 11,
+                  },
+                }}
+                >{getHeader(semIndex)}</Typography>{" "}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -65,6 +75,7 @@ export function Semester({
                       getModuleId(semIndex, moduleIndex)}
                     deleteModule={(moduleIndex) =>
                       deleteModule(semIndex, moduleIndex)}
+                    getSemester={() => getSemester(semIndex)}
                     />
                   )}
                 </TableRow>

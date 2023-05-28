@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Autocomplete, Button, TableCell, TableRow, TextField } from "@mui/material";
 
 
@@ -6,25 +7,65 @@ export function ModuleComponent({
   updateModule,
   getModuleId,
   deleteModule,
-}) {
-
-  const mods = [
-    { title: '', code: '', id: 0, mc: 0 },
-    { title: 'CS1010', code: 'CS', id: 1, mc: 4  },
-    { title: 'CS1010S', code: 'CS', id: 3, mc: 4  },
-    { title: 'CS1010J', code: 'CS', id: 2, mc: 4 },
-    { title: 'CS1101S', code: 'CS', id: 4, mc: 4 },
-    { title: 'IS1108', code: 'IS', id: 11, mc: 4 },
-    { title: 'GEC1000', code: 'GEC', id: 6, mc: 4 },
-    { title: 'GEC1001', code: 'GEC', id: 7, mc: 4 },
-    { title: 'GEX1000', code: 'GEX', id: 9, mc: 4 },
-    { title: 'GEX1001', code: 'GEX', id: 10, mc: 4 },
-    { title: 'GEA1000', code: 'GEA', id: 5, mc: 4 },
-    { title: 'GEI1000', code: 'GEI', id: 8, mc: 4 },
-   ]
+  getSemester,
+}) { 
+  const [selectedModule, setSelectedModule] = useState(null);
+  const sem = getSemester(index);
+  useEffect(() => {
+    setSelectedModule(sem)
+  }, [selectedModule]);
 
   function onChange(value) {
     updateModule(index, value);
+  }
+
+  let sem1Mods = require('../module_data/sem1Modules.json');
+  let sem2Mods = require('../module_data/sem2Modules.json');
+
+
+  const selector = () => {
+    if (selectedModule == 0) {
+      console.log("sem1");
+      return (
+        <Autocomplete
+        disablePortal
+        disableClearable
+        id="module-selector"           
+        options={sem1Mods}
+        groupBy={(sem1Mods) => sem1Mods.code}
+        getOptionLabel={(sem1Mods) => sem1Mods.moduleCode}
+        sx={{ width: 300 }}
+        value={sem1Mods[getModuleId(index)]  || null}
+        onChange={(_, value) => {
+          onChange(value);
+        }}
+        renderInput={(params) => <TextField {...params} label="Select Module" />}
+        ListboxProps={{style:{
+          maxHeight: '200px',
+          }}}
+        />)
+    } else {
+      console.log("sem2");
+      return (
+        <Autocomplete
+        disablePortal
+        disableClearable
+        id="module-selector"           
+        options={sem2Mods}
+        groupBy={(sem2Mods) => sem2Mods.code}
+        getOptionLabel={(sem2Mods) => sem2Mods.moduleCode}
+        sx={{ width: 300 }}
+        value={sem2Mods[getModuleId(index)]  || null}
+        onChange={(_, value) => {
+          onChange(value);
+        }}
+        renderInput={(params) => <TextField {...params} label="Select Module" />}
+        ListboxProps={{style:{
+          maxHeight: '200px',
+          }}}
+        />
+        );
+    }
   }
 
   return (
@@ -40,19 +81,7 @@ export function ModuleComponent({
       </TableCell>
 
       <TableCell align="center">
-        <Autocomplete
-            disablePortal
-            id="module-selector"           
-            options={mods.sort((a, b) => -b.title.localeCompare(a.title))}
-            groupBy={(mods) => mods.code}
-            getOptionLabel={(mods) => mods.title}
-            sx={{ width: 300 }}
-            value={mods[getModuleId(index)]  || null}
-            onChange={(_, value) => {
-              onChange(value);
-            }}
-            renderInput={(params) => <TextField {...params} label="Select Module" />}
-            />
+        {selector()}
       </TableCell>
     </>
   );

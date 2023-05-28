@@ -279,7 +279,6 @@ export function ModuleChecker() {
         modules: [],
       },
     ]);
-    
   };
 
   function deleteSemester() {
@@ -317,7 +316,7 @@ export function ModuleChecker() {
 
   function newModule(semIndex) {
     semesters[semIndex].modules.push({
-      modInfo:{ title: '', code: '', id: 0, mc: 0 },
+      modInfo:{"moduleCode": "", "moduleCredit": "0", "semester": [getSemester()], "code": "", "id": 0},
       isDeleted: false,
     });
     setSemesters([...semesters]);
@@ -333,7 +332,7 @@ export function ModuleChecker() {
 
   function updateModTitles() {
     const arr = [];
-    semesters.forEach((semester) => semester.modules.forEach((mod) => arr.push(mod.modInfo.title)));
+    semesters.forEach((semester) => semester.modules.forEach((mod) => arr.push(mod.modInfo.moduleCode)));
     console.log(arr);
     setModTitles(arr);
   }
@@ -349,13 +348,13 @@ export function ModuleChecker() {
   }
 
   function getUe() {
-    return [{ title: 'To Be Updated', code: '', id: 0, mc: 0 }];
+    return [{"moduleCode": "To Be Updated", "moduleCredit": "0", "semester": [1], "code": "", "id": 0}];
   }
 
   function countMc() {
     let mc = 0;
     semesters.forEach((semester) => semester.modules.forEach((mod) => {
-      mc += mod.modInfo.mc }))
+      mc += Number(mod.modInfo.moduleCredit) }))
     if (isNaN(mc)) {
       return 0;
     }
@@ -383,6 +382,12 @@ export function ModuleChecker() {
       window.location.reload();
     }, 2500);
   };
+
+  function getSemester(semIndex) {
+    const num = semesters[semIndex]?.count % 2;
+    console.log(semesters[semIndex]);
+    return (num);
+  }
 
   if (!user) {
     return;
@@ -466,6 +471,9 @@ export function ModuleChecker() {
               updateDegree(0, value);
             }}
             renderInput={(params) => <TextField {...params} label="Select Degree"/>}
+            ListboxProps={{style:{
+                maxHeight: '150px',
+                }}}
             />
           </Grid>
 
@@ -555,6 +563,7 @@ export function ModuleChecker() {
                 getAllModules={getAllModules}
                 newModule={newModule}
                 getHeader={getHeader}
+                getSemester={getSemester}
               />
             )}
           </Grid>
