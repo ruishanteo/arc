@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useAuth } from "../UserAuth/Firebase.js";
+import { useAuth } from "../UserAuth/FirebaseHooks.js";
 
 import {
   Box,
@@ -21,8 +21,8 @@ import mobileImage from "../Images/homeMobile.jpeg";
 import Typewriter from "typewriter-effect";
 
 export function Home() {
+  const user = useAuth();
   const [name, setName] = useState("");
-  const currentUser = useAuth();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const imageURL = windowWidth >= 915 ? desktopImage : mobileImage;
 
@@ -39,10 +39,16 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    if (currentUser) {
-      setName(currentUser.displayName);
+    if (user) {
+      if (!user.displayName) {
+        setTimeout(() => {
+          // window.location.reload();
+        }, 1000);
+      } else {
+        setName(user.displayName);
+      }
     }
-  }, [currentUser]);
+  }, [user]);
 
   return (
     <div
