@@ -2,28 +2,65 @@ import { TableContainer, TableHead, TableBody, Table, TableCell, TableRow, Typog
 
 export function CommonRequirements({
     checkPresentCommonMod,
-    getDegreeFaculty
+    checkPresentCommonModSpec,
+    getDegreeFaculty,
+    getProg
 }) {
-    const commonMods = [
-        { title: 'GEC'},
-        { title: 'GEX'},
-        { title: 'GEA'},
-        { title: 'GESS'},
-        { title: 'GEN'},
-        { title: 'Computer Ethics'},
-        
-    ]
+    let commonMods = require('../module_data/commonMods.json');
 
     const deg = getDegreeFaculty();
+    //cd Any course from Chemistry, Physics, or Biological Sciences departments starting with codes PC, CM, LSM respectively.
+    //separeate one to get the programme
+    //rc4 - 1 junior, 1 senior uts, 1 senior utc, 1 iec, 1 Digital Literacy or Data Literacy
+    //capt - 1 junior, 2 senior, 1 iec, 1 Digital Literacy or Data Literacy
+
+    const prog = getProg();
+    console.log(prog);
 
     const tab = () => {
+        if (prog === "RC4" || prog === "Tembusu" || prog === "CAPT") {
+            let specProg = require('../module_data/utcp.json');
+          return (
+          specProg.map((module, index) => {
+              return (
+              <TableRow key={index}>
+              <TableCell align="center" sx={{
+                  backgroundColor: checkPresentCommonModSpec(module.code),
+                  color: "black",
+                  fontSize: "1.0rem",
+              }}>
+                  {module.title}
+              </TableCell>
+              </TableRow>
+              )
+          }))
+        } else {
+            let nonProg = require('../module_data/nonprog.json');
+            return (
+                nonProg.map((module, index) => {
+                    return (
+                    <TableRow key={index}>
+                    <TableCell align="center" sx={{
+                        backgroundColor: checkPresentCommonMod(module.code),
+                        color: "black",
+                        fontSize: "1.0rem",
+                    }}>
+                        {module.title}
+                    </TableCell>
+                    </TableRow>
+                    )
+                }))
+        }
+      }
+
+    const tab2 = () => {
       if (deg === "SOC") {
         return (
-        commonMods.map((module, index) => {
+        commonMods[deg].map((module, index) => {
             return (
             <TableRow key={index}>
             <TableCell align="center" sx={{
-                backgroundColor: checkPresentCommonMod(module.title),
+                backgroundColor: checkPresentCommonMod(module.code),
                 color: "black",
                 fontSize: "1.0rem",
             }}>
@@ -70,6 +107,7 @@ export function CommonRequirements({
 
             <TableBody>
               {tab()}
+              {tab2()}
           </TableBody>
         </Table>
         </form>

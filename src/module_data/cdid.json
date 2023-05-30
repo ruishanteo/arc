@@ -1,0 +1,47 @@
+[{
+"ID": [
+    { "moduleCode": "IS1128"},
+    { "moduleCode": "IS2218"},
+    { "moduleCode": "IS2238"},
+    { "moduleCode": "HSH1000"},
+    { "moduleCode": "HSS1000"},
+    { "moduleCode": "HSA1000"},
+    { "moduleCode": "HSI1000"},
+    { "moduleCode": "HSI2001"},
+    { "moduleCode": "HSI2002"},
+    { "moduleCode": "HSI2003"},
+    { "moduleCode": "HSI2004"},
+    { "moduleCode": "HSI2005"},
+    { "moduleCode": "HSI2007"},
+    { "moduleCode": "HSI2008"},
+    { "moduleCode": "HSI2009"},
+    { "moduleCode": "HSI2010"},
+    { "moduleCode": "HSI2011"},
+    { "moduleCode": "HSI2013"},
+    { "moduleCode": "HSI2014"},
+    { "moduleCode": "DTK1234"},
+    { "moduleCode": "DG1311"},
+    { "moduleCode": "DG2501"},
+    { "moduleCode": "IE2141"},
+    { "moduleCode": "PF1101"}
+],
+"CD": [
+    { "moduleCode": "ACC1701X"},
+    { "moduleCode": "DAO2703"},
+    { "moduleCode": "MNO1706X"},
+    { "moduleCode": "SC1101E"},
+    { "moduleCode": "EL1101E"},
+    { "moduleCode": "PE2101P"},
+    { "moduleCode": "GE2103"},
+    { "moduleCode": "XD3103"},
+    { "moduleCode": "GE3253"},
+    { "moduleCode": "GE3255"},
+    { "moduleCode": "GE3256"},
+    { "moduleCode": "SPH2002"},
+    { "moduleCode": "SC2226"},
+    { "moduleCode": "NUR1113A"},
+    { "moduleCode": "EG2201A"},
+    { "moduleCode": "GE2310"}
+]
+}
+]
