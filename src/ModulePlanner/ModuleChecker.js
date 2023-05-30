@@ -66,7 +66,7 @@ const progs = [
   { title: '' },
   { title: 'RC4' },
   { title: 'CAPT' },
-  { title: 'Tembusu College' },
+  { title: 'Tembusu' },
   { title: 'RVRC' },
   { title: 'NUSC'}
 ]
@@ -76,8 +76,6 @@ progs.sort((a, b) => a.title.localeCompare(b.title));
 progs.forEach((prog, index) => {
   prog.id = index;
 });
-
-console.log(options);
 
 const MIN = 0;
 
@@ -241,14 +239,21 @@ export function ModuleChecker() {
 
   function getDegreeTitle() {
     if (typeof degrees[0]?.title != 'undefined') {
-      return degrees[0]?.title;;
+      return degrees[0]?.title;
     }
     return "";
   }
 
   function getDegreeFaculty() {
     if (typeof degrees[0]?.faculty != 'undefined') {
-      return degrees[0]?.faculty;;
+      return degrees[0]?.faculty;
+    }
+    return "";
+  }
+
+  function getProg() {
+    if (typeof degrees[2]?.title != 'undefined') {
+      return degrees[2]?.title;
     }
     return "";
   }
@@ -423,12 +428,7 @@ export function ModuleChecker() {
 
   function checkPresentCommonMod(inputString) {
     const color = "#cff8df";
-    // Convert to lowercase
-    const lowercaseString = inputString.toLowerCase();
-    // Remove spaces and punctuation
-    const cleanedString = lowercaseString.replace(/[\s\W]+/g, '');
-
-    let commonMod = require('../module_data/' + cleanedString + '.json');
+    let commonMod = require('../module_data/' + inputString + '.json');
     const arr = modTitles;
     const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
     if (hasCommonElement) {
@@ -437,6 +437,25 @@ export function ModuleChecker() {
       return "#FFFFFF";
     }
   }
+
+  function checkPresentCommonModSpec(inputString) {
+    const color = "#cff8df";
+    const program = getProg().toLowerCase();
+    let commonMod;
+    if (inputString == "gei") {
+      commonMod = require('../module_data/utcpgei.json');
+    } else {
+      commonMod = require('../module_data/' + program + inputString + '.json');
+    }    
+    const arr = modTitles;
+    const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
+    if (hasCommonElement) {
+      return color;
+    } else {
+      return "#FFFFFF";
+    }
+  }
+  
 
   function getUe() {
     return [{"moduleCode": "To Be Updated", "moduleCredit": "0", "semester": [1], "code": "", "id": 0}];
@@ -716,7 +735,9 @@ export function ModuleChecker() {
           <div>
             {<CommonRequirements
                 checkPresentCommonMod={checkPresentCommonMod}
+                checkPresentCommonModSpec={checkPresentCommonModSpec}
                 getDegreeFaculty={getDegreeFaculty}
+                getProg={getProg}
               />
             }
             </div>
