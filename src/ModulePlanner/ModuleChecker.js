@@ -337,13 +337,87 @@ export function ModuleChecker() {
     setModTitles(arr);
   }
 
+  function parseString(str) {
+    const values = [];
+    let currentGroup = [];
+    let currentToken = "";
+  
+    for (let i = 0; i < str.length; i++) {
+      const char = str[i];
+      if (char === " ") {
+        continue;
+      } else if (char === "(") {
+        currentGroup.push(parseString(str.slice(i + 1)));
+        let closingIndex = findClosingParenthesisIndex(str.slice(i + 1));
+        i += closingIndex + 1;
+      } else if (char === "+" || char === "/") {
+        if (currentToken !== "") {
+          currentGroup.push(currentToken);
+          currentToken = "";
+        }
+        if (currentGroup.length > 0) {
+          values.push(currentGroup);
+          currentGroup = [];
+        }
+      } else if (char === ")") {
+        break;
+      } else {
+        currentToken += char;
+      }
+    }
+  
+    if (currentToken !== "") {
+      currentGroup.push(currentToken);
+    }
+    if (currentGroup.length > 0) {
+      values.push(currentGroup);
+    }
+  
+    return values;
+  }
+  
+  function findClosingParenthesisIndex(str) {
+    let count = 1;
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === "(") {
+        count++;
+      } else if (str[i] === ")") {
+        count--;
+        if (count === 0) {
+          return i;
+        }
+      }
+    }
+    return -1;
+  }
+
+  function checkValues(arr, list) {
+    if (Array.isArray(arr)) {
+      // Check if all values in the array are present
+      return arr.some(value => {
+        return checkValues(value, list)});
+    } else {
+      // Check if the single value is present
+      return list.includes(arr);
+    }
+  }
+
   function checkPresent(title) {
     const color = "#cff8df";
     const arr = modTitles;
-    if (arr.includes(title)) {
-      return color;
+    if (title.includes("/")) {
+      const modsArr = parseString(title);
+      if (checkValues(modsArr, arr)) {
+        return color;
+      } else {
+        return "#FFFFFF";
+      }
     } else {
-      return "#FFFFFF";
+      if (arr.includes(title)) {
+        return color;
+      } else {
+        return "#FFFFFF";
+      }
     }
   }
 
