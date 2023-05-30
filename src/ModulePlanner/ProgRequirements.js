@@ -4,53 +4,22 @@ export function ProgRequirements({
     checkPresent,
     getDegreeTitle
 }) {
-    const progMods = {'Computer Science': [
-        { title: 'CS1101S', code: 'CS', id: 1 },
-        { title: 'CS1231S', code: 'CS', id: 2 },
-        { title: 'CS2030S', code: 'CS', id: 3},
-        { title: 'CS2040S', code: 'CS', id: 4}
-    ], 
-    'Business Analytics': [
-      { title: 'BT1101', code: 'BT', id: 1 },
-      { title: 'CS1010S', code: 'CS', id: 4 },
-      { title: 'BT2101', code: 'BT', id: 3},
-      { title: 'BT2102', code: 'BT', id: 2}
-    ], 
-    'Information Systems': [
-      { title: 'BT1101', code: 'BT', id: 1 },
-      { title: 'CS1010J', code: 'CS', id: 2 },
-      { title: 'IS2101', code: 'IS', id: 3},
-      { title: 'IS2102', code: 'IS', id: 4}
-    ], 
-    'Computer Engineering': [
-      { title: 'CS1010', code: 'CS', id: 1 },
-      { title: 'CS1231', code: 'CS', id: 2 },
-      { title: 'CS2040C', code: 'CS', id: 3},
-      { title: 'MA1511', code: 'MA', id: 4}
-    ], 
-    'Information Security': [
-      { title: 'CS1231S', code: 'CS', id: 1 },
-      { title: 'CS2040C', code: 'CS', id: 3 },
-      { title: 'CS2100', code: 'CS', id: 2},
-    ], 
-    'Others': [
-      { title: '', code: '', id: 1 },
-    ]};
+    let progMods = require('../module_data/progMods.json');
 
     const deg = getDegreeTitle();
 
     const tab = () => {
       if (deg in progMods) {
         return (
-          progMods[deg].map((module) => {
+          progMods[deg].map((module, index) => {
             return (
-              <TableRow key={module.id}>
+              <TableRow key={index}>
               <TableCell align="center" sx={{
-                  backgroundColor: checkPresent(module.title),
+                  backgroundColor: checkPresent(module.moduleCode),
                   color: "black",
                   fontSize: "1.0rem",
               }}>
-                  {module.title}
+                  {module.moduleCode}
               </TableCell>
               </TableRow>
             )
