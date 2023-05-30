@@ -421,6 +421,23 @@ export function ModuleChecker() {
     }
   }
 
+  function checkPresentCommonMod(inputString) {
+    const color = "#cff8df";
+    // Convert to lowercase
+    const lowercaseString = inputString.toLowerCase();
+    // Remove spaces and punctuation
+    const cleanedString = lowercaseString.replace(/[\s\W]+/g, '');
+
+    let commonMod = require('../module_data/' + cleanedString + '.json');
+    const arr = modTitles;
+    const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
+    if (hasCommonElement) {
+      return color;
+    } else {
+      return "#FFFFFF";
+    }
+  }
+
   function getUe() {
     return [{"moduleCode": "To Be Updated", "moduleCredit": "0", "semester": [1], "code": "", "id": 0}];
   }
@@ -698,7 +715,7 @@ export function ModuleChecker() {
       <Grid item sm={4} >
           <div>
             {<CommonRequirements
-                checkPresent={checkPresent}
+                checkPresentCommonMod={checkPresentCommonMod}
                 getDegreeFaculty={getDegreeFaculty}
               />
             }
