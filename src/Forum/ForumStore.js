@@ -8,6 +8,7 @@ import {
   getDoc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 
@@ -55,7 +56,6 @@ export function createPost(post) {
             variant: "success",
           })
         );
-
         return res;
       })
     );
@@ -69,6 +69,23 @@ export function fetchPost(postId) {
       const post = { ...response.data(), id: response.id };
       dispatch(forumSlice.actions.savePostToStore(post));
     }
+  };
+}
+
+export function editPost(post, id) {
+  return async (dispatch, getState) => {
+    post.post = post.post === "" ? getState().forum.post.post : post.post;
+    post.title = post.title === "" ? getState().forum.post.title : post.title;
+
+    await updateDoc(doc(db, "posts", id), post).then((res) => {
+      dispatch(
+        addNotification({
+          message: "You have successfully edited your post.",
+          variant: "success",
+        })
+      );
+      return res;
+    });
   };
 }
 

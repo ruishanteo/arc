@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { deletePost, fetchPost } from "./ForumStore.js";
+import { deletePost, editPost, fetchPost } from "./ForumStore.js";
 import { store } from "../stores/store.js";
 
 import { useAuth } from "../UserAuth/FirebaseHooks.js";
@@ -21,10 +21,14 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
+  TextField,
   Typography,
 } from "@mui/material";
 
+import CloseIcon from "@mui/icons-material/Close";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import DoneIcon from "@mui/icons-material/Done";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 
 export function Post() {
@@ -35,6 +39,9 @@ export function Post() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
 
   const post = useSelector((state) => state.forum.post);
 
@@ -50,6 +57,22 @@ export function Post() {
   const handleDeletePost = () => {
     setLoading(true);
     store.dispatch(deletePost(id)).finally(() => navigate("/forum"));
+  };
+
+  const handleEditPost = () => {
+    setLoading(true);
+    store
+      .dispatch(
+        editPost(
+          {
+            title: title,
+            post: text,
+            datetime: new Date().toLocaleString(),
+          },
+          id
+        )
+      )
+      .finally(() => onUpdate());
   };
 
   if (loading) return <LoadingSpinner />;
@@ -88,32 +111,84 @@ export function Post() {
               }}
             />
 
-            <Box display="flex" flexDirection="column">
-              <Typography variant="h4">{post.title}</Typography>
-              <Typography variant="body1" sx={{ mt: 2 }}>
-                {post.post}
-              </Typography>
-            </Box>
+            {editMode ? (
+              <Box display="flex" flexDirection="column">
+                <TextField
+                  fullWidth
+                  type="text"
+                  name="title"
+                  defaultValue={post.title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  inputProps={{ maxLength: 100 }}
+                  sx={{ width: "65vw" }}
+                />
+                <TextField
+                  fullWidth
+                  type="text"
+                  name="thread"
+                  defaultValue={post.post}
+                  onChange={(e) => setText(e.target.value)}
+                  sx={{ width: "65vw", mt: 2 }}
+                  multiline
+                  rows={10}
+                />
 
-            <Box sx={{ width: "100vw", backgroundColor: "white" }} />
+                <Box display="flex" flexDirection="row">
+                  <IconButton
+                    onClick={() => {
+                      handleEditPost();
+                      setEditMode(false);
+                    }}
+                    disabled={!title && !text}
+                  >
+                    <DoneIcon />
+                  </IconButton>
 
-            {user.uid === post.author.userId && (
-              <Box display="flex" flexDirection="row" height="5vh">
-                <Button
-                  onClick={() => setOpen(true)}
-                  aria-label="delete"
-                  variant="contained"
-                  sx={{ backgroundColor: "#fcf4d4", mr: 2 }}
-                >
-                  <DeleteOutlineIcon />
-                </Button>
-                <Button
-                  aria-label="edit"
-                  variant="contained"
-                  sx={{ backgroundColor: "#ffe0f7" }}
-                >
-                  <ModeEditOutlineIcon />
-                </Button>
+                  <IconButton onClick={() => setEditMode(false)}>
+                    <CloseIcon />
+                  </IconButton>
+                </Box>
+              </Box>
+            ) : (
+              <Box display="flex" flexDirection="row">
+                <Box flexDirection="column" width="55vw">
+                  <Typography variant="h4">{post.title}</Typography>
+                  <Typography variant="body1" sx={{ mt: 2 }}>
+                    {post.post}
+                  </Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    display: { xs: "none" },
+                    width: "20vw",
+                  }}
+                />
+
+                {user.uid === post.author.userId && (
+                  <Box display="flex" flexDirection="row" height="5vh">
+                    <IconButton
+                      onClick={() => setOpen(true)}
+                      aria-label="delete"
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "#fcf4d4",
+                        mr: 1,
+                        borderRadius: 1,
+                      }}
+                    >
+                      <DeleteOutlineIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="edit"
+                      variant="contained"
+                      sx={{ backgroundColor: "#ffe0f7", borderRadius: 1 }}
+                      onClick={() => setEditMode(true)}
+                    >
+                      <ModeEditOutlineIcon />
+                    </IconButton>
+                  </Box>
+                )}
               </Box>
             )}
           </Box>
