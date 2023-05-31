@@ -2,7 +2,7 @@ import { TableContainer, TableHead, TableBody, Table, TableCell, TableRow, Typog
 
 export function CommonRequirements({
     checkPresentCommonMod,
-    checkPresentCommonModSpec,
+    checkPresentCommonModRC,
     getDegreeFaculty,
     getProg
 }) {
@@ -25,7 +25,23 @@ export function CommonRequirements({
               return (
               <TableRow key={index}>
               <TableCell align="center" sx={{
-                  backgroundColor: checkPresentCommonModSpec(module.code),
+                  backgroundColor: checkPresentCommonModRC(module.code),
+                  color: "black",
+                  fontSize: "1.0rem",
+              }}>
+                  {module.title}
+              </TableCell>
+              </TableRow>
+              )
+          }))
+        } else if (prog === "NUSC") {
+            let specProg = require('../module_data/nusc.json');
+          return (
+          specProg.map((module, index) => {
+              return (
+              <TableRow key={index}>
+              <TableCell align="center" sx={{
+                  backgroundColor: checkPresentCommonMod(module.code),
                   color: "black",
                   fontSize: "1.0rem",
               }}>
@@ -54,7 +70,13 @@ export function CommonRequirements({
       }
 
     const tab2 = () => {
-      if (deg === "SOC") {
+        if (prog === "NUSC") {
+            return (
+                <TableRow key = {1}>
+    
+                </TableRow>
+            );
+        } else if (deg === "SOC") {
         return (
         commonMods[deg].map((module, index) => {
             return (
@@ -69,6 +91,7 @@ export function CommonRequirements({
             </TableRow>
             )
         }))
+      
       } else {
         return (
               <TableRow key = {1}>
