@@ -34,7 +34,7 @@ export function ModuleComponent({
         options={sem1Mods}
         groupBy={(sem1Mods) => sem1Mods.code}
         getOptionLabel={(sem1Mods) => sem1Mods.moduleCode}
-        sx={{ width: 300 }}
+        sx={{ width: {xs: 240, mdl:300, lg:300} }}
         value={sem1Mods[getModuleId(index)]  || null}
         onChange={(_, value) => {
           onChange(value);
@@ -54,7 +54,7 @@ export function ModuleComponent({
         options={sem2Mods}
         groupBy={(sem2Mods) => sem2Mods.code}
         getOptionLabel={(sem2Mods) => sem2Mods.moduleCode}
-        sx={{ width: 300 }}
+        sx={{ width: {xs: 240, mdl:300, lg:300} }}
         value={sem2Mods[getModuleId(index)]  || null}
         onChange={(_, value) => {
           onChange(value);
@@ -74,7 +74,9 @@ export function ModuleComponent({
         <Button
           type="button"
           onClick={() => deleteModule(index)}
-          sx={{ backgroundColor: "#fcf4d4", color: "black" }}
+          sx={{ 
+            backgroundColor: "#fcf4d4", 
+            color: "black", }}
         >
           —
         </Button>

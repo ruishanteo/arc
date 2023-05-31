@@ -49,8 +49,6 @@ export function Semester({
                   fontSize: {
                     lg: 18,
                     md: 18,
-                    sm: 15,
-                    xs: 11,
                   },
                 }}
                 >{getHeader(semIndex)}</Typography>{" "}
@@ -87,9 +85,18 @@ export function Semester({
                   type="button" 
                   variant="contained"
                   onClick={() => newModule(semIndex)}
-                  sx={{ backgroundColor: "#fcf4d4", color: "neutral" }}
+                  sx={{ backgroundColor: "#fcf4d4", color: "neutral",  }}
                 >
-                <Typography>+ Module</Typography>{" "}
+                <Typography
+                sx={{
+                  fontSize: {
+                    lg: 16,
+                    md: 16,
+                    sm: 15,
+                    xs: 14
+                  },
+                }}
+                >+ Module</Typography>{" "}
                 </Button>
             </TableCell>
             </TableRow>

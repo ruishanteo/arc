@@ -26,7 +26,8 @@ import {
   Grid, 
   LinearProgress,
   Typography, 
-  TextField 
+  TextField,
+  useMediaQuery 
 } from "@mui/material";
 
 
@@ -94,6 +95,7 @@ export function ModuleChecker() {
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();
+  const isNarrowScreen = useMediaQuery('(max-width: 960px)');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -443,7 +445,7 @@ export function ModuleChecker() {
     }
   }
 
-  function checkPresentCommonModSpec(inputString) {
+  function checkPresentCommonModRC(inputString) {
     const color = "#cff8df";
     const program = getProg().toLowerCase();
     let commonMod;
@@ -522,12 +524,14 @@ export function ModuleChecker() {
         <Typography variant="h4" sx={{ fontWeight: 450, minWidth: 250 }}>
           Module Planner
         </Typography>
-        <Grid container sx={{ display: "flex", justifyContent: "right" }}>
+        <Grid container sx={{ 
+          display: "flex", 
+          justifyContent: "right"}}>
           <Button
             variant="contained"
             sx={{
               backgroundColor: "#fcf4d4",
-              color: "black",
+              color: "black"
             }}
             onClick={handleClickOpen}
             disabled={semesters.length === 0 && degrees.length === 0}
@@ -572,15 +576,15 @@ export function ModuleChecker() {
       </Box>
             
      <Box sx={{ flexGrow: 1}}>
-        <Grid container spacing={4}>
-          <Grid item xs={4}>
+        <Grid container spacing={4} direction={isNarrowScreen ? 'column' : 'row'}>
+          <Grid item xs={12} sm={4}>
             <Autocomplete
             disablePortal
             id="degree-selector"           
             options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
-            sx={{ width: 300 }}
+            sx={{ width: isNarrowScreen ? '100%' : 300 }}
             value={deg1 || null}         
             onChange={(_, value) => {
               updateDegree(0, value);
@@ -593,14 +597,14 @@ export function ModuleChecker() {
             />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Autocomplete
             disablePortal
             id="addon-selector"           
             options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
-            sx={{ width: 300 }}
+            sx={{ width: isNarrowScreen ? '100%' : 300 }}
             value={deg2 || null}         
             onChange={(_, value) => {
               updateDegree(1, value);
@@ -610,13 +614,13 @@ export function ModuleChecker() {
             />
           </Grid>
           
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Autocomplete
             disablePortal
             id="addon2-selector"           
             options={progs.sort((a, b) => -b.title.localeCompare(a.title))}
             getOptionLabel={(option) => option.title}
-            sx={{ width: 300 }}
+            sx={{ width: isNarrowScreen ? '100%' : 300 }}
             value={deg3 || null}         
             onChange={(_, value) => {
               updateDegree(2, value);
@@ -631,36 +635,40 @@ export function ModuleChecker() {
 
       <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1}>
-            <Grid item xs={2}>
+            <Grid item xs={4} sm={3} md={2} xl={2}>
               <Button
                 variant="contained"
                 onClick= {() => {
                   addSemester();
                   addSem(count);}}
-                sx={{ mt: 2, mb: 10 }}
+                sx={{ 
+                  mt: 2, 
+                  mb: 10 }}
                 color="neutral"
               >
                 + Semesters
               </Button>
             </Grid>
 
-            <Grid item xs={2}>
+            <Grid item xs={4} sm={3} md={2} xl={2}>
               <Button
                 variant="contained"
                 onClick= {() => deleteSemester()}
-                sx={{ mt: 2, mb: 10 }}
+                sx={{ 
+                  mt: 2, 
+                  mb: 10,}}
                 color="neutral"
               >
                 - Semesters
               </Button>
             </Grid>
           </Grid>
-        </Box>
+      </Box>
 
-      <Grid container spacing={2}>
+      <Grid container spacing={{ xs: 0, sm: 2 }}>
         {semesters.map((_, semIndex) => {
         return (
-          <Grid item sm={6} key={semIndex}>
+          <Grid item xs={12} mdl={12} lg={6} key={semIndex}>
             {!semesters[semIndex].isDeleted && (
               <Semester
                 key={semIndex}
@@ -719,7 +727,7 @@ export function ModuleChecker() {
     </Box>
 
     <Grid container spacing={2} sx={{ mt: '1rem' }}>
-      <Grid item sm={4} >
+      <Grid item xs={12} sm={12} smm={12} md={4} >
           <div>
             {<ProgRequirements
                 checkPresent={checkPresent}
@@ -729,11 +737,11 @@ export function ModuleChecker() {
             </div>
       </Grid>
 
-      <Grid item sm={4} >
+      <Grid item xs={12} sm={12} smm={12} md={4} >
           <div>
             {<CommonRequirements
                 checkPresentCommonMod={checkPresentCommonMod}
-                checkPresentCommonModSpec={checkPresentCommonModSpec}
+                checkPresentCommonModRC={checkPresentCommonModRC}
                 getDegreeFaculty={getDegreeFaculty}
                 getProg={getProg}
               />
@@ -741,7 +749,7 @@ export function ModuleChecker() {
             </div>
       </Grid>
 
-      <Grid item sm={4} >
+      <Grid item xs={12} sm={12} smm={12} md={4} >
         <div>
         {<UnrestrictedRequirements
                 getUe={getUe}
