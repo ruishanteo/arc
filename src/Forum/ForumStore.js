@@ -23,7 +23,12 @@ const handleApiCall = async (func) => {
 
 const forumSlice = createSlice({
   name: "forum",
-  initialState: { posts: [], post: undefined, comments: [] },
+  initialState: {
+    posts: [],
+    post: undefined,
+    comments: [],
+    comment: undefined,
+  },
 
   reducers: {
     savePostsToStore: (state, action) => {
@@ -36,6 +41,9 @@ const forumSlice = createSlice({
     },
     saveCommmentsToStore: (state, action) => {
       state.comments = action.payload;
+    },
+    saveCommentToStore: (state, action) => {
+      state.comment = action.payload;
     },
   },
 });
@@ -135,6 +143,22 @@ export function fetchComments(postId) {
       id: doc.id,
     }));
     dispatch(forumSlice.actions.saveCommmentsToStore(comments));
+  };
+}
+
+export function editComment(comment, id) {
+  return async (dispatch, getState) => {
+    return await handleApiCall(
+      updateDoc(doc(db, "comments", id), comment).then((res) => {
+        dispatch(
+          addNotification({
+            message: "You have successfully edited your comment.",
+            variant: "success",
+          })
+        );
+        return res;
+      })
+    );
   };
 }
 
