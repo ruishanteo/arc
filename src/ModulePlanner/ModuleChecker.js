@@ -90,6 +90,7 @@ export function ModuleChecker() {
   const [modTitles, setModTitles] = useState([]);
   const [open, setOpen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();
@@ -125,6 +126,7 @@ export function ModuleChecker() {
 
   const saveAll = async (e) => {
     e.preventDefault();
+    setHasUnsavedChanges(false);
     await Promise.all([saveProg(), saveSem()])
     .then(() =>
       dispatch(
@@ -132,38 +134,17 @@ export function ModuleChecker() {
           message: "Saved successfully!",
           variant: "success",
         })
-      )
+      )      
     )
-    .catch((err) =>
+    .catch((err) =>{
       dispatch(
         addNotification({
           message: `Failed to save: ${err}`,
           variant: "error",
         })
-      )
+      );
+      setHasUnsavedChanges(true);}
     );
-  };
-
-  const saveDegree = async (e) => {
-    e.preventDefault();
-    await setDoc(doc(db, "programme", user.uid), {
-      degrees: degrees
-    }).then(() =>
-    dispatch(
-      addNotification({
-        message: "Saved successfully!",
-        variant: "success",
-      })
-    )
-  )
-  .catch((err) =>
-    dispatch(
-      addNotification({
-        message: `Failed to save: ${err}`,
-        variant: "error",
-      })
-    )
-  );
   };
 
   const getAll = useCallback(async () => {
@@ -221,7 +202,31 @@ export function ModuleChecker() {
 
   useEffect(() => {
     getAll();
-  }, [user, getAll]);
+    /*
+    const handleBeforeUnload = (event) => {
+      if (hasUnsavedChanges) {
+        event.preventDefault();
+        event.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+    */
+    const handleBeforeUnload = (event) => {
+      if (hasUnsavedChanges) {
+        event.preventDefault();
+        event.returnValue = '';
+      }
+    };
+
+    window.onbeforeunload = handleBeforeUnload;
+
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, [user, getAll, hasUnsavedChanges]);
 
   function getDegree(degreeInd) {
     const ind = degrees[degreeInd]?.['id'];
@@ -442,7 +447,7 @@ export function ModuleChecker() {
     const color = "#cff8df";
     const program = getProg().toLowerCase();
     let commonMod;
-    if (inputString == "gei") {
+    if (inputString === "gei") {
       commonMod = require('../module_data/utcpgei.json');
     } else {
       commonMod = require('../module_data/' + program + inputString + '.json');
@@ -579,6 +584,7 @@ export function ModuleChecker() {
             value={deg1 || null}         
             onChange={(_, value) => {
               updateDegree(0, value);
+              setHasUnsavedChanges(true);
             }}
             renderInput={(params) => <TextField {...params} label="Select Degree"/>}
             ListboxProps={{style:{
@@ -598,36 +604,28 @@ export function ModuleChecker() {
             value={deg2 || null}         
             onChange={(_, value) => {
               updateDegree(1, value);
+              setHasUnsavedChanges(true);
             }}
             renderInput={(params) => <TextField {...params} label="2nd Degree/Major?" />}
             />
           </Grid>
           
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <Autocomplete
             disablePortal
             id="addon2-selector"           
             options={progs.sort((a, b) => -b.title.localeCompare(a.title))}
             getOptionLabel={(option) => option.title}
-            sx={{ width: 200 }}
+            sx={{ width: 300 }}
             value={deg3 || null}         
             onChange={(_, value) => {
               updateDegree(2, value);
+              setHasUnsavedChanges(true);
             }}
             renderInput={(params) => <TextField {...params} label="Select Programme" />}
             />
           </Grid>
 
-          <Grid item xs={1}>
-              <Button
-                variant="contained"
-                onClick= {saveDegree}
-                sx={{ mt: 2, mb: 5 }}
-                color="neutral"
-              >
-                Save
-              </Button>
-          </Grid>
         </Grid>
       </Box>
 
