@@ -102,17 +102,21 @@ export function Post() {
             sx={{ mt: 5, mb: 2 }}
             align="left"
           >
-            <Avatar
-              src={post.author.profilePic}
-              sx={{
-                width: 100,
-                height: 100,
-                cursor: "pointer",
-                mb: 2,
-                mx: 2,
-              }}
-            />
-
+            <Box display="flex" flexDirection="column" align="center">
+              <Avatar
+                src={post.author.profilePic}
+                sx={{
+                  width: 100,
+                  height: 100,
+                  cursor: "pointer",
+                  mb: 2,
+                  mx: 2,
+                }}
+              />
+              <Typography variant="subtitle1" width="2vw">
+                {post.author.username}
+              </Typography>
+            </Box>
             {editMode ? (
               <Box display="flex" flexDirection="column">
                 <TextField
