@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import moment from "moment";
 import {
   addDoc,
   collection,
@@ -7,15 +8,21 @@ import {
   doc,
   getDoc,
   getDocs,
+  orderBy,
   query,
   updateDoc,
   where,
+  Timestamp,
 } from "firebase/firestore";
 
 import { addNotification } from "../Notifications";
 
 import { db } from "../UserAuth/Firebase";
 import { handleErrorMessage } from "../UserAuth/FirebaseHooks";
+
+const convertTimeFromData = (data) => {
+  return moment.unix(data.datetime.toDate().getTime() / 1000).fromNow();
+};
 
 const handleApiCall = async (func) => {
   return func.then((res) => res).catch(handleErrorMessage);
@@ -27,7 +34,6 @@ const forumSlice = createSlice({
     posts: [],
     post: undefined,
     comments: [],
-    comment: undefined,
   },
 
   reducers: {
@@ -42,22 +48,32 @@ const forumSlice = createSlice({
     saveCommmentsToStore: (state, action) => {
       state.comments = action.payload;
     },
-    saveCommentToStore: (state, action) => {
-      state.comment = action.payload;
-    },
   },
 });
 
 export async function fetchPosts(dispatch, getState) {
-  const response = await handleApiCall(getDocs(collection(db, "posts")));
-  const posts = response.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-  dispatch(forumSlice.actions.savePostsToStore(posts));
+  const response = await handleApiCall(
+    getDocs(query(collection(db, "posts"), orderBy("datetime")))
+  );
+  const posts = response.docs.map((doc) => {
+    const post_data = doc.data();
+    return {
+      ...post_data,
+      id: doc.id,
+      datetime: post_data.datetime.toDate().toString(),
+      formattedDatetime: convertTimeFromData(post_data),
+    };
+  });
+  dispatch(forumSlice.actions.savePostsToStore(posts.reverse()));
 }
 
 export function createPost(post) {
   return async (dispatch, getState) => {
     return await handleApiCall(
-      addDoc(collection(db, "posts"), post).then((res) => {
+      addDoc(collection(db, "posts"), {
+        ...post,
+        datetime: Timestamp.fromDate(new Date()),
+      }).then((res) => {
         dispatch(
           addNotification({
             message: "You have successfully created your post.",
@@ -73,8 +89,15 @@ export function createPost(post) {
 export function fetchPost(postId) {
   return async (dispatch, getState) => {
     const response = await handleApiCall(getDoc(doc(db, "posts", postId)));
+
     if (response.exists()) {
-      const post = { ...response.data(), id: response.id };
+      const post_data = response.data();
+      const post = {
+        ...post_data,
+        id: response.id,
+        datetime: post_data.datetime.toDate().toString(),
+        formattedDatetime: convertTimeFromData(post_data),
+      };
       dispatch(forumSlice.actions.savePostToStore(post));
     }
   };
@@ -85,7 +108,10 @@ export function editPost(post, id) {
     post.post = post.post === "" ? getState().forum.post.post : post.post;
     post.title = post.title === "" ? getState().forum.post.title : post.title;
 
-    await updateDoc(doc(db, "posts", id), post).then((res) => {
+    await updateDoc(doc(db, "posts", id), {
+      ...post,
+      datetime: Timestamp.fromDate(new Date()),
+    }).then((res) => {
       dispatch(
         addNotification({
           message: "You have successfully edited your post.",
@@ -119,7 +145,10 @@ export function deletePost(postId) {
 export function createComment(comment) {
   return async (dispatch, getState) => {
     return await handleApiCall(
-      addDoc(collection(db, "comments"), comment).then((res) => {
+      addDoc(collection(db, "comments"), {
+        ...comment,
+        datetime: Timestamp.fromDate(new Date()),
+      }).then((res) => {
         dispatch(
           addNotification({
             message: "You have successfully created your comment.",
@@ -136,20 +165,34 @@ export function createComment(comment) {
 export function fetchComments(postId) {
   return async (dispatch, getState) => {
     const response = await handleApiCall(
-      getDocs(query(collection(db, "comments"), where("postId", "==", postId)))
+      getDocs(
+        query(
+          collection(db, "comments"),
+          orderBy("datetime"),
+          where("postId", "==", postId)
+        )
+      )
     );
-    const comments = response.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-    dispatch(forumSlice.actions.saveCommmentsToStore(comments));
+    const comments = response.docs.map((doc) => {
+      const comment_data = doc.data();
+      return {
+        ...doc.data(),
+        id: doc.id,
+        datetime: comment_data.datetime.toDate().toString(),
+        formattedDatetime: convertTimeFromData(comment_data),
+      };
+    });
+    dispatch(forumSlice.actions.saveCommmentsToStore(comments.reverse()));
   };
 }
 
 export function editComment(comment, id) {
   return async (dispatch, getState) => {
     return await handleApiCall(
-      updateDoc(doc(db, "comments", id), comment).then((res) => {
+      updateDoc(doc(db, "comments", id), {
+        ...comment,
+        datetime: Timestamp.fromDate(new Date()),
+      }).then((res) => {
         dispatch(
           addNotification({
             message: "You have successfully edited your comment.",

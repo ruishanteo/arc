@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../UserAuth/FirebaseHooks.js";
-
 import { store } from "../stores/store.js";
 import { createPost } from "./ForumStore.js";
 import { addNotification } from "../Notifications/index.js";
@@ -38,7 +37,6 @@ export function NewPost() {
               profilePic: user.photoURL,
               userId: user.uid,
             },
-            datetime: new Date().toLocaleString(),
           })
         )
         .finally(() => navigate("/forum"));

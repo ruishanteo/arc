@@ -129,6 +129,7 @@ function TableRows({ postList, page, rowsPerPage }) {
                 display: "-webkit-box",
                 WebkitLineClamp: "6",
                 WebkitBoxOrient: "vertical",
+                width: "15vw",
               }}
             >
               <Typography variant="subtitle2">
@@ -149,10 +150,10 @@ function TableRows({ postList, page, rowsPerPage }) {
                 display: "-webkit-box",
                 WebkitLineClamp: "3",
                 WebkitBoxOrient: "vertical",
-                width: "25vw",
+                width: "30vw",
               }}
             >
-              <Typography variant="subtitle2">
+              <Typography variant="subtitle2" align="center">
                 <Link
                   to={`/forum/${row.id}`}
                   style={{ color: "black", textDecoration: "none" }}
@@ -201,7 +202,7 @@ function TableRows({ postList, page, rowsPerPage }) {
               to={`/forum/${row.id}`}
               style={{ color: "black", textDecoration: "none" }}
             >
-              {row.datetime}
+              {row.formattedDatetime}
             </Link>
           </TableCell>
         </TableRow>

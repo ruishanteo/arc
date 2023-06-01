@@ -37,7 +37,6 @@ export function NewComment({ postId, posterId, onUpdate }) {
               profilePic: user.photoURL,
               userId: user.uid,
             },
-            datetime: new Date().toLocaleString(),
           })
         )
         .finally(() => {

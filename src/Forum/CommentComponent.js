@@ -16,6 +16,7 @@ import {
   DialogTitle,
   IconButton,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 
@@ -74,7 +75,6 @@ export function CommentComponent({
       editComment(
         {
           text: text,
-          datetime: new Date().toLocaleString(),
         },
         id
       )
@@ -204,7 +204,11 @@ export function CommentComponent({
             by {comment.author.username}
           </Typography>
           <Box width="60vw" />
-          <Typography variant="caption">{comment.datetime}</Typography>
+          <Tooltip title={comment.datetime}>
+            <Typography variant="caption">
+              {comment.formattedDatetime}
+            </Typography>
+          </Tooltip>
         </Box>
       </Box>
     </Box>

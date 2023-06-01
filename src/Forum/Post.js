@@ -30,6 +30,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import DoneIcon from "@mui/icons-material/Done";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import { Timestamp } from "firebase/firestore";
 
 export function Post() {
   const params = useParams();
@@ -67,7 +68,7 @@ export function Post() {
           {
             title: title,
             post: text,
-            datetime: new Date().toLocaleString(),
+            datetime: Timestamp.fromDate(new Date()),
           },
           id
         )
@@ -191,6 +192,9 @@ export function Post() {
                 )}
               </Box>
             )}
+          </Box>
+          <Box align="right" sx={{ mr: 4 }}>
+            <Typography variant="caption">{post.datetime}</Typography>
           </Box>
         </Box>
 
