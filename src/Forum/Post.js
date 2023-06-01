@@ -26,6 +26,7 @@ import {
   Typography,
 } from "@mui/material";
 
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import DoneIcon from "@mui/icons-material/Done";
@@ -92,7 +93,7 @@ export function Post() {
             variant="contained"
             onClick={() => navigate("/forum")}
           >
-            Back
+            <ArrowBackIosIcon /> Back
           </Button>
 
           <Box
