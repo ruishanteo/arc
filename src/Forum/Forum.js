@@ -1,7 +1,6 @@
 import { useEffect, useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import PropTypes from "prop-types";
 
 import { useAuth } from "../UserAuth/FirebaseHooks";
 
@@ -10,213 +9,25 @@ import { store } from "../stores/store";
 
 import { LoadingSpinner } from "../Components/LoadingSpinner.js";
 
-import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Box,
   Button,
+  Card,
+  CardActionArea,
+  CardContent,
   Container,
-  IconButton,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
+  Divider,
+  Grid,
   Typography,
 } from "@mui/material/";
-import {
-  Add,
-  FirstPage,
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
-  LastPage,
-} from "@mui/icons-material";
-
-function TablePaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
-
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === "rtl" ? <LastPage /> : <FirstPage />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === "rtl" ? <FirstPage /> : <LastPage />}
-      </IconButton>
-    </Box>
-  );
-}
-
-TablePaginationActions.propTypes = {
-  count: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-};
-
-function TableRows({ postList, page, rowsPerPage }) {
-  const rowList =
-    rowsPerPage > 0
-      ? postList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-      : postList;
-
-  return rowList.length === 0 ? (
-    <TableRow>
-      <TableCell colSpan={6}>
-        <Typography align="center">No posts found.</Typography>
-      </TableCell>
-    </TableRow>
-  ) : (
-    rowList.map((row) => {
-      return (
-        <TableRow key={row.id}>
-          <TableCell component="th" scope="row" align="center">
-            <Box
-              sx={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: "6",
-                WebkitBoxOrient: "vertical",
-                width: "15vw",
-              }}
-            >
-              <Typography variant="subtitle2">
-                <Link
-                  to={`/forum/${row.id}`}
-                  style={{ color: "black", textDecoration: "none" }}
-                >
-                  {row.title}
-                </Link>
-              </Typography>
-            </Box>
-          </TableCell>
-          <TableCell align="center">
-            <Box
-              sx={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: "3",
-                WebkitBoxOrient: "vertical",
-                width: "30vw",
-              }}
-            >
-              <Typography variant="subtitle2" align="center">
-                <Link
-                  to={`/forum/${row.id}`}
-                  style={{ color: "black", textDecoration: "none" }}
-                >
-                  {row.post}
-                </Link>
-              </Typography>
-            </Box>
-          </TableCell>
-          <TableCell style={{ width: 160 }} align="center">
-            <Box
-              display="flex"
-              flexDirection="row"
-              alignItems="center"
-              sx={{
-                justifyContent: "center",
-              }}
-            >
-              <Avatar
-                sx={{ mr: 1 }}
-                src={row.author.profilePic}
-                alt="profilepic"
-              />
-              <Box
-                sx={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: "1",
-                  WebkitBoxOrient: "vertical",
-                }}
-              >
-                <Typography variant="subtitle2">
-                  <Link
-                    to={`/forum/${row.id}`}
-                    style={{ color: "black", textDecoration: "none" }}
-                  >
-                    {row.author.username}
-                  </Link>
-                </Typography>
-              </Box>
-            </Box>
-          </TableCell>
-          <TableCell style={{ width: 160 }} align="center">
-            <Link
-              to={`/forum/${row.id}`}
-              style={{ color: "black", textDecoration: "none" }}
-            >
-              {row.formattedDatetime}
-            </Link>
-          </TableCell>
-        </TableRow>
-      );
-    })
-  );
-}
+import { Add } from "@mui/icons-material";
 
 export function Forum() {
   const user = useAuth();
   const navigate = useNavigate();
+  const bgColor = ["#ffe0f7", "#fcf4d4", "#cff8df"];
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const posts = useSelector((state) => state.forum.posts);
 
@@ -229,22 +40,11 @@ export function Forum() {
     onUpdate();
   }, [user, onUpdate]);
 
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - posts.length) : 0;
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  let index = 1;
 
   return (
     <Container maxWidth="lg">
-      <Box align="center" sx={{ maxWidth: "90vw" }}>
+      <Box align="center">
         <Box align="left" sx={{ mt: 5 }}>
           <Typography variant="h4" sx={{ fontWeight: 450, minWidth: 250 }}>
             Forum
@@ -259,75 +59,115 @@ export function Forum() {
           </Button>
         </Box>
 
-        <TableContainer component={Paper} sx={{ mt: 2, maxWidth: "90vw" }}>
-          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-            <TableHead
-              sx={{
-                "& th": {
-                  backgroundColor: "#cff8df",
-                  color: "black",
-                  fontSize: "1.2rem",
-                },
-              }}
-            >
-              <TableRow>
-                <TableCell align="center">TITLE</TableCell>
-                <TableCell align="center">PREVIEW</TableCell>
-                <TableCell align="center">AUTHOR</TableCell>
-                <TableCell align="center">DATE</TableCell>
-              </TableRow>
-            </TableHead>
+        <Box sx={{ mt: 2 }}>
+          {loading ? (
+            <LoadingSpinner />
+          ) : posts.length === 0 ? (
+            <Box>
+              <Typography align="center">No posts found.</Typography>
+            </Box>
+          ) : (
+            posts.map((row) => {
+              const alternatingIndex = index % 3;
+              index++;
+              return (
+                <Box alignItems="center" key={row.id}>
+                  <Link
+                    to={`/forum/${row.id}`}
+                    style={{ color: "black", textDecoration: "none" }}
+                  >
+                    <Box
+                      sx={{
+                        height: "30vh",
+                        backgroundColor: bgColor[alternatingIndex],
+                        display: "flex",
+                        alignItems: "center",
+                        borderRadius: 5,
+                        mb: 3,
+                      }}
+                    >
+                      <Card
+                        sx={{
+                          mx: 2,
+                          width: "90vw",
+                        }}
+                      >
+                        <CardActionArea sx={{ height: "25vh" }}>
+                          <CardContent>
+                            <Grid container>
+                              <Grid item xs={2}>
+                                <Box display="flex" flexDirection="column">
+                                  <Avatar
+                                    sx={{ mr: 1, width: 80, height: 80 }}
+                                    src={row.author.profilePic}
+                                    alt="profilepic"
+                                  />
+                                  <Box
+                                    sx={{
+                                      overflow: "hidden",
+                                      textOverflow: "ellipsis",
+                                      display: "-webkit-box",
+                                      WebkitLineClamp: "1",
+                                      WebkitBoxOrient: "vertical",
+                                      width: "10vw",
+                                    }}
+                                  >
+                                    <Typography variant="subtitle2">
+                                      {row.author.username}
+                                    </Typography>
+                                  </Box>
+                                </Box>
+                              </Grid>
 
-            <TableBody>
-              {loading ? (
-                <TableRow>
-                  <TableCell colSpan={6}>
-                    <LoadingSpinner />
-                  </TableCell>
-                </TableRow>
-              ) : (
-                <>
-                  <TableRows
-                    postList={posts}
-                    page={page}
-                    rowsPerPage={rowsPerPage}
-                  />
+                              <Grid item xs={10}>
+                                <Box align="left" sx={{ ml: 2 }}>
+                                  <Box
+                                    sx={{
+                                      overflow: "hidden",
+                                      textOverflow: "ellipsis",
+                                      display: "-webkit-box",
+                                      WebkitLineClamp: "2",
+                                      WebkitBoxOrient: "vertical",
+                                      width: "55vw",
+                                    }}
+                                  >
+                                    <Typography variant="h6">
+                                      {row.title}
+                                    </Typography>
+                                  </Box>
 
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </>
-              )}
-            </TableBody>
-            <TableFooter
-              sx={{
-                backgroundColor: "#fcf4d4",
-                color: "black",
-                fontSize: "1.2rem",
-              }}
-            >
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                  count={posts.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  SelectProps={{
-                    inputProps: {
-                      "aria-label": "rows per page",
-                    },
-                    native: true,
-                  }}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  ActionsComponent={TablePaginationActions}
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
+                                  <Box
+                                    sx={{
+                                      overflow: "hidden",
+                                      textOverflow: "ellipsis",
+                                      display: "-webkit-box",
+                                      WebkitLineClamp: "3",
+                                      WebkitBoxOrient: "vertical",
+                                    }}
+                                  >
+                                    <Typography variant="subtitle2">
+                                      {row.post}
+                                    </Typography>
+                                  </Box>
+
+                                  <Box align="right">
+                                    <Typography variant="caption">
+                                      {row.formattedDatetime}
+                                    </Typography>
+                                  </Box>
+                                </Box>
+                              </Grid>
+                            </Grid>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </Box>
+                  </Link>
+                </Box>
+              );
+            })
+          )}
+        </Box>
       </Box>
     </Container>
   );
