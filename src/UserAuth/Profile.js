@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import {
@@ -240,6 +241,7 @@ function DeleteAccount({ user, handleUpdate }) {
 
 export function Profile() {
   const user = useAuth();
+  const navigate = useNavigate();
   const [photo, setPhoto] = useState(null);
   const [photoURL, setPhotoURL] = useState();
   const [username, setUsername] = useState();
@@ -251,16 +253,15 @@ export function Profile() {
     }
   }
 
-  function reloadWindow() {
-    window.location.reload();
+  function updateState() {
+    setUsername(user.displayName);
+    setEmail(user.email);
+    setPhotoURL(user.photoURL);
   }
 
   useEffect(() => {
     if (user) {
-      console.log("DASDAS");
-      setUsername(user.displayName);
-      setEmail(user.email);
-      setPhotoURL(user.photoURL);
+      updateState();
     }
   }, [user]);
 
@@ -300,7 +301,7 @@ export function Profile() {
         <Button
           variant="contained"
           onClick={() =>
-            updateUserProfilePicture(user, photo).then(reloadWindow)
+            updateUserProfilePicture(user, photo).then(updateState)
           }
           sx={{ backgroundColor: "#cff8df" }}
         >
@@ -327,7 +328,7 @@ export function Profile() {
           })}
           userPropInputProps={{ maxLength: 20 }}
           handleUpdate={async (values) =>
-            updateUserDisplayName(user, values.username).then(reloadWindow)
+            updateUserDisplayName(user, values.username).then(updateState)
           }
         />
 
@@ -341,7 +342,7 @@ export function Profile() {
             email: Yup.string().email("Invalid email").required("Required"),
           })}
           handleUpdate={async (values) =>
-            updateUserEmail(user, values.email).then(reloadWindow)
+            updateUserEmail(user, values.email).then(updateState)
           }
         />
 
