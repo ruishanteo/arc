@@ -9,6 +9,8 @@ import { addNotification } from "../Notifications/index.js";
 import { LoadingButton } from "@mui/lab";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 
+import { Cancel, Send } from "@mui/icons-material";
+
 export function NewPost() {
   const navigate = useNavigate();
   const user = useAuth();
@@ -77,19 +79,28 @@ export function NewPost() {
           <LoadingButton
             sx={{ mr: 3, backgroundColor: "#cff8df" }}
             variant="contained"
-            onClick={handleCreatePost}
+            onClick={() => {
+              handleCreatePost();
+              setTitle("");
+              setText("");
+            }}
             loading={loading}
           >
-            Submit
+            Submit <Send />
           </LoadingButton>
-          <Button sx={{ backgroundColor: "#fcf4d4" }} variant="contained">
-            <Link
-              to="/Forum"
-              style={{ color: "black", textDecoration: "none" }}
-            >
+
+          <Link
+            to="/Forum"
+            style={{
+              color: "black",
+              textDecoration: "none",
+            }}
+          >
+            <Button sx={{ backgroundColor: "#fcf4d4" }} variant="contained">
               Cancel
-            </Link>
-          </Button>
+              <Cancel />
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Container>

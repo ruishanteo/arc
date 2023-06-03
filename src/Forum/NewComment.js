@@ -63,7 +63,10 @@ export function NewComment({ postId, posterId, onUpdate }) {
       <LoadingButton
         sx={{ mt: 3, mb: 3, backgroundColor: "#cff8df" }}
         variant="contained"
-        onClick={handleCreateComment}
+        onClick={() => {
+          handleCreateComment();
+          setComment("");
+        }}
         loading={loading}
       >
         Submit
