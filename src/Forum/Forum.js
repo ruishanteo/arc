@@ -95,7 +95,11 @@ export function Forum() {
                           <CardContent>
                             <Grid container>
                               <Grid item xs={2}>
-                                <Box display="flex" flexDirection="column">
+                                <Box
+                                  display="flex"
+                                  flexDirection="column"
+                                  sx={{ width: "10vw", alignItems: "center" }}
+                                >
                                   <Avatar
                                     sx={{ mr: 1, width: 80, height: 80 }}
                                     src={row.author.profilePic}
