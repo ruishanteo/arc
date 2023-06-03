@@ -20,10 +20,12 @@ import {
   Typography,
 } from "@mui/material";
 
-import CloseIcon from "@mui/icons-material/Close";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import DoneIcon from "@mui/icons-material/Done";
-import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import {
+  Close,
+  DeleteOutline,
+  Done,
+  ModeEditOutline,
+} from "@mui/icons-material";
 
 function DeleteCommentDialog({ open, setOpen, confirmAction }) {
   return (
@@ -131,7 +133,7 @@ export function CommentComponent({
                   }}
                   onClick={() => setEditMode(false)}
                 >
-                  <CloseIcon />
+                  <Close />
                 </IconButton>
                 <IconButton
                   aria-label="edit"
@@ -143,7 +145,7 @@ export function CommentComponent({
                   disabled={!text}
                   onClick={handleEditComment}
                 >
-                  <DoneIcon />
+                  <Done />
                 </IconButton>
               </Box>
             </>
@@ -173,7 +175,7 @@ export function CommentComponent({
                     }}
                     onClick={() => setOpen(true)}
                   >
-                    <DeleteOutlineIcon />
+                    <DeleteOutline />
                   </IconButton>
                   {user.uid === comment.author.userId && (
                     <IconButton
@@ -185,7 +187,7 @@ export function CommentComponent({
                       }}
                       onClick={() => setEditMode(true)}
                     >
-                      <ModeEditOutlineIcon />
+                      <ModeEditOutline />
                     </IconButton>
                   )}
                   <DeleteCommentDialog

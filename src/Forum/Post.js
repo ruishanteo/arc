@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { Timestamp } from "firebase/firestore";
+
 import { deletePost, editPost, fetchPost } from "./ForumStore.js";
 import { store } from "../stores/store.js";
 
@@ -26,12 +28,13 @@ import {
   Typography,
 } from "@mui/material";
 
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import CloseIcon from "@mui/icons-material/Close";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import DoneIcon from "@mui/icons-material/Done";
-import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
-import { Timestamp } from "firebase/firestore";
+import {
+  ArrowBackIos,
+  Close,
+  DeleteOutline,
+  Done,
+  ModeEditOutline,
+} from "@mui/icons-material";
 
 export function Post() {
   const params = useParams();
@@ -93,7 +96,7 @@ export function Post() {
             variant="contained"
             onClick={() => navigate("/forum")}
           >
-            <ArrowBackIosIcon /> Back
+            <ArrowBackIos /> Back
           </Button>
 
           <Box
@@ -147,11 +150,11 @@ export function Post() {
                     }}
                     disabled={!title && !text}
                   >
-                    <DoneIcon />
+                    <Done />
                   </IconButton>
 
                   <IconButton onClick={() => setEditMode(false)}>
-                    <CloseIcon />
+                    <Close />
                   </IconButton>
                 </Box>
               </Box>
@@ -183,7 +186,7 @@ export function Post() {
                         borderRadius: 1,
                       }}
                     >
-                      <DeleteOutlineIcon />
+                      <DeleteOutline />
                     </IconButton>
                     <IconButton
                       aria-label="edit"
@@ -191,7 +194,7 @@ export function Post() {
                       sx={{ backgroundColor: "#ffe0f7", borderRadius: 1 }}
                       onClick={() => setEditMode(true)}
                     >
-                      <ModeEditOutlineIcon />
+                      <ModeEditOutline />
                     </IconButton>
                   </Box>
                 )}
