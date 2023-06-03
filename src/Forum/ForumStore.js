@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import moment from "moment";
 import {
   addDoc,
   collection,
@@ -18,15 +17,7 @@ import {
 import { addNotification } from "../Notifications";
 
 import { db } from "../UserAuth/Firebase";
-import { handleErrorMessage } from "../UserAuth/FirebaseHooks";
-
-const convertTimeFromData = (data) => {
-  return moment.unix(data.datetime.toDate().getTime() / 1000).fromNow();
-};
-
-const handleApiCall = async (func) => {
-  return func.then((res) => res).catch(handleErrorMessage);
-};
+import { handleApiCall, convertTimeFromData } from "../UserAuth/FirebaseHooks";
 
 const forumSlice = createSlice({
   name: "forum",

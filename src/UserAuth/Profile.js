@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
+import * as Yup from "yup";
+
 import {
-  changeProfile,
+  updateUserDisplayName,
+  updateUserEmail,
+  updateUserPassword,
+  updateUserProfilePicture,
   onDeleteUser,
   onReAuth,
   useAuth,
@@ -15,28 +20,230 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  Grid,
   TextField,
+  Tooltip,
   Typography,
-  useMediaQuery,
+  Divider,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
-import { Delete, PhotoCamera, Send } from "@mui/icons-material";
+import {
+  Close,
+  Delete,
+  Done,
+  PhotoCamera,
+  ModeEditOutline,
+} from "@mui/icons-material";
+
+import { Formik, Form } from "formik";
+
+import { FormTextField } from "../Components";
+
+function ConfirmPasswordDialog({
+  user,
+  dialogOpen,
+  setDialogOpen,
+  setEditMode,
+  handleConfirmChange,
+}) {
+  const [password, setPassword] = useState("");
+
+  const handleClose = () => {
+    setDialogOpen(false);
+  };
+
+  const handleSubmit = async () => {
+    await onReAuth(user, password);
+    await handleConfirmChange();
+    setDialogOpen(false);
+    if (setEditMode) setEditMode(false);
+  };
+
+  return (
+    <Dialog open={dialogOpen} onClose={handleClose} justifycontent="center">
+      <DialogTitle>{"Please enter your password to confirm."}</DialogTitle>
+      <DialogContent>
+        <TextField
+          label="Password"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: "#cff8df" }}
+          onClick={handleSubmit}
+        >
+          Confirm
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleClose}
+          sx={{ backgroundColor: "#fcf4d4" }}
+          autoFocus
+        >
+          Close
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+function ParticularField({
+  user,
+  userProp,
+  userPropLabel,
+  userPropType,
+  userPropInitialValue,
+  userPropPlaceholder,
+  userPropSchema,
+  userPropInputProps,
+  handleUpdate,
+}) {
+  // const [loading, setLoading] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  return (
+    <Grid
+      container
+      alignItems="center"
+      sx={{ mt: 2, flexDirection: { sm: "column", md: "row" } }}
+    >
+      <Box>
+        <Grid item>
+          <Typography align="left" width="5vw" variant="h6" sx={{ mt: 2 }}>
+            {userPropLabel}:{" "}
+          </Typography>
+          {editMode ? (
+            <Formik
+              enableReinitialize={true}
+              initialValues={{ [userProp]: userPropInitialValue }}
+              onSubmit={async (values, { setSubmitting }) => {
+                setDialogOpen(true);
+              }}
+              validationSchema={userPropSchema}
+            >
+              {(formikProps) => (
+                <Form>
+                  <Grid container alignItems="center">
+                    <Grid item>
+                      <FormTextField
+                        label={userProp}
+                        type={userPropType}
+                        formikProps={formikProps}
+                        inputProps={userPropInputProps}
+                      />
+                    </Grid>
+
+                    <Grid item>
+                      <IconButton
+                        aria-label="delete"
+                        variant="contained"
+                        size="medium"
+                        sx={{
+                          backgroundColor: "#fcf4d4",
+                          mx: 1,
+                          ml: 2,
+                          borderRadius: 1,
+                        }}
+                        onClick={() => setEditMode(false)}
+                      >
+                        <Close />
+                      </IconButton>
+                    </Grid>
+
+                    <Grid item>
+                      <IconButton
+                        aria-label="edit"
+                        variant="contained"
+                        type="submit"
+                        sx={{
+                          backgroundColor: "#cff8df",
+                          borderRadius: 1,
+                        }}
+                      >
+                        <Done />
+                      </IconButton>
+                    </Grid>
+                  </Grid>
+                  <ConfirmPasswordDialog
+                    user={user}
+                    dialogOpen={dialogOpen}
+                    setDialogOpen={setDialogOpen}
+                    setEditMode={setEditMode}
+                    handleConfirmChange={() => handleUpdate(formikProps.values)}
+                  />
+                </Form>
+              )}
+            </Formik>
+          ) : (
+            <Grid container justify="flex-end" alignItems="center">
+              <Grid item>
+                <Tooltip title={userPropPlaceholder || userPropInitialValue}>
+                  <Typography width="25vw" variant="subtitle1" noWrap>
+                    {userPropPlaceholder || userPropInitialValue}
+                  </Typography>
+                </Tooltip>
+              </Grid>
+              <Grid item>
+                <IconButton
+                  aria-label="edit"
+                  variant="contained"
+                  size="edit"
+                  sx={{
+                    ml: 2,
+                    backgroundColor: "#fcf4d4",
+                    borderRadius: 1,
+                  }}
+                  onClick={() => setEditMode(true)}
+                >
+                  <ModeEditOutline />
+                </IconButton>
+              </Grid>
+            </Grid>
+          )}
+        </Grid>
+      </Box>
+
+      <Divider />
+    </Grid>
+  );
+}
+
+function DeleteAccount({ user, handleUpdate }) {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  return (
+    <>
+      <Button
+        variant="contained"
+        onClick={() => setDialogOpen(true)}
+        sx={{
+          backgroundColor: "#ffe0f7",
+          mt: 4,
+          minWidth: "20vw",
+        }}
+      >
+        <Typography>Delete Account</Typography>
+        <Delete />
+      </Button>
+      <ConfirmPasswordDialog
+        user={user}
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
+        handleConfirmChange={() => onDeleteUser(user)}
+      />
+    </>
+  );
+}
 
 export function Profile() {
-  const currentUser = useAuth();
+  const user = useAuth();
   const [photo, setPhoto] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState();
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
-  const [newPassword, setNewPassword] = useState();
-
-  const [confirmPW, setConfirmPW] = useState();
-  const [open, setOpen] = useState(false);
-  const [openPW, setOpenPW] = useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   function handlePicChange(e) {
     if (e.target.files[0]) {
@@ -44,67 +251,22 @@ export function Profile() {
     }
   }
 
-  function handleNameChange(e) {
-    setUsername(e.target.value);
-  }
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-
-  function handlePasswordChange(e) {
-    setNewPassword(e.target.value);
-  }
-
-  function handleClick() {
-    setOpen(true);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
-
-  function handleClickPW() {
-    setOpenPW(true);
-  }
-
-  function handleClosePW() {
-    setOpenPW(false);
-  }
-
-  function handleConfirmChange(e) {
-    setConfirmPW(e.target.value);
-  }
-
-  async function onConfirmChange() {
-    const err = await onReAuth(confirmPW, currentUser.email, currentUser);
-    if (err !== "err") {
-      await changeProfile(
-        photo,
-        username,
-        email,
-        newPassword,
-        currentUser,
-        setLoading
-      );
-      window.location.reload();
-    }
-    setOpen(false);
-  }
-
-  async function onConfirmChangePW() {
-    const err = await onReAuth(confirmPW, currentUser.email, currentUser);
-    if (err !== "err") {
-      onDeleteUser(currentUser);
-    }
-    setOpenPW(false);
+  function reloadWindow() {
+    window.location.reload();
   }
 
   useEffect(() => {
-    if (currentUser?.photoURL) {
-      setPhotoURL(currentUser.photoURL);
+    if (user) {
+      console.log("DASDAS");
+      setUsername(user.displayName);
+      setEmail(user.email);
+      setPhotoURL(user.photoURL);
     }
-  }, [currentUser]);
+  }, [user]);
+
+  if (!user) {
+    return <></>;
+  }
 
   return (
     <Box
@@ -126,7 +288,7 @@ export function Profile() {
             marginLeft: 5,
           }}
         />
-        <Box sx={{ marginTop: 5 }}>
+        <Box sx={{ mt: 5 }}>
           <IconButton aria-label="upload picture" component="label">
             <input hidden accept="image/*" type="file" />
             <PhotoCamera />
@@ -134,128 +296,72 @@ export function Profile() {
         </Box>
         <input hidden accept="image/*" multiple type="file" />
       </Button>
+      {photo && (
+        <Button
+          variant="contained"
+          onClick={() =>
+            updateUserProfilePicture(user, photo).then(reloadWindow)
+          }
+          sx={{ backgroundColor: "#cff8df" }}
+        >
+          Update Profile Picture
+        </Button>
+      )}
 
-      <Box sx={{ mt: 2 }}>
-        <Typography variant="h4">Edit your particulars</Typography>
+      <Typography variant="h4" sx={{ mt: 2 }}>
+        Edit your particulars
+      </Typography>
+
+      <Box>
+        <ParticularField
+          user={user}
+          userProp="username"
+          userPropLabel="Username"
+          userPropType="username"
+          userPropInitialValue={username}
+          userPropSchema={Yup.object().shape({
+            username: Yup.string()
+              .min(2, "Too Short!")
+              .max(20, "Too Long!")
+              .required("Required"),
+          })}
+          userPropInputProps={{ maxLength: 20 }}
+          handleUpdate={async (values) =>
+            updateUserDisplayName(user, values.username).then(reloadWindow)
+          }
+        />
+
+        <ParticularField
+          user={user}
+          userProp="email"
+          userPropLabel="Email"
+          userPropType="email"
+          userPropInitialValue={email}
+          userPropSchema={Yup.object().shape({
+            email: Yup.string().email("Invalid email").required("Required"),
+          })}
+          handleUpdate={async (values) =>
+            updateUserEmail(user, values.email).then(reloadWindow)
+          }
+        />
+
+        <ParticularField
+          user={user}
+          userProp="password"
+          userPropLabel="Password"
+          userPropType="password"
+          userPropPlaceholder={"Change password"}
+          userPropInitialValue={""}
+          userPropSchema={Yup.object().shape({
+            password: Yup.string().required("Required"),
+          })}
+          handleUpdate={async (values) =>
+            updateUserPassword(user, values.password)
+          }
+        />
       </Box>
 
-      <TextField
-        placeholder={username}
-        onChange={handleNameChange}
-        sx={{ mt: "10px", minWidth: "40vw" }}
-        label="New Username"
-      />
-
-      <TextField
-        defaultValue={email}
-        onChange={handleEmailChange}
-        sx={{ mt: "10px", minWidth: "40vw" }}
-        label="New Email"
-      />
-
-      <TextField
-        defaultValue={email}
-        onChange={handlePasswordChange}
-        sx={{ mt: "10px", minWidth: "40vw" }}
-        label="New Password"
-      />
-
-      <Button
-        variant="contained"
-        disabled={
-          loading ||
-          (!photo &&
-            (!username || username === currentUser?.displayName) &&
-            (!email || email === currentUser?.email) &&
-            !newPassword)
-        }
-        onClick={handleClick}
-        sx={{ backgroundColor: "#b7b0f5", mt: 2, minWidth: "20vw" }}
-      >
-        <Typography sx={{ marginRight: 1 }}>Submit</Typography>
-        <Send />
-      </Button>
-
-      <Button
-        variant="contained"
-        onClick={handleClickPW}
-        sx={{ backgroundColor: "#ffe0f7", mt: 2, minWidth: "20vw" }}
-      >
-        <Typography> Delete Account</Typography>
-        <Delete />
-      </Button>
-
-      <Dialog
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-        display="flex"
-        justifycontent="center"
-      >
-        <DialogTitle id="responsive-dialog-title">
-          {"Please enter your password to confirm."}
-        </DialogTitle>
-
-        <DialogContent>
-          <TextField label="Password" onChange={handleConfirmChange} />
-        </DialogContent>
-
-        <DialogActions>
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#cff8df" }}
-            autoFocus
-            onClick={onConfirmChange}
-          >
-            Confirm
-          </Button>
-          <Button
-            variant="contained"
-            onClick={handleClose}
-            sx={{ backgroundColor: "#fcf4d4" }}
-            autoFocus
-          >
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        fullScreen={fullScreen}
-        open={openPW}
-        onClose={handleClosePW}
-        aria-labelledby="responsive-dialog-title"
-        display="flex"
-        justifycontent="center"
-      >
-        <DialogTitle id="responsive-dialog-title">
-          {"Please enter your password to confirm."}
-        </DialogTitle>
-
-        <DialogContent>
-          <TextField label="Password" onChange={handleConfirmChange} />
-        </DialogContent>
-
-        <DialogActions>
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#cff8df" }}
-            autoFocus
-            onClick={onConfirmChangePW}
-          >
-            Confirm
-          </Button>
-          <Button
-            variant="contained"
-            onClick={handleClosePW}
-            sx={{ backgroundColor: "#fcf4d4" }}
-            autoFocus
-          >
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DeleteAccount user={user} />
     </Box>
   );
 }

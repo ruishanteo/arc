@@ -15,6 +15,7 @@ import {
 } from "firebase/auth";
 import { doc, deleteDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import moment from "moment";
 
 import { auth, db, googleProvider, storage } from "./Firebase";
 
@@ -22,20 +23,28 @@ import { store } from "../stores/store";
 import { addNotification } from "../Notifications";
 import { getStatusMessage } from "./StatusMessages";
 
-const handleErrorMessage = (err) => {
-  store.dispatch(
-    addNotification({
-      message: getStatusMessage(err.code),
-      variant: "error",
-    })
-  );
-  console.log("Error Code:", err.code, "Message:", err.message);
-  throw err;
+const handleApiCall = async (func) => {
+  return func
+    .then((res) => res)
+    .catch((err) => {
+      store.dispatch(
+        addNotification({
+          message: getStatusMessage(err.code),
+          variant: "error",
+        })
+      );
+      console.log("Error Code:", err.code, "Message:", err.message);
+      throw err;
+    });
+};
+
+const convertTimeFromData = (data) => {
+  return moment.unix(data.datetime.toDate().getTime() / 1000).fromNow();
 };
 
 const useSignInWithGoogle = async () => {
-  return await signInWithPopup(auth, googleProvider)
-    .then(async (res) => {
+  return await handleApiCall(
+    signInWithPopup(auth, googleProvider).then(async (res) => {
       store.dispatch(
         addNotification({
           message: "You have successfully logged in.",
@@ -43,12 +52,12 @@ const useSignInWithGoogle = async () => {
         })
       );
     })
-    .catch(handleErrorMessage);
+  );
 };
 
 const useLogInWithEmailAndPassword = async (email, password) => {
-  return await signInWithEmailAndPassword(auth, email, password)
-    .then((res) =>
+  return await handleApiCall(
+    signInWithEmailAndPassword(auth, email, password).then((res) =>
       store.dispatch(
         addNotification({
           message: "You have successfully logged in.",
@@ -56,22 +65,24 @@ const useLogInWithEmailAndPassword = async (email, password) => {
         })
       )
     )
-    .catch(handleErrorMessage);
+  );
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
   return name
-    ? await createUserWithEmailAndPassword(auth, email, password)
-        .then(async (response) => {
-          await updateProfile(response.user, { displayName: name });
-          store.dispatch(
-            addNotification({
-              message: "You have successfully registered your account!",
-              variant: "success",
-            })
-          );
-        })
-        .catch(handleErrorMessage)
+    ? await handleApiCall(
+        createUserWithEmailAndPassword(auth, email, password).then(
+          async (response) => {
+            await updateProfile(response.user, { displayName: name });
+            store.dispatch(
+              addNotification({
+                message: "You have successfully registered your account!",
+                variant: "success",
+              })
+            );
+          }
+        )
+      )
     : store.dispatch(
         addNotification({
           message: "Please fill in all the fields!",
@@ -81,8 +92,8 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 };
 
 const sendPasswordReset = async (email) => {
-  return await sendPasswordResetEmail(auth, email)
-    .then((res) =>
+  return await handleApiCall(
+    sendPasswordResetEmail(auth, email).then((res) =>
       store.dispatch(
         addNotification({
           message: "Password reset link sent!",
@@ -90,7 +101,7 @@ const sendPasswordReset = async (email) => {
         })
       )
     )
-    .catch(handleErrorMessage);
+  );
 };
 
 const logout = () => {
@@ -115,54 +126,47 @@ function useAuth() {
   return currentUser;
 }
 
-async function changeProfile(
-  file,
-  username,
-  email,
-  newPassword,
-  currentUser,
-  setLoading
-) {
-  setLoading(true);
-
-  if (username) {
-    await updateProfile(currentUser, { displayName: username }).catch(
-      handleErrorMessage
-    );
-  }
-
-  if (email) {
-    await updateEmail(currentUser, email).catch(handleErrorMessage);
-  }
-
-  if (file) {
-    const fileRef = ref(storage, currentUser.uid + ".png");
-    await uploadBytes(fileRef, file);
-    const photoURL = await getDownloadURL(fileRef);
-    await updateProfile(currentUser, { photoURL: photoURL }).catch(
-      handleErrorMessage
-    );
-  }
-
-  if (newPassword) {
-    updatePassword(currentUser, newPassword).catch(handleErrorMessage);
-  }
-
-  setLoading(false);
+function updatedParticulars() {
+  store.dispatch(
+    addNotification({
+      message: "You have successfully updated your particulars.",
+      variant: "success",
+    })
+  );
 }
 
-async function onReAuth(password, email, currentUser) {
-  const credential = EmailAuthProvider.credential(email, password);
-  return await reauthenticateWithCredential(currentUser, credential)
-    .then(() => {})
-    .catch((err) => {
-      handleErrorMessage(err);
-      return "err";
-    });
+async function updateUserDisplayName(user, newDisplayName) {
+  await handleApiCall(
+    updateProfile(user, { displayName: newDisplayName }).then(
+      updatedParticulars
+    )
+  );
+}
+
+async function updateUserEmail(user, newEmail) {
+  await handleApiCall(updateEmail(user, newEmail).then(updatedParticulars));
+}
+
+async function updateUserPassword(user, newPassword) {
+  handleApiCall(updatePassword(user, newPassword).then(updatedParticulars));
+}
+
+async function updateUserProfilePicture(user, newProfilePicture) {
+  const fileRef = ref(storage, user.uid + ".png");
+  await handleApiCall(uploadBytes(fileRef, newProfilePicture));
+  const photoURL = await getDownloadURL(fileRef);
+  await handleApiCall(updateProfile(user, { photoURL: photoURL })).then(
+    updatedParticulars
+  );
+}
+
+async function onReAuth(user, password) {
+  const credential = EmailAuthProvider.credential(user.email, password);
+  return await handleApiCall(reauthenticateWithCredential(user, credential));
 }
 
 const deleteContent = async (key) => {
-  await deleteDoc(doc(db, "assessments", key)).catch(handleErrorMessage);
+  await handleApiCall(deleteDoc(doc(db, "assessments", key)));
 };
 
 function onDeleteUser(currentUser) {
@@ -171,7 +175,7 @@ function onDeleteUser(currentUser) {
     return deleteUser(currentUser).then(() =>
       store.dispatch(
         addNotification({
-          message: "Account is successfully deleted.",
+          message: "Your account has been successfully deleted.",
           variant: "success",
         })
       )
@@ -180,8 +184,14 @@ function onDeleteUser(currentUser) {
 }
 
 export {
-  handleErrorMessage,
-  changeProfile,
+  handleApiCall,
+  convertTimeFromData,
+  //
+  updateUserDisplayName,
+  updateUserEmail,
+  updateUserPassword,
+  updateUserProfilePicture,
+  //
   deleteContent,
   onDeleteUser,
   onReAuth,
