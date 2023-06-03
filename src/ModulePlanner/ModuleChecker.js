@@ -347,7 +347,6 @@ export function ModuleChecker() {
   function updateModTitles() {
     const arr = [];
     semesters.forEach((semester) => semester.modules.forEach((mod) => arr.push(mod.modInfo.moduleCode)));
-    console.log(arr);
     setModTitles(arr);
   }
 
@@ -441,15 +440,50 @@ export function ModuleChecker() {
     }
   }
 
+  function cdid_check(arr, data) {
+    const arr1 = arr;
+    let idCount = 0;
+    let cdCount = 0;
+
+    arr.forEach(code => {
+      if (idCount === 3 || (idCount === 2 && cdCount === 1)) {
+        return; // Exit loop if conditions already met
+      }
+      
+      const foundInID = data.ID.some(item => item.moduleCode === code);
+      const foundInCD = data.CD.some(item => item.moduleCode === code);
+      
+      if (foundInID) {
+        idCount++;
+      } else if (foundInCD) {
+        cdCount++;
+      }
+    });
+
+    if (idCount === 3 || (idCount === 2 && cdCount === 1)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   function checkPresentCommonMod(inputString) {
     const color = "#cff8df";
     let commonMod = require('../module_data/' + inputString + '.json');
     const arr = modTitles;
-    const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
-    if (hasCommonElement) {
-      return color;
+    if (inputString === "cdid") {
+      if (cdid_check(arr, commonMod)) {
+        return color;
+      } else {
+        return "#FFFFFF";
+      }
     } else {
-      return "#FFFFFF";
+      const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
+      if (hasCommonElement) {
+        return color;
+      } else {
+        return "#FFFFFF";
+      }
     }
   }
 
