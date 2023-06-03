@@ -17,7 +17,6 @@ import {
   CardActionArea,
   CardContent,
   Container,
-  Divider,
   Grid,
   Typography,
 } from "@mui/material/";
