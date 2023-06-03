@@ -31,16 +31,7 @@ import {
 } from "@mui/material";
 
 
-// temporarily hard-coded
-const degrees = [
-  { title: '', faculty: '' },
-  { title: 'Computer Science', faculty: 'SOC' },
-  { title: 'Business Analytics', faculty: 'SOC' },
-  { title: 'Information Systems', faculty: 'SOC'},
-  { title: 'Computer Engineering', faculty: 'SOC'},
-  { title: 'Information Security', faculty: 'SOC'},
-  { title: 'Others', faculty: 'others'}
-  ]
+let degrees = require('../module_data/degrees.json');
 
 const options = degrees.map((option) => {
   const firstLetter = option.faculty.toUpperCase();

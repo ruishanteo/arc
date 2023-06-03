@@ -24,7 +24,7 @@ export function ModuleComponent({
 
 
   const selector = () => {
-    if (selectedModule == 0) {
+    if (selectedModule === 0) {
       console.log("sem1");
       return (
         <Autocomplete
