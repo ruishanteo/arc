@@ -156,6 +156,8 @@ export function ModuleChecker() {
       const sem = docSnap.data().semesters
       setSemesters(sem);
       setCount(sem[sem.length-1]?.count + 1 || 0);
+      setModTitles(updateModTitlesStart(sem));
+      setProgress(countMcStart(sem))
     }
     const docRef2 = doc(db, "programme", user.uid);
     const docSnap2 = await getDoc(docRef2);
@@ -349,6 +351,12 @@ export function ModuleChecker() {
     setModTitles(arr);
   }
 
+  function updateModTitlesStart(semesters) {
+    const arr = [];
+    semesters.forEach((semester) => semester.modules.forEach((mod) => arr.push(mod.modInfo.moduleCode)));
+    return arr;
+  }
+
   function parseString(str) {
     const values = [];
     let currentGroup = [];
@@ -469,6 +477,16 @@ export function ModuleChecker() {
   }
 
   function countMc() {
+    let mc = 0;
+    semesters.forEach((semester) => semester.modules.forEach((mod) => {
+      mc += Number(mod.modInfo.moduleCredit) }))
+    if (isNaN(mc)) {
+      return 0;
+    }
+    return mc;
+  }
+
+  function countMcStart(semesters) {
     let mc = 0;
     semesters.forEach((semester) => semester.modules.forEach((mod) => {
       mc += Number(mod.modInfo.moduleCredit) }))
