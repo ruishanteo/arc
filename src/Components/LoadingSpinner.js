@@ -7,7 +7,7 @@ export const LoadingSpinner = () => {
       spacing={0}
       direction="column"
       alignItems="center"
-      sx={{ minHeight: "100vh", mt: 5 }}
+      sx={{ mt: 5 }}
     >
       <Grid item xs={3}>
         <CircularProgress color="neutral" size={30} />

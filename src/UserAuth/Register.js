@@ -1,34 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 import {
-  auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-} from "./Firebase.js";
+} from "./FirebaseHooks.js";
 
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import LooksIcon from "@mui/icons-material/Looks";
+import { Box, Grid, TextField, Typography } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Looks } from "@mui/icons-material";
 
 export function Register() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [user, loading] = useAuthState(auth);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const register = () => {
-    registerWithEmailAndPassword(name, email, password);
+    setLoading(true);
+    registerWithEmailAndPassword(name, email, password)
+      .then(() => {
+        navigate("/home");
+      })
+      .finally(() => setLoading(false));
   };
-
-  useEffect(() => {
-    if (loading) return;
-    if (user) {
-      navigate("/home");
-      window.location.reload();
-    }
-  }, [user, loading, navigate]);
 
   return (
     <div className="register" align="center">
@@ -44,7 +40,7 @@ export function Register() {
           height: 100,
         }}
       >
-        <LooksIcon
+        <Looks
           sx={{
             mb: -4,
             fontSize: 50,
@@ -90,6 +86,7 @@ export function Register() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Name"
             sx={{ mt: 1, width: 400 }}
+            inputProps={{ maxLength: 50 }}
           />
 
           <TextField
@@ -112,25 +109,27 @@ export function Register() {
             sx={{ mt: 1 }}
           />
 
-          <Button
+          <LoadingButton
             align="center"
             className="register__btn"
             onClick={register}
             sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
             variant="contained"
+            loading={loading}
           >
             Register
-          </Button>
+          </LoadingButton>
 
-          <Button
+          <LoadingButton
             align="center"
             className="register__btn register__google"
             onClick={signInWithGoogle}
             sx={{ mt: 2, mb: 3, backgroundColor: "#b7b0f5", color: "black" }}
             variant="contained"
+            loading={loading}
           >
             Register with Google
-          </Button>
+          </LoadingButton>
 
           <Grid container alignItems="center">
             <Grid item container direction="column" xs={12}>

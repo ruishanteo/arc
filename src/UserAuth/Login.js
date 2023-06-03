@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
+import { auth } from "./Firebase.js";
 import {
-  auth,
   logInWithEmailAndPassword,
   signInWithGoogle,
-} from "./Firebase.js";
+} from "./FirebaseHooks.js";
 
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import LooksIcon from "@mui/icons-material/Looks";

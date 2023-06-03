@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { logout, useAuth } from "../UserAuth/Firebase.js";
+import { logout, useAuth } from "../UserAuth/FirebaseHooks.js";
 
 import {
   AppBar,
@@ -20,7 +20,7 @@ import {
 import LooksIcon from "@mui/icons-material/Looks";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const pages = ["GradeCalculator"];
+const pages = ["GradeCalculator", "Forum"];
 
 export function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
