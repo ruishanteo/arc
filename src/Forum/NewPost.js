@@ -34,9 +34,6 @@ export function NewPost() {
             title: title,
             post: text,
             author: {
-              username: user.displayName,
-              email: user.email,
-              profilePic: user.photoURL,
               userId: user.uid,
             },
           })

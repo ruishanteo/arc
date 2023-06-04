@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { deleteComment, editComment } from "./ForumStore";
 
+import { db } from "../UserAuth/Firebase";
 import { useAuth } from "../UserAuth/FirebaseHooks";
 
 import {
@@ -26,6 +27,7 @@ import {
   Done,
   ModeEditOutline,
 } from "@mui/icons-material";
+import { doc, getDoc } from "@firebase/firestore";
 
 function DeleteCommentDialog({ open, setOpen, confirmAction }) {
   return (
@@ -66,6 +68,8 @@ export function CommentComponent({
   const [editMode, setEditMode] = useState(false);
   const [text, setText] = useState("");
 
+  const users = useSelector((state) => state.users.users);
+
   const handleDeleteComment = () => {
     setLoading(true);
     dispatch(deleteComment(id)).finally(() => onUpdate());
@@ -98,7 +102,7 @@ export function CommentComponent({
           alignItems="center"
         >
           <Avatar
-            src={comment.author.profilePic}
+            src={users[comment.author.userId]?.photoURL}
             sx={{
               width: 60,
               height: 60,
@@ -203,7 +207,7 @@ export function CommentComponent({
 
         <Box align="left" sx={{ mt: 1, ml: 2 }}>
           <Typography variant="caption">
-            by {comment.author.username}
+            by {users[comment.author.userId]?.name}
           </Typography>
           <Box width="60vw" />
           <Tooltip title={comment.datetime}>
