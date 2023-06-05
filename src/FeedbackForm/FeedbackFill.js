@@ -2,8 +2,11 @@ import React, { useState } from "react"
 
 import { styles } from "./styles"
 
+import { store } from "../stores/store.js";
+
 import { CircularProgress } from '@mui/material'
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import { Send } from "@mui/icons-material";
 
 const FeedbackFill = props => {    
     const [feedback, setFeedback] = useState('')
@@ -71,13 +74,22 @@ const FeedbackFill = props => {
                     placeholder="Enter feedback here."
                     sx={{ mt: 2 }}
                     multiline
-                    rows={8}
+                    rows={10}
                     style={styles.emailInput}
                     />
                 </form>
 
                 <div style={styles.bottomText}>
-                    Submit button here
+                    <Button 
+                    sx={{ backgroundColor: "#cff8df", 
+                    color: "black",
+                    "&:hover": {
+                        color: "white",
+                    }, }}
+                    variant="contained"
+                    disabled={!feedback}>
+                        Submit<Send />
+                    </Button>
                 </div>
             </div>
         </div>

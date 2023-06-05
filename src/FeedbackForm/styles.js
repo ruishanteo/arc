@@ -70,18 +70,18 @@ export const styles = {
         fontWeight: '600',
     },
     emailInput: { 
-        width: '66%',
+        width: '75%',
         textAlign: 'left',
         outline: 'none',
         padding: '12px',
         borderRadius: '12px',
-        border: '2px solid #7a39e0',
-        height: '280px'
+        border: '4px solid #DFD1F5',
+        height: '340px'
     },
     bottomText: { 
         position: 'absolute', 
         width: '100%', 
-        top: '80%', 
+        top: '81%', 
         color: '#7a39e0', 
         fontSize: '24px', 
         fontWeight: '600' 
@@ -99,9 +99,5 @@ export const styles = {
         top: 'calc(50% - 51px)', 
         left: 'calc(50% + 51px)',  
         fontWeight: '600',
-    },
-    chatEngineWindow: {
-        width: '100%',  
-        backgroundColor: '#fff',
     }
 }
