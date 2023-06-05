@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef} from "react";
 
-import Avatar from './Avatar'
-import FeedbackWindow from "./FeedbackWindow";
+import Avatar from './Avatar.js'
+import FeedbackWindow from "./FeedbackWindow.js";
 
 
 const FeedbackForm = () => {
