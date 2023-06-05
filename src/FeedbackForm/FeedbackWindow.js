@@ -10,7 +10,8 @@ const FeedbackWindow = props => {
             className='transition-5'
             style={{
                 ...styles.supportWindow,
-                ...{ opacity: props.visible ? '1' : '0' }
+                ...{ opacity: props.visible ? '1' : '0' },
+                ...{ pointerEvents: props.visible ? 'auto' :'none'}
             }}
         >
             {props.visible && <FeedbackFill/>}
