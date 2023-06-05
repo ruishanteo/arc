@@ -13,6 +13,8 @@ import { Send } from "@mui/icons-material";
 const FeedbackFill = props => {    
     const [feedback, setFeedback] = useState('')
     const [loading, setLoading] = useState(false)
+    const maxCharacters = 270;
+    const charactersLeft = maxCharacters - feedback.length;
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -93,9 +95,14 @@ const FeedbackFill = props => {
                     sx={{ mt: 2 }}
                     multiline
                     rows={10}
+                    inputProps={{ maxLength: 270 }}
                     style={styles.emailInput}
                     />
                 </form>
+                
+                <div style={styles.characterCounter}>
+                    {charactersLeft} characters left
+                </div>
 
                 <div style={styles.bottomText}>
                     <Button 

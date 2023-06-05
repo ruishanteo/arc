@@ -99,5 +99,12 @@ export const styles = {
         top: 'calc(50% - 51px)', 
         left: 'calc(50% + 51px)',  
         fontWeight: '600',
-    }
+    },
+    characterCounter: {
+        position: "absolute",
+        top: '80%',
+        right: '17%',
+        color: "gray",
+        fontSize: "12px",
+    },
 }
