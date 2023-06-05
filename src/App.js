@@ -13,6 +13,8 @@ import { Forum } from "./Forum/Forum.js";
 import { NewPost } from "./Forum/NewPost.js";
 import { Post } from "./Forum/Post.js";
 
+import FeedbackForm from "./FeedbackForm/FeedbackForm.js"
+
 import { Header } from "./NavBar/Header.js";
 import { Home } from "./NavPages/Home.js";
 import { Landing } from "./NavPages/Landing.js";
@@ -169,6 +171,7 @@ function App() {
           </SnackbarProvider>
         </ReduxProvider>
       </ThemeProvider>
+      <FeedbackForm />
     </div>
   );
 }
