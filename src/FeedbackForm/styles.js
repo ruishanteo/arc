@@ -25,7 +25,7 @@ export const styles = {
         padding: '12px 12px 12px 16px',
         borderRadius: '24px', 
         // Color
-        backgroundColor: '#f9f0ff',
+        backgroundColor: '#DFD1F5',
         color: 'black',
     },
     supportWindow: {
@@ -41,7 +41,7 @@ export const styles = {
         backgroundColor: 'white',
         // Border
         borderRadius: '12px',
-        border: `2px solid #7a39e0`,
+        border: `2px solid #DFD1F5`,
         overflow: 'hidden',
         // Shadow
         boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.33)',
@@ -55,32 +55,33 @@ export const styles = {
     },
     stripe: {
         position: 'relative',
-        top: '-45px',
+        top: '-125px',
         width: '100%',
         height: '308px',
-        backgroundColor: '#7a39e0',
+        backgroundColor: '#E0FBFF',
         transform: 'skewY(-12deg)',
     },
     topText: { 
         position: 'relative',
         width: '100%', 
-        top: '15%', 
-        color: 'white', 
+        top: '5%', 
+        color: 'black', 
         fontSize: '24px', 
         fontWeight: '600',
     },
     emailInput: { 
         width: '66%',
-        textAlign: 'center',
+        textAlign: 'left',
         outline: 'none',
         padding: '12px',
         borderRadius: '12px',
         border: '2px solid #7a39e0',
+        height: '280px'
     },
     bottomText: { 
         position: 'absolute', 
         width: '100%', 
-        top: '60%', 
+        top: '80%', 
         color: '#7a39e0', 
         fontSize: '24px', 
         fontWeight: '600' 
@@ -96,7 +97,7 @@ export const styles = {
         color: '#7a39e0', 
         position: 'absolute', 
         top: 'calc(50% - 51px)', 
-        left: 'calc(50% - 51px)',  
+        left: 'calc(50% + 51px)',  
         fontWeight: '600',
     },
     chatEngineWindow: {
