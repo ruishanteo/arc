@@ -2,6 +2,8 @@ import React from "react";
 
 import { styles } from "./styles";
 
+import FeedbackFill from "./FeedbackFill.js";
+
 const FeedbackWindow = props => {
     return (
         <div 
@@ -11,6 +13,7 @@ const FeedbackWindow = props => {
                 ...{ opacity: props.visible ? '1' : '0' }
             }}
         >
+            {props.visible && <FeedbackFill/>}
         </div>
     )
 }
