@@ -2,7 +2,9 @@ import React, { useState } from "react"
 
 import { styles } from "./styles"
 
-import { store } from "../stores/store.js";
+import { store } from "../stores/store";
+import { addNotification } from "../Notifications/index";
+import { createFeedback } from "./FeedbackStore";
 
 import { CircularProgress } from '@mui/material'
 import { Button, TextField } from "@mui/material";
@@ -14,7 +16,23 @@ const FeedbackFill = props => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        setLoading(true);
+        if (!feedback) {
+            store.dispatch(
+              addNotification({
+                message: "Please fill in your feedback.",
+                variant: "error",
+              })
+            );
+          } else {
+            setLoading(true);
+            store
+              .dispatch(
+                createFeedback({
+                  feedback: feedback,
+                })
+              )
+              .finally(() => setLoading(false));
+          }
     }
 
     return (
@@ -87,7 +105,11 @@ const FeedbackFill = props => {
                         color: "white",
                     }, }}
                     variant="contained"
-                    disabled={!feedback}>
+                    disabled={!feedback}
+                    onClick={e => {
+                        handleSubmit(e);
+                        setFeedback('');
+                    }}>
                         Submit<Send />
                     </Button>
                 </div>

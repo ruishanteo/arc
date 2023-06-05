@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef} from "react";
 
-import Avatar from './Avatar.js'
-import FeedbackWindow from "./FeedbackWindow.js";
+import Avatar from './Avatar'
+import FeedbackWindow from "./FeedbackWindow";
 
 
 const FeedbackForm = () => {
@@ -24,11 +24,7 @@ const FeedbackForm = () => {
     }
 
     function toggleVisibility() {
-        if (visible === false) {
-            setVisible(true);
-        } else {
-            setVisible(false);
-        }
+        setVisible((prevVisibility) => !(prevVisibility));
     }
 
     return (

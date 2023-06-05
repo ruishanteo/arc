@@ -76,12 +76,12 @@ export const styles = {
         padding: '12px',
         borderRadius: '12px',
         border: '4px solid #DFD1F5',
-        height: '340px'
+        height: '350px'
     },
     bottomText: { 
         position: 'absolute', 
         width: '100%', 
-        top: '81%', 
+        top: '83%', 
         color: '#7a39e0', 
         fontSize: '24px', 
         fontWeight: '600' 
