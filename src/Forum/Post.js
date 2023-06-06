@@ -23,6 +23,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Grid,
   IconButton,
   TextField,
   Typography,
@@ -49,6 +50,7 @@ export function Post() {
   const [text, setText] = useState("");
 
   const post = useSelector((state) => state.forum.post);
+  const users = useSelector((state) => state.users.users);
 
   const onUpdate = useCallback(() => {
     setLoading(true);
@@ -84,20 +86,22 @@ export function Post() {
   if (!post) return <NotFound />;
 
   return (
-    <Container maxWidth="lg">
-      <Box align="center">
-        <Box align="left" sx={{ mt: 5, mb: 2 }}>
-          <Button
-            sx={{
-              backgroundColor: "#b7b0f5",
-              color: "white",
-              maxHeight: "5vh",
-            }}
-            variant="contained"
-            onClick={() => navigate("/forum")}
-          >
-            <ArrowBackIos /> Back
-          </Button>
+    <Container maxWidth="lg" align="center">
+      <Box align="center" maxWidth="65vw">
+        <Box align="center" sx={{ mt: 5, mb: 2 }}>
+          <Box align="left">
+            <Button
+              sx={{
+                backgroundColor: "#b7b0f5",
+                color: "white",
+                maxHeight: "5vh",
+              }}
+              variant="contained"
+              onClick={() => navigate("/forum")}
+            >
+              <ArrowBackIos /> Back
+            </Button>
+          </Box>
 
           <Box
             display="flex"
@@ -105,23 +109,19 @@ export function Post() {
             sx={{ mt: 5, mb: 2 }}
             align="left"
           >
-            <Box display="flex" flexDirection="column" align="center">
-              <Avatar
-                src={post.author.profilePic}
-                sx={{
-                  width: 100,
-                  height: 100,
-                  cursor: "pointer",
-                  mb: 2,
-                  mx: 2,
-                }}
-              />
-              <Typography variant="subtitle1" width="2vw">
-                {post.author.username}
-              </Typography>
-            </Box>
+            <Avatar
+              src={users[post.author.userId]?.photoURL}
+              sx={{
+                width: 100,
+                height: 100,
+                cursor: "pointer",
+                mb: 2,
+                mr: 2,
+              }}
+            />
+
             {editMode ? (
-              <Box display="flex" flexDirection="column">
+              <Box display="flex" flexDirection="column" width="60vw">
                 <TextField
                   fullWidth
                   type="text"
@@ -129,7 +129,6 @@ export function Post() {
                   defaultValue={post.title}
                   onChange={(e) => setTitle(e.target.value)}
                   inputProps={{ maxLength: 100 }}
-                  sx={{ width: "65vw" }}
                 />
                 <TextField
                   fullWidth
@@ -137,7 +136,7 @@ export function Post() {
                   name="thread"
                   defaultValue={post.post}
                   onChange={(e) => setText(e.target.value)}
-                  sx={{ width: "65vw", mt: 2 }}
+                  sx={{ mt: 2 }}
                   multiline
                   rows={10}
                 />
@@ -159,23 +158,21 @@ export function Post() {
                 </Box>
               </Box>
             ) : (
-              <Box display="flex" flexDirection="row">
-                <Box flexDirection="column" width="55vw">
-                  <Typography variant="h4">{post.title}</Typography>
-                  <Typography variant="body1" sx={{ mt: 2 }}>
+              <Grid container direction="row">
+                <Grid item xs={10}>
+                  <Typography variant="h4" sx={{ wordBreak: "break-word" }}>
+                    {post.title}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{ mt: 2, wordBreak: "break-word" }}
+                  >
                     {post.post}
                   </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    display: { xs: "none" },
-                    width: "20vw",
-                  }}
-                />
+                </Grid>
 
                 {user.uid === post.author.userId && (
-                  <Box display="flex" flexDirection="row" height="5vh">
+                  <Grid item>
                     <IconButton
                       onClick={() => setOpen(true)}
                       aria-label="delete"
@@ -196,12 +193,16 @@ export function Post() {
                     >
                       <ModeEditOutline />
                     </IconButton>
-                  </Box>
+                  </Grid>
                 )}
-              </Box>
+              </Grid>
             )}
           </Box>
           <Box align="right" sx={{ mr: 4 }}>
+            <Typography variant="subtitle1" sx={{ wordBreak: "break-word" }}>
+              {" "}
+              - {users[post.author.userId]?.name}
+            </Typography>
             <Typography variant="caption">{post.datetime}</Typography>
           </Box>
         </Box>

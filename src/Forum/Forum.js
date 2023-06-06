@@ -29,6 +29,7 @@ export function Forum() {
   const [loading, setLoading] = useState(true);
 
   const posts = useSelector((state) => state.forum.posts);
+  const users = useSelector((state) => state.users.users);
 
   const onUpdate = useCallback(() => {
     setLoading(true);
@@ -66,9 +67,8 @@ export function Forum() {
               <Typography align="center">No posts found.</Typography>
             </Box>
           ) : (
-            posts.map((row) => {
+            posts.map((row, index) => {
               const alternatingIndex = index % 3;
-              index++;
               return (
                 <Box alignItems="center" key={row.id}>
                   <Link
@@ -93,17 +93,23 @@ export function Forum() {
                       >
                         <CardActionArea sx={{ height: "25vh" }}>
                           <CardContent>
-                            <Grid container>
+                            <Grid
+                              container
+                              alignItems="center"
+                              justifyContent="center"
+                            >
                               <Grid item xs={2}>
                                 <Box
-                                  display="flex"
-                                  flexDirection="column"
-                                  sx={{ width: "10vw", alignItems: "center" }}
+                                  sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    maxWidth: "10vw",
+                                    alignItems: "center",
+                                  }}
                                 >
                                   <Avatar
-                                    sx={{ mr: 1, width: 80, height: 80 }}
-                                    src={row.author.profilePic}
-                                    alt="profilepic"
+                                    sx={{ width: 80, height: 80 }}
+                                    src={users[row.author.userId]?.photoURL}
                                   />
                                   <Box
                                     sx={{
@@ -112,11 +118,13 @@ export function Forum() {
                                       display: "-webkit-box",
                                       WebkitLineClamp: "1",
                                       WebkitBoxOrient: "vertical",
-                                      width: "10vw",
                                     }}
                                   >
-                                    <Typography variant="subtitle2">
-                                      {row.author.username}
+                                    <Typography
+                                      variant="subtitle2"
+                                      sx={{ wordBreak: "break-word" }}
+                                    >
+                                      {users[row.author.userId]?.name}
                                     </Typography>
                                   </Box>
                                 </Box>
@@ -131,10 +139,12 @@ export function Forum() {
                                       display: "-webkit-box",
                                       WebkitLineClamp: "2",
                                       WebkitBoxOrient: "vertical",
-                                      width: "55vw",
                                     }}
                                   >
-                                    <Typography variant="h6">
+                                    <Typography
+                                      variant="h6"
+                                      sx={{ wordBreak: "break-word" }}
+                                    >
                                       {row.title}
                                     </Typography>
                                   </Box>
@@ -148,7 +158,10 @@ export function Forum() {
                                       WebkitBoxOrient: "vertical",
                                     }}
                                   >
-                                    <Typography variant="subtitle2">
+                                    <Typography
+                                      variant="subtitle2"
+                                      sx={{ wordBreak: "break-word" }}
+                                    >
                                       {row.post}
                                     </Typography>
                                   </Box>

@@ -18,6 +18,7 @@ import { addNotification } from "../Notifications";
 
 import { db } from "../UserAuth/Firebase";
 import { handleApiCall, convertTimeFromData } from "../UserAuth/FirebaseHooks";
+import { fetchUser } from "../UserAuth/UserStore";
 
 const forumSlice = createSlice({
   name: "forum",
@@ -42,6 +43,14 @@ const forumSlice = createSlice({
   },
 });
 
+async function fetchUsersFromCollection(collection, dispatch) {
+  const usersSet = new Set();
+  collection.forEach((item) => {
+    usersSet.add(item.author.userId);
+  });
+  usersSet.forEach((userId) => dispatch(fetchUser(userId)));
+}
+
 export async function fetchPosts(dispatch, getState) {
   const response = await handleApiCall(
     getDocs(query(collection(db, "posts"), orderBy("datetime")))
@@ -56,6 +65,7 @@ export async function fetchPosts(dispatch, getState) {
     };
   });
   dispatch(forumSlice.actions.savePostsToStore(posts.reverse()));
+  await fetchUsersFromCollection(posts, dispatch);
 }
 
 export function createPost(post) {
@@ -90,6 +100,7 @@ export function fetchPost(postId) {
         formattedDatetime: convertTimeFromData(post_data),
       };
       dispatch(forumSlice.actions.savePostToStore(post));
+      await fetchUsersFromCollection([post], dispatch);
     }
   };
 }
@@ -174,6 +185,7 @@ export function fetchComments(postId) {
       };
     });
     dispatch(forumSlice.actions.saveCommmentsToStore(comments.reverse()));
+    await fetchUsersFromCollection(comments, dispatch);
   };
 }
 

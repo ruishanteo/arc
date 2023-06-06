@@ -32,9 +32,6 @@ export function NewComment({ postId, posterId, onUpdate }) {
             posterId: posterId,
             text: comment,
             author: {
-              username: user.displayName,
-              email: user.email,
-              profilePic: user.photoURL,
               userId: user.uid,
             },
           })

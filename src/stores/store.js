@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { notificationsReducer } from "../Notifications";
 import { forumReducer } from "../Forum/ForumStore";
+import { notificationsReducer } from "../Notifications";
+import { userReducer } from "../UserAuth/UserStore";
 
 export const store = configureStore({
   reducer: {
-    notifications: notificationsReducer,
     forum: forumReducer,
+    notifications: notificationsReducer,
+    users: userReducer,
   },
 });

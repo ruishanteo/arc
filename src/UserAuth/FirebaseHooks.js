@@ -13,7 +13,16 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import { doc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  deleteDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import moment from "moment";
 
@@ -45,6 +54,21 @@ const convertTimeFromData = (data) => {
 const useSignInWithGoogle = async () => {
   return await handleApiCall(
     signInWithPopup(auth, googleProvider).then(async (res) => {
+      const q = query(
+        collection(db, "users"),
+        where("uid", "==", res.user.uid)
+      );
+      const docs = await getDocs(q);
+      if (docs.docs.length === 0) {
+        await setDoc(doc(db, "users", res.user.uid), {
+          uid: res.user.uid,
+          name: res.user.displayName,
+          authProvider: "google",
+          email: res.user.email,
+          photoURL: res.user.photoURL,
+        });
+      }
+
       store.dispatch(
         addNotification({
           message: "You have successfully logged in.",
@@ -74,6 +98,13 @@ const registerWithEmailAndPassword = async (name, email, password) => {
         createUserWithEmailAndPassword(auth, email, password).then(
           async (response) => {
             await updateProfile(response.user, { displayName: name });
+            await setDoc(doc(db, "users", response.user.uid), {
+              uid: response.user.uid,
+              name,
+              authProvider: "local",
+              email,
+              photoURL: "/static/images/avatar/2.jpg",
+            });
             store.dispatch(
               addNotification({
                 message: "You have successfully registered your account!",
@@ -137,14 +168,20 @@ function updatedParticulars() {
 
 async function updateUserDisplayName(user, newDisplayName) {
   await handleApiCall(
-    updateProfile(user, { displayName: newDisplayName }).then(
-      updatedParticulars
-    )
+    updateProfile(user, { displayName: newDisplayName }).then(async () => {
+      updatedParticulars();
+      await updateDoc(doc(db, "users", user.uid), { name: newDisplayName });
+    })
   );
 }
 
 async function updateUserEmail(user, newEmail) {
-  await handleApiCall(updateEmail(user, newEmail).then(updatedParticulars));
+  await handleApiCall(
+    updateEmail(user, newEmail).then(async () => {
+      updatedParticulars();
+      await updateDoc(doc(db, "users", user.uid), { email: newEmail });
+    })
+  );
 }
 
 async function updateUserPassword(user, newPassword) {
@@ -156,7 +193,12 @@ async function updateUserProfilePicture(user, newProfilePicture) {
   await handleApiCall(uploadBytes(fileRef, newProfilePicture));
   const photoURL = await getDownloadURL(fileRef);
   await handleApiCall(updateProfile(user, { photoURL: photoURL })).then(
-    updatedParticulars
+    async () => {
+      updatedParticulars();
+      await updateDoc(doc(db, "users", user.uid), {
+        photoURL: photoURL,
+      });
+    }
   );
 }
 
@@ -167,12 +209,13 @@ async function onReAuth(user, password) {
 
 const deleteContent = async (key) => {
   await handleApiCall(deleteDoc(doc(db, "assessments", key)));
+  await handleApiCall(deleteDoc(doc(db, "users", key)));
 };
 
 function onDeleteUser(currentUser) {
-  deleteContent(currentUser.email);
-  setTimeout(() => {
-    return deleteUser(currentUser).then(() =>
+  deleteContent(currentUser.uid);
+  setTimeout(async () => {
+    await handleApiCall(deleteUser(currentUser)).then(() =>
       store.dispatch(
         addNotification({
           message: "Your account has been successfully deleted.",
