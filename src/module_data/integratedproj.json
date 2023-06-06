@@ -1,0 +1,44 @@
+{
+    "Architecture" : {
+        "title" :"AR3102"
+    },
+    "Biomedical Engineering" : {
+        "title" :"8MC of: BN4101 / XFE4401 / EG4301 / EG4301A"
+    },
+    "Chemical Engineering" : {
+        "title" :"Sorry unfortunately this information is unavailable"
+    },
+    "Civil Engineering" : {
+        "title" :"8MC of: CE4103R / CE4104 / XFE4401 / EG4301 / EG4301A"
+    },
+    "Computer Engineering" : {
+        "title" :"CG4002"
+    },
+    "Electrical Engineering" : {
+        "title" :"EE4002D / EE4002R"
+    },
+    "Engineering Science" : {
+        "title" :"8MC of: ESP4901 / XFE4401 / EG4301 / EG4301A"
+    },
+    "Environmental Engineering" : {
+        "title" :"8MC of: ESE4502R / ESE4501R / XFE4401 / EG4301 / EG4301A"
+    },
+    "Industrial Design" : {
+        "title" :"ID3109 & ID3110"
+    },
+    "Industrial & Systems Engineering" : {
+        "title" :"IE3100R"
+    },
+    "Infrastructure & Project Management" : {
+        "title" :"PF4101 / IPM4101"
+    },
+    "Landscape Architecture" : {
+        "title" :"ISD5101"
+    },
+    "Materials Science & Engineering" : {
+        "title" :"8MC of: MLE4101B / MLE4102A / XFE4401 / EG4301"
+    },
+    "Mechanical Engineering" : {
+        "title" :"ME4101A / ME4101B / EG4301"
+    }
+}

@@ -347,63 +347,8 @@ export function ModuleChecker() {
     return arr;
   }
 
-  function parseString(str) {
-    const values = [];
-    let currentGroup = [];
-    let currentToken = "";
-  
-    for (let i = 0; i < str.length; i++) {
-      const char = str[i];
-      if (char === " ") {
-        continue;
-      } else if (char === "(") {
-        currentGroup.push(parseString(str.slice(i + 1)));
-        let closingIndex = findClosingParenthesisIndex(str.slice(i + 1));
-        i += closingIndex + 1;
-      } else if (char === "+" || char === "/") {
-        if (currentToken !== "") {
-          currentGroup.push(currentToken);
-          currentToken = "";
-        }
-        if (currentGroup.length > 0) {
-          values.push(currentGroup);
-          currentGroup = [];
-        }
-      } else if (char === ")") {
-        break;
-      } else {
-        currentToken += char;
-      }
-    }
-  
-    if (currentToken !== "") {
-      currentGroup.push(currentToken);
-    }
-    if (currentGroup.length > 0) {
-      values.push(currentGroup);
-    }
-  
-    return values;
-  }
-  
-  function findClosingParenthesisIndex(str) {
-    let count = 1;
-    for (let i = 0; i < str.length; i++) {
-      if (str[i] === "(") {
-        count++;
-      } else if (str[i] === ")") {
-        count--;
-        if (count === 0) {
-          return i;
-        }
-      }
-    }
-    return -1;
-  }
-
   function checkValues(arr, list) {
     if (Array.isArray(arr)) {
-      // Check if all values in the array are present
       return arr.some(value => {
         return checkValues(value, list)});
     } else {
@@ -412,27 +357,17 @@ export function ModuleChecker() {
     }
   }
 
-  function checkPresent(title) {
+  function checkPresent(titleArr) {
     const color = "#cff8df";
     const arr = modTitles;
-    if (title.includes("/")) {
-      const modsArr = parseString(title);
-      if (checkValues(modsArr, arr)) {
-        return color;
-      } else {
-        return "#FFFFFF";
-      }
+    if (checkValues(titleArr, arr)) {
+      return color;
     } else {
-      if (arr.includes(title)) {
-        return color;
-      } else {
-        return "#FFFFFF";
-      }
+      return "#FFFFFF";
     }
   }
 
   function cdid_check(arr, data) {
-    const arr1 = arr;
     let idCount = 0;
     let cdCount = 0;
 
@@ -456,6 +391,19 @@ export function ModuleChecker() {
     } else {
       return false;
     }
+  }
+
+  function checkcsbreadth(modules) {
+    let data = require('../module_data/csbreadth.json');
+
+    for (const list of Object.values(data)) {
+      const count = modules.filter(module => list.filetr(listModule => listModule.moduleCode === module)).length;
+      if (count >= 3) {
+        return true;
+      }
+    }
+    
+    return false;
   }
 
   function checkPresentCommonMod(inputString) {
@@ -545,7 +493,6 @@ export function ModuleChecker() {
 
   function getSemester(semIndex) {
     const num = semesters[semIndex]?.count % 2;
-    console.log(semesters[semIndex]);
     return (num);
   }
 

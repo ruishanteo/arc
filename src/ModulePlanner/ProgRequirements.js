@@ -19,7 +19,7 @@ export function ProgRequirements({
                   color: "black",
                   fontSize: "1.0rem",
               }}>
-                  {module.moduleCode}
+                  {module.title}
               </TableCell>
               </TableRow>
             )

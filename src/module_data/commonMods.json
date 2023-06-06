@@ -4,9 +4,24 @@
     { "title": "Interdisciplinary & Cross-Disciplinary Education", "code":"cdid"}
 ],
 "CHS" : [
-
+    { "title": "CS2109S / HS1501 / HS1502 / IT1244", "code":"chsai"},
+    { "title": "DTK1234", "code":"dtk"},
+    { "title": "SP1541 / SP2271 / FAS1101", "code":"writing"},
+    { "title": "HSA1000", "code":"astd"},
+    { "title": "HSH1000", "code":"astd"},
+    { "title": "HSI1000 / SP2274", "code":"astd"},
+    { "title": "HSI20XX / SP3275", "code":"astd"},
+    { "title": "HS29XX", "code":"astd"},
+    { "title": "HS29XX", "code":"astd"}
 ],
 "CDE" : [
-
+    { "title": "DTK1234", "code":"dtk"},
+    { "title": "EG1311", "code":"writing"},
+    { "title": "IE2141", "code":"astd"},
+    { "title": "EE2211", "code":"astd"},
+    { "title": "EG2501", "code":"astd"},
+    { "title": "CDE2000", "code":"astd"},
+    { "title": "PF1101", "code":"astd"},
+    { "title": "Integrated Project", "code":"integratedproj"}
 ]
 }
