@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Autocomplete, Button, TableCell, TableRow, TextField } from "@mui/material";
+import { Autocomplete, Button, TableCell, TextField } from "@mui/material";
 
 
 export function ModuleComponent({
@@ -10,7 +10,7 @@ export function ModuleComponent({
   getSemester,
 }) { 
   const [selectedModule, setSelectedModule] = useState(null);
-  const sem = getSemester(index);
+  let sem = getSemester(index);
   useEffect(() => {
     setSelectedModule(sem)
   }, [selectedModule]);
@@ -25,7 +25,6 @@ export function ModuleComponent({
 
   const selector = () => {
     if (selectedModule === 0) {
-      console.log("sem1");
       return (
         <Autocomplete
         disablePortal
@@ -45,7 +44,6 @@ export function ModuleComponent({
           }}}
         />)
     } else {
-      console.log("sem2");
       return (
         <Autocomplete
         disablePortal

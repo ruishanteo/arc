@@ -1,0 +1,77 @@
+{
+    "Algorithms & Theory": [
+  { "moduleCode": "CS3230"},
+  { "moduleCode": "CS3231"},
+  { "moduleCode": "CS3236"},
+  { "moduleCode": "CS4231"},
+  { "moduleCode": "CS4232"},
+  { "moduleCode": "CS4234"}
+],
+"Artificial Intelligence": [
+  { "moduleCode": "CS2109S"},
+  { "moduleCode": "CS3243"},
+  { "moduleCode": "CS3244"},
+  { "moduleCode": "CS3263"},
+  { "moduleCode": "CS3264"},
+  { "moduleCode": "CS4243"},
+  { "moduleCode": "CS4244"},
+  { "moduleCode": "CS4246"},
+  { "moduleCode": "CS4248"}
+],
+"Computer Graphics and Games": [
+  { "moduleCode": "CS3241"},
+  { "moduleCode": "CS3242"},
+  { "moduleCode": "CS3247"},
+  { "moduleCode": "CS4247"},
+  { "moduleCode": "CS4350"}
+],
+"Computer Security": [
+  { "moduleCode": "CS2107"},
+  { "moduleCode": "CS3235"},
+  { "moduleCode": "CS4236"},
+  { "moduleCode": "CS4230"},
+  { "moduleCode": "CS4238"},
+  { "moduleCode": "CS4239"}
+],
+"Database Systems": [
+  { "moduleCode": "CS2102"},
+  { "moduleCode": "CS3223"},
+  { "moduleCode": "CS4221"},
+  { "moduleCode": "CS4224"},
+  { "moduleCode": "CS4225"}
+],
+"Multimedia Information Retrieval": [
+  { "moduleCode": "CS2108"},
+  { "moduleCode": "CS3245"},
+  { "moduleCode": "CS4242"},
+  { "moduleCode": "CS4248"},
+  { "moduleCode": "CS4347"}
+],
+"Networking and Distributed Systems": [
+  { "moduleCode": "CS2105"},
+  { "moduleCode": "CS3103"},
+  { "moduleCode": "CS4222"},
+  { "moduleCode": "CS4226"},
+  { "moduleCode": "CS4231"}
+],
+"Parallel Computing": [
+  { "moduleCode": "CS3210"},
+  { "moduleCode": "CS3211"},
+  { "moduleCode": "CS4231"},
+  { "moduleCode": "CS4223"}
+],
+"Programming Languages": [
+  { "moduleCode": "CS2104"},
+  { "moduleCode": "CS3211"},
+  { "moduleCode": "CS4212"},
+  { "moduleCode": "CS4215"}
+],
+"Software Engineering": [
+  { "moduleCode": "CS2103T"},
+  { "moduleCode": "CS3213"},
+  { "moduleCode": "CS3219"},
+  { "moduleCode": "CS4211"},
+  { "moduleCode": "CS4218"},
+  { "moduleCode": "CS4239"}
+]
+}
