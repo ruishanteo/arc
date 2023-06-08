@@ -48,5 +48,7 @@
     { "title": "Infrastructure & Project Management", "faculty": "CDE"},
     { "title": "Landscape Architecture", "faculty": "CDE"},
     { "title": "Materials Science & Engineering", "faculty": "CDE"},
-    { "title": "Mechanical Engineering", "faculty": "CDE"}
+    { "title": "Mechanical Engineering", "faculty": "CDE"},
+    { "title": "Business Administration", "faculty": "BIZ"},
+    { "title": "Business Administration (Accountancy)", "faculty": "BIZ"}
 ]
