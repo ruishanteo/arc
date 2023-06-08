@@ -1,23 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-  updateDoc,
-  where,
-  Timestamp,
-} from "firebase/firestore";
-
-import { addNotification } from "../Notifications";
+import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 
 import { db } from "../UserAuth/Firebase";
-import { handleApiCall, convertTimeFromData } from "../UserAuth/FirebaseHooks";
+import { handleApiCall } from "../UserAuth/FirebaseHooks";
 
 const userSlice = createSlice({
   name: "users",

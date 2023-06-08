@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { deleteComment, editComment } from "./ForumStore";
 
-import { db } from "../UserAuth/Firebase";
 import { useAuth } from "../UserAuth/FirebaseHooks";
 
 import {
@@ -27,7 +26,6 @@ import {
   Done,
   ModeEditOutline,
 } from "@mui/icons-material";
-import { doc, getDoc } from "@firebase/firestore";
 
 function DeleteCommentDialog({ open, setOpen, confirmAction }) {
   return (

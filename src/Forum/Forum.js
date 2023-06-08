@@ -40,8 +40,6 @@ export function Forum() {
     onUpdate();
   }, [user, onUpdate]);
 
-  let index = 1;
-
   return (
     <Container maxWidth="lg">
       <Box align="center">

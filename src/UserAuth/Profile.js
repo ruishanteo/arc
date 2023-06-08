@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
 import * as Yup from "yup";
 
 import {
@@ -64,11 +63,14 @@ function ConfirmPasswordDialog({
     <Dialog open={dialogOpen} onClose={handleClose} justifycontent="center">
       <DialogTitle>{"Please enter your password to confirm."}</DialogTitle>
       <DialogContent>
-        <TextField
-          label="Password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <form>
+          <TextField
+            label="Password"
+            type="password"
+            autoComplete="on"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </form>
       </DialogContent>
       <DialogActions>
         <Button
@@ -133,6 +135,7 @@ function ParticularField({
                       <FormTextField
                         label={userProp}
                         type={userPropType}
+                        autoComplete="on"
                         formikProps={formikProps}
                         inputProps={userPropInputProps}
                       />
@@ -241,7 +244,6 @@ function DeleteAccount({ user, handleUpdate }) {
 
 export function Profile() {
   const user = useAuth();
-  const navigate = useNavigate();
   const [photo, setPhoto] = useState(null);
   const [photoURL, setPhotoURL] = useState();
   const [username, setUsername] = useState();
@@ -253,17 +255,17 @@ export function Profile() {
     }
   }
 
-  function updateState() {
+  const updateState = useCallback(() => {
     setUsername(user.displayName);
     setEmail(user.email);
     setPhotoURL(user.photoURL);
-  }
+  }, [user]);
 
   useEffect(() => {
     if (user) {
       updateState();
     }
-  }, [user]);
+  }, [user, updateState]);
 
   if (!user) {
     return <></>;

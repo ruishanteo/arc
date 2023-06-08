@@ -6,7 +6,7 @@ import {
   signInWithGoogle,
 } from "./FirebaseHooks.js";
 
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { Looks } from "@mui/icons-material";
 
