@@ -1879,7 +1879,7 @@
     {
         "title": "LSM4288 variant (e.g., LSM4288M, LSM4288C, LSM4288E, LSM4288X; 8 Units), or LSM3288 (4 Units)",
         "moduleCode": [
-            "LSM4288 variant (e.g., LSM4288M, LSM4288C, LSM4288E, LSM4288X; 8 Units), or LSM3288 (4 Units"
+            "LSM4288 variant (e.g., LSM4288M, LSM4288C, LSM4288E, LSM4288X; 8 Units), or LSM3288 (4 Units)"
         ]
     },
     {
@@ -2031,9 +2031,10 @@
         ]
     },
     {
-        "title": "Elective Courses (8 units) PHS4201 / PR4204 / PR4207 / PHS4288 / PHS4991",
+        "title": "Elective Courses (8 MCs): PHS4201 / PR4204 / PR4207 / PHS4288 / PHS4991",
         "moduleCode": [
-            "PHS4201", "PR4204", "PR4207", "PHS4288", "PHS4991"
+            ["PHS4201", "PR4204"], ["PHS4201", "PR4207"], ["PHS4201", "PHS4288"], ["PHS4201", "PHS4991"], ["PR4204", "PR4207"], 
+            ["PR4204", "PHS4288"], ["PR4204", "PHS4991"], ["PR4207", "PHS4288"], ["PR4207", "PHS4991"], ["PHS4288", "PHS4991"]
         ]
     },
     {
@@ -2169,7 +2170,7 @@
     {
         "title": "4 from the following: QF4102 / QF4103 / QF4104 / (QF4211 / DSE4211 / QF4212 / DSE4212)",
         "moduleCode": [
-            "4 from the following: QF4102", "QF4103", "QF4104", ["QF4211", "DSE4211", "QF4212", "DSE4212"]
+            ["QF4102", "QF4103", "QF4104", "QF4211"], ["QF4102", "QF4103", "QF4104", "DSE4211"], ["QF4102", "QF4103", "QF4104", "QF4212"],  ["QF4102", "QF4103", "QF4104", "DSE4212"]
         ]
     }
 ],
@@ -3596,6 +3597,322 @@
         "title": "Technical Electives",
         "moduleCode": [
             "Technical Electives"
+        ]
+    }
+],
+"Business Administration": [
+    {
+        "title": "BPM1701",
+        "moduleCode": [
+            "BPM1701"
+        ]
+    },
+    {
+        "title": "BPM1702",
+        "moduleCode": [
+            "BPM1702"
+        ]
+    },
+    {
+        "title": "BPM1705",
+        "moduleCode": [
+            "BPM1705"
+        ]
+    },
+    {
+        "title": "STR1000",
+        "moduleCode": [
+            "STR1000"
+        ]
+    },
+    {
+        "title": "STR2000",
+        "moduleCode": [
+            "STR2000"
+        ]
+    },
+    {
+        "title": "Global Immersion and Study",
+        "moduleCode": [
+            "Global Immersion and Study"
+        ]
+    },
+    {
+        "title": "DAO1704",
+        "moduleCode": [
+            "DAO1704"
+        ]
+    },
+    {
+        "title": "DAO2702",
+        "moduleCode": [
+            "DAO2702"
+        ]
+    },
+    {
+        "title": "BSP1703",
+        "moduleCode": [
+            "BSP1703"
+        ]
+    },
+    {
+        "title": "BSP2701",
+        "moduleCode": [
+            "BSP2701"
+        ]
+    },
+    {
+        "title": "ACC1701",
+        "moduleCode": [
+            "ACC1701"
+        ]
+    },
+    {
+        "title": "BSP1702",
+        "moduleCode": [
+            "BSP1702"
+        ]
+    },
+    {
+        "title": "MKT1705",
+        "moduleCode": [
+            "MKT1705"
+        ]
+    },
+    {
+        "title": "MNO1706",
+        "moduleCode": [
+            "MNO1706"
+        ]
+    },
+    {
+        "title": "FIN2704",
+        "moduleCode": [
+            "FIN2704"
+        ]
+    },
+    {
+        "title": "DAO2703",
+        "moduleCode": [
+            "DAO2703"
+        ]
+    },
+    {
+        "title": "MNO2705",
+        "moduleCode": [
+            "MNO2705"
+        ]
+    },
+    {
+        "title": "BSP3701",
+        "moduleCode": [
+            "BSP3701"
+        ]
+    },
+    {
+        "title": "ES2002",
+        "moduleCode": [
+            "ES2002"
+        ]
+    },
+    {
+        "title": "Specialisation",
+        "moduleCode": [
+            "Specialisation"
+        ]
+    },
+    {
+        "title": "Honours Programme",
+        "moduleCode": [
+            "Honours Programme"
+        ]
+    }
+],
+"Business Administration (Accountancy)": [
+    {
+        "title": "BPM1701",
+        "moduleCode": [
+            "BPM1701"
+        ]
+    },
+    {
+        "title": "BPM1702",
+        "moduleCode": [
+            "BPM1702"
+        ]
+    },
+    {
+        "title": "BPM1705",
+        "moduleCode": [
+            "BPM1705"
+        ]
+    },
+    {
+        "title": "STR1000",
+        "moduleCode": [
+            "STR1000"
+        ]
+    },
+    {
+        "title": "STR2000",
+        "moduleCode": [
+            "STR2000"
+        ]
+    },
+    {
+        "title": "Global Immersion and Study",
+        "moduleCode": [
+            "Global Immersion and Study"
+        ]
+    },
+    {
+        "title": "DAO1704",
+        "moduleCode": [
+            "DAO1704"
+        ]
+    },
+    {
+        "title": "DAO2702",
+        "moduleCode": [
+            "DAO2702"
+        ]
+    },
+    {
+        "title": "BSP1703",
+        "moduleCode": [
+            "BSP1703"
+        ]
+    },
+    {
+        "title": "BSP2701",
+        "moduleCode": [
+            "BSP2701"
+        ]
+    },
+    {
+        "title": "ACC1701",
+        "moduleCode": [
+            "ACC1701"
+        ]
+    },
+    {
+        "title": "BSP1702",
+        "moduleCode": [
+            "BSP1702"
+        ]
+    },
+    {
+        "title": "MKT1705",
+        "moduleCode": [
+            "MKT1705"
+        ]
+    },
+    {
+        "title": "MNO1706",
+        "moduleCode": [
+            "MNO1706"
+        ]
+    },
+    {
+        "title": "FIN2704",
+        "moduleCode": [
+            "FIN2704"
+        ]
+    },
+    {
+        "title": "DAO2703",
+        "moduleCode": [
+            "DAO2703"
+        ]
+    },
+    {
+        "title": "MNO2706",
+        "moduleCode": [
+            "MNO2706"
+        ]
+    },
+    {
+        "title": "ACC2706",
+        "moduleCode": [
+            "ACC2706"
+        ]
+    },
+    {
+        "title": "ACC2707",
+        "moduleCode": [
+            "ACC2707"
+        ]
+    },
+    {
+        "title": "ACC2708",
+        "moduleCode": [
+            "ACC2708"
+        ]
+    },
+    {
+        "title": "ACC2709",
+        "moduleCode": [
+            "ACC2709"
+        ]
+    },
+    {
+        "title": "ACC3701",
+        "moduleCode": [
+            "ACC3701"
+        ]
+    },
+    {
+        "title": "ACC1701",
+        "moduleCode": [
+            "ACC1701"
+        ]
+    },
+    {
+        "title": "ACC3702",
+        "moduleCode": [
+            "ACC3702"
+        ]
+    },
+    {
+        "title": "ACC3703",
+        "moduleCode": [
+            "ACC3703"
+        ]
+    },
+    {
+        "title": "ACC3704",
+        "moduleCode": [
+            "ACC3704"
+        ]
+    },
+    {
+        "title": "ACC3705",
+        "moduleCode": [
+            "ACC3705"
+        ]
+    },
+    {
+        "title": "ACC3706",
+        "moduleCode": [
+            "ACC3706"
+        ]
+    },
+    {
+        "title": "ACC3707",
+        "moduleCode": [
+            "ACC3707"
+        ]
+    },
+    {
+        "title": "Internship",
+        "moduleCode": [
+            "Internship"
+        ]
+    },
+    {
+        "title": "Honours Programme",
+        "moduleCode": [
+            "Honours Programme"
         ]
     }
 ]
