@@ -27,17 +27,17 @@ export function Register() {
   };
 
   return (
-    <div className="register" align="center">
+    <Box align="center">
       <Box
-        align="center"
         sx={{
           marginTop: 8,
           display: "flex",
+          flexGrowth: 1,
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "#e0fbff",
-          width: 500,
-          height: 100,
+          width: { xs: 400, md: 500 },
+          height: "13vh",
         }}
       >
         <Looks
@@ -47,11 +47,11 @@ export function Register() {
           }}
         />
         <Typography
-          variant="h6"
+          variant="h1"
           sx={{
+            mt: 2,
             fontFamily: "monospace",
             fontWeight: 700,
-            fontSize: 50,
             letterSpacing: ".3rem",
             color: "inherit",
           }}
@@ -65,9 +65,8 @@ export function Register() {
           marginTop: 2,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           backgroundColor: "#fcebf8",
-          width: 500,
+          width: { xs: 400, md: 500 },
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: 450 }}>
@@ -75,34 +74,35 @@ export function Register() {
         </Typography>
 
         <Box
-          component="form"
-          sx={{ display: "flex", flexDirection: "column", mt: 1 }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            mt: 1,
+          }}
         >
           <TextField
             variant="filled"
             type="text"
-            className="register__textBox"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Name"
-            sx={{ mt: 1, width: 400 }}
+            sx={{ mt: 1 }}
+            inputProps={{ maxLength: 20 }}
+          />
+
+          <TextField
+            variant="filled"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail Address"
+            sx={{ mt: 1 }}
             inputProps={{ maxLength: 50 }}
           />
 
           <TextField
             variant="filled"
-            type="text"
-            className="register__textBox"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail Address"
-            sx={{ mt: 1 }}
-          />
-
-          <TextField
-            variant="filled"
             type="password"
-            className="register__textBox"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
@@ -111,7 +111,6 @@ export function Register() {
 
           <LoadingButton
             align="center"
-            className="register__btn"
             onClick={register}
             sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
             variant="contained"
@@ -122,7 +121,6 @@ export function Register() {
 
           <LoadingButton
             align="center"
-            className="register__btn register__google"
             onClick={signInWithGoogle}
             sx={{ mt: 2, mb: 3, backgroundColor: "#b7b0f5", color: "black" }}
             variant="contained"
@@ -131,15 +129,13 @@ export function Register() {
             Register with Google
           </LoadingButton>
 
-          <Grid container alignItems="center">
-            <Grid item container direction="column" xs={12}>
-              <Typography textAlign="center">
-                Already have an account? <Link to="/Login">Login</Link> now.
-              </Typography>
-            </Grid>
-          </Grid>
+          <Box>
+            <Typography textAlign="center">
+              Already have an account? <Link to="/Login">Login</Link> now.
+            </Typography>
+          </Box>
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 }

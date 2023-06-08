@@ -26,7 +26,7 @@ export function Login() {
   }, [user, loading, navigate]);
 
   return (
-    <div className="login" align="center">
+    <Box align="center">
       <Box
         align="center"
         sx={{
@@ -35,8 +35,8 @@ export function Login() {
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "#e0fbff",
-          width: 500,
-          height: 100,
+          width: { xs: 400, md: 500 },
+          height: "13vh",
         }}
       >
         <LooksIcon
@@ -46,11 +46,11 @@ export function Login() {
           }}
         />
         <Typography
-          variant="h6"
+          variant="h1"
           sx={{
+            mt: 2,
             fontFamily: "monospace",
             fontWeight: 700,
-            fontSize: 50,
             letterSpacing: ".3rem",
             color: "inherit",
           }}
@@ -66,21 +66,17 @@ export function Login() {
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "#fcebf8",
-          width: 500,
+          width: { xs: 400, md: 500 },
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: 450 }}>
           Login
         </Typography>
 
-        <Box
-          component="form"
-          sx={{ display: "flex", flexDirection: "column", mt: 1 }}
-        >
+        <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
           <TextField
             variant="filled"
             type="text"
-            className="login__textBox"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail Address"
@@ -90,7 +86,6 @@ export function Login() {
           <TextField
             variant="filled"
             type="password"
-            className="login__textBox"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
@@ -98,7 +93,6 @@ export function Login() {
           />
 
           <Button
-            className="login__btn"
             onClick={() => logInWithEmailAndPassword(email, password)}
             sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
             variant="contained"
@@ -130,6 +124,6 @@ export function Login() {
           </Grid>
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 }

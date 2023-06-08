@@ -28,8 +28,8 @@ export function Reset() {
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "#e0fbff",
-          width: 500,
-          height: 100,
+          width: { xs: 400, md: 500 },
+          height: "13vh",
         }}
       >
         <LooksIcon
@@ -39,11 +39,11 @@ export function Reset() {
           }}
         />
         <Typography
-          variant="h6"
+          variant="h1"
           sx={{
+            mt: 2,
             fontFamily: "monospace",
             fontWeight: 700,
-            fontSize: 50,
             letterSpacing: ".3rem",
             color: "inherit",
           }}
@@ -59,7 +59,7 @@ export function Reset() {
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "#fcebf8",
-          width: 500,
+          width: { xs: 400, md: 500 },
         }}
       >
         <Typography variant="h4" sx={{ fontWeight: 450 }}>
