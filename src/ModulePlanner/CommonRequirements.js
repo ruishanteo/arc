@@ -17,7 +17,7 @@ export function CommonRequirements({
     const prog = getProg();
 
     const tab = () => {
-        if (deg != "") {
+        if (deg !== "") {
         if (prog === "RC4" || prog === "Tembusu" || prog === "CAPT") {
             let specProg = require('../module_data/utcp.json');
           return (
@@ -89,7 +89,7 @@ export function CommonRequirements({
     
                 </TableRow>
             );
-        } else if (deg != "") {
+        } else if (deg !== "") {
         return (
         commonMods[deg].map((module, index) => {
             return (
