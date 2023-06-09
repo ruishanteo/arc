@@ -73,6 +73,7 @@ progs.forEach((prog, index) => {
 });
 
 const MIN = 0;
+const color = "#cff8df";
 
 export function ModuleChecker() {
   const [semesters, setSemesters] = useState([]);
@@ -84,10 +85,12 @@ export function ModuleChecker() {
   const [deg3, setDeg3] = useState(progs[0]);
   const [modTitles, setModTitles] = useState([]);
   const [progress, setProgress] = useState(0);
+
   const [open, setOpen] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isActionLoading, setIsActionLoading] = useState(false);
   const [isFetchingData, setIsFetchingData] = useState(true);
+
   const user = useAuth();
   const dispatch = useDispatch();
   const isNarrowScreen = useMediaQuery('(max-width: 960px)');
@@ -140,6 +143,23 @@ export function ModuleChecker() {
       );
       setHasUnsavedChanges(true);}
     ).finally(() => setIsActionLoading(false));
+  };
+
+  const handleClear = async () => {
+    setIsActionLoading(true);
+    await deleteContentPlanner(user.uid);
+    setIsActionLoading(false);
+    setOpen(false);
+    
+    store.dispatch(
+      addNotification({
+        message: "Deleted successfully!",
+        variant: "success",
+      })
+    );
+    setTimeout(() => {
+      window.location.reload();
+    }, 2500);
   };
 
   const getAll = useCallback(async () => {
@@ -198,18 +218,7 @@ export function ModuleChecker() {
 
   useEffect(() => {
     if (user) getAll();
-    /*
-    const handleBeforeUnload = (event) => {
-      if (hasUnsavedChanges) {
-        event.preventDefault();
-        event.returnValue = '';
-      }
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-    */
+
     const handleBeforeUnload = (event) => {
       if (hasUnsavedChanges) {
         event.preventDefault();
@@ -259,16 +268,6 @@ export function ModuleChecker() {
     return "";
   }
 
-  /*
-  function updateHeader() {
-    const c = count;
-    console.log(c);
-    const year = c % 2 === 1 ? Math.floor(c + 1 / 2) : (c / 2);
-    const sem = c % 2 === 1 ? 1 : 2
-    setHeader(`Y${year}S${sem}`);
-  }
-  */
-
   function addSemester() {
     setCount(count + 1);
     const c = count + 1;
@@ -305,8 +304,8 @@ export function ModuleChecker() {
   }
 
   function getModuleId(semIndex, moduleIndex) {
-    const value =
-    semesters[semIndex].modules[moduleIndex].modInfo?.["id"];
+    const value = semesters[semIndex].
+    modules[moduleIndex].modInfo?.["id"];
     return value;
   }
 
@@ -356,14 +355,13 @@ export function ModuleChecker() {
   }
 
   function checkPresent(titleArr) {
-    const color = "#cff8df";
     const arr = modTitles;
     if (checkValues(titleArr, arr)) {
       return color;
     } else {
       return "#FFFFFF";
     }
-  }
+}
 
   function cdid_check(arr, data) {
     let idCount = 0;
@@ -395,7 +393,7 @@ export function ModuleChecker() {
     let data = require('../module_data/csbreadth.json');
 
     for (const list of Object.values(data)) {
-      const count = modules.filter(module => list.filetr(listModule => listModule.moduleCode === module)).length;
+      const count = modules.filter(module => list.filter(listModule => listModule.moduleCode === module)).length;
       if (count >= 3) {
         return true;
       }
@@ -405,7 +403,6 @@ export function ModuleChecker() {
   }
 
   function checkPresentCommonMod(inputString) {
-    const color = "#cff8df";
     let commonMod = require('../module_data/' + inputString + '.json');
     const arr = modTitles;
     if (inputString === "cdid") {
@@ -425,7 +422,6 @@ export function ModuleChecker() {
   }
 
   function checkPresentCommonModRC(inputString) {
-    const color = "#cff8df";
     const program = getProg().toLowerCase();
     let commonMod;
     if (inputString === "gei") {
@@ -474,22 +470,6 @@ export function ModuleChecker() {
     }
     setProgress((mc/160)*100);
   }
-
-  const handleClear = async () => {
-    setIsActionLoading(true);
-    await deleteContentPlanner(user.uid);
-    setIsActionLoading(false);
-    
-    store.dispatch(
-      addNotification({
-        message: "Deleted successfully!",
-        variant: "success",
-      })
-    );
-    setTimeout(() => {
-      window.location.reload();
-    }, 2500);
-  };
 
   function getSemester(semIndex) {
     const num = semesters[semIndex]?.count % 2;
@@ -578,6 +558,7 @@ export function ModuleChecker() {
             options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
+            isOptionEqualToValue={(option, value) => option.title === value.title}
             sx={{ width: isNarrowScreen ? '100%' : 300 }}
             value={deg1 || null}         
             onChange={(_, value) => {

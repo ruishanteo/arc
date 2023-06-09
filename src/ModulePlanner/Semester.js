@@ -57,7 +57,7 @@ export function Semester({
           </TableHead>
 
           <TableBody>
-            {arr.map((element, moduleIndex) => {
+            {arr.map((_, moduleIndex) => {
               return (
                 <TableRow key={moduleIndex}>
                   {<ModuleComponent
