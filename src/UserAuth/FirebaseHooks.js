@@ -213,9 +213,8 @@ const deleteContent = async (key) => {
 };
 
 const deleteContentPlanner = async (key) => {
-  await handleApiCall(deleteDoc(doc(db, "programmes", key)));
+  await handleApiCall(deleteDoc(doc(db, "programme", key)));
   await handleApiCall(deleteDoc(doc(db, "semesters", key)));
-  await handleApiCall(deleteDoc(doc(db, "users", key)));
 };
 
 function onDeleteUser(currentUser) {
