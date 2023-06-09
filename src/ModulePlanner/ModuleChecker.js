@@ -1,14 +1,17 @@
 import { useEffect, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { getAuth } from "firebase/auth";
 import { arrayRemove, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 
 import { Semester } from "./Semester";
 import { ProgRequirements } from "./ProgRequirements";
 import { CommonRequirements } from "./CommonRequirements";
 import { UnrestrictedRequirements } from "./UnrestrictedRequirements";
-import { db, deleteContentPlanner } from "../UserAuth/Firebase.js";
+
+import { db } from "../UserAuth/Firebase.js";
+import { deleteContentPlanner, useAuth } from "../UserAuth/FirebaseHooks";
+
+import { LoadingSpinner } from "../Components/LoadingSpinner";
 
 import { store } from "../stores/store";
 import { addNotification } from "../Notifications";
@@ -80,11 +83,12 @@ export function ModuleChecker() {
   const [deg2, setDeg2] = useState(options[0]);
   const [deg3, setDeg3] = useState(progs[0]);
   const [modTitles, setModTitles] = useState([]);
-  const [open, setOpen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [open, setOpen] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  const auth = getAuth();
-  const user = auth.currentUser;
+  const [isActionLoading, setIsActionLoading] = useState(false);
+  const [isFetchingData, setIsFetchingData] = useState(true);
+  const user = useAuth();
   const dispatch = useDispatch();
   const isNarrowScreen = useMediaQuery('(max-width: 960px)');
 
@@ -117,6 +121,7 @@ export function ModuleChecker() {
   const saveAll = async (e) => {
     e.preventDefault();
     setHasUnsavedChanges(false);
+    setIsActionLoading(true);
     await Promise.all([saveProg(), saveSem()])
     .then(() =>
       dispatch(
@@ -134,10 +139,11 @@ export function ModuleChecker() {
         })
       );
       setHasUnsavedChanges(true);}
-    );
+    ).finally(() => setIsActionLoading(false));
   };
 
   const getAll = useCallback(async () => {
+    setIsFetchingData(true);
     const docRef = doc(db, "semesters", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -155,6 +161,7 @@ export function ModuleChecker() {
       setDeg2(options[docSnap2.data().degrees[1]?.['id']]);
       setDeg3(progs[docSnap2.data().degrees[2]?.['id']]);
     }
+    setIsFetchingData(false);
   }, [user]);
 
   const delSem = async (c) => {
@@ -190,7 +197,7 @@ export function ModuleChecker() {
   }
 
   useEffect(() => {
-    getAll();
+    if (user) getAll();
     /*
     const handleBeforeUnload = (event) => {
       if (hasUnsavedChanges) {
@@ -468,9 +475,11 @@ export function ModuleChecker() {
     setProgress((mc/160)*100);
   }
 
-  const handleClear = () => {
-    deleteContentPlanner(user.uid);
-    handleClose();
+  const handleClear = async () => {
+    setIsActionLoading(true);
+    await deleteContentPlanner(user.uid);
+    setIsActionLoading(false);
+    
     store.dispatch(
       addNotification({
         message: "Deleted successfully!",
@@ -489,6 +498,10 @@ export function ModuleChecker() {
 
   if (!user) {
     return;
+  }
+
+  if (isFetchingData) {
+    return <LoadingSpinner />;
   }
  
   return (
