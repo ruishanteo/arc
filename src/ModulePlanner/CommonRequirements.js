@@ -15,9 +15,9 @@ export function CommonRequirements({
     //capt - 1 junior, 2 senior, 1 iec, 1 Digital Literacy or Data Literacy
 
     const prog = getProg();
-    console.log(prog);
 
     const tab = () => {
+        if (deg != "") {
         if (prog === "RC4" || prog === "Tembusu" || prog === "CAPT") {
             let specProg = require('../module_data/utcp.json');
           return (
@@ -67,16 +67,29 @@ export function CommonRequirements({
                     )
                 }))
         }
+      } else {
+        return (
+              <TableRow key = {1}>
+              <TableCell align="center" sx={{
+                  backgroundColor: '#FFFFFF',
+                  color: "black",
+                  fontSize: "1.0rem",
+              }}>
+                {"Please select a degree"}
+              </TableCell>
+              </TableRow>
+          );
       }
+    }
 
     const tab2 = () => {
         if (prog === "NUSC") {
             return (
-                <TableRow key = {1}>
+                <TableRow key = {2}>
     
                 </TableRow>
             );
-        } else if (deg === "SOC") {
+        } else if (deg != "") {
         return (
         commonMods[deg].map((module, index) => {
             return (
@@ -94,14 +107,7 @@ export function CommonRequirements({
       
       } else {
         return (
-              <TableRow key = {1}>
-              <TableCell align="center" sx={{
-                  backgroundColor: '#FFFFFF',
-                  color: "black",
-                  fontSize: "1.0rem",
-              }}>
-                  {"Please select a degree"}
-              </TableCell>
+              <TableRow key = {2}>
               </TableRow>
           );
       }
