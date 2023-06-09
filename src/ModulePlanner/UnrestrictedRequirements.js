@@ -27,15 +27,15 @@ export function UnrestrictedRequirements({
             </TableHead>
 
             <TableBody>
-            {mods.map((module) => {
+            {mods.map((module, index) => {
                 return (
-                <TableRow key={module.id}>
+                <TableRow key={index}>
                 <TableCell align="center" sx={{
-                    backgroundColor: "#FFFFFF",
+                    backgroundColor: "#cff8df",
                     color: "black",
                     fontSize: "1.0rem",
                 }}>
-                    {module.title}
+                    {module.moduleCode}
                 </TableCell>
                 </TableRow>
                 )

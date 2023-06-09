@@ -94,6 +94,7 @@ export function ModuleChecker() {
   const user = useAuth();
   const dispatch = useDispatch();
   const isNarrowScreen = useMediaQuery('(max-width: 960px)');
+  let checkedMods = [];
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -311,7 +312,7 @@ export function ModuleChecker() {
 
   function updateModule(semIndex, moduleIndex, value) {
     if (value != null) {
-      semesters[semIndex].modules[moduleIndex].modInfo = value;
+      semesters[semIndex].modules[moduleIndex].modInfo = { ...value, checked: false };
       setSemesters([...semesters]);
     }
     updateModTitles();
@@ -320,7 +321,8 @@ export function ModuleChecker() {
 
   function newModule(semIndex) {
     semesters[semIndex].modules.push({
-      modInfo:{"moduleCode": "", "moduleCredit": "0", "semester": [getSemester()], "code": "", "id": 0},
+      modInfo:{"moduleCode": "", "moduleCredit": "0", 
+      "semester": [1,2], "code": "", "id": 0, checked: false,},
     });
     setSemesters([...semesters]);
     updateModTitles();
@@ -356,7 +358,11 @@ export function ModuleChecker() {
 
   function checkPresent(titleArr) {
     const arr = modTitles;
-    if (checkValues(titleArr, arr)) {
+    const present = titleArr.find(title => checkValues(title, arr));
+    if (present) {
+      if (!checkedMods.includes(present)){
+        checkedMods.push(present);
+      }
       return color;
     } else {
       return "#FFFFFF";
@@ -437,11 +443,6 @@ export function ModuleChecker() {
       return "#FFFFFF";
     }
   }
-  
-
-  function getUe() {
-    return [{"moduleCode": "To Be Updated", "moduleCredit": "0", "semester": [1], "code": "", "id": 0}];
-  }
 
   function countMc() {
     let mc = 0;
@@ -474,6 +475,14 @@ export function ModuleChecker() {
   function getSemester(semIndex) {
     const num = semesters[semIndex]?.count % 2;
     return (num);
+  }
+
+  function getUe() {
+    return semesters.flatMap(semester =>
+      semester.modules
+        .map(module => module.modInfo)
+        .filter(modInfo => (!checkedMods.includes(modInfo.moduleCode) && modInfo.moduleCode))
+    );
   }
 
   if (!user) {
