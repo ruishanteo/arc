@@ -99,13 +99,10 @@ export function ModuleChecker() {
   const saveProg = async () => {
     await setDoc(doc(db, "semesters", user.uid), {
       semesters: semesters
-      .filter((semester) => !semester.isDeleted)
       .map((semester) => {
         return {
           ...semester,
-          modules: semester.modules.filter(
-            (modules) => !modules.isDeleted
-          ),
+          modules: semester.modules,
         };
       }),
   });
@@ -180,13 +177,10 @@ export function ModuleChecker() {
       const listingRef = doc(db, "semesters", user.uid);
       await setDoc(listingRef, {
         semesters: semesters
-        .filter((semester) => !semester.isDeleted)
         .map((semester) => {
           return {
             ...semester,
-            modules: semester.modules.filter(
-              (modules) => !modules.isDeleted
-            ),
+            modules: semester.modules,
           };
         }),
       });
@@ -280,7 +274,6 @@ export function ModuleChecker() {
       {
         header: head,
         count: count,
-        isDeleted: false,
         modules: [],
       },
     ]);
@@ -322,14 +315,12 @@ export function ModuleChecker() {
   function newModule(semIndex) {
     semesters[semIndex].modules.push({
       modInfo:{"moduleCode": "", "moduleCredit": "0", "semester": [getSemester()], "code": "", "id": 0},
-      isDeleted: false,
     });
     setSemesters([...semesters]);
     updateModTitles();
   }
 
   function deleteModule(semIndex, moduleIndex) {
-    //semesters[semIndex].modules[moduleIndex].isDeleted = true;
     semesters[semIndex].modules.splice(moduleIndex, 1);
     updateModTitles();
     updateProg();
@@ -659,8 +650,7 @@ export function ModuleChecker() {
         {semesters.map((_, semIndex) => {
         return (
           <Grid item xs={12} mdl={12} lg={6} key={semIndex}>
-            {!semesters[semIndex].isDeleted && (
-              <Semester
+            {<Semester
                 key={semIndex}
                 semIndex={semIndex}
                 deleteModule={deleteModule}
@@ -670,8 +660,7 @@ export function ModuleChecker() {
                 newModule={newModule}
                 getHeader={getHeader}
                 getSemester={getSemester}
-              />
-            )}
+              />}
           </Grid>
         );
       })}

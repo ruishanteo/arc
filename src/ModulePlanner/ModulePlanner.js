@@ -1,5 +1,5 @@
 import React from "react";
-import { ModuleChecker } from "./Module\Checker";
+import { ModuleChecker } from "./ModuleChecker";
 
 export function ModulePlanner() {
   return (

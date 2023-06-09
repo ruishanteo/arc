@@ -1,28 +1,33 @@
 {
 "SOC" : [
+    { "title": "GEN", "code":"gen"},
     { "title": "Computer Ethics", "code":"computerethics"},
     { "title": "Interdisciplinary & Cross-Disciplinary Education", "code":"cdid"}
 ],
 "CHS" : [
-    { "title": "CS2109S / HS1501 / HS1502 / IT1244", "code":"chsai"},
-    { "title": "DTK1234", "code":"dtk"},
-    { "title": "SP1541 / SP2271 / FAS1101", "code":"writing"},
-    { "title": "HSA1000", "code":"astd"},
-    { "title": "HSH1000", "code":"astd"},
-    { "title": "HSI1000 / SP2274", "code":"astd"},
-    { "title": "HSI20XX / SP3275", "code":"astd"},
-    { "title": "HS29XX", "code":"astd"},
-    { "title": "HS29XX", "code":"astd"}
+    { "title": "GEN", "code":"gen"},
+    { "title": "CS2109S / HS1501 / HS1502 / IT1244", "code":"cdid"},
+    { "title": "DTK1234", "code":"cdid"},
+    { "title": "SP1541 / SP2271 / FAS1101", "code":"cdid"},
+    { "title": "HSA1000", "code":"cdid"},
+    { "title": "HSH1000", "code":"cdid"},
+    { "title": "HSI1000 / SP2274", "code":"cdid"},
+    { "title": "HSI20XX / SP3275", "code":"cdid"},
+    { "title": "HS29XX", "code":"cdid"},
+    { "title": "HS29XX", "code":"cdid"}
 ],
 "CDE" : [
-    { "title": "DTK1234", "code":"dtk"},
-    { "title": "EG1311", "code":"writing"},
-    { "title": "IE2141", "code":"astd"},
-    { "title": "EE2211", "code":"astd"},
-    { "title": "EG2501", "code":"astd"},
-    { "title": "CDE2000", "code":"astd"},
-    { "title": "PF1101", "code":"astd"},
+    { "title": "GEN", "code":"gen"},
+    { "title": "DTK1234", "code":"cdid"},
+    { "title": "EG1311", "code":"cdid"},
+    { "title": "IE2141", "code":"cdid"},
+    { "title": "EE2211", "code":"cdid"},
+    { "title": "EG2501", "code":"cdid"},
+    { "title": "CDE2000", "code":"cdid"},
+    { "title": "PF1101", "code":"cdid"},
     { "title": "Integrated Project", "code":"integratedproj"}
 ],
-"BIZ" : []
+"BIZ" : [    { "title": "GEN", "code":"gen"}],
+"FOS (exempted from GEN)" : [],
+"others" : []
 }
