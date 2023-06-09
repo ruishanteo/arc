@@ -2,23 +2,19 @@ import React, { useState } from "react";
 import { AssessmentComponent } from "./AssessmentComponent.js";
 
 import {
+  Box,
   Button,
   Grid,
+  Stack,
   styled,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
   TextField,
   Typography,
 } from "@mui/material";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import AddIcon from "@mui/icons-material/Add";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+
+import { Add, ArrowForwardIosSharp, DeleteOutline } from "@mui/icons-material";
 
 const min = 0;
 const max = 100;
@@ -37,7 +33,7 @@ const Accordion = styled((props) => (
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<ArrowForwardIosSharp sx={{ fontSize: "0.9rem" }} />}
     {...props}
   />
 ))(({ theme }) => ({
@@ -112,145 +108,154 @@ export function Assessment({
         </AccordionSummary>
 
         <AccordionDetails>
-          <header align="left">
-            <Button
-              type="button"
-              onClick={() => deleteModule(assessmentIndex)}
-              sx={{ backgroundColor: "#fcf4d4", color: "black" }}
-            >
-              <DeleteOutlineIcon />
-            </Button>
-          </header>
-
-          <header align="center">
-            <TextField
-              inputProps={{ style: { fontSize: 30, textAlign: "center" } }}
-              placeholder="Module Name"
-              onChange={(e) => {
-                setModuleTitle(assessmentIndex, e.target.value);
-              }}
-              value={getModuleTitle(assessmentIndex)}
-              variant="standard"
-            />
-          </header>
-
-          <form>
-            <Button
-              variant="contained"
-              onClick={() => newComponent(assessmentIndex)}
-              startIcon={<AddIcon />}
-              sx={{ mt: 2, mb: 1 }}
-              color="neutral"
-            >
-              Component
-            </Button>
-
-            <Table>
-              <TableHead
-                sx={{
-                  "& th": {
-                    backgroundColor: "#cff8df",
-                    color: "black",
-                    fontSize: "1.2rem",
-                  },
-                }}
+          <Stack align="center">
+            <Box align="left">
+              <Button
+                type="button"
+                onClick={() => deleteModule(assessmentIndex)}
+                sx={{ backgroundColor: "#fcf4d4", color: "black" }}
               >
-                <TableRow>
-                  <TableCell align="center">
-                    {" "}
-                    <Typography> </Typography>{" "}
-                  </TableCell>
-                  <TableCell align="center">
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          lg: 18,
-                          md: 18,
-                          sm: 15,
-                          xs: 11,
-                        },
-                      }}
-                    >
-                      ASSESSMENT
-                    </Typography>{" "}
-                  </TableCell>
-                  <TableCell align="center">
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          lg: 18,
-                          md: 18,
-                          sm: 15,
-                          xs: 11,
-                        },
-                      }}
-                    >
-                      SCORE
-                    </Typography>{" "}
-                  </TableCell>
-                  <TableCell align="center">
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          lg: 18,
-                          md: 18,
-                          sm: 15,
-                          xs: 11,
-                        },
-                      }}
-                    >
-                      TOTAL
-                    </Typography>{" "}
-                  </TableCell>
-                  <TableCell align="center">
-                    {" "}
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          lg: 18,
-                          md: 18,
-                          sm: 15,
-                          xs: 11,
-                        },
-                      }}
-                    >
-                      WEIGHTAGE
-                    </Typography>{" "}
-                  </TableCell>
-                </TableRow>
-              </TableHead>
+                <DeleteOutline />
+              </Button>
+            </Box>
 
-              <TableBody>
-                {arr.map((element, componentIndex) => {
-                  return (
-                    <tr key={componentIndex}>
-                      {!element.isDeleted && (
-                        <AssessmentComponent
-                          index={componentIndex}
-                          getText={(componentIndex, dataKey) =>
-                            getText(assessmentIndex, componentIndex, dataKey)
-                          }
-                          updateText={(componentIndex, dataKey, value) =>
-                            updateText(
-                              assessmentIndex,
-                              componentIndex,
-                              dataKey,
-                              value
-                            )
-                          }
-                          deleteComponent={(componentIndex) =>
-                            deleteComponent(assessmentIndex, componentIndex)
-                          }
-                        />
-                      )}
-                    </tr>
-                  );
-                })}
-              </TableBody>
-            </Table>
+            <Box align="center">
+              <TextField
+                inputProps={{
+                  maxLength: 10,
+                  style: { fontSize: 30, textAlign: "center" },
+                }}
+                placeholder="Module Name"
+                onChange={(e) => {
+                  setModuleTitle(assessmentIndex, e.target.value);
+                }}
+                value={getModuleTitle(assessmentIndex)}
+                variant="standard"
+                sx={{ width: { lg: "30vw", xs: "80vw" } }}
+              />
+            </Box>
+
+            <Box align="left">
+              <Button
+                variant="contained"
+                onClick={() => newComponent(assessmentIndex)}
+                startIcon={<AddIcon />}
+                sx={{ mt: 2, mb: 1 }}
+                color="neutral"
+              >
+                Component
+              </Button>
+            </Box>
+
+            <Grid
+              container
+              direction="row"
+              sx={{
+                alignItems: "center",
+                backgroundColor: "#cff8df",
+                fontSize: "1.2rem",
+                height: "5vh",
+                mb: 2,
+              }}
+            >
+              <Grid item width="1vw" />
+
+              <Grid item xs={5} sm={5.8} md={6}>
+                <Typography
+                  align="center"
+                  sx={{
+                    width: { lg: "31vw", md: "29vw", sm: "28vw", xs: "25vw" },
+                    fontSize: {
+                      lg: 18,
+                      md: 18,
+                      sm: 15,
+                      xs: 11,
+                    },
+                  }}
+                >
+                  ASSESSMENT
+                </Typography>
+              </Grid>
+
+              <Grid item xs={2} lg={1.8}>
+                <Typography
+                  align="center"
+                  sx={{
+                    width: { lg: "10vw", md: "12vw", sm: "15vw", xs: "18vw" },
+                    fontSize: {
+                      lg: 18,
+                      md: 18,
+                      sm: 15,
+                      xs: 11,
+                    },
+                  }}
+                >
+                  SCORE
+                </Typography>
+              </Grid>
+
+              <Grid item xs={2} lg={1.8}>
+                <Typography
+                  align="center"
+                  sx={{
+                    width: { lg: "10vw", md: "12vw", sm: "15vw", xs: "18vw" },
+                    fontSize: {
+                      lg: 18,
+                      md: 18,
+                      sm: 15,
+                      xs: 11,
+                    },
+                  }}
+                >
+                  TOTAL
+                </Typography>
+              </Grid>
+
+              <Grid item xs={2} md={1.5} lg={1.8}>
+                <Typography
+                  align="center"
+                  sx={{
+                    width: { lg: "10vw", md: "12vw", sm: "15vw", xs: "18vw" },
+                    fontSize: {
+                      lg: 18,
+                      md: 18,
+                      sm: 15,
+                      xs: 11,
+                    },
+                  }}
+                >
+                  WEIGHTAGE
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Box>
+              {arr.map((element, componentIndex) => {
+                return (
+                  <Box key={componentIndex} sx={{ mb: 2 }}>
+                    {!element.isDeleted && (
+                      <AssessmentComponent
+                        index={componentIndex}
+                        getText={(componentIndex, dataKey) =>
+                          getText(assessmentIndex, componentIndex, dataKey)
+                        }
+                        updateText={(componentIndex, dataKey, value) =>
+                          updateText(
+                            assessmentIndex,
+                            componentIndex,
+                            dataKey,
+                            value
+                          )
+                        }
+                        deleteComponent={(componentIndex) =>
+                          deleteComponent(assessmentIndex, componentIndex)
+                        }
+                      />
+                    )}
+                  </Box>
+                );
+              })}
+            </Box>
 
             <Grid container>
               <Grid item>
@@ -297,7 +302,7 @@ export function Assessment({
 
             {curr && <Typography sx={{ mt: 2 }}>{curr}</Typography>}
             {result && <Typography>{result}</Typography>}
-          </form>
+          </Stack>
         </AccordionDetails>
       </Accordion>
     </div>

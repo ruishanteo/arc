@@ -25,7 +25,7 @@ import {
   Typography,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { Add, Save } from "@mui/icons-material";
+import { Add, Cancel, Save } from "@mui/icons-material";
 
 export function ModuleAssessment() {
   const user = useAuth();
@@ -191,6 +191,7 @@ export function ModuleAssessment() {
             onClick={() => setOpen(true)}
             loading={isActionLoading}
             disabled={assessments.length === 0}
+            endIcon={<Cancel />}
           >
             <span>Clear</span>
           </LoadingButton>
