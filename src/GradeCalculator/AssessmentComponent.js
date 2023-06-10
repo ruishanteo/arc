@@ -1,17 +1,24 @@
+import { useSelector } from "react-redux";
+
+import { store } from "../stores/store";
+import { deleteComponent, updateComponent } from "./GradeStore";
+
 import { Grid, IconButton, TextField } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 
 const min = 0;
 const max = 100;
 
-export function AssessmentComponent({
-  index,
-  updateText,
-  getText,
-  deleteComponent,
-}) {
+export function AssessmentComponent({ assessmentIndex, componentIndex }) {
+  const component = useSelector(
+    (state) =>
+      state.calculator.assessments[assessmentIndex].components[componentIndex]
+  );
+
   function onChange(value, dataKey) {
-    updateText(index, dataKey, value);
+    store.dispatch(
+      updateComponent(assessmentIndex, componentIndex, dataKey, value)
+    );
   }
 
   return (
@@ -32,7 +39,9 @@ export function AssessmentComponent({
       >
         <IconButton
           type="button"
-          onClick={() => deleteComponent(index)}
+          onClick={() =>
+            store.dispatch(deleteComponent(assessmentIndex, componentIndex))
+          }
           sx={{
             backgroundColor: "#fcf4d4",
             borderRadius: 1,
@@ -50,7 +59,7 @@ export function AssessmentComponent({
           placeholder="Assessment"
           type="text"
           id="component"
-          value={getText(index, "componentTitle")}
+          value={component.componentTitle}
           onChange={(event) => {
             onChange(event.target.value, "componentTitle");
           }}
@@ -65,7 +74,7 @@ export function AssessmentComponent({
       <Grid item xs={2} lg={1.8}>
         <TextField
           type="number"
-          value={getText(index, "score")}
+          value={component.score}
           onChange={(event) => {
             var value = parseInt(event.target.value, 10);
             if (value < min) value = min;
@@ -82,7 +91,7 @@ export function AssessmentComponent({
       <Grid item xs={2} lg={1.8}>
         <TextField
           type="number"
-          value={getText(index, "total")}
+          value={component.total}
           onChange={(event) => {
             var value = parseInt(event.target.value, 10);
 
@@ -101,7 +110,7 @@ export function AssessmentComponent({
       <Grid item xs={2} lg={1.8}>
         <TextField
           type="number"
-          value={getText(index, "weight")}
+          value={component.weight}
           onChange={(event) => {
             var value = parseInt(event.target.value, 10);
 

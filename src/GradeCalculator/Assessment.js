@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
+import { store } from "../stores/store";
+import {
+  addComponent,
+  deleteAssessment,
+  updateAssessment,
+} from "./GradeStore.js";
+
 import { AssessmentComponent } from "./AssessmentComponent.js";
 
 import {
@@ -55,18 +64,11 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-export function Assessment({
-  assessmentIndex,
-  deleteModule,
-  newComponent,
-  deleteComponent,
-  getText,
-  updateText,
-  getComponents,
-  setModuleTitle,
-  getModuleTitle,
-}) {
-  const arr = getComponents(assessmentIndex);
+export function Assessment({ assessmentIndex }) {
+  const assessment = useSelector(
+    (state) => state.calculator.assessments[assessmentIndex]
+  );
+  const components = assessment.components;
   const [curr, setCurr] = useState("");
   const [result, setResult] = useState("");
   const [value, setValue] = useState(0);
@@ -78,10 +80,10 @@ export function Assessment({
   };
 
   function calculateGrade() {
-    const totalScore = arr
+    const totalScore = components
       .filter((t) => t.weight > 0 && t.total > 0 && !t.isDeleted)
       .reduce((acc, cur) => acc + (cur.score / cur.total) * cur.weight, 0);
-    const totalWeight = arr
+    const totalWeight = components
       .filter((t) => t.weight > 0 && t.total > 0 && !t.isDeleted)
       .reduce((acc, cur) => acc + cur.weight, 0);
     const currentScore = (totalScore / totalWeight) * 100;
@@ -104,7 +106,7 @@ export function Assessment({
           id="panel1d-header"
           sx={{ backgroundColor: "#ffe0f7" }}
         >
-          <Typography>{getModuleTitle(assessmentIndex)}</Typography>
+          <Typography>{assessment.title}</Typography>
         </AccordionSummary>
 
         <AccordionDetails>
@@ -112,7 +114,9 @@ export function Assessment({
             <Box align="left">
               <Button
                 type="button"
-                onClick={() => deleteModule(assessmentIndex)}
+                onClick={() =>
+                  store.dispatch(deleteAssessment(assessmentIndex))
+                }
                 sx={{ backgroundColor: "#fcf4d4", color: "black" }}
               >
                 <DeleteOutline />
@@ -127,9 +131,11 @@ export function Assessment({
                 }}
                 placeholder="Module Name"
                 onChange={(e) => {
-                  setModuleTitle(assessmentIndex, e.target.value);
+                  store.dispatch(
+                    updateAssessment(assessmentIndex, e.target.value)
+                  );
                 }}
-                value={getModuleTitle(assessmentIndex)}
+                value={assessment.title}
                 variant="standard"
                 sx={{ width: { lg: "30vw", xs: "80vw" } }}
               />
@@ -138,9 +144,9 @@ export function Assessment({
             <Box align="left">
               <Button
                 variant="contained"
-                onClick={() => newComponent(assessmentIndex)}
-                startIcon={<AddIcon />}
-                sx={{ mt: 2, mb: 1 }}
+                onClick={() => store.dispatch(addComponent(assessmentIndex))}
+                startIcon={<Add />}
+                sx={{ mt: 2, mb: 1, width: 130 }}
                 color="neutral"
               >
                 Component
@@ -230,26 +236,13 @@ export function Assessment({
             </Grid>
 
             <Box>
-              {arr.map((element, componentIndex) => {
+              {components.map((element, componentIndex) => {
                 return (
                   <Box key={componentIndex} sx={{ mb: 2 }}>
                     {!element.isDeleted && (
                       <AssessmentComponent
-                        index={componentIndex}
-                        getText={(componentIndex, dataKey) =>
-                          getText(assessmentIndex, componentIndex, dataKey)
-                        }
-                        updateText={(componentIndex, dataKey, value) =>
-                          updateText(
-                            assessmentIndex,
-                            componentIndex,
-                            dataKey,
-                            value
-                          )
-                        }
-                        deleteComponent={(componentIndex) =>
-                          deleteComponent(assessmentIndex, componentIndex)
-                        }
+                        componentIndex={componentIndex}
+                        assessmentIndex={assessmentIndex}
                       />
                     )}
                   </Box>
