@@ -118,7 +118,7 @@ export function clearCalculator(id) {
       deleteDoc(doc(db, "assessments", id)).then((res) => {
         dispatch(
           addNotification({
-            message: "You have cleared your data.",
+            message: "You have successfully cleared your data.",
             variant: "success",
           })
         );

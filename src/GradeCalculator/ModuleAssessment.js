@@ -13,6 +13,7 @@ import { Assessment } from "./Assessment";
 import { useAuth } from "../UserAuth/FirebaseHooks";
 
 import { LoadingSpinner } from "../Components/LoadingSpinner";
+import { NoData } from "./NoData";
 
 import {
   Box,
@@ -63,6 +64,7 @@ export function ModuleAssessment() {
     store
       .dispatch(clearCalculator(user.uid))
       .finally(() => setIsActionLoading(false));
+    setOpen(false);
   };
 
   if (!user) {
@@ -141,20 +143,37 @@ export function ModuleAssessment() {
         </Dialog>
       </Box>
 
-      {assessments.map((_, assessmentIndex) => (
-        <Box key={assessmentIndex}>
-          <Assessment assessmentIndex={assessmentIndex} />
+      {assessments.length === 0 ? (
+        <Box>
+          <Button
+            variant="contained"
+            onClick={() => store.dispatch(addAssessment)}
+            sx={{ mt: 2, mb: 10 }}
+            color="neutral"
+            startIcon={<Add />}
+          >
+            Module
+          </Button>
+          <NoData />
         </Box>
-      ))}
-      <Button
-        variant="contained"
-        onClick={() => store.dispatch(addAssessment)}
-        sx={{ mt: 2, mb: 10 }}
-        color="neutral"
-        startIcon={<Add />}
-      >
-        Module
-      </Button>
+      ) : (
+        <Box>
+          {assessments.map((_, assessmentIndex) => (
+            <Box key={assessmentIndex}>
+              <Assessment assessmentIndex={assessmentIndex} />
+            </Box>
+          ))}
+          <Button
+            variant="contained"
+            onClick={() => store.dispatch(addAssessment)}
+            sx={{ mt: 2, mb: 10 }}
+            color="neutral"
+            startIcon={<Add />}
+          >
+            Module
+          </Button>
+        </Box>
+      )}
     </Container>
   );
 }
