@@ -1,11 +1,29 @@
 import { useState, useEffect } from "react";
-import { Autocomplete, Button, TableCell, TextField } from "@mui/material";
+import { Autocomplete, Button, Grid, TableCell, TextField } from "@mui/material";
 
+const categ = [
+  { title: '' },
+  { title: 'GEA' },
+  { title: 'GEC' },
+  { title: 'GESS' },
+  { title: 'GEI' },
+  { title: 'GEX'},
+  { title: 'GEN'},
+  { title: 'UE'}
+]
+
+categ.sort((a, b) => a.title.localeCompare(b.title));
+
+categ.forEach((prog, index) => {
+  prog.id = index;
+});
 
 export function ModuleComponent({
   index,
   updateModule,
+  updateCategory,
   getModuleId,
+  getCatId,
   deleteModule,
   getSemester,
 }) { 
@@ -15,8 +33,12 @@ export function ModuleComponent({
     setSelectedModule(sem)
   }, [selectedModule]);
 
-  function onChange(value) {
+  function onChangeModule(value) {
     updateModule(index, value);
+  }
+
+  function onChangeCateg(value) {
+    updateCategory(index, value)
   }
 
   let sem1Mods = require('../module_data/sem1Modules.json');
@@ -33,10 +55,9 @@ export function ModuleComponent({
         options={sem1Mods}
         groupBy={(sem1Mods) => sem1Mods.code}
         getOptionLabel={(sem1Mods) => sem1Mods.moduleCode}
-        sx={{ width: {xs: 240, mdl:300, lg:300} }}
         value={sem1Mods[getModuleId(index)]  || null}
         onChange={(_, value) => {
-          onChange(value);
+          onChangeModule(value);
         }}
         renderInput={(params) => <TextField {...params} label="Select Module" />}
         ListboxProps={{style:{
@@ -52,10 +73,9 @@ export function ModuleComponent({
         options={sem2Mods}
         groupBy={(sem2Mods) => sem2Mods.code}
         getOptionLabel={(sem2Mods) => sem2Mods.moduleCode}
-        sx={{ width: {xs: 240, mdl:300, lg:300} }}
         value={sem2Mods[getModuleId(index)]  || null}
         onChange={(_, value) => {
-          onChange(value);
+          onChangeModule(value);
         }}
         renderInput={(params) => <TextField {...params} label="Select Module" />}
         ListboxProps={{style:{
@@ -69,19 +89,43 @@ export function ModuleComponent({
   return (
     <>
       <TableCell align="center">
-        <Button
-          type="button"
-          onClick={() => deleteModule(index)}
-          sx={{ 
-            backgroundColor: "#fcf4d4", 
-            color: "black", }}
-        >
-          —
-        </Button>
+        <Grid item xs={6}>
+          <Button
+            type="button"
+            onClick={() => deleteModule(index)}
+            sx={{ 
+              backgroundColor: "#fcf4d4", 
+              color: "black", }}
+          >
+            —
+          </Button>
+        </Grid>
       </TableCell>
-
+    
       <TableCell align="center">
-        {selector()}
+        <Grid item xs={12}>
+          <Autocomplete
+            disablePortal
+            disableClearable
+            id="categ-selector"           
+            options={categ}
+            getOptionLabel={(categ) => categ.title}
+            value={categ[getCatId(index)]  || null}
+            onChange={(_, value) => {
+              onChangeCateg(value);
+            }}
+            renderInput={(params) => <TextField {...params} label="Select Category" />}
+            ListboxProps={{style:{
+              maxHeight: '200px',
+              }}}
+            />
+        </Grid>
+      </TableCell>
+      
+      <TableCell align="center">
+        <Grid item xs={12}>
+          {selector()}
+        </Grid>
       </TableCell>
     </>
   );

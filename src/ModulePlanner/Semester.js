@@ -19,7 +19,9 @@ export function Semester({
   semIndex,
   deleteModule,
   getModuleId,
+  getCatId,
   updateModule,
+  updateCategory,
   getAllModules,
   newModule,
   getHeader,
@@ -68,8 +70,17 @@ export function Semester({
                         moduleIndex,
                         value
                       )}
+                    updateCategory={(moduleIndex, value) =>
+                      updateCategory(
+                        semIndex,
+                        moduleIndex,
+                        value
+                      )
+                    }
                     getModuleId={(moduleIndex) =>
                       getModuleId(semIndex, moduleIndex)}
+                    getCatId={(moduleIndex) =>
+                      getCatId(semIndex, moduleIndex)}
                     deleteModule={(moduleIndex) =>
                       deleteModule(semIndex, moduleIndex)}
                     getSemester={() => getSemester(semIndex)}

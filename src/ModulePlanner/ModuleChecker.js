@@ -94,7 +94,6 @@ export function ModuleChecker() {
   const user = useAuth();
   const dispatch = useDispatch();
   const isNarrowScreen = useMediaQuery('(max-width: 960px)');
-  let checkedMods = [];
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -310,9 +309,26 @@ export function ModuleChecker() {
     return value;
   }
 
+  function getCatId(semIndex, moduleIndex) {
+    const value = semesters[semIndex].
+    modules[moduleIndex].modInfo.category?.["id"];
+    return value;
+  }
+
   function updateModule(semIndex, moduleIndex, value) {
     if (value != null) {
-      semesters[semIndex].modules[moduleIndex].modInfo = { ...value, checked: false };
+      semesters[semIndex].modules[moduleIndex].modInfo = { 
+      ...semesters[semIndex].modules[moduleIndex].modInfo,
+      ...value};
+      setSemesters([...semesters]);
+    }
+    updateModTitles();
+    updateProg();
+  }
+
+  function updateCategory(semIndex, moduleIndex, value) {
+    if (value != null) {
+      semesters[semIndex].modules[moduleIndex].modInfo.category = value;
       setSemesters([...semesters]);
     }
     updateModTitles();
@@ -322,7 +338,7 @@ export function ModuleChecker() {
   function newModule(semIndex) {
     semesters[semIndex].modules.push({
       modInfo:{"moduleCode": "", "moduleCredit": "0", 
-      "semester": [1,2], "code": "", "id": 0, checked: false,},
+      "semester": [1,2], "code": "", "id": 0, category: {title: '', id: '0'},},
     });
     setSemesters([...semesters]);
     updateModTitles();
@@ -360,9 +376,6 @@ export function ModuleChecker() {
     const arr = modTitles;
     const present = titleArr.find(title => checkValues(title, arr));
     if (present) {
-      if (!checkedMods.includes(present)){
-        checkedMods.push(present);
-      }
       return color;
     } else {
       return "#FFFFFF";
@@ -481,7 +494,7 @@ export function ModuleChecker() {
     return semesters.flatMap(semester =>
       semester.modules
         .map(module => module.modInfo)
-        .filter(modInfo => (!checkedMods.includes(modInfo.moduleCode) && modInfo.moduleCode))
+        .filter(modInfo => modInfo.category.title === "UE" && modInfo.moduleCode)
     );
   }
 
@@ -659,6 +672,8 @@ export function ModuleChecker() {
                 deleteModule={deleteModule}
                 getModuleId={getModuleId}
                 updateModule={updateModule}
+                updateCategory={updateCategory}
+                getCatId={getCatId}
                 getAllModules={getAllModules}
                 newModule={newModule}
                 getHeader={getHeader}
