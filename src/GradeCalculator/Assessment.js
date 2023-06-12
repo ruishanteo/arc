@@ -68,6 +68,11 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 const assesmentSchema = Yup.object().shape({
+  desired: Yup.number()
+    .typeError("Please enter a number")
+    .required("Field is empty")
+    .min(0, "Score must be >= 0")
+    .max(100, "Score must be <= 100"),
   components: Yup.array(
     Yup.object().shape({
       componentTitle: Yup.string()
@@ -137,7 +142,7 @@ export function Assessment({ assessmentIndex }) {
         <AccordionDetails>
           <Formik
             enableReinitialize={true}
-            initialValues={{ title: "", components: components }}
+            initialValues={{ title: "", desired: 0, components: components }}
             onSubmit={async (values, { setSubmitting }) => {
               calculateGrade(values);
             }}
@@ -318,7 +323,11 @@ export function Assessment({ assessmentIndex }) {
                     </Grid>
 
                     <Grid item>
-                      <TextField
+                      <FormTextField
+                        label="desired"
+                        type="number"
+                        autoComplete="on"
+                        formikProps={formikProps}
                         sx={{
                           mt: 2,
                           ml: 1,
@@ -328,14 +337,12 @@ export function Assessment({ assessmentIndex }) {
                             height: 50,
                           },
                         }}
-                        type="number"
                         value={value}
                         onChange={(event) => {
-                          var value = parseInt(event.target.value, 10);
-
+                          let value = parseInt(event.target.value, 10);
                           if (value > max) value = max;
                           if (value < min) value = min;
-
+                          if (Number.isNaN(value)) value = 0;
                           setValue(value);
                         }}
                         inputProps={{ min, max }}

@@ -97,8 +97,9 @@ export function AssessmentComponent({
             hideError={true}
             value={component.score}
             onChange={(event) => {
-              var value = parseInt(event.target.value, 10);
+              let value = parseInt(event.target.value, 10);
               if (value < min) value = min;
+              if (Number.isNaN(value)) value = 0;
               onChange(value, "score");
             }}
             inputProps={{
@@ -117,10 +118,9 @@ export function AssessmentComponent({
             hideError={true}
             value={component.total}
             onChange={(event) => {
-              var value = parseInt(event.target.value, 10);
-
+              let value = parseInt(event.target.value, 10);
               if (value < min) value = min;
-
+              if (Number.isNaN(value)) value = 0;
               onChange(value, "total");
             }}
             inputProps={{
@@ -139,11 +139,10 @@ export function AssessmentComponent({
             hideError={true}
             value={component.weight}
             onChange={(event) => {
-              var value = parseInt(event.target.value, 10);
-
+              let value = parseInt(event.target.value, 10);
               if (value > max) value = max;
               if (value < min) value = min;
-
+              if (Number.isNaN(value)) value = 0;
               onChange(value, "weight");
             }}
             inputProps={{
