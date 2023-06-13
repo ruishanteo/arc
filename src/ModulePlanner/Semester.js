@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { ModuleComponent } from "./ModuleComponent.js";
 
 import {
@@ -14,21 +15,25 @@ import {
   Typography,
 } from "@mui/material";
 
+import { Add } from "@mui/icons-material";
+
+import { store } from "../stores/store";
+import {
+  addModule,
+} from "./PlannerStore";
 
 export function Semester({
   semIndex,
-  deleteModule,
-  getModuleId,
-  getCatId,
-  updateModule,
-  updateCategory,
-  getAllModules,
-  newModule,
-  getHeader,
-  getSemester,
 }) {
-  const arr = getAllModules(semIndex);
-  //const [selected, setSelected] = useState([]);
+  const sems = useSelector(
+    (state) =>
+      state.plannerSem.semesters[semIndex]
+  );
+
+  const mods = sems.modules
+
+  const semesterNum = sems.count % 2;
+
   return (
     
     <TableContainer>
@@ -53,37 +58,19 @@ export function Semester({
                     md: 18,
                   },
                 }}
-                >{getHeader(semIndex)}</Typography>{" "}
+                >{sems.header}</Typography>{" "}
               </TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {arr.map((_, moduleIndex) => {
+            {mods.map((_, moduleIndex) => {
               return (
                 <TableRow key={moduleIndex}>
                   {<ModuleComponent
-                    index={moduleIndex}
-                    updateModule={(moduleIndex, value) =>
-                      updateModule(
-                        semIndex,
-                        moduleIndex,
-                        value
-                      )}
-                    updateCategory={(moduleIndex, value) =>
-                      updateCategory(
-                        semIndex,
-                        moduleIndex,
-                        value
-                      )
-                    }
-                    getModuleId={(moduleIndex) =>
-                      getModuleId(semIndex, moduleIndex)}
-                    getCatId={(moduleIndex) =>
-                      getCatId(semIndex, moduleIndex)}
-                    deleteModule={(moduleIndex) =>
-                      deleteModule(semIndex, moduleIndex)}
-                    getSemester={() => getSemester(semIndex)}
+                    semIndex={semIndex}
+                    moduleIndex={moduleIndex}
+                    semesterNum={semesterNum}
                     />
                   }
                 </TableRow>
@@ -94,7 +81,8 @@ export function Semester({
                 <Button
                   type="button" 
                   variant="contained"
-                  onClick={() => newModule(semIndex)}
+                  onClick={() => store.dispatch(addModule(semIndex))}
+                  startIcon={<Add />}  
                   sx={{ backgroundColor: "#fcf4d4", color: "neutral",  }}
                 >
                 <Typography
@@ -106,7 +94,7 @@ export function Semester({
                     xs: 14
                   },
                 }}
-                >+ Module</Typography>{" "}
+                >Module</Typography>{" "}
                 </Button>
             </TableCell>
             </TableRow>

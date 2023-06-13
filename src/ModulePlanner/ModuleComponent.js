@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Autocomplete, Button, Grid, TableCell, TextField } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
+
+import { store } from "../stores/store";
+import {
+  updateModule,
+  deleteModule,
+  updateCategory,
+} from "./PlannerStore";
 
 const categ = [
   { title: '' },
@@ -16,26 +25,22 @@ categ.forEach((prog, index) => {
 });
 
 export function ModuleComponent({
-  index,
-  updateModule,
-  updateCategory,
-  getModuleId,
-  getCatId,
-  deleteModule,
-  getSemester,
+  semIndex,
+  moduleIndex,
+  semesterNum,
 }) { 
-  const [selectedModule, setSelectedModule] = useState(null);
-  let sem = getSemester(index);
-  useEffect(() => {
-    setSelectedModule(sem)
-  }, [selectedModule]);
+  const module = useSelector(
+    (state) =>
+      state.plannerSem.semesters[semIndex].modules[moduleIndex]
+  );
 
   function onChangeModule(value) {
-    updateModule(index, value);
+    store.dispatch(updateModule(semIndex, moduleIndex, value));
   }
 
   function onChangeCateg(value) {
-    updateCategory(index, value)
+    store.dispatch(updateCategory(semIndex, moduleIndex, value));
+
   }
 
   let sem1Mods = require('../module_data/sem1Modules.json');
@@ -43,7 +48,7 @@ export function ModuleComponent({
 
 
   const selector = () => {
-    if (selectedModule === 0) {
+    if (semesterNum === 0) {
       return (
         <Autocomplete
         disablePortal
@@ -52,7 +57,8 @@ export function ModuleComponent({
         options={sem1Mods}
         groupBy={(sem1Mods) => sem1Mods.code}
         getOptionLabel={(sem1Mods) => sem1Mods.moduleCode}
-        value={sem1Mods[getModuleId(index)]  || null}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
+        value={module.modInfo  || null}
         onChange={(_, value) => {
           onChangeModule(value);
         }}
@@ -70,7 +76,8 @@ export function ModuleComponent({
         options={sem2Mods}
         groupBy={(sem2Mods) => sem2Mods.code}
         getOptionLabel={(sem2Mods) => sem2Mods.moduleCode}
-        value={sem2Mods[getModuleId(index)]  || null}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
+        value={module.modInfo  || null}
         onChange={(_, value) => {
           onChangeModule(value);
         }}
@@ -89,25 +96,26 @@ export function ModuleComponent({
         <Grid item xs={6}>
           <Button
             type="button"
-            onClick={() => deleteModule(index)}
+            onClick={() => store.dispatch(deleteModule(semIndex, moduleIndex))}
             sx={{ 
               backgroundColor: "#fcf4d4", 
               color: "black", }}
           >
-            —
+            <ClearIcon />
           </Button>
         </Grid>
       </TableCell>
     
       <TableCell align="center">
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <Autocomplete
             disablePortal
             disableClearable
             id="categ-selector"           
             options={categ}
             getOptionLabel={(categ) => categ.title}
-            value={categ[getCatId(index)]  || null}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
+            value={module.category  || null}
             onChange={(_, value) => {
               onChangeCateg(value);
             }}

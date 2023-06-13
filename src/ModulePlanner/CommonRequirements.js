@@ -1,12 +1,35 @@
-import { TableContainer, TableHead, TableBody, Table, TableCell, TableRow, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+
+import { 
+    TableContainer, 
+    TableHead, 
+    TableBody, 
+    Table, 
+    TableCell, 
+    TableRow, 
+    Typography 
+} from "@mui/material";
 
 export function CommonRequirements({
     checkPresentCommonMod,
     checkPresentCommonModRC,
-    getDegreeFaculty,
-    getProg
 }) {
-    let commonMods = require('../module_data/commonMods.json');
+    let commonMods = require('../module_data/commonMods.json');    
+    const degrees = useSelector((state) => state.plannerDeg.degrees);
+
+    function getDegreeFaculty() {
+        if (typeof degrees[0]?.faculty != 'undefined') {
+          return degrees[0]?.faculty;
+        }
+        return "";
+    }
+    
+    function getProg() {
+        if (typeof degrees[2]?.title != 'undefined') {
+            return degrees[2]?.title;
+        }
+        return "";
+    }
 
     const deg = getDegreeFaculty();
     //cd Any course from Chemistry, Physics, or Biological Sciences departments starting with codes PC, CM, LSM respectively.
@@ -15,7 +38,7 @@ export function CommonRequirements({
     //capt - 1 junior, 2 senior, 1 iec, 1 Digital Literacy or Data Literacy
 
     const prog = getProg();
-
+    
     const tab = () => {
         if (deg !== "") {
         if (prog === "RC4" || prog === "Tembusu" || prog === "CAPT") {
@@ -25,7 +48,7 @@ export function CommonRequirements({
               return (
               <TableRow key={index}>
               <TableCell align="center" sx={{
-                  backgroundColor: checkPresentCommonModRC(module.code),
+                  backgroundColor: checkPresentCommonModRC(prog, module.code),
                   color: "black",
                   fontSize: "1.0rem",
               }}>

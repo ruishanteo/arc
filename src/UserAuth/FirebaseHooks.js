@@ -209,17 +209,13 @@ async function onReAuth(user, password) {
 
 const deleteContent = async (key) => {
   await handleApiCall(deleteDoc(doc(db, "assessments", key)));
-  await handleApiCall(deleteDoc(doc(db, "users", key)));
-};
-
-const deleteContentPlanner = async (key) => {
   await handleApiCall(deleteDoc(doc(db, "programme", key)));
   await handleApiCall(deleteDoc(doc(db, "semesters", key)));
+  await handleApiCall(deleteDoc(doc(db, "users", key)));
 };
 
 function onDeleteUser(currentUser) {
   deleteContent(currentUser.uid);
-  deleteContentPlanner(currentUser.uid);
   setTimeout(async () => {
     await handleApiCall(deleteUser(currentUser)).then(() =>
       store.dispatch(
@@ -242,7 +238,6 @@ export {
   updateUserProfilePicture,
   //
   deleteContent,
-  deleteContentPlanner,
   onDeleteUser,
   onReAuth,
   useSignInWithGoogle as signInWithGoogle,

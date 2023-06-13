@@ -1,9 +1,22 @@
-import { TableContainer, TableHead, TableBody, Table, TableCell, TableRow, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+
+import { 
+    TableContainer, 
+    TableHead, 
+    TableBody, 
+    Table, 
+    TableCell, 
+    TableRow, 
+    Typography 
+} from "@mui/material";
 
 export function UnrestrictedRequirements({
-    getUe
 }) {
-    const mods = getUe();
+    const semesters = useSelector((state) => state.plannerSem.semesters);
+
+    const mods = semesters.flatMap((semester) => {
+        return semester.modules.filter((module) => module.category.title === "UE");
+      });
 
     return (
         <>
@@ -35,7 +48,7 @@ export function UnrestrictedRequirements({
                     color: "black",
                     fontSize: "1.0rem",
                 }}>
-                    {module.moduleCode}
+                    {module.modInfo.moduleCode}
                 </TableCell>
                 </TableRow>
                 )
