@@ -1,8 +1,9 @@
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import { arrayRemove, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 
+import { PlannerInstructions } from './PlannerInstructions'
 import { Semester } from "./Semester";
 import { ProgRequirements } from "./ProgRequirements";
 import { CommonRequirements } from "./CommonRequirements";
@@ -27,11 +28,15 @@ import {
   DialogContentText,
   DialogTitle,
   Grid, 
+  IconButton,
   LinearProgress,
   Typography, 
   TextField,
   useMediaQuery 
 } from "@mui/material";
+
+import { LoadingButton } from "@mui/lab";
+import { Add, Cancel, Help, Save } from "@mui/icons-material";
 
 
 let degrees = require('../module_data/degrees.json');
@@ -90,6 +95,8 @@ export function ModuleChecker() {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isActionLoading, setIsActionLoading] = useState(false);
   const [isFetchingData, setIsFetchingData] = useState(true);
+
+  const [visible, setVisible] = useState(true);
 
   const user = useAuth();
   const dispatch = useDispatch();
@@ -505,9 +512,14 @@ export function ModuleChecker() {
   if (isFetchingData) {
     return <LoadingSpinner />;
   }
+
+  function toggleVisibility() {
+    setVisible((prevVisibility) => !(prevVisibility));
+  }
  
   return (
     <Container maxWidth="lg">
+      
       <Box
         align="center"
         sx={{
@@ -523,30 +535,44 @@ export function ModuleChecker() {
         <Grid container sx={{ 
           display: "flex", 
           justifyContent: "right"}}>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#fcf4d4",
-              color: "black"
-            }}
-            onClick={handleClickOpen}
-            disabled={semesters.length === 0 && degrees.length === 0}
-          >
-            Clear
-          </Button>
 
-          <Button
+          <IconButton
+          variant="contained"
+          color="#fcf4d4"
+          onClick={toggleVisibility}>
+          <Help />
+          </IconButton>
+
+          <LoadingButton
             variant="contained"
             sx={{
-              ml: 2,
               backgroundColor: "#fcf4d4",
               color: "black",
             }}
-            onClick= {saveAll}
+            onClick={handleClickOpen}
+            loading={isActionLoading}
+            disabled={semesters.length === 0 && degrees.length === 0}
+            endIcon={<Cancel />}
           >
-            Save All
-          </Button>
+            <span>Clear</span>
+          </LoadingButton>
+
+          <LoadingButton
+            variant="contained"
+            sx={{
+              ml: 2,
+              backgroundColor: "#cff8df",
+              color: "black",
+            }}
+            onClick={saveAll}
+            loading={isActionLoading}
+            loadingPosition="end"
+            endIcon={<Save />}
+          >
+            <span>Save</span>
+          </LoadingButton>
         </Grid>
+        
         <Dialog
           open={open}
           onClose={handleClose}
@@ -570,7 +596,7 @@ export function ModuleChecker() {
           </DialogActions>
         </Dialog>
       </Box>
-            
+      
      <Box sx={{ flexGrow: 1}}>
         <Grid container spacing={4} direction={isNarrowScreen ? 'column' : 'row'}>
           <Grid item xs={12} sm={4}>
@@ -587,10 +613,10 @@ export function ModuleChecker() {
               updateDegree(0, value);
               setHasUnsavedChanges(true);
             }}
-            renderInput={(params) => <TextField {...params} label="Select Degree"/>}
+            renderInput={(params) => <TextField {...params} label="Select Degree" variant='standard' />}
             ListboxProps={{style:{
                 maxHeight: '150px',
-                }}}
+            }}}
             />
           </Grid>
 
@@ -607,7 +633,10 @@ export function ModuleChecker() {
               updateDegree(1, value);
               setHasUnsavedChanges(true);
             }}
-            renderInput={(params) => <TextField {...params} label="2nd Degree/Major?" />}
+            renderInput={(params) => <TextField {...params} label="2nd Degree/Major?" variant='standard' />}
+            ListboxProps={{style:{
+              maxHeight: '150px',
+            }}}
             />
           </Grid>
           
@@ -617,13 +646,16 @@ export function ModuleChecker() {
             id="addon2-selector"           
             options={progs.sort((a, b) => -b.title.localeCompare(a.title))}
             getOptionLabel={(option) => option.title}
-            sx={{ width: isNarrowScreen ? '100%' : 300 }}
+            sx={{ width: isNarrowScreen ? '100%' : 300, zIndex: 1 }}
             value={deg3 || null}         
             onChange={(_, value) => {
               updateDegree(2, value);
               setHasUnsavedChanges(true);
             }}
-            renderInput={(params) => <TextField {...params} label="Select Programme" />}
+            renderInput={(params) => <TextField {...params} label="Select Programme" variant='standard' />}
+            ListboxProps={{style:{
+              maxHeight: '150px',
+            }}}
             />
           </Grid>
 
@@ -723,6 +755,12 @@ export function ModuleChecker() {
     
     </Box>
 
+    <PlannerInstructions
+        visible={visible} 
+        setVisible={setVisible}
+        sx={{zIndex: 2 }}
+      />
+    
     <Grid container spacing={2} sx={{ mt: '1rem' }}>
       <Grid item xs={12} sm={12} smm={12} md={4} >
           <div>

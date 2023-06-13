@@ -3,12 +3,9 @@ import { Autocomplete, Button, Grid, TableCell, TextField } from "@mui/material"
 
 const categ = [
   { title: '' },
-  { title: 'GEA' },
-  { title: 'GEC' },
-  { title: 'GESS' },
-  { title: 'GEI' },
-  { title: 'GEX'},
-  { title: 'GEN'},
+  { title: 'Programme' },
+  { title: 'Double Count' },
+  { title: 'GE' },
   { title: 'UE'}
 ]
 
