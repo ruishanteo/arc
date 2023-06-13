@@ -1,11 +1,29 @@
-import { TableContainer, TableHead, TableBody, Table, TableCell, TableRow, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+
+import { 
+  TableContainer, 
+  TableHead, 
+  TableBody, 
+  Table, 
+  TableCell, 
+  TableRow, 
+  Typography 
+} from "@mui/material";
 
 export function ProgRequirements({
     checkPresent,
-    getDegreeTitle
 }) {
     let progMods = require('../module_data/progMods.json');
 
+    const degrees = useSelector((state) => state.plannerDeg.degrees);
+
+    function getDegreeTitle() {
+      if (typeof degrees[0]?.title != 'undefined') {
+        return degrees[0]?.title;
+      }
+      return "";
+    }
+    
     const deg = getDegreeTitle();
 
     const tab = () => {
