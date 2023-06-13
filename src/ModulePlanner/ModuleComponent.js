@@ -53,7 +53,7 @@ export function ModuleComponent({
         <Autocomplete
         disablePortal
         disableClearable
-        id="module-selector"           
+        id={`module-selector-${semIndex}-${moduleIndex}`}     
         options={sem1Mods}
         groupBy={(sem1Mods) => sem1Mods.code}
         getOptionLabel={(sem1Mods) => sem1Mods.moduleCode}
@@ -72,7 +72,7 @@ export function ModuleComponent({
         <Autocomplete
         disablePortal
         disableClearable
-        id="module-selector"           
+        id={`module-selector-${semIndex}-${moduleIndex}`}           
         options={sem2Mods}
         groupBy={(sem2Mods) => sem2Mods.code}
         getOptionLabel={(sem2Mods) => sem2Mods.moduleCode}
@@ -111,7 +111,7 @@ export function ModuleComponent({
           <Autocomplete
             disablePortal
             disableClearable
-            id="categ-selector"           
+            id={`categ-selector-${semIndex}-${moduleIndex}`}          
             options={categ}
             getOptionLabel={(categ) => categ.title}
             isOptionEqualToValue={(option, value) => option.id === value.id}
