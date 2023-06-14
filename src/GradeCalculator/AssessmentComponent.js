@@ -156,7 +156,11 @@ export function AssessmentComponent({
       {!(formikProps.isValid ?? formikProps.isValid) &&
         formikProps.errors &&
         formikProps.errors.components &&
-        formikProps.errors.components[componentIndex] && (
+        formikProps.touched.components[componentIndex] &&
+        formikProps.errors.components[componentIndex] &&
+        Object.keys(formikProps.errors.components[componentIndex]).filter(
+          (key, index) => formikProps.touched.components[componentIndex][key]
+        ).length !== 0 && (
           <Grid container maxWidth="lg" align="center">
             <Grid>
               <Typography align="left" variant="body2">
@@ -165,13 +169,16 @@ export function AssessmentComponent({
 
               {Object.keys(formikProps.errors.components[componentIndex]).map(
                 (key, index) => {
-                  const value =
-                    formikProps.errors.components[componentIndex][key];
-                  return (
-                    <Typography key={index} align="left" variant="body2">
-                      {`\n\u2022 ${DISPLAY_NAMES[key]}: ${value}`}
-                    </Typography>
-                  );
+                  if (formikProps.touched.components[componentIndex][key]) {
+                    const value =
+                      formikProps.errors.components[componentIndex][key];
+                    return (
+                      <Typography key={index} align="left" variant="body2">
+                        {`\n\u2022 ${DISPLAY_NAMES[key]}: ${value}`}
+                      </Typography>
+                    );
+                  }
+                  return null;
                 }
               )}
             </Grid>
