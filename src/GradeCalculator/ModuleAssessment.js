@@ -148,7 +148,7 @@ export function ModuleAssessment() {
           <Button
             variant="contained"
             onClick={() => store.dispatch(addAssessment)}
-            sx={{ mt: 2, mb: 10 }}
+            sx={{ mt: 2, ml: 10 }}
             color="neutral"
             startIcon={<Add />}
           >

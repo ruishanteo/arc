@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 
-import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import noDataPic from "../Images/noData.jpg";
 
 export const NoData = () => {
   return (
@@ -10,17 +10,17 @@ export const NoData = () => {
         direction="column"
         alignItems="center"
         sx={{
-          mt: 5,
           height: "20vh",
           width: "40vw",
         }}
       >
         <Grid item xs={3} align="center">
-          <Typography sx={{ fontSize: 70 }}>
-            <SentimentDissatisfiedIcon sx={{ fontSize: 50 }} />
-          </Typography>
-
-          <Typography>You have no saved data. Get started!</Typography>
+          <Grid item align="left">
+            <img width="200vw" src={noDataPic} alt="start" />{" "}
+          </Grid>
+          <Grid item>
+            <Typography>You have no saved data. Get started!</Typography>
+          </Grid>
         </Grid>
       </Grid>
     </Box>
