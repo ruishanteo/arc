@@ -5,7 +5,7 @@ import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import { addNotification } from "../Notifications";
 
 import { db } from "../UserAuth/Firebase";
-import { handleApiCall, convertTimeFromData } from "../UserAuth/FirebaseHooks";
+import { handleApiCall } from "../UserAuth/FirebaseHooks";
 
 const plannerDegSlice = createSlice({
     name: "plannerDeg",

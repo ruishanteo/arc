@@ -11,11 +11,11 @@ import {
 } from "@mui/material";
 
 export function CommonRequirements({
-    checkPresentCommonMod,
-    checkPresentCommonModRC,
 }) {
     let commonMods = require('../module_data/commonMods.json');    
     const degrees = useSelector((state) => state.plannerDeg.degrees);
+    const semesters = useSelector((state) => state.plannerSem.semesters);
+    const color = "#cff8df";
 
     function getDegreeFaculty() {
         if (typeof degrees[0]?.faculty != 'undefined') {
@@ -38,6 +38,83 @@ export function CommonRequirements({
     //capt - 1 junior, 2 senior, 1 iec, 1 Digital Literacy or Data Literacy
 
     const prog = getProg();
+
+    function cdid_check(arr, data) {
+        let idCount = 0;
+        let cdCount = 0;
+    
+        arr.forEach(code => {
+          if (idCount === 3 || (idCount === 2 && cdCount === 1)) {
+            return; // Exit loop if conditions already met
+          }
+          
+          const foundInID = data.ID.some(item => item.moduleCode === code);
+          const foundInCD = data.CD.some(item => item.moduleCode === code);
+          
+          if (foundInID) {
+            idCount++;
+          } else if (foundInCD) {
+            cdCount++;
+          }
+        });
+    
+        if (idCount === 3 || (idCount === 2 && cdCount === 1)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    
+      function checkcsbreadth(modules) {
+        let data = require('../module_data/csbreadth.json');
+    
+        for (const list of Object.values(data)) {
+          const count = modules.filter(module => list.filter(listModule => listModule.moduleCode === module)).length;
+          if (count >= 3) {
+            return true;
+          }
+        }
+        
+        return false;
+      }
+    
+      function checkPresentCommonMod(inputString) {
+        let commonMod = require('../module_data/' + inputString + '.json');
+        const arr = semesters.flatMap((semester) =>
+        semester.modules.map((module) => module.modInfo.moduleCode));;
+        if (inputString === "cdid") {
+          if (cdid_check(arr, commonMod)) {
+            return color;
+          } else {
+            return "#FFFFFF";
+          }
+        } else {
+          const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
+          if (hasCommonElement) {
+            return color;
+          } else {
+            return "#FFFFFF";
+          }
+        }
+      }
+    
+      function checkPresentCommonModRC(prog, inputString) {
+        const program = prog.toLowerCase();
+        let commonMod;
+        if (inputString === "gei") {
+          commonMod = require('../module_data/utcpgei.json');
+        } else {
+          commonMod = require('../module_data/' + program + inputString + '.json');
+        }    
+        const arr = semesters.flatMap((semester) =>
+        semester.modules.map((module) => module.modInfo.moduleCode));;
+        const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
+        if (hasCommonElement) {
+          return color;
+        } else {
+          return "#FFFFFF";
+        }
+      }
     
     const tab = () => {
         if (deg !== "") {
