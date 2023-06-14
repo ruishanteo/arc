@@ -29,10 +29,14 @@ export function ModuleComponent({
   moduleIndex,
   semesterNum,
 }) { 
+  let sem1Mods = require('../module_data/sem1Modules.json');
+  let sem2Mods = require('../module_data/sem2Modules.json');
+  let progMods = require('../module_data/progMods.json');
   const module = useSelector(
     (state) =>
       state.plannerSem.semesters[semIndex].modules[moduleIndex]
   );
+  const degrees = useSelector((state) => state.plannerDeg.degrees);
 
   function onChangeModule(value) {
     store.dispatch(updateModule(semIndex, moduleIndex, value));
@@ -43,9 +47,54 @@ export function ModuleComponent({
 
   }
 
-  let sem1Mods = require('../module_data/sem1Modules.json');
-  let sem2Mods = require('../module_data/sem2Modules.json');
+  const handleFilterOptions = (options, state) => {
+    const { inputValue } = state;
+  
+    if (degrees.length > 0 && module.category.title === "UE") {
+      const deg = degrees[0].title;
+      const moduleCodes = progMods[deg].flatMap((item) => item.moduleCode);
+  
+      // Filter options based on the condition
+      const filteredOptions = options.filter(
+        (option) => !moduleCodes.includes(option.moduleCode)
+      );
+  
+      // Apply default Autocomplete filtering based on inputValue
+      const filteredDefaultOptions = filteredOptions.filter((option) =>
+        option.moduleCode.toLowerCase().includes(inputValue.toLowerCase())
+      );
+  
+      return filteredDefaultOptions;
+    }
+  
+    // Apply default Autocomplete filtering based on inputValue
+    const filteredDefaultOptions = options.filter((option) =>
+      option.moduleCode.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  
+    return filteredDefaultOptions;
+  };
 
+  const handleFilterOptionsCateg = (options, state) => {
+    const { inputValue } = state;
+  
+    if (degrees.length > 0) {
+      const deg = degrees[0].title;
+      const moduleCodes = progMods[deg].flatMap((item) => item.moduleCode);
+  
+      // Filter options based on the condition
+      if (moduleCodes.includes(module.modInfo.moduleCode)) {
+        return options.filter((option) => option.title !== "UE" && option.title !== "GE");
+      }
+    }
+  
+    // Apply default Autocomplete filtering based on inputValue
+    const filteredDefaultOptions = options.filter((option) =>
+      option.title.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  
+    return filteredDefaultOptions;
+  };
 
   const selector = () => {
     if (semesterNum === 0) {
@@ -55,6 +104,7 @@ export function ModuleComponent({
         disableClearable
         id={`module-selector-${semIndex}-${moduleIndex}`}     
         options={sem1Mods}
+        filterOptions={handleFilterOptions}
         groupBy={(sem1Mods) => sem1Mods.code}
         getOptionLabel={(sem1Mods) => sem1Mods.moduleCode}
         isOptionEqualToValue={(option, value) => option.id === value.id}
@@ -74,6 +124,7 @@ export function ModuleComponent({
         disableClearable
         id={`module-selector-${semIndex}-${moduleIndex}`}           
         options={sem2Mods}
+        filterOptions={handleFilterOptions}
         groupBy={(sem2Mods) => sem2Mods.code}
         getOptionLabel={(sem2Mods) => sem2Mods.moduleCode}
         isOptionEqualToValue={(option, value) => option.id === value.id}
@@ -113,6 +164,7 @@ export function ModuleComponent({
             disableClearable
             id={`categ-selector-${semIndex}-${moduleIndex}`}          
             options={categ}
+            filterOptions={handleFilterOptionsCateg}
             getOptionLabel={(categ) => categ.title}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             value={module.category  || null}

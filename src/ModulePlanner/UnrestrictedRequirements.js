@@ -10,8 +10,7 @@ import {
     Typography 
 } from "@mui/material";
 
-export function UnrestrictedRequirements({
-}) {
+export function UnrestrictedRequirements() {
     const semesters = useSelector((state) => state.plannerSem.semesters);
 
     const mods = semesters.flatMap((semester) => {

@@ -10,8 +10,7 @@ import {
     Typography 
 } from "@mui/material";
 
-export function CommonRequirements({
-}) {
+export function CommonRequirements() {
     let commonMods = require('../module_data/commonMods.json');    
     const degrees = useSelector((state) => state.plannerDeg.degrees);
     const semesters = useSelector((state) => state.plannerSem.semesters);
@@ -63,51 +62,19 @@ export function CommonRequirements({
         } else {
           return false;
         }
-      }
-    
-      function checkcsbreadth(modules) {
-        let data = require('../module_data/csbreadth.json');
-    
-        for (const list of Object.values(data)) {
-          const count = modules.filter(module => list.filter(listModule => listModule.moduleCode === module)).length;
-          if (count >= 3) {
-            return true;
-          }
-        }
-        
-        return false;
-      }
-    
-      function checkPresentCommonMod(inputString) {
-        let commonMod = require('../module_data/' + inputString + '.json');
-        const arr = semesters.flatMap((semester) =>
-        semester.modules.map((module) => module.modInfo.moduleCode));;
-        if (inputString === "cdid") {
-          if (cdid_check(arr, commonMod)) {
-            return color;
-          } else {
-            return "#FFFFFF";
-          }
+    }
+      
+    function checkPresentCommonMod(inputString) {
+      let commonMod = require('../module_data/' + inputString + '.json');
+      const arr = semesters.flatMap((semester) =>
+      semester.modules.map((module) => module.modInfo.moduleCode));;
+      if (inputString === "cdid") {
+        if (cdid_check(arr, commonMod)) {
+          return color;
         } else {
-          const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
-          if (hasCommonElement) {
-            return color;
-          } else {
-            return "#FFFFFF";
-          }
+          return "#FFFFFF";
         }
-      }
-    
-      function checkPresentCommonModRC(prog, inputString) {
-        const program = prog.toLowerCase();
-        let commonMod;
-        if (inputString === "gei") {
-          commonMod = require('../module_data/utcpgei.json');
-        } else {
-          commonMod = require('../module_data/' + program + inputString + '.json');
-        }    
-        const arr = semesters.flatMap((semester) =>
-        semester.modules.map((module) => module.modInfo.moduleCode));;
+      } else {
         const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
         if (hasCommonElement) {
           return color;
@@ -115,6 +82,25 @@ export function CommonRequirements({
           return "#FFFFFF";
         }
       }
+    }
+  
+    function checkPresentCommonModRC(prog, inputString) {
+      const program = prog.toLowerCase();
+      let commonMod;
+      if (inputString === "gei") {
+        commonMod = require('../module_data/utcpgei.json');
+      } else {
+        commonMod = require('../module_data/' + program + inputString + '.json');
+      }    
+      const arr = semesters.flatMap((semester) =>
+      semester.modules.map((module) => module.modInfo.moduleCode));;
+      const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
+      if (hasCommonElement) {
+        return color;
+      } else {
+        return "#FFFFFF";
+      }
+    }
     
     const tab = () => {
         if (deg !== "") {

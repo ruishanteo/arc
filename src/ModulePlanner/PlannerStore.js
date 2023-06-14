@@ -81,12 +81,12 @@ const plannerSemSlice = createSlice({
         ];
       },
       updateModule: (state, action) => {
-        state.semesters[action.payload.semIndex].
-        modules[action.payload.moduleIndex].modInfo = action.payload.newValue;
+        state.semesters[action.payload.semIndex]
+        .modules[action.payload.moduleIndex].modInfo = action.payload.newValue;
       },
       updateCategory: (state, action) => {
-        state.semesters[action.payload.semIndex].
-        modules[action.payload.moduleIndex].category = action.payload.newValue;
+        state.semesters[action.payload.semIndex]
+        .modules[action.payload.moduleIndex].category = action.payload.newValue;
       },
       saveSemsToStore: (state, action) => {
         state.semesters = action.payload.semesters;
