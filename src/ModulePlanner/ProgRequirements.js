@@ -10,8 +10,7 @@ import {
   Typography 
 } from "@mui/material";
 
-export function ProgRequirements({
-}) {
+export function ProgRequirements() {
     let progMods = require('../module_data/progMods.json');
 
     const degrees = useSelector((state) => state.plannerDeg.degrees);
@@ -35,6 +34,20 @@ export function ProgRequirements({
         return list.includes(arr);
       }
     }
+    /*
+    function checkcsbreadth(modules) {
+      let data = require('../module_data/csbreadth.json');
+  
+      for (const list of Object.values(data)) {
+        const count = modules.filter(module => list.filter(listModule => listModule.moduleCode === module)).length;
+        if (count >= 3) {
+          return true;
+        }
+      }
+      
+      return false;
+    }
+    */
   
     function checkPresent(titleArr) {
       const arr = semesters.flatMap((semester) =>
