@@ -11,11 +11,11 @@ import {
 } from "@mui/material";
 
 export function ProgRequirements({
-    checkPresent,
 }) {
     let progMods = require('../module_data/progMods.json');
 
     const degrees = useSelector((state) => state.plannerDeg.degrees);
+    const semesters = useSelector((state) => state.plannerSem.semesters);
 
     function getDegreeTitle() {
       if (typeof degrees[0]?.title != 'undefined') {
@@ -25,6 +25,27 @@ export function ProgRequirements({
     }
     
     const deg = getDegreeTitle();
+
+    function checkValues(arr, list) {
+      if (Array.isArray(arr)) {
+        return arr.some(value => {
+          return checkValues(value, list)});
+      } else {
+        // Check if the single value is present
+        return list.includes(arr);
+      }
+    }
+  
+    function checkPresent(titleArr) {
+      const arr = semesters.flatMap((semester) =>
+      semester.modules.map((module) => module.modInfo.moduleCode));
+      const present = titleArr.find(title => checkValues(title, arr));
+      if (present) {
+        return "#cff8df";
+      } else {
+        return "#FFFFFF";
+      }
+    }
 
     const tab = () => {
       if (deg in progMods) {

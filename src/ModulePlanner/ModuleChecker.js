@@ -83,14 +83,10 @@ progs.forEach((prog, index) => {
   prog.id = index;
 });
 
-const MIN = 0;
 const color = "#cff8df";
 
 export function ModuleChecker() {
-  //const [semesters, setSemesters] = useState([]);
-  const [count, setCount] = useState(0);
-  const [header, setHeader] = useState("Y1S1");
-  const [modTitles, setModTitles] = useState([]);
+
   const [progress, setProgress] = useState(0);
 
   const [open, setOpen] = useState(false);
@@ -157,101 +153,6 @@ export function ModuleChecker() {
 
   function updateDegree(degreeInd, value) {
     store.dispatch(updateDegrees(degreeInd, value));
-  }
-
-  function checkValues(arr, list) {
-    if (Array.isArray(arr)) {
-      return arr.some(value => {
-        return checkValues(value, list)});
-    } else {
-      // Check if the single value is present
-      return list.includes(arr);
-    }
-  }
-
-  function checkPresent(titleArr) {
-    const arr = modTitles;
-    const present = titleArr.find(title => checkValues(title, arr));
-    if (present) {
-      return color;
-    } else {
-      return "#FFFFFF";
-    }
-}
-
-  function cdid_check(arr, data) {
-    let idCount = 0;
-    let cdCount = 0;
-
-    arr.forEach(code => {
-      if (idCount === 3 || (idCount === 2 && cdCount === 1)) {
-        return; // Exit loop if conditions already met
-      }
-      
-      const foundInID = data.ID.some(item => item.moduleCode === code);
-      const foundInCD = data.CD.some(item => item.moduleCode === code);
-      
-      if (foundInID) {
-        idCount++;
-      } else if (foundInCD) {
-        cdCount++;
-      }
-    });
-
-    if (idCount === 3 || (idCount === 2 && cdCount === 1)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function checkcsbreadth(modules) {
-    let data = require('../module_data/csbreadth.json');
-
-    for (const list of Object.values(data)) {
-      const count = modules.filter(module => list.filter(listModule => listModule.moduleCode === module)).length;
-      if (count >= 3) {
-        return true;
-      }
-    }
-    
-    return false;
-  }
-
-  function checkPresentCommonMod(inputString) {
-    let commonMod = require('../module_data/' + inputString + '.json');
-    const arr = modTitles;
-    if (inputString === "cdid") {
-      if (cdid_check(arr, commonMod)) {
-        return color;
-      } else {
-        return "#FFFFFF";
-      }
-    } else {
-      const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
-      if (hasCommonElement) {
-        return color;
-      } else {
-        return "#FFFFFF";
-      }
-    }
-  }
-
-  function checkPresentCommonModRC(prog, inputString) {
-    const program = prog.toLowerCase();
-    let commonMod;
-    if (inputString === "gei") {
-      commonMod = require('../module_data/utcpgei.json');
-    } else {
-      commonMod = require('../module_data/' + program + inputString + '.json');
-    }    
-    const arr = modTitles;
-    const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
-    if (hasCommonElement) {
-      return color;
-    } else {
-      return "#FFFFFF";
-    }
   }
 
   function countMc() {
@@ -523,27 +424,21 @@ export function ModuleChecker() {
     <Grid container spacing={2} sx={{ mt: '1rem' }}>
       <Grid item xs={12} sm={12} smm={12} md={4} >
           <div>
-            {<ProgRequirements
-                checkPresent={checkPresent}
-              />
+            {<ProgRequirements/>
             }
             </div>
       </Grid>
 
       <Grid item xs={12} sm={12} smm={12} md={4} >
           <div>
-            {<CommonRequirements
-                checkPresentCommonMod={checkPresentCommonMod}
-                checkPresentCommonModRC={checkPresentCommonModRC}
-              />
+            {<CommonRequirements/>
             }
             </div>
       </Grid>
 
       <Grid item xs={12} sm={12} smm={12} md={4} >
         <div>
-        {<UnrestrictedRequirements
-              />
+        {<UnrestrictedRequirements/>
             }
         </div>
       </Grid>
