@@ -155,7 +155,9 @@ export function AssessmentComponent({
       </Grid>
       {!(formikProps.isValid ?? formikProps.isValid) &&
         formikProps.errors &&
+        formikProps.touched &&
         formikProps.errors.components &&
+        formikProps.touched.components &&
         formikProps.touched.components[componentIndex] &&
         formikProps.errors.components[componentIndex] &&
         Object.keys(formikProps.errors.components[componentIndex]).filter(
