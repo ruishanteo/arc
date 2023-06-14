@@ -15,7 +15,7 @@ export function UnrestrictedRequirements({
     const semesters = useSelector((state) => state.plannerSem.semesters);
 
     const mods = semesters.flatMap((semester) => {
-        return semester.modules.filter((module) => module.category.title === "UE");
+        return semester.modules.filter((module) => module.category.title === "UE" && module.modInfo.moduleCode);
       });
 
     return (
