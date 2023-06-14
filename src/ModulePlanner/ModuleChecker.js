@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { PlannerInstructions } from './PlannerInstructions'
 import { Semester } from "./Semester";
@@ -20,7 +20,6 @@ import {
   savePlanner,
   addSem,
   deleteSem,
-  updateSem,
 } from "./PlannerStore";
 
 import { 
@@ -83,25 +82,27 @@ progs.forEach((prog, index) => {
   prog.id = index;
 });
 
-const color = "#cff8df";
 
 export function ModuleChecker() {
-
-  const [progress, setProgress] = useState(0);
 
   const [open, setOpen] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isActionLoading, setIsActionLoading] = useState(false);
   const [isFetchingData, setIsFetchingData] = useState(true);
-
   const [visible, setVisible] = useState(true);
 
   const user = useAuth();
-  const dispatch = useDispatch();
   const isNarrowScreen = useMediaQuery('(max-width: 960px)');
 
   const degrees = useSelector((state) => state.plannerDeg.degrees);
   const semesters = useSelector((state) => state.plannerSem.semesters);
+
+  const totalModuleCredits = semesters.reduce((total, semester) => {
+    const semesterCredits = semester.modules.reduce((sum, module) => {
+      return sum + parseInt(module.modInfo.moduleCredit, 10);
+    }, 0);
+    return total + semesterCredits;
+  }, 0);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -154,25 +155,6 @@ export function ModuleChecker() {
   function updateDegree(degreeInd, value) {
     store.dispatch(updateDegrees(degreeInd, value));
   }
-
-  function countMc() {
-    let mc = 0;
-    semesters.forEach((semester) => semester.modules.forEach((mod) => {
-      mc += Number(mod.moduleCredit) }))
-    if (isNaN(mc)) {
-      return 0;
-    }
-    return mc;
-  }
-
-  function updateProg() {
-    let mc = countMc();
-    if (mc > 160) {
-      mc = 160;
-    }
-    setProgress((mc/160)*100);
-  }
-
 
   if (!user) {
     return;
@@ -336,7 +318,8 @@ export function ModuleChecker() {
             <Grid item xs={4} sm={3} md={2} xl={2}>
               <Button
                 variant="contained"
-                onClick= {() => store.dispatch(addSem)}
+                onClick= {() => {
+                  store.dispatch(addSem)}}
                 startIcon={<Add />}  
                 sx={{ 
                   mt: 2, 
@@ -350,7 +333,8 @@ export function ModuleChecker() {
             <Grid item xs={4} sm={3} md={2} xl={2}>
               <Button
                 variant="contained"
-                onClick= {() => store.dispatch(deleteSem)}
+                onClick= {() => {
+                  store.dispatch(deleteSem(semesters.length-1))}}
                 startIcon={<Remove />} 
                 sx={{ 
                   mt: 2, 
@@ -396,7 +380,7 @@ export function ModuleChecker() {
       variant='determinate'
       color="neutral"
       size="sm"
-      value={progress}
+      value={(totalModuleCredits/160)*100}
       sx={{
         height: '2.5rem',
         borderRadius: 10,
@@ -410,7 +394,7 @@ export function ModuleChecker() {
         sx={{ fontWeight: 450, minWidth: 250 }}
         align='right'
       >
-        {`${countMc()}`} MCs
+        {totalModuleCredits} MCs
       </Typography>
     
     </Box>

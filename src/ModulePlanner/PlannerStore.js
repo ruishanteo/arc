@@ -66,10 +66,6 @@ const plannerSemSlice = createSlice({
             ...state.semesters.slice(action.payload.semIndex + 1),
           ];
       },
-      updateSem: (state, action) => {
-        state.semesters[action.payload.semIndex] =
-          action.payload.value;
-      },
       addModule: (state, action) => {
         state.semesters[action.payload.semIndex].modules = [
             ...state.semesters[action.payload.semIndex].modules,
@@ -248,17 +244,6 @@ export function deleteSem(semIndex) {
           plannerSemSlice.actions.deleteSem({ semIndex })
         );
       };
-}
-
-export function updateSem(semIndex, value) {
-    return (dispatch, getState) => {
-        return dispatch(
-        plannerSemSlice.actions.updateSem({
-            semIndex,
-            value,
-        })
-        );
-    };
 }
 
 export function addModule(semIndex) {
