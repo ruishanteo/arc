@@ -12,6 +12,7 @@ import {
 
 export function ProgRequirements() {
     let progMods = require('../module_data/progMods.json');
+    let secondProg = require('../module_data/secondProg.json');
 
     const degrees = useSelector((state) => state.plannerDeg.degrees);
     const semesters = useSelector((state) => state.plannerSem.semesters);
@@ -24,6 +25,15 @@ export function ProgRequirements() {
     }
     
     const deg = getDegreeTitle();
+
+    function getSecDegreeTitle() {
+      if (typeof degrees[1]?.title != 'undefined') {
+        return degrees[1]?.title;
+      }
+      return "";
+    }
+    
+    const secDeg = getSecDegreeTitle();
 
     function checkValues(arr, list) {
       if (Array.isArray(arr)) {
@@ -90,6 +100,30 @@ export function ProgRequirements() {
           );
       }
     }
+
+    const tab2 = () => {
+      if (secDeg in secondProg) {
+        return (
+          secondProg[secDeg].map((module, index) => {
+            return (
+              <TableRow key={index}>
+              <TableCell align="center" sx={{
+                  backgroundColor: checkPresent(module.moduleCode),
+                  color: "black",
+                  fontSize: "1.0rem",
+              }}>
+                  {module.title}
+              </TableCell>
+              </TableRow>
+            )
+          }))
+      } else {
+        return (
+              <TableRow key = {1}>
+              </TableRow>
+          );
+      }
+    }
     
 
     return (
@@ -115,6 +149,7 @@ export function ProgRequirements() {
 
           <TableBody>
               {tab()}
+              {tab2()}
           </TableBody>
         </Table>
       </form>
