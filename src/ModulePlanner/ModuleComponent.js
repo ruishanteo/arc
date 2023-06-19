@@ -111,7 +111,7 @@ export function ModuleComponent({
         onChange={(_, value) => {
           onChangeModule(value);
         }}
-        renderInput={(params) => <TextField {...params} label="Select Module" />}
+        renderInput={(params) => <TextField {...params} label="Select Module" variant='standard' />}
         ListboxProps={{style:{
           maxHeight: '200px',
           }}}
@@ -131,7 +131,7 @@ export function ModuleComponent({
         onChange={(_, value) => {
           onChangeModule(value);
         }}
-        renderInput={(params) => <TextField {...params} label="Select Module" />}
+        renderInput={(params) => <TextField {...params} label="Select Module" variant='standard' />}
         ListboxProps={{style:{
           maxHeight: '200px',
           }}}
@@ -170,7 +170,7 @@ export function ModuleComponent({
             onChange={(_, value) => {
               onChangeCateg(value);
             }}
-            renderInput={(params) => <TextField {...params} label="Select Category" />}
+            renderInput={(params) => <TextField {...params} label="Select Category" variant='standard'/>}
             ListboxProps={{style:{
               maxHeight: '200px',
               }}}
