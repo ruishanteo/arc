@@ -56,9 +56,9 @@ export const styles = {
     },
     stripe: {
         position: 'relative',
-        top: '-125px',
+        top: '-185px',
         width: '100%',
-        height: '308px',
+        height: '400px',
         backgroundColor: '#E0FBFF',
         transform: 'skewY(-12deg)',
     },
@@ -67,7 +67,7 @@ export const styles = {
         width: '100%', 
         top: '5%', 
         color: 'black', 
-        fontSize: '24px', 
+        fontSize: '30px', 
         fontWeight: '600',
     },
     emailInput: { 
@@ -79,13 +79,31 @@ export const styles = {
         border: '4px solid #DFD1F5',
         height: '350px'
     },
+    instructionText: { 
+        position: 'absolute', 
+        width: '100%', 
+        top: '15%', 
+        //color: '#7a39e0', 
+        fontSize: '24px', 
+        fontWeight: '400' 
+    },
+    instructionNoteText: { 
+        position: 'absolute', 
+        width: '100%', 
+        top: '100%', 
+        //color: '#7a39e0', 
+        fontSize: '20px', 
+        fontWeight: '400',
+        fontStyle: 'italic' 
+    },
     bottomText: { 
         position: 'absolute', 
         width: '100%', 
         top: '83%', 
         //color: '#7a39e0', 
-        fontSize: '24px', 
-        fontWeight: '600' 
+        fontSize: '18px', 
+        fontWeight: '300',
+        fontStyle: 'italic' 
     },
     bottomButton: { 
         position: 'absolute', 

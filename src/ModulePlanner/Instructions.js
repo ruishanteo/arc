@@ -48,6 +48,18 @@ const Instructions = ({ toggleVisibility }) => {
                     Welcome to the planner page! 📝
                 </div>
 
+                <div style={styles.instructionText}>
+                    1. Select your primary degree, second degree/ major and programme if applicable. <br></br><br></br>
+                    2. Click on the + SEMESTERS button to add a new semester and - SEMESTERS to remove the latest one.<br></br><br></br>
+                    3. Click on the + MODULE button to add a new module and the X button to remove that module. <br></br><br></br>
+                    4. Select the module that you plan to take as well as the category it belongs under, ie GE or UE.<br></br>
+                    The table below will indicate green if that requirement is cleared.<br></br><br></br>
+                    5. Don't forget to save before leaving the page.<br></br><br></br>
+                    <h2 style={styles.instructionNoteText}>
+                    Note: Not all the requirement checks are implemented yet!
+                    </h2>                 
+                </div>
+
                 <div style={styles.bottomText}>
                     <label htmlFor="checkbox-input">
                         <input
