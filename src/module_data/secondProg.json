@@ -1,0 +1,1972 @@
+{
+  "Anthropology": [
+    {
+      "title": "SC1101E",
+      "moduleCode": [
+        "SC1101E"
+      ]
+    },
+    {
+      "title": "SC2101",
+      "moduleCode": [
+        "SC2101"
+      ]
+    },
+    {
+      "title": "SC3101",
+      "moduleCode": [
+        "SC3101"
+      ]
+    },
+    {
+      "title": "a minimum of 16 units of SC courses at Level-3000 or higher (including SC3101)",
+      "moduleCode": [
+        "a minimum of 16 units of SC courses at Level-3000 or higher (including SC3101)"
+      ]
+    }
+  ],
+  "Chinese Studies": [
+    {
+      "title": "CH1101E",
+      "moduleCode": [
+        "CH1101E"
+      ]
+    },
+    {
+      "title": "CH2121",
+      "moduleCode": [
+        "CH2121"
+      ]
+    },
+    {
+      "title": "CH2141",
+      "moduleCode": [
+        "CH2141"
+      ]
+    },
+    {
+      "title": "CH2161",
+      "moduleCode": [
+        "CH2161"
+      ]
+    },
+    {
+      "title": "CL2101",
+      "moduleCode": [
+        "CL2101"
+      ]
+    },
+    {
+      "title": "CL3104",
+      "moduleCode": [
+        "CL3104"
+      ]
+    },
+    {
+      "title": "CH2162 or CH2221 or CH2243 or CH2252",
+      "moduleCode": [
+        "CH2162", "CH2221", "CH2243", "CH2252"
+      ]
+    },
+    {
+      "title": "a minimum of 16 units at level-3000 (including CL3104) or higher",
+      "moduleCode": [
+        "a minimum of 16 units at level-3000 (including CL3104) or higher"
+      ]
+    },
+    {
+      "title": "a maximum of 8 units (in total) of the following: CH-recognised courses (excluding CL2101 and CL3104),  CH courses that are taught in English",
+      "moduleCode": [
+        "a maximum of 8 units (in total) of the following: CH-recognised courses (excluding CL2101 and CL3104),  CH courses that are taught in English"
+      ]
+    }
+  ],
+  "Chinese Language": [
+    {
+      "title": "CL1101E",
+      "moduleCode": [
+        "CL1101E"
+      ]
+    },
+    {
+      "title": "CL2101",
+      "moduleCode": [
+        "CL2101"
+      ]
+    },
+    {
+      "title": "CL2102",
+      "moduleCode": [
+        "CL2102"
+      ]
+    },
+    {
+      "title": "CL3104",
+      "moduleCode": [
+        "CL3104"
+      ]
+    },
+    {
+      "title": "CH2121",
+      "moduleCode": [
+        "CH2121"
+      ]
+    },
+    {
+      "title": "CH2141",
+      "moduleCode": [
+        "CH2141"
+      ]
+    },
+    {
+      "title": "a minimum of 16 units at level-3000 (including CL3104) or higher",
+      "moduleCode": [
+        "a minimum of 16 units at level-3000 (including CL3104) or higher"
+      ]
+    },
+    {
+      "title": "a maximum of 8 units (in total) of the following: CL-recognised courses (excluding CH2121 and CH2141), CL courses that are taught in English",
+      "moduleCode": [
+        "a maximum of 8 units (in total) of the following: CL-recognised courses (excluding CH2121 and CH2141), CL courses that are taught in English"
+      ]
+    }
+  ],
+  "Communications and New Media": [
+    {
+      "title": "Pass at least 40 Units of NM or NM-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of NM or NM-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "NM1101E",
+      "moduleCode": [
+        "NM1101E"
+      ]
+    },
+    {
+      "title": "NM2101",
+      "moduleCode": [
+        "NM2101"
+      ]
+    },
+    {
+      "title": "NM2103",
+      "moduleCode": [
+        "NM2103"
+      ]
+    },
+    {
+      "title": "NM2104",
+      "moduleCode": [
+        "NM2104"
+      ]
+    },
+    {
+      "title": "A minimum of 16 Units from Level 3000",
+      "moduleCode": [
+        "A minimum of 16 Units from Level 3000"
+      ]
+    }
+  ],
+  "Economics": [
+    {
+      "title": "Pass at least 40 Units of EC-coded or EC-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of EC-coded or EC-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "EC1101E",
+      "moduleCode": [
+        "EC1101E"
+      ]
+    },
+    {
+      "title": "EC2101",
+      "moduleCode": [
+        "EC2101"
+      ]
+    },
+    {
+      "title": "EC2102",
+      "moduleCode": [
+        "EC2102"
+      ]
+    },
+    {
+      "title": "EC2104",
+      "moduleCode": [
+        "EC2104"
+      ]
+    },
+    {
+      "title": "EC2303",
+      "moduleCode": [
+        "EC2303"
+      ]
+    },
+    {
+      "title": "EC3101",
+      "moduleCode": [
+        "EC3101"
+      ]
+    },
+    {
+      "title": "EC3102",
+      "moduleCode": [
+        "EC3102"
+      ]
+    },
+    {
+      "title": "EC3303",
+      "moduleCode": [
+        "EC3303"
+      ]
+    },
+    {
+      "title": "A minimum of 16 unitss of EC courses at level-3000 or higher (including EC3101, EC3102 and EC3303)",
+      "moduleCode": [
+        "A minimum of 16 unitss of EC courses at level-3000 or higher (including EC3101, EC3102 and EC3303)"
+      ]
+    },
+    {
+      "title": "A maximum of 8 units of EC-recognised courses (double counting) for Major programme",
+      "moduleCode": [
+        "A maximum of 8 units of EC-recognised courses (double counting) for Major programme"
+      ]
+    }
+  ],
+  "English Language": [
+    {
+      "title": "Pass at least 40 Units of EL or EL-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of EL or EL-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "EL1101E",
+      "moduleCode": [
+        "EL1101E"
+      ]
+    },
+    {
+      "title": "A minimum of 12 units at level-2000 from the following: EL2101, EL2102, EL2111, EL2151",
+      "moduleCode": [
+        "A minimum of 12 units at level-2000 from the following: EL2101, EL2102, EL2111, EL2151"
+      ]
+    },
+    {
+      "title": "A minimum of 12 units at level-3000 or higher",
+      "moduleCode": [
+        "A minimum of 12 units at level-3000 or higher"
+      ]
+    },
+    {
+      "title": "A maximum of 8 units of EL-recognised courses",
+      "moduleCode": [
+        "A maximum of 8 units of EL-recognised courses"
+      ]
+    }
+  ],
+  "English Literature": [
+    {
+      "title": "Pass at least 40 Units of EN or EN-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of EN or EN-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "EN1101E",
+      "moduleCode": [
+        "EN1101E"
+      ]
+    },
+    {
+      "title": "A minimum of 4 units from the following: EN2201, EN2202, EN2203 , EN2205, EN2206, EN2207, EN2275, EN2277",
+      "moduleCode": [
+        "A minimum of 4 units from the following: EN2201, EN2202, EN2203 , EN2205, EN2206, EN2207, EN2275, EN2277"
+      ]
+    },
+    {
+      "title": "A minimum of 8 units from literature before 1800",
+      "moduleCode": [
+        "A minimum of 8 units from literature before 1800"
+      ]
+    },
+    {
+      "title": "A minimum of 12 units at level-3000 or higher",
+      "moduleCode": [
+        "A minimum of 12 units at level-3000 or higher"
+      ]
+    },
+    {
+      "title": "A maximum of 8 units of EN-recognised courses",
+      "moduleCode": [
+        "A maximum of 8 units of EN-recognised courses"
+      ]
+    }
+  ],
+  "Geography": [
+    {
+      "title": "Pass at least 40 Units of GE courses or GE-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of GE courses or GE-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "GE1101E",
+      "moduleCode": [
+        "GE1101E"
+      ]
+    },
+    {
+      "title": "GE2101",
+      "moduleCode": [
+        "GE2101"
+      ]
+    },
+    {
+      "title": "GE2102",
+      "moduleCode": [
+        "GE2102"
+      ]
+    },
+    {
+      "title": "GE2103",
+      "moduleCode": [
+        "GE2103"
+      ]
+    },
+    {
+      "title": "GE2215",
+      "moduleCode": [
+        "GE2215"
+      ]
+    },
+    {
+      "title": "GE2231",
+      "moduleCode": [
+        "GE2231"
+      ]
+    },
+    {
+      "title": "A minimum of 16 Units at level-3000 or higher",
+      "moduleCode": [
+        "A minimum of 16 Units at level-3000 or higher"
+      ]
+    }
+  ],
+  "Global Studies": [
+    {
+      "title": "Pass at least 40 Units of GL courses or GL-recognised non-language courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of GL courses or GL-recognised non-language courses, which include:"
+      ]
+    },
+    {
+      "title": "GL1101E",
+      "moduleCode": [
+        "GL1101E"
+      ]
+    },
+    {
+      "title": "GL2101",
+      "moduleCode": [
+        "GL2101"
+      ]
+    },
+    {
+      "title": "GL2102",
+      "moduleCode": [
+        "GL2102"
+      ]
+    },
+    {
+      "title": "GL2103",
+      "moduleCode": [
+        "GL2103"
+      ]
+    },
+    {
+      "title": "GL2104 or SC2101",
+      "moduleCode": [
+        "GL2104", "SC2101"
+      ]
+    },
+    {
+      "title": "GE2231",
+      "moduleCode": [
+        "GE2231"
+      ]
+    },
+    {
+      "title": "One of the following courses for the advanced methodology requirement: NM4102 (4 Units), GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PS3257, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units)",
+      "moduleCode": [
+        "One of the following courses for the advanced methodology requirement: NM4102 (4 Units), GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PS3257, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units)"
+      ]
+    },
+    {
+      "title": "A minimum of 12 Units from ONE of the following themes*: Colonialism, Security, and Global Order Global Health, Environment, and Technology Global Political Economy Peoples, Cultures, and Globalisation",
+      "moduleCode": [
+        "A minimum of 12 Units from ONE of the following themes*: Colonialism, Security, and Global Order Global Health, Environment, and Technology Global Political Economy Peoples, Cultures, and Globalisation"
+      ]
+    },
+    {
+      "title": "A minimum of 16 Units of 3000-level or higher GL or GL recognised courses (such as GE3230A, GE3233, GE3240, GL3201, PH3201, PS3257, SC3101, SC3209, SC3213, SC3221 or SC3227)",
+      "moduleCode": [
+        "A minimum of 16 Units of 3000-level or higher GL or GL recognised courses (such as GE3230A, GE3233, GE3240, GL3201, PH3201, PS3257, SC3101, SC3209, SC3213, SC3221 or SC3227)"
+      ]
+    },
+    {
+      "title": "No more than 12 Units of the electives may be from a single discipline (excluding NM4102, GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PS3257, SC2101, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units))",
+      "moduleCode": [
+        "No more than 12 Units of the electives may be from a single discipline (excluding NM4102, GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PS3257, SC2101, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units))"
+      ]
+    }
+  ],
+  "History": [
+    {
+      "title": "Pass at least 40 Units of HY Courses or HY-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of HY Courses or HY-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "HY1101E",
+      "moduleCode": [
+        "HY1101E"
+      ]
+    },
+    {
+      "title": "a minimum of 16 units at Level-3000 or higher",
+      "moduleCode": [
+        "a minimum of 16 units at Level-3000 or higher"
+      ]
+    },
+    {
+      "title": "a maximum of 8 units of HY-recognised courses",
+      "moduleCode": [
+        "a maximum of 8 units of HY-recognised courses"
+      ]
+    }
+  ],
+  "Japanese Studies": [
+    {
+      "title": "Pass at least 40 Units of JS Courses or JS-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of JS Courses or JS-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "JS1101E",
+      "moduleCode": [
+        "JS1101E"
+      ]
+    },
+    {
+      "title": "JS2101",
+      "moduleCode": [
+        "JS2101"
+      ]
+    },
+    {
+      "title": "LAJ1201",
+      "moduleCode": [
+        "LAJ1201"
+      ]
+    },
+    {
+      "title": "LAJ2201",
+      "moduleCode": [
+        "LAJ2201"
+      ]
+    },
+    {
+      "title": "a maximum of 16 units from LAJ level-1000 to level-3000 (including LAJ1201 and LAJ2201)",
+      "moduleCode": [
+        "a maximum of 16 units from LAJ level-1000 to level-3000 (including LAJ1201 and LAJ2201)"
+      ]
+    },
+    {
+      "title": "a minimum of 12 units at JS level-3000 or higher",
+      "moduleCode": [
+        "a minimum of 12 units at JS level-3000 or higher"
+      ]
+    },
+    {
+      "title": "a maximum of 8 units of JS-recognised courses",
+      "moduleCode": [
+        "a maximum of 8 units of JS-recognised courses"
+      ]
+    }
+  ],
+  "Malay Studies": [
+    {
+      "title": "Pass at least 40 Units of MS courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of MS courses, which include:"
+      ]
+    },
+    {
+      "title": "MS1102E",
+      "moduleCode": [
+        "MS1102E"
+      ]
+    },
+    {
+      "title": "MS4101",
+      "moduleCode": [
+        "MS4101"
+      ]
+    },
+    {
+      "title": "A minimum of 16 Units at level-3000 or higher",
+      "moduleCode": [
+        "A minimum of 16 Units at level-3000 or higher"
+      ]
+    }
+  ],
+  "Philosophy": [
+    {
+      "title": "Pass at least 40 Units of PH courses or PH-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of PH courses or PH-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "GEX1015",
+      "moduleCode": [
+        "GEX1015"
+      ]
+    },
+    {
+      "title": "GEX1014",
+      "moduleCode": [
+        "GEX1014"
+      ]
+    },
+    {
+      "title": "a minimum of 16 MCs at level-3000 or higher",
+      "moduleCode": [
+        "a minimum of 16 MCs at level-3000 or higher"
+      ]
+    },
+    {
+      "title": "a maximum of 8 MCs of PH-recognised courses",
+      "moduleCode": [
+        "a maximum of 8 MCs of PH-recognised courses"
+      ]
+    }
+  ],
+  "Political Science": [
+    {
+      "title": "Pass at least 40 Units of PS Courses or PS-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of PS Courses or PS-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "PS1101E",
+      "moduleCode": [
+        "PS1101E"
+      ]
+    },
+    {
+      "title": "PS3257",
+      "moduleCode": [
+        "PS3257"
+      ]
+    },
+    {
+      "title": "PS2249 or PS2244 or PS3249",
+      "moduleCode": [
+        "PS2249", "PS2244", "PS3249"
+      ]
+    },
+    {
+      "title": "A minimum of ONE Course from each of the following subfields: Comparative Politics (CP), International Relations (IR), Political Theory (PT), Governance and Public Policy (GPP)",
+      "moduleCode": [
+        "A minimum of ONE Course from each of the following subfields: Comparative Politics (CP), International Relations (IR), Political Theory (PT), Governance and Public Policy (GPP)"
+      ]
+    },
+    {
+      "title": "A minimum of 16 Units at level 3000 or higher",
+      "moduleCode": [
+        "A minimum of 16 Units at level 3000 or higher"
+      ]
+    },
+    {
+      "title": "A minimum of 20 Units in PS-coded Courses (including PS3257)",
+      "moduleCode": [
+        "A minimum of 20 Units in PS-coded Courses (including PS3257)"
+      ]
+    }
+  ],
+  "Psychology": [
+    {
+      "title": "Pass at least 40 Units of PL courses or PL-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of PL courses or PL-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "PL1101E",
+      "moduleCode": [
+        "PL1101E"
+      ]
+    },
+    {
+      "title": "PL2131",
+      "moduleCode": [
+        "PL2131"
+      ]
+    },
+    {
+      "title": "PL2132",
+      "moduleCode": [
+        "PL2132"
+      ]
+    },
+    {
+      "title": "PL3102",
+      "moduleCode": [
+        "PL3102"
+      ]
+    },
+    {
+      "title": "PL3103",
+      "moduleCode": [
+        "PL3103"
+      ]
+    },
+    {
+      "title": "PL3104",
+      "moduleCode": [
+        "PL3104"
+      ]
+    },
+    {
+      "title": "PL3105",
+      "moduleCode": [
+        "PL3105"
+      ]
+    },
+    {
+      "title": "PL3106",
+      "moduleCode": [
+        "PL3106"
+      ]
+    },
+    {
+      "title": "A minimum of 8 units at levels-2000 and 3000 (excluding the courses above), with a maximum of 1 PL-recognised coursee. This requirement cannot be fulfilled by reading PL3231 Independent Research Project or PL328x lab courses.",
+      "moduleCode": [
+        "A minimum of 8 units at levels-2000 and 3000 (excluding the courses above), with a maximum of 1 PL-recognised coursee. This requirement cannot be fulfilled by reading PL3231 Independent Research Project or PL328x lab courses."
+      ]
+    }
+  ],
+  "Social Work": [
+    {
+      "title": "Pass at least 40 Units of SW or SW-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of SW or SW-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "SW1101E",
+      "moduleCode": [
+        "SW1101E"
+      ]
+    },
+    {
+      "title": "SW2101",
+      "moduleCode": [
+        "SW2101"
+      ]
+    },
+    {
+      "title": "SW2104",
+      "moduleCode": [
+        "SW2104"
+      ]
+    },
+    {
+      "title": "SW2105",
+      "moduleCode": [
+        "SW2105"
+      ]
+    },
+    {
+      "title": "SW2106",
+      "moduleCode": [
+        "SW2106"
+      ]
+    },
+    {
+      "title": "SW3101 OR PL2131 OR SC2101",
+      "moduleCode": [
+        "SW3101", "PL2131", "SC2101"
+      ]
+    },
+    {
+      "title": "SW3103C",
+      "moduleCode": [
+        "SW3103C"
+      ]
+    },
+    {
+      "title": "SW3104B",
+      "moduleCode": [
+        "SW3104B"
+      ]
+    },
+    {
+      "title": "SW3105",
+      "moduleCode": [
+        "SW3105"
+      ]
+    },
+    {
+      "title": "Read and pass a minimum of 16 units at level 3000 or higher (including courses listed above).",
+      "moduleCode": [
+        "Read and pass a minimum of 16 units at level 3000 or higher (including courses listed above)."
+      ]
+    }
+  ],
+  "Sociology": [
+    {
+      "title": "Pass at least 40 Units of SC courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of SC courses, which include:"
+      ]
+    },
+    {
+      "title": "SC1101E",
+      "moduleCode": [
+        "SC1101E"
+      ]
+    },
+    {
+      "title": "SC2101",
+      "moduleCode": [
+        "SC2101"
+      ]
+    },
+    {
+      "title": "SC3101",
+      "moduleCode": [
+        "SC3101"
+      ]
+    },
+    {
+      "title": "a minimum of 16 units of SC courses at Level-3000 or higher (including SC3101)",
+      "moduleCode": [
+        "a minimum of 16 units of SC courses at Level-3000 or higher (including SC3101)"
+      ]
+    }
+  ],
+  "Southeast Asian Studies": [
+    {
+      "title": "Pass at least 40 Units of SE and SE-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of SE and SE-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "SE1101E",
+      "moduleCode": [
+        "SE1101E"
+      ]
+    },
+    {
+      "title": "a minimum of 12 Units of Southeast Asian language courses",
+      "moduleCode": [
+        "a minimum of 12 Units of Southeast Asian language courses"
+      ]
+    },
+    {
+      "title": "a minimum of 16 Units at level-3000 or higher (excluding language courses)",
+      "moduleCode": [
+        "a minimum of 16 Units at level-3000 or higher (excluding language courses)"
+      ]
+    },
+    {
+      "title": "a maximum of 8 Units SE-recognised courses (excluding language courses)",
+      "moduleCode": [
+        "a maximum of 8 Units SE-recognised courses (excluding language courses)"
+      ]
+    }
+  ],
+  "South Asian Studies": [
+    {
+      "title": "Pass at least 40 Units of SN courses or SN-recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of SN courses or SN-recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "SN1101E",
+      "moduleCode": [
+        "SN1101E"
+      ]
+    },
+    {
+      "title": "a minimum of 24 Units of SN courses",
+      "moduleCode": [
+        "a minimum of 24 Units of SN courses"
+      ]
+    },
+    {
+      "title": "a minimum of 16 Units at level 3000 or higher",
+      "moduleCode": [
+        "a minimum of 16 Units at level 3000 or higher"
+      ]
+    },
+    {
+      "title": "a maximum of 8 Units of Tamil or Hindi track language courses offered by CLS",
+      "moduleCode": [
+        "a maximum of 8 Units of Tamil or Hindi track language courses offered by CLS"
+      ]
+    }
+  ],
+  "Theatre Studies": [
+    {
+      "title": "Pass at least 40 Units of TS courses or TS recognised courses, which include:",
+      "moduleCode": [
+        "Pass at least 40 Units of TS courses or TS recognised courses, which include:"
+      ]
+    },
+    {
+      "title": "TS1101E",
+      "moduleCode": [
+        "TS1101E"
+      ]
+    },
+    {
+      "title": "TS3103",
+      "moduleCode": [
+        "TS3103"
+      ]
+    },
+    {
+      "title": "A minimum of 4 units from each of the following strands: Framing Histories, Cultures in Practice, Researching Performance (including TS3103)",
+      "moduleCode": [
+        "A minimum of 4 units from each of the following strands: Framing Histories, Cultures in Practice, Researching Performance (including TS3103)"
+      ]
+    },
+    {
+      "title": "A minimum of 12 units at level-3000 or higher (including TS3103)",
+      "moduleCode": [
+        "A minimum of 12 units at level-3000 or higher (including TS3103)"
+      ]
+    },
+    {
+      "title": "A maximum of 8 units of TS-recognised courses",
+      "moduleCode": [
+        "A maximum of 8 units of TS-recognised courses"
+      ]
+    }
+  ],
+  "Management": [
+    {
+      "title": "To Be Updated! https://bba.nus.edu.sg/academic-programmes/majors-minors/non-business-students/cohort-2019-after/",
+      "moduleCode": [
+        "To Be Updated! https://bba.nus.edu.sg/academic-programmes/majors-minors/non-business-students/cohort-2019-after/"
+      ]
+    }
+  ],
+  "Real Estate Finance": [
+    {
+      "title": "RE1703",
+      "moduleCode": [
+        "RE1703"
+      ]
+    },
+    {
+      "title": "RE1704",
+      "moduleCode": [
+        "RE1704"
+      ]
+    },
+    {
+      "title": "RE1705",
+      "moduleCode": [
+        "RE1705"
+      ]
+    },
+    {
+      "title": "RE2705",
+      "moduleCode": [
+        "RE2705"
+      ]
+    },
+    {
+      "title": "RE2706",
+      "moduleCode": [
+        "RE2706"
+      ]
+    },
+    {
+      "title": "RE3701",
+      "moduleCode": [
+        "RE3701"
+      ]
+    },
+    {
+      "title": "RE3802",
+      "moduleCode": [
+        "RE3802"
+      ]
+    },
+    {
+      "title": "RE4806",
+      "moduleCode": [
+        "RE4806"
+      ]
+    },
+    {
+      "title": "2 Elective Modules: RE1901, RE2704, RE3704, RE3805, RE3807, RE4803, RE4804, RE4807",
+      "moduleCode": [
+        "2 Elective Modules: RE1901, RE2704, RE3704, RE3805, RE3807, RE4803, RE4804, RE4807"
+      ]
+    }
+  ],
+  "Business Analytics": [
+    {
+      "title": "BT1101",
+      "moduleCode": [
+        "BT1101"
+      ]
+    },
+    {
+      "title": "BT2101",
+      "moduleCode": [
+        "BT2101"
+      ]
+    },
+    {
+      "title": "BT2102",
+      "moduleCode": [
+        "BT2102"
+      ]
+    },
+    {
+      "title": "BT3103",
+      "moduleCode": [
+        "BT3103"
+      ]
+    },
+    {
+      "title": "CS1010S",
+      "moduleCode": [
+        "CS1010S"
+      ]
+    },
+    {
+      "title": "CS2030",
+      "moduleCode": [
+        "CS2030"
+      ]
+    },
+    {
+      "title": "ST2334",
+      "moduleCode": [
+        "ST2334"
+      ]
+    },
+    {
+      "title": "Complete 12 units from the following: BT3017, BT3102, BT3104, BT4014, BT4211, BT4212, BT4221, BT4222, BT4240, IS4241",
+      "moduleCode": [
+        "Complete 12 units from the following: BT3017, BT3102, BT3104, BT4014, BT4211, BT4212, BT4221, BT4222, BT4240, IS4241"
+      ]
+    }
+  ],
+  "Computer Science": [
+    {
+      "title": "CS1010 or CS1010S or CS1010E or CS1010J or CS1010X or CS1101S",
+      "moduleCode": [
+        "CS1010", "CS1010S", "CS1010E", "CS1010J", "CS1010X", "CS1101S"
+      ]
+    },
+    {
+      "title": "CS2030",
+      "moduleCode": [
+        "CS2030"
+      ]
+    },
+    {
+      "title": "CS2040",
+      "moduleCode": [
+        "CS2040"
+      ]
+    },
+    {
+      "title": "CS2100",
+      "moduleCode": [
+        "CS2100"
+      ]
+    },
+    {
+      "title": "CS2103",
+      "moduleCode": [
+        "CS2103"
+      ]
+    },
+    {
+      "title": "CS2106",
+      "moduleCode": [
+        "CS2106"
+      ]
+    },
+    {
+      "title": "One of the following: CS1231S, CS2102, CS2104, CS2105, CS2107, CS2108, CS2109S",
+      "moduleCode": [
+        "One of the following: CS1231S, CS2102, CS2104, CS2105, CS2107, CS2108, CS2109S"
+      ]
+    },
+    {
+      "title": "Complete 12 units of CS-coded elective courses at level-3000 or above",
+      "moduleCode": [
+        "Complete 12 units of CS-coded elective courses at level-3000 or above"
+      ]
+    }
+  ],
+  "Information Security": [
+    {
+      "title": "CS1010 or CS1010S or CS1010E or CS1010J or CS1010X or CS1101S",
+      "moduleCode": [
+        "CS1010", "CS1010S", "CS1010E", "CS1010J", "CS1010X", "CS1101S"
+      ]
+    },
+    {
+      "title": "CS2040 or CS2040C",
+      "moduleCode": [
+        "CS2040", "CS2040C"
+      ]
+    },
+    {
+      "title": "CS2100",
+      "moduleCode": [
+        "CS2100"
+      ]
+    },
+    {
+      "title": "CS2105",
+      "moduleCode": [
+        "CS2105"
+      ]
+    },
+    {
+      "title": "CS2106",
+      "moduleCode": [
+        "CS2106"
+      ]
+    },
+    {
+      "title": "CS2107",
+      "moduleCode": [
+        "CS2107"
+      ]
+    },
+    {
+      "title": "CS3235",
+      "moduleCode": [
+        "CS3235"
+      ]
+    },
+    {
+      "title": "Complete 12 units from the following, with at least 8 units at level-3000 or above: CS1231S, CS4211, CS3236, CS4236, CS4238, CS4257, CS4276, IS1103, IS4231, IS4234, IS4302, IFS4101, IFS4102, IFS4205",
+      "moduleCode": [
+        "Complete 12 units from the following, with at least 8 units at level-3000 or above: CS1231S, CS4211, CS3236, CS4236, CS4238, CS4257, CS4276, IS1103, IS4231, IS4234, IS4302, IFS4101, IFS4102, IFS4205"
+      ]
+    }
+  ],
+  "Innovation and Design": [
+    {
+      "title": "EG2201A or EG2310",
+      "moduleCode": [
+        "EG2201A", "EG2310"
+      ]
+    },
+    {
+      "title": "EG2301 or EG2311 or EG2606B",
+      "moduleCode": [
+        "EG2301", "EG2311", "EG2606B"
+      ]
+    },
+    {
+      "title": "EG3301R",
+      "moduleCode": [
+        "EG3301R"
+      ]
+    },
+    {
+      "title": "EG4301",
+      "moduleCode": [
+        "EG4301"
+      ]
+    },
+    {
+      "title": "8 units from: https://cde.nus.edu.sg/edic/idp/modules/electives/",
+      "moduleCode": [
+        "8 units from: https://cde.nus.edu.sg/edic/idp/modules/electives/"
+      ]
+    }
+  ],
+  "Systems Engineering": [
+    {
+      "title": "To Be Updated! https://cde.nus.edu.sg/isem/wp-content/uploads/sites/12/2023/06/Course-Requirements-for-2MJ-in-Systems-Engineering_AY2021-2022_40MCs_8Jun2023.pdf",
+      "moduleCode": [
+        "To Be Updated! https://cde.nus.edu.sg/isem/wp-content/uploads/sites/12/2023/06/Course-Requirements-for-2MJ-in-Systems-Engineering_AY2021-2022_40MCs_8Jun2023.pdf"
+      ]
+    }
+  ],
+  "Sustainable Urban Development": [
+    {
+      "title": "GEC1040 or ENV1101 or EG2501",
+      "moduleCode": [
+        "GEC1040", "ENV1101", "EG2501"
+      ]
+    },
+    {
+      "title": "GESS1014",
+      "moduleCode": [
+        "GESS1014"
+      ]
+    },
+    {
+      "title": "CE2003",
+      "moduleCode": [
+        "CE2003"
+      ]
+    },
+    {
+      "title": "CE3001",
+      "moduleCode": [
+        "CE3001"
+      ]
+    },
+    {
+      "title": "ESE3101",
+      "moduleCode": [
+        "ESE3101"
+      ]
+    },
+    {
+      "title": "3 of the following: PF3210, PF3504, PF4208, ESE4406, CE5315, ESE5880B",
+      "moduleCode": [
+        "3 of the following: PF3210, PF3504, PF4208, ESE4406, CE5315, ESE5880B"
+      ]
+    },
+    {
+      "title": "Cross Disciplinary Research Project OR 2 of the following: ESE3011, AR3223, ESE4408, PF4502",
+      "moduleCode": [
+        "Cross Disciplinary Research Project OR 2 of the following: ESE3011, AR3223, ESE4408, PF4502"
+      ]
+    }
+  ],
+  "Instrumental Performance/ Voice/ Composition": [
+    {
+      "title": "MUA1168",
+      "moduleCode": [
+        "MUA1168"
+      ]
+    },
+    {
+      "title": "MUA1169",
+      "moduleCode": [
+        "MUA1169"
+      ]
+    },
+    {
+      "title": "MUA2168",
+      "moduleCode": [
+        "MUA2168"
+      ]
+    },
+    {
+      "title": "MUA2169",
+      "moduleCode": [
+        "MUA2169"
+      ]
+    },
+    {
+      "title": "MUA3168",
+      "moduleCode": [
+        "MUA3168"
+      ]
+    },
+    {
+      "title": "Pass minimum 2  Units of courses from Major field (https://www.ystmusic.nus.edu.sg/yst-second-majors-and-minor-outlines/#major-field)",
+      "moduleCode": [
+        "Pass minimum 2  Units of courses from Major field (https://www.ystmusic.nus.edu.sg/yst-second-majors-and-minor-outlines/#major-field)"
+      ]
+    },
+    {
+      "title": "MUA3179",
+      "moduleCode": [
+        "MUA3179"
+      ]
+    },
+    {
+      "title": "MUT1101 OR MUT1201",
+      "moduleCode": [
+        "MUT1101", "MUT1201"
+      ]
+    },
+    {
+      "title": "MUH1101",
+      "moduleCode": [
+        "MUH1101"
+      ]
+    },
+    {
+      "title": "1 level-2000 or above Contextual Study module (MUH-coded)",
+      "moduleCode": [
+        "1 level-2000 or above Contextual Study module (MUH-coded)"
+      ]
+    },
+    {
+      "title": "Pass 8 Units of any music courses (except General Education courses) offered in the Conservatory, at least 4 Units at level-3000 or above.",
+      "moduleCode": [
+        "Pass 8 Units of any music courses (except General Education courses) offered in the Conservatory, at least 4 Units at level-3000 or above."
+      ]
+    }
+  ],
+  "Audio Arts and Sciences": [
+    {
+      "title": "MUA1170",
+      "moduleCode": [
+        "MUA1170"
+      ]
+    },
+    {
+      "title": "MUA1172",
+      "moduleCode": [
+        "MUA1172"
+      ]
+    },
+    {
+      "title": "MUA1171",
+      "moduleCode": [
+        "MUA1171"
+      ]
+    },
+    {
+      "title": "MUA2170",
+      "moduleCode": [
+        "MUA2170"
+      ]
+    },
+    {
+      "title": "MUA2172",
+      "moduleCode": [
+        "MUA2172"
+      ]
+    },
+    {
+      "title": "MUA3170",
+      "moduleCode": [
+        "MUA3170"
+      ]
+    },
+    {
+      "title": "MUA4173",
+      "moduleCode": [
+        "MUA4173"
+      ]
+    },
+    {
+      "title": "MUA4176",
+      "moduleCode": [
+        "MUA4176"
+      ]
+    },
+    {
+      "title": "MUA3172",
+      "moduleCode": [
+        "MUA3172"
+      ]
+    },
+    {
+      "title": "MUA4174",
+      "moduleCode": [
+        "MUA4174"
+      ]
+    },
+    {
+      "title": "MUA4175",
+      "moduleCode": [
+        "MUA4175"
+      ]
+    }
+  ],
+  "Music and Society": [
+    {
+      "title": "MUA1168",
+      "moduleCode": [
+        "MUA1168"
+      ]
+    },
+    {
+      "title": "MUA1169",
+      "moduleCode": [
+        "MUA1169"
+      ]
+    },
+    {
+      "title": "MUA3177",
+      "moduleCode": [
+        "MUA3177"
+      ]
+    },
+    {
+      "title": "MUA3209",
+      "moduleCode": [
+        "MUA3209"
+      ]
+    },
+    {
+      "title": "MUA3221 OR MUA3169",
+      "moduleCode": [
+        "MUA3221", "MUA3169"
+      ]
+    },
+    {
+      "title": "MUA3179",
+      "moduleCode": [
+        "MUA3179"
+      ]
+    },
+    {
+      "title": "MUT1101 OR MUT1201",
+      "moduleCode": [
+        "MUT1101", "MUT1201"
+      ]
+    },
+    {
+      "title": "MUH1101",
+      "moduleCode": [
+        "MUH1101"
+      ]
+    },
+    {
+      "title": "1 level-2000 or above Contextual Study module (MUH-coded)",
+      "moduleCode": [
+        "1 level-2000 or above Contextual Study module (MUH-coded)"
+      ]
+    },
+    {
+      "title": "Pass 4 Units from the following Music & Society-recognised courses: SE1101E, SE2210, SE2214, SE2221, SE2224, SE3210, SE3214, SE3219, SE3221, SE3230, NM1101E, NM2101, NM2103, NM2104, NM3243",
+      "moduleCode": [
+        "Pass 4 Units from the following Music & Society-recognised courses: SE1101E, SE2210, SE2214, SE2221, SE2224, SE3210, SE3214, SE3219, SE3221, SE3230, NM1101E, NM2101, NM2103, NM2104, NM3243"
+      ]
+    }
+  ],
+  "Music, Collaboration and Production": [
+    {
+      "title": "MUA1168",
+      "moduleCode": [
+        "MUA1168"
+      ]
+    },
+    {
+      "title": "MUA1169",
+      "moduleCode": [
+        "MUA1169"
+      ]
+    },
+    {
+      "title": "MUA3177",
+      "moduleCode": [
+        "MUA3177"
+      ]
+    },
+    {
+      "title": "MUA3209",
+      "moduleCode": [
+        "MUA3209"
+      ]
+    },
+    {
+      "title": "MUA3221 OR MUA3169",
+      "moduleCode": [
+        "MUA3221", "MUA3169"
+      ]
+    },
+    {
+      "title": "MUA3179",
+      "moduleCode": [
+        "MUA3179"
+      ]
+    },
+    {
+      "title": "MUT1101 OR MUT1201",
+      "moduleCode": [
+        "MUT1101", "MUT1201"
+      ]
+    },
+    {
+      "title": "MUH1101",
+      "moduleCode": [
+        "MUH1101"
+      ]
+    },
+    {
+      "title": "1 level-2000 or above Contextual Study module (MUH-coded)",
+      "moduleCode": [
+        "1 level-2000 or above Contextual Study module (MUH-coded)"
+      ]
+    },
+    {
+      "title": "Pass 4 Units from the following courses: MUA1192, MUA1193, MUA3105, MUA3271, MUA3216, MUT3224",
+      "moduleCode": [
+        "Pass 4 Units from the following courses: MUA1192, MUA1193, MUA3105, MUA3271, MUA3216, MUT3224"
+      ]
+    }
+  ],
+  "Public Health": [
+    {
+      "title": "SPH2001",
+      "moduleCode": [
+        "SPH2001"
+      ]
+    },
+    {
+      "title": "SPH2002",
+      "moduleCode": [
+        "SPH2002"
+      ]
+    },
+    {
+      "title": "SPH2003",
+      "moduleCode": [
+        "SPH2003"
+      ]
+    },
+    {
+      "title": "SPH2004",
+      "moduleCode": [
+        "SPH2004"
+      ]
+    },
+    {
+      "title": "SPH2005",
+      "moduleCode": [
+        "SPH2005"
+      ]
+    },
+    {
+      "title": "SPH3001",
+      "moduleCode": [
+        "SPH3001"
+      ]
+    },
+    {
+      "title": "16 units of elective courses with: at least 12 units at level-3000 or above, at least 8 units of SPH coded courses, up to 4 units of level-5000 courses, up to 4 units of recognised Quantitative or Qualitative methods courses. (https://sph.nus.edu.sg/wp-content/uploads/2023/06/Curriculum_Second-Major-in-Public-Health-for-AY2019_2020-onwards.pdf)",
+      "moduleCode": [
+        "16 units of elective courses with: at least 12 units at level-3000 or above, at least 8 units of SPH coded courses, up to 4 units of level-5000 courses, up to 4 units of recognised Quantitative or Qualitative methods courses. (https://sph.nus.edu.sg/wp-content/uploads/2023/06/Curriculum_Second-Major-in-Public-Health-for-AY2019_2020-onwards.pdf)"
+      ]
+    }
+  ],
+  "Chemistry": [
+    {
+      "title": "CM1102",
+      "moduleCode": [
+        "CM1102"
+      ]
+    },
+    {
+      "title": "CM2112",
+      "moduleCode": [
+        "CM2112"
+      ]
+    },
+    {
+      "title": "CM2122",
+      "moduleCode": [
+        "CM2122"
+      ]
+    },
+    {
+      "title": "CM2133",
+      "moduleCode": [
+        "CM2133"
+      ]
+    },
+    {
+      "title": "CM2143",
+      "moduleCode": [
+        "CM2143"
+      ]
+    },
+    {
+      "title": "CM3111",
+      "moduleCode": [
+        "CM3111"
+      ]
+    },
+    {
+      "title": "CM3121",
+      "moduleCode": [
+        "CM3121"
+      ]
+    },
+    {
+      "title": "CM3131",
+      "moduleCode": [
+        "CM3131"
+      ]
+    },
+    {
+      "title": "CM3141",
+      "moduleCode": [
+        "CM3141"
+      ]
+    },
+    {
+      "title": "CM3191 OR CM3192",
+      "moduleCode": [
+        "CM3191", "CM3192"
+      ]
+    }
+  ],
+  "Data Analytics": [
+    {
+      "title": "DSA1101",
+      "moduleCode": [
+        "DSA1101"
+      ]
+    },
+    {
+      "title": "MA1508E OR MA1513 OR MA2001",
+      "moduleCode": [
+        "MA1508E", "MA1513", "MA2001"
+      ]
+    },
+    {
+      "title": "MA1312 OR MA1505 OR (MA1511 & MA1512) OR MA1521 OR MA2002",
+      "moduleCode": [
+        "MA1312", "MA1505", ["MA1511", "MA1512"], "MA1521", "MA2002"
+      ]
+    },
+    {
+      "title": "CS2040",
+      "moduleCode": [
+        "CS2040"
+      ]
+    },
+    {
+      "title": "ST2131 OR MA2116 OR MA2216",
+      "moduleCode": [
+        "ST2131", "MA2116", "MA2216"
+      ]
+    },
+    {
+      "title": "ST2132",
+      "moduleCode": [
+        "ST2132"
+      ]
+    },
+    {
+      "title": "DSA2101 OR DSA2102",
+      "moduleCode": [
+        "DSA2101", "DSA2102"
+      ]
+    },
+    {
+      "title": "DSA3102 OR DBA3701 OR MA3236 OR MA3252",
+      "moduleCode": [
+        "DSA3102", "DBA3701", "MA3236", "MA3252"
+      ]
+    },
+    {
+      "title": "2 of the following: CS3244, DSA4211, DSA4212, ST3131",
+      "moduleCode": [
+        "2 of the following: CS3244, DSA4211, DSA4212, ST3131"
+      ]
+    }
+  ],
+  "Food Science": [
+    {
+      "title": "FST1101B",
+      "moduleCode": [
+        "FST1101B"
+      ]
+    },
+    {
+      "title": "FST2102B",
+      "moduleCode": [
+        "FST2102B"
+      ]
+    },
+    {
+      "title": "FST2106",
+      "moduleCode": [
+        "FST2106"
+      ]
+    },
+    {
+      "title": "FST2110",
+      "moduleCode": [
+        "FST2110"
+      ]
+    },
+    {
+      "title": "FST2201",
+      "moduleCode": [
+        "FST2201"
+      ]
+    },
+    {
+      "title": "FST3107",
+      "moduleCode": [
+        "FST3107"
+      ]
+    },
+    {
+      "title": "FST3108",
+      "moduleCode": [
+        "FST3108"
+      ]
+    },
+    {
+      "title": "FST3109",
+      "moduleCode": [
+        "FST3109"
+      ]
+    },
+    {
+      "title": "FST3111",
+      "moduleCode": [
+        "FST3111"
+      ]
+    },
+    {
+      "title": "FST3112",
+      "moduleCode": [
+        "FST3112"
+      ]
+    }
+  ],
+  "Life Sciences": [
+    {
+      "title": "LSM1111",
+      "moduleCode": [
+        "LSM1111"
+      ]
+    },
+    {
+      "title": "LSM2105",
+      "moduleCode": [
+        "LSM2105"
+      ]
+    },
+    {
+      "title": "LSM2106",
+      "moduleCode": [
+        "LSM2106"
+      ]
+    },
+    {
+      "title": "LSM2107",
+      "moduleCode": [
+        "LSM2107"
+      ]
+    },
+    {
+      "title": "4 Units of LSM21xx/22xx",
+      "moduleCode": [
+        "4 Units of LSM21xx/22xx"
+      ]
+    },
+    {
+      "title": "16 Units of LSM32xx/42xx/3991/ 4991",
+      "moduleCode": [
+        "16 Units of LSM32xx/42xx/3991/ 4991"
+      ]
+    },
+    {
+      "title": "4 Units of LSM22xx/32xx/42xx",
+      "moduleCode": [
+        "4 Units of LSM22xx/32xx/42xx"
+      ]
+    }
+  ],
+  "Mathematics": [
+    {
+      "title": "MA1100 OR MA1100T OR CS1231 OR CS1231S",
+      "moduleCode": [
+        "MA1100", "MA1100T", "CS1231", "CS1231S"
+      ]
+    },
+    {
+      "title": "8 MCs from modules coded MA15xx/MA20xx/MA22xx (except MA2288/MA2289)",
+      "moduleCode": [
+        "8 MCs from modules coded MA15xx/MA20xx/MA22xx (except MA2288/MA2289)"
+      ]
+    },
+    {
+      "title": "MA2101 OR MA2101S",
+      "moduleCode": [
+        "MA2101", "MA2101S"
+      ]
+    },
+    {
+      "title": "MA2104 OR MA2311 OR MA22xxx (except MA2288/MA2289)",
+      "moduleCode": [
+        "MA2104", "MA2311", "MA22xxx (except MA2288/MA2289)"
+      ]
+    },
+    {
+      "title": "MA2108 OR MA2108S",
+      "moduleCode": [
+        "MA2108", "MA2108S"
+      ]
+    },
+    {
+      "title": "MA2116 OR MA2216 OR ST2131 OR ST2334",
+      "moduleCode": [
+        "MA2116", "MA2216", "ST2131", "ST2334"
+      ]
+    },
+    {
+      "title": "3 Courses from the following: MA32xx/MA42xx (except MAx288/MAx289/MA4288x) or ST3236 or ST4238 or ME3291 or ME4291",
+      "moduleCode": [
+        "3 Courses from the following: MA32xx/MA42xx (except MAx288/MAx289/MA4288x) or ST3236 or ST4238 or ME3291 or ME4291"
+      ]
+    }
+  ],
+  "Nutrition": [
+    {
+      "title": "FST1101B",
+      "moduleCode": [
+        "FST1101B"
+      ]
+    },
+    {
+      "title": "FST2201",
+      "moduleCode": [
+        "FST2201"
+      ]
+    },
+    {
+      "title": "LSM2106",
+      "moduleCode": [
+        "LSM2106"
+      ]
+    },
+    {
+      "title": "FST2102B",
+      "moduleCode": [
+        "FST2102B"
+      ]
+    },
+    {
+      "title": "FST3202",
+      "moduleCode": [
+        "FST3202"
+      ]
+    },
+    {
+      "title": "LSM3210",
+      "moduleCode": [
+        "LSM3210"
+      ]
+    },
+    {
+      "title": "2 from the following: FST3203, FST3204, FST3205, FST4202",
+      "moduleCode": [
+        "2 from the following: FST3203, FST3204, FST3205, FST4202"
+      ]
+    },
+    {
+      "title": "2 from the following: FST3203, FST3204, FST3205, FST4202, LSM2212, LSM2231, LSM3212, LSM3235, LSM4216, LSM4220",
+      "moduleCode": [
+        "2 from the following: FST3203, FST3204, FST3205, FST4202, LSM2212, LSM2231, LSM3212, LSM3235, LSM4216, LSM4220"
+      ]
+    }
+  ],
+  "Pharmaceutical Science": [
+    {
+      "title": "PHS1101",
+      "moduleCode": [
+        "PHS1101"
+      ]
+    },
+    {
+      "title": "PHS2101",
+      "moduleCode": [
+        "PHS2101"
+      ]
+    },
+    {
+      "title": "PHS2102",
+      "moduleCode": [
+        "PHS2102"
+      ]
+    },
+    {
+      "title": "PHS2103",
+      "moduleCode": [
+        "PHS2103"
+      ]
+    },
+    {
+      "title": "PHS2104",
+      "moduleCode": [
+        "PHS2104"
+      ]
+    },
+    {
+      "title": "PHS2105",
+      "moduleCode": [
+        "PHS2105"
+      ]
+    },
+    {
+      "title": "2 from the following: PHS3101, PHS3102, LSM3211",
+      "moduleCode": [
+        "2 from the following: PHS3101, PHS3102, LSM3211"
+      ]
+    },
+    {
+      "title": "2 from the following: PHS4101, PHS4121, PHS4201, PR4204, PR4207, PHS4991",
+      "moduleCode": [
+        "2 from the following: PHS4101, PHS4121, PHS4201, PR4204, PR4207, PHS4991"
+      ]
+    }
+  ],
+  "Physics": [
+    {
+      "title": "PC1101",
+      "moduleCode": [
+        "PC1101"
+      ]
+    },
+    {
+      "title": "PC2174A OR MA2104 OR MA2311",
+      "moduleCode": [
+        "PC2174A", "MA2104", "MA2311"
+      ]
+    },
+    {
+      "title": "PC2193",
+      "moduleCode": [
+        "PC2193"
+      ]
+    },
+    {
+      "title": "2 from the following: PC2031, PC2032, PC2130, PC2135",
+      "moduleCode": [
+        "2 from the following: PC2031, PC2032, PC2130, PC2135"
+      ]
+    },
+    {
+      "title": "Any five of the following courses (at least 12 units must be at Level 3000 and above): PC21xx/PC31xx/PC32xx/PC3991/PC42xx/PC4991 except PC3289, PC4288 and their variants",
+      "moduleCode": [
+        "Any five of the following courses (at least 12 units must be at Level 3000 and above): PC21xx/PC31xx/PC32xx/PC3991/PC42xx/PC4991 except PC3289, PC4288 and their variants"
+      ]
+    }
+  ],
+  "Quantitative Finance": [
+    {
+      "title": "QF1100",
+      "moduleCode": [
+        "QF1100"
+      ]
+    },
+    {
+      "title": "Obtain 8 MCs from modules coded: MA15xx/MA20xx/MA2101/MA2101S/MA2108/MA2108S",
+      "moduleCode": [
+        "Obtain 8 MCs from modules coded: MA15xx/MA20xx/MA2101/MA2101S/MA2108/MA2108S"
+      ]
+    },
+    {
+      "title": "MA2104 OR MA2311 OR ME3291",
+      "moduleCode": [
+        "MA2104", "MA2311", "ME3291"
+      ]
+    },
+    {
+      "title": "MA2116 OR ST2131 OR EC2303 OR ST2334 OR MA2301",
+      "moduleCode": [
+        "MA2116", "ST2131", "EC2303", "ST2334", "MA2301"
+      ]
+    },
+    {
+      "title": "QF2103",
+      "moduleCode": [
+        "QF2103"
+      ]
+    },
+    {
+      "title": "QF2104",
+      "moduleCode": [
+        "QF2104"
+      ]
+    },
+    {
+      "title": "3 from the following: QF3101, QF3103, QF4102, QF4103, ST3131, EC3303, FIN3702, FIN3716",
+      "moduleCode": [
+        "3 from the following: QF3101, QF3103, QF4102, QF4103, ST3131, EC3303, FIN3702, FIN3716"
+      ]
+    }
+  ],
+  "Statistics": [
+    {
+      "title": "ST1131",
+      "moduleCode": [
+        "ST1131"
+      ]
+    },
+    {
+      "title": "MA2001 OR MA1508E OR MA1513",
+      "moduleCode": [
+        "MA2001", "MA1508E", "MA1513"
+      ]
+    },
+    {
+      "title": "MA2002 OR MA1312 OR MA1505 OR (MA1511 & MA1512) OR MA1521",
+      "moduleCode": [
+        "MA2002", "MA1312", "MA1505", ["MA1511", "MA1512"], "MA1521"
+      ]
+    },
+    {
+      "title": "MA2311 OR MA2104",
+      "moduleCode": [
+        "MA2311", "MA2104"
+      ]
+    },
+    {
+      "title": "ST2131 OR MA2216 OR MA2116 OR ST2334",
+      "moduleCode": [
+        "ST2131", "MA2216", "MA2116", "ST2334"
+      ]
+    },
+    {
+      "title": "ST2132",
+      "moduleCode": [
+        "ST2132"
+      ]
+    },
+    {
+      "title": "ST2137",
+      "moduleCode": [
+        "ST2137"
+      ]
+    },
+    {
+      "title": "Three courses from ST3131 or ST32xx (except ST328*) or ST42xx (except ST4288) courses",
+      "moduleCode": [
+        "Three courses from ST3131 or ST32xx (except ST328*) or ST42xx (except ST4288) courses"
+      ]
+    },
+    {
+      "title": "One additional course from ST32xx (except ST328x*) or ST42x (except ST4288) courses",
+      "moduleCode": [
+        "One additional course from ST32xx (except ST328x*) or ST42x (except ST4288) courses"
+      ]
+    }
+  ]
+}

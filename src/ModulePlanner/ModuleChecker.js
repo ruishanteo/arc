@@ -67,6 +67,29 @@ options.forEach((options, index) => {
   options.id = index;
 });
 
+let secDeg = require('../module_data/seconddeg.json');
+
+const secOptions = secDeg.map((option) => {
+  const firstLetter = option.faculty.toUpperCase();
+  return {
+  firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
+  ...option,
+  };
+})
+
+secOptions.sort((a, b) => {
+  // Sort by faculty
+  if (a.faculty !== b.faculty) {
+    return a.faculty.localeCompare(b.faculty);
+  }
+  
+  // Sort by title if faculties are the same
+  return a.title.localeCompare(b.title);
+});
+secOptions.forEach((options, index) => {
+  options.id = index;
+});
+
 const progs = [
   { title: '' },
   { title: 'RC4' },
@@ -167,6 +190,26 @@ export function ModuleChecker() {
   function toggleVisibility() {
     setVisible((prevVisibility) => !(prevVisibility));
   }
+
+  const handleFilterOptions = (options, state) => {
+    const inputValue = degrees[0];
+  
+    if (inputValue) {
+      const filteredOptions = options.filter((option) => {
+        if (option.faculty === "SOC" && inputValue.faculty === "SOC") {
+          return false; // Filter out SOC options when inputValue has faculty "SOC"
+        }
+        if (option.title === inputValue.title) {
+          return false; // Filter out options with the same title as inputValue
+        }
+        return true;
+      });
+  
+      return filteredOptions;
+    }
+  
+    return options; // Return all options if inputValue is empty
+  };
  
   return (
     <Container maxWidth="lg">
@@ -275,9 +318,10 @@ export function ModuleChecker() {
             <Autocomplete
             disablePortal
             id="addon-selector"           
-            options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+            options={secOptions.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
+            filterOptions={handleFilterOptions}
             sx={{ width: isNarrowScreen ? '100%' : 300 }}
             value={degrees[1] || null}         
             onChange={(_, value) => {
