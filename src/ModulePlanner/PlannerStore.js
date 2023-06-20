@@ -107,7 +107,7 @@ export function savePlanner(id) {
             ),
             handleApiCall(
               setDoc(doc(db, "semesters", id), {
-                semesters: getState().plannerDeg.semesters,
+                semesters: getState().plannerSem.semesters,
               })
             ),
           ]).then((res) => {
