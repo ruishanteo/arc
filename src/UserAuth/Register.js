@@ -20,7 +20,7 @@ export function Register() {
 
   useEffect(() => {
     if (user) navigate("/home");
-  }, [user]);
+  }, [user, navigate]);
 
   return (
     <Box align="center">
