@@ -20,6 +20,7 @@ import { NotFound } from "./Components/NotFound.js";
 import { Profile } from "./UserAuth/Profile.js";
 import { Register } from "./UserAuth/Register.js";
 import { Reset } from "./UserAuth/Reset.js";
+import { Profile } from "./UserAuth/Profile.js";
 
 import { DismissIconButton, Notifier } from "./Notifications/";
 import { store } from "./stores/store.js";
@@ -122,7 +123,6 @@ function App() {
                   <Header />
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/profile" element={<Profile />} />
