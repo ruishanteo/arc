@@ -18,7 +18,6 @@ import { Home } from "./NavPages/Home.js";
 import { Landing } from "./NavPages/Landing.js";
 import { Login } from "./UserAuth/Login.js";
 import { NotFound } from "./Components/NotFound.js";
-import { Profile } from "./UserAuth/Profile.js";
 import { Register } from "./UserAuth/Register.js";
 import { Reset } from "./UserAuth/Reset.js";
 
@@ -141,7 +140,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/home" element={<Home />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/profile" element={<Home />} />
                     <Route
                       path="/GradeCalculator"
                       element={<GradeCalculator />}
