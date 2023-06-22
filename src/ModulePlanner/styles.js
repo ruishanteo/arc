@@ -35,8 +35,8 @@ export const styles = {
         right: '24px',
         left: '24px',
         // Size
-        width: '1872px',
-        height: '770px',
+        width: '100%',
+        height: '100%',
         maxWidth: 'calc(100% - 48px)',
         maxHeight: 'calc(100% - 48px)',
         backgroundColor: 'white',
@@ -84,7 +84,7 @@ export const styles = {
         width: '100%', 
         top: '15%', 
         //color: '#7a39e0', 
-        fontSize: '24px', 
+        fontSize: '1rem', 
         fontWeight: '400' 
     },
     instructionNoteText: { 
@@ -92,7 +92,7 @@ export const styles = {
         width: '100%', 
         top: '100%', 
         //color: '#7a39e0', 
-        fontSize: '20px', 
+        fontSize: '0.9rem', 
         fontWeight: '400',
         fontStyle: 'italic' 
     },

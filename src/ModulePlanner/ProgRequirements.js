@@ -119,7 +119,7 @@ export function ProgRequirements() {
           }))
       } else {
         return (
-              <TableRow key = {1}>
+              <TableRow key = {2}>
               </TableRow>
           );
       }
