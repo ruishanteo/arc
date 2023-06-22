@@ -1,30 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 import {
+  useAuth,
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "./FirebaseHooks.js";
 
-import { Box, TextField, Typography } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
+import { Box, Button, Typography } from "@mui/material";
 import { Looks } from "@mui/icons-material";
 
-export function Register() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [loading, setLoading] = useState(false);
+import { FormTextField } from "../Components/FormTextField.js";
 
-  const register = () => {
-    setLoading(true);
-    registerWithEmailAndPassword(name, email, password)
-      .then(() => {
-        navigate("/home");
-      })
-      .finally(() => setLoading(false));
-  };
+export function Register() {
+  const user = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) navigate("/home");
+  }, [user]);
 
   return (
     <Box align="center">
@@ -37,7 +33,6 @@ export function Register() {
           alignItems: "center",
           backgroundColor: "#e0fbff",
           width: { xs: 400, md: 500 },
-          height: "13vh",
         }}
       >
         <Looks
@@ -80,54 +75,81 @@ export function Register() {
             mt: 1,
           }}
         >
-          <TextField
-            variant="filled"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
-            sx={{ mt: 1 }}
-            inputProps={{ maxLength: 20 }}
-          />
-
-          <TextField
-            variant="filled"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail Address"
-            sx={{ mt: 1 }}
-            inputProps={{ maxLength: 50 }}
-          />
-
-          <TextField
-            variant="filled"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            sx={{ mt: 1 }}
-          />
-
-          <LoadingButton
-            align="center"
-            onClick={register}
-            sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
-            variant="contained"
-            loading={loading}
+          <Formik
+            initialValues={{ name: "", email: "", password: "" }}
+            validationSchema={Yup.object().shape({
+              name: Yup.string().required("Required"),
+              email: Yup.string()
+                .email("Please enter a valid email")
+                .required("Required"),
+              password: Yup.string()
+                .required("Required")
+                .min(6, "Password is too short"),
+            })}
+            onSubmit={async (values, { setSubmitting }) => {
+              await registerWithEmailAndPassword(
+                values.name,
+                values.email,
+                values.password
+              ).finally(() => setSubmitting(false));
+            }}
           >
-            Register
-          </LoadingButton>
-
-          <LoadingButton
-            align="center"
-            onClick={signInWithGoogle}
-            sx={{ mt: 2, mb: 3, backgroundColor: "#b7b0f5", color: "black" }}
-            variant="contained"
-            loading={loading}
-          >
-            Register with Google
-          </LoadingButton>
+            {(formikProps) => (
+              <Form>
+                <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
+                  <FormTextField
+                    label="name"
+                    type="name"
+                    formikProps={formikProps}
+                    inputProps={{ maxLength: 20 }}
+                    placeholder="Name"
+                    variant="filled"
+                  />
+                  <FormTextField
+                    label="email"
+                    type="email"
+                    autoComplete="on"
+                    formikProps={formikProps}
+                    inputProps={{ maxLength: 50 }}
+                    placeholder="E-mail Address"
+                    variant="filled"
+                    sx={{ mt: 1 }}
+                  />
+                  <FormTextField
+                    label="password"
+                    type="password"
+                    autoComplete="on"
+                    formikProps={formikProps}
+                    placeholder="Password"
+                    variant="filled"
+                    sx={{ mt: 1 }}
+                  />
+                  <Button
+                    type="submit"
+                    disabled={formikProps.isSubmitting}
+                    sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
+                    variant="contained"
+                  >
+                    Register
+                  </Button>
+                  <Button
+                    align="center"
+                    onClick={signInWithGoogle}
+                    disabled={formikProps.isSubmitting}
+                    sx={{
+                      mt: 2,
+                      mb: 3,
+                      backgroundColor: "#b7b0f5",
+                      color: "black",
+                    }}
+                    variant="contained"
+                  >
+                    Register with Google
+                  </Button>
+                </Box>
+              </Form>
+            )}
+          </Formik>
 
           <Box>
             <Typography textAlign="center">

@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
-import { auth } from "./Firebase.js";
 import {
   logInWithEmailAndPassword,
   signInWithGoogle,
 } from "./FirebaseHooks.js";
 
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import LooksIcon from "@mui/icons-material/Looks";
 
+import { FormTextField } from "../Components/FormTextField.js";
+
 export function Login() {
-  const [email, setEmail] = useState("111@gmail.com");
-  const [password, setPassword] = useState("123456");
-  const [user, loading] = useAuthState(auth);
-
   const navigate = useNavigate();
-  useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
-    if (user) navigate("/home");
-  }, [user, loading, navigate]);
-
   return (
     <Box align="center">
       <Box
@@ -36,7 +26,6 @@ export function Login() {
           alignItems: "center",
           backgroundColor: "#e0fbff",
           width: { xs: 400, md: 500 },
-          height: "13vh",
         }}
       >
         <LooksIcon
@@ -74,41 +63,68 @@ export function Login() {
         </Typography>
 
         <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
-          <TextField
-            variant="filled"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail Address"
-            sx={{ mt: 1 }}
-          />
-
-          <TextField
-            variant="filled"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            sx={{ mt: 1 }}
-          />
-
-          <Button
-            onClick={() => logInWithEmailAndPassword(email, password)}
-            sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
-            variant="contained"
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={Yup.object().shape({
+              email: Yup.string()
+                .email("Please enter a valid email")
+                .required("Required"),
+              password: Yup.string()
+                .required("Required")
+                .min(6, "Password is too short"),
+            })}
+            onSubmit={async (values, { setSubmitting }) => {
+              await logInWithEmailAndPassword(values.email, values.password)
+                .then(() => navigate("/home"))
+                .finally(() => setSubmitting(false));
+            }}
           >
-            Login
-          </Button>
-
-          <Button
-            align="center"
-            className="login__btn login__google"
-            onClick={signInWithGoogle}
-            sx={{ mt: 2, mb: 3, backgroundColor: "#b7b0f5", color: "black" }}
-            variant="contained"
-          >
-            Login with Google
-          </Button>
+            {(formikProps) => (
+              <Form>
+                <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
+                  <FormTextField
+                    label="email"
+                    type="email"
+                    autoComplete="on"
+                    formikProps={formikProps}
+                    placeholder="E-mail Address"
+                    variant="filled"
+                  />
+                  <FormTextField
+                    label="password"
+                    type="password"
+                    autoComplete="on"
+                    formikProps={formikProps}
+                    placeholder="Password"
+                    variant="filled"
+                    sx={{ mt: 1 }}
+                  />
+                  <Button
+                    type="submit"
+                    disabled={formikProps.isSubmitting}
+                    sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
+                    variant="contained"
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    align="center"
+                    onClick={signInWithGoogle}
+                    disabled={formikProps.isSubmitting}
+                    sx={{
+                      mt: 2,
+                      mb: 3,
+                      backgroundColor: "#b7b0f5",
+                      color: "black",
+                    }}
+                    variant="contained"
+                  >
+                    Login with Google
+                  </Button>
+                </Box>
+              </Form>
+            )}
+          </Formik>
 
           <Grid container alignItems="center">
             <Grid item container direction="column" xs={12}>
