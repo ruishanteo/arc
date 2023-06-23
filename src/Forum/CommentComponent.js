@@ -97,7 +97,6 @@ export function CommentComponent({
           flexDirection="row"
           sx={{ width: "70vw" }}
           align="left"
-          alignItems="center"
         >
           <Avatar
             src={users[comment.author.userId]?.photoURL}
@@ -153,11 +152,10 @@ export function CommentComponent({
             </>
           ) : (
             <>
-              <Box>
+              <Box width="60vw">
                 <Typography
                   sx={{ wordBreak: "break-word" }}
                   variant="subtitle1"
-                  width="60vw"
                 >
                   {comment.text}
                 </Typography>
