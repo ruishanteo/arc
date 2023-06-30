@@ -158,3 +158,85 @@ describe("Register Page", () => {
   });
 });
 /* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                    LOGIN                                   */
+/* -------------------------------------------------------------------------- */
+describe("Login Page", () => {
+  async function fillInForm(inputEmail, inputPassword) {
+    await newPage();
+    await page.goto(LOGIN_PAGE_URL);
+    await page.waitForSelector(LOGIN_FORM_SELECTOR);
+    await page.type(EMAIL_FIELD_SELECTOR, inputEmail);
+    await page.type(PASSWORD_FIELD_SELECTOR, inputPassword);
+
+    await page.click("#login-button");
+  }
+
+  beforeAll(async () => {
+    await newBrowser();
+    await newPage();
+  });
+
+  afterAll(async () => {
+    await browser.close();
+  });
+
+  test("Empty form fields", async () => {
+    await fillInForm("", "");
+
+    const fields = ["email", "password"];
+    for (let i = 0; i < fields.length; i++) {
+      const field = fields[i];
+      await expectValidationErrorMessage(page, field, "Required");
+    }
+  });
+
+  test("Invalid email", async () => {
+    await fillInForm("123", password);
+    await expectValidationErrorMessage(
+      page,
+      "email",
+      "Please enter a valid email"
+    );
+  });
+
+  test("Invalid password", async () => {
+    await fillInForm(email, "123");
+    await expectValidationErrorMessage(
+      page,
+      "password",
+      "Password is too short"
+    );
+  });
+
+  test("Wrong email", async () => {
+    await fillInForm(`wrong_${email}`, password);
+    await expectErrorMessage(page, "auth/user-not-found");
+  });
+
+  test("Wrong password", async () => {
+    await fillInForm(email, `wrong_${password}`);
+    await expectErrorMessage(page, "auth/wrong-password");
+  });
+
+  test("Google Sign-in", async () => {
+    await page.goto(LOGIN_PAGE_URL);
+    await page.waitForSelector(GOOGLE_SIGNIN_BUTTON_SELECTOR);
+
+    const newPagePromise = new Promise((promise) =>
+      browser.once("targetcreated", (target) => promise(target.page()))
+    );
+    await page.click(GOOGLE_SIGNIN_BUTTON_SELECTOR);
+    const popup = await newPagePromise;
+    await page.waitForTimeout(TIMEOUT);
+
+    const found = (await popup.content()).match("Sign in");
+    expect(found).toContainEqual("Sign in");
+  });
+
+  test("Successfully logged in", async () => {
+    await login();
+  });
+});
+/* -------------------------------------------------------------------------- */

@@ -80,10 +80,11 @@ export function Login() {
             }}
           >
             {(formikProps) => (
-              <Form>
+              <Form id="login-form">
                 <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
                   <FormTextField
                     label="email"
+                    id="email"
                     type="email"
                     autoComplete="on"
                     formikProps={formikProps}
@@ -92,6 +93,7 @@ export function Login() {
                   />
                   <FormTextField
                     label="password"
+                    id="password"
                     type="password"
                     autoComplete="on"
                     formikProps={formikProps}
@@ -100,6 +102,7 @@ export function Login() {
                     sx={{ mt: 1 }}
                   />
                   <Button
+                    id="login-button"
                     type="submit"
                     disabled={formikProps.isSubmitting}
                     sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
@@ -108,6 +111,7 @@ export function Login() {
                     Login
                   </Button>
                   <Button
+                    id="google-signin-button"
                     align="center"
                     onClick={signInWithGoogle}
                     disabled={formikProps.isSubmitting}
