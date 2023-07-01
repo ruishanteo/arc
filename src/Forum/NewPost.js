@@ -1,105 +1,103 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 import { useAuth } from "../UserAuth/FirebaseHooks.js";
 import { store } from "../stores/store.js";
 import { createPost } from "./ForumStore.js";
-import { addNotification } from "../Notifications/index.js";
+
+import { FormTextField } from "../Components/FormTextField.js";
 
 import { LoadingButton } from "@mui/lab";
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
-
+import { Box, Button, Container, Typography } from "@mui/material";
 import { Cancel, Send } from "@mui/icons-material";
 
 export function NewPost() {
   const navigate = useNavigate();
   const user = useAuth();
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleCreatePost = () => {
-    if (!title || !text) {
-      store.dispatch(
-        addNotification({
-          message: "Please fill in all the fields.",
-          variant: "error",
-        })
-      );
-    } else {
-      setLoading(true);
-      store
-        .dispatch(
-          createPost({
-            title: title,
-            post: text,
-            author: {
-              userId: user.uid,
-            },
-          })
-        )
-        .finally(() => navigate("/forum"));
-    }
-  };
 
   return (
     <Container maxWidth="lg">
-      <Box align="center">
-        <Box sx={{ mt: 5, mb: 2 }} align="left">
-          <Typography variant="h4">New Post</Typography>
-        </Box>
+      <Formik
+        initialValues={{ title: "", post: "" }}
+        validationSchema={Yup.object().shape({
+          title: Yup.string().required("Required"),
+          post: Yup.string().required("Required"),
+        })}
+        onSubmit={async (values) => {
+          await store
+            .dispatch(
+              createPost({
+                ...values,
+                author: {
+                  userId: user.uid,
+                },
+              })
+            )
+            .then(() => navigate("/forum"))
+        }}
+      >
+        {(formikProps) => (
+          <Form id="login-form">
+            <Box align="center">
+              <Box sx={{ mt: 5, mb: 2 }} align="left">
+                <Typography variant="h4">New Post</Typography>
+              </Box>
 
-        <Box align="center" display="flex" flexDirection="column">
-          <TextField
-            type="text"
-            name="title"
-            placeholder="Enter title here."
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            inputProps={{ maxLength: 100 }}
-          />
+              <Box align="center" display="flex" flexDirection="column">
+                <FormTextField
+                  label="title"
+                  type="text"
+                  id="title"
+                  formikProps={formikProps}
+                  inputProps={{ maxLength: 100 }}
+                  placeholder="Enter title here"
+                />
+                <FormTextField
+                  label="post"
+                  type="text"
+                  id="post"
+                  formikProps={formikProps}
+                  placeholder="Enter text here"
+                  sx={{ mt: 2 }}
+                  rows={5}
+                  multiline
+                />
+              </Box>
 
-          <TextField
-            type="text"
-            name="thread"
-            required
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Enter text here."
-            sx={{ mt: 2 }}
-            multiline
-            rows={5}
-          />
-        </Box>
+              <Box sx={{ mt: 3 }}>
+                <LoadingButton
+                  id="submit-button"
+                  type="submit"
+                  sx={{ mr: 3, backgroundColor: "#cff8df" }}
+                  variant="contained"
+                  disabled={formikProps.isSubmitting}
+                  loading={formikProps.isSubmitting}
+                >
+                  Submit <Send />
+                </LoadingButton>
 
-        <Box sx={{ mt: 3 }}>
-          <LoadingButton
-            sx={{ mr: 3, backgroundColor: "#cff8df" }}
-            variant="contained"
-            onClick={() => {
-              handleCreatePost();
-              setTitle("");
-              setText("");
-            }}
-            loading={loading}
-          >
-            Submit <Send />
-          </LoadingButton>
-
-          <Link
-            to="/Forum"
-            style={{
-              color: "black",
-              textDecoration: "none",
-            }}
-          >
-            <Button sx={{ backgroundColor: "#fcf4d4" }} variant="contained">
-              Cancel
-              <Cancel />
-            </Button>
-          </Link>
-        </Box>
-      </Box>
+                <Link
+                  to="/Forum"
+                  style={{
+                    color: "black",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Button
+                    sx={{ backgroundColor: "#fcf4d4" }}
+                    variant="contained"
+                    disabled={formikProps.isSubmitting}
+                  >
+                    Cancel
+                    <Cancel />
+                  </Button>
+                </Link>
+              </Box>
+            </Box>
+          </Form>
+        )}
+      </Formik>
     </Container>
   );
 }
