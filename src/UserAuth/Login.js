@@ -102,7 +102,7 @@ export function Login() {
                     sx={{ mt: 1 }}
                   />
                   <Button
-                    id="login-button"
+                    id="submit-button"
                     type="submit"
                     disabled={formikProps.isSubmitting}
                     sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}

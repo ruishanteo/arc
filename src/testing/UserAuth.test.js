@@ -12,6 +12,7 @@ const EMAIL_FIELD_SELECTOR = "#email";
 const PASSWORD_FIELD_SELECTOR = "#password";
 const LOGIN_FORM_SELECTOR = "#login-form";
 const REGISTER_FORM_SELECTOR = "#register-form";
+const SUBMIT_BUTTON_SELECTOR = "#submit-button";
 const GOOGLE_SIGNIN_BUTTON_SELECTOR = "#google-signin-button";
 
 // Globals
@@ -22,30 +23,35 @@ const mailSlurpClient = new MailSlurp({
 let browser;
 let page;
 
+const inboxId = "dbfb088b-1b53-4028-a40b-b10bc3bdbc54";
 const name = "tester";
-const email = "dbfb088b-1b53-4028-a40b-b10bc3bdbc54@mailslurp.com";
+const email = `${inboxId}@mailslurp.com`;
 const password = "123456";
-
 let consoleMessages = [];
 
 /* -------------------------------------------------------------------------- */
 /*                               HELPER METHODS                               */
 /* -------------------------------------------------------------------------- */
-
 async function newBrowser() {
   if (browser) await browser.close();
   browser = await puppeteer.launch();
   page = null;
 }
 
-async function newPage(freshPage) {
-  if (!freshPage && page) page.close();
+async function newPage() {
+  if (page) page.close();
   page = await browser.newPage();
 
   consoleMessages.length = 0;
   page.on("console", (message) => {
     consoleMessages.push(message.text());
   });
+}
+
+async function reset(url) {
+  await newBrowser();
+  await newPage();
+  await page.goto(url);
 }
 
 async function expectValidationErrorMessage(page, field, message) {
@@ -65,16 +71,6 @@ async function expectErrorMessage(page, errorCode) {
   expect(errorMessages.length).toBeGreaterThan(0);
   expect(errorMessages[0]).toContain(errorCode);
 }
-
-async function login() {
-  await newPage();
-  await page.goto(LOGIN_PAGE_URL);
-  await page.waitForSelector(LOGIN_FORM_SELECTOR);
-  await page.type(EMAIL_FIELD_SELECTOR, email);
-  await page.type(PASSWORD_FIELD_SELECTOR, password);
-  await page.click("#login-button");
-  await page.waitForNavigation();
-}
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
@@ -82,23 +78,16 @@ async function login() {
 /* -------------------------------------------------------------------------- */
 describe("Register Page", () => {
   async function fillInForm(inputName, inputEmail, inputPassword) {
-    await newPage();
-    await page.goto(REGISTER_PAGE_URL);
     await page.waitForSelector(REGISTER_FORM_SELECTOR);
     await page.type(NAME_FIELD_SELECTOR, inputName);
     await page.type(EMAIL_FIELD_SELECTOR, inputEmail);
     await page.type(PASSWORD_FIELD_SELECTOR, inputPassword);
 
-    await page.click("#login-button");
+    await page.click(SUBMIT_BUTTON_SELECTOR);
   }
 
-  beforeAll(async () => {
-    await newBrowser();
-    await newPage(true);
-  });
-
-  afterAll(async () => {
-    await browser.close();
+  beforeEach(async () => {
+    await reset(REGISTER_PAGE_URL);
   });
 
   test("Empty form fields", async () => {
@@ -135,15 +124,11 @@ describe("Register Page", () => {
   });
 
   test("Account already exists", async () => {
-    await newBrowser();
     await fillInForm(name, email, password);
     await expectErrorMessage(page, "auth/email-already-in-use");
   });
 
   test("Google Sign-in", async () => {
-    await newBrowser();
-    await newPage();
-    await page.goto(REGISTER_PAGE_URL);
     await page.waitForSelector(GOOGLE_SIGNIN_BUTTON_SELECTOR);
 
     const newPagePromise = new Promise((promise) =>
@@ -164,22 +149,15 @@ describe("Register Page", () => {
 /* -------------------------------------------------------------------------- */
 describe("Login Page", () => {
   async function fillInForm(inputEmail, inputPassword) {
-    await newPage();
-    await page.goto(LOGIN_PAGE_URL);
     await page.waitForSelector(LOGIN_FORM_SELECTOR);
     await page.type(EMAIL_FIELD_SELECTOR, inputEmail);
     await page.type(PASSWORD_FIELD_SELECTOR, inputPassword);
 
-    await page.click("#login-button");
+    await page.click(SUBMIT_BUTTON_SELECTOR);
   }
 
-  beforeAll(async () => {
-    await newBrowser();
-    await newPage();
-  });
-
-  afterAll(async () => {
-    await browser.close();
+  beforeEach(async () => {
+    await reset(LOGIN_PAGE_URL);
   });
 
   test("Empty form fields", async () => {
@@ -221,7 +199,6 @@ describe("Login Page", () => {
   });
 
   test("Google Sign-in", async () => {
-    await page.goto(LOGIN_PAGE_URL);
     await page.waitForSelector(GOOGLE_SIGNIN_BUTTON_SELECTOR);
 
     const newPagePromise = new Promise((promise) =>
@@ -236,7 +213,8 @@ describe("Login Page", () => {
   });
 
   test("Successfully logged in", async () => {
-    await login();
+    await fillInForm(email, password);
+    await page.waitForNavigation();
   });
 });
 /* -------------------------------------------------------------------------- */
