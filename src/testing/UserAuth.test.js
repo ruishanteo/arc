@@ -1,10 +1,11 @@
+const axios = require("axios");
 const puppeteer = require("puppeteer");
-const MailSlurp = require("mailslurp-client").default;
 
 // Configurations
 const TIMEOUT = 4000;
 const REGISTER_PAGE_URL = "http://localhost:3000/register";
 const LOGIN_PAGE_URL = "http://localhost:3000/login";
+const RESET_PAGE_URL = "http://localhost:3000/reset";
 
 // Selectors
 const NAME_FIELD_SELECTOR = "#name";
@@ -16,16 +17,11 @@ const SUBMIT_BUTTON_SELECTOR = "#submit-button";
 const GOOGLE_SIGNIN_BUTTON_SELECTOR = "#google-signin-button";
 
 // Globals
-const mailSlurpClient = new MailSlurp({
-  apiKey: "f5d65b5a5a7877c7fa7da82dc8ff4001bdb4b11b2a9f5b6fde3b135bb377e117",
-});
-
 let browser;
 let page;
 
-const inboxId = "dbfb088b-1b53-4028-a40b-b10bc3bdbc54";
 const name = "tester";
-const email = `${inboxId}@mailslurp.com`;
+const email = `tester@test.com`;
 const password = "123456";
 let consoleMessages = [];
 
@@ -91,8 +87,8 @@ describe("Register Page", () => {
   });
 
   test("Empty form fields", async () => {
-    await fillInForm("", "", "");
-
+    await page.waitForSelector(REGISTER_FORM_SELECTOR);
+    await page.click(SUBMIT_BUTTON_SELECTOR);
     const fields = ["name", "email", "password"];
     for (let i = 0; i < fields.length; i++) {
       const field = fields[i];
@@ -215,6 +211,62 @@ describe("Login Page", () => {
   test("Successfully logged in", async () => {
     await fillInForm(email, password);
     await page.waitForNavigation();
+  });
+});
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                    RESET                                   */
+/* -------------------------------------------------------------------------- */
+describe("Reset Password Page", () => {
+  async function fillInForm(inputEmail) {
+    await page.waitForSelector(EMAIL_FIELD_SELECTOR);
+    await page.type(EMAIL_FIELD_SELECTOR, inputEmail);
+
+    await page.click(SUBMIT_BUTTON_SELECTOR);
+  }
+
+  beforeEach(async () => {
+    await reset(RESET_PAGE_URL);
+  });
+
+  afterAll(async () => {
+    await page.close();
+    await browser.close();
+  });
+
+  test("Empty form fields", async () => {
+    await fillInForm("");
+    await expectErrorMessage(page, "auth/missing-email");
+  });
+
+  test("Invalid email", async () => {
+    await fillInForm("123");
+    await expectErrorMessage(page, "auth/user-not-found");
+  });
+
+  test("Wrong email", async () => {
+    await fillInForm(`wrong_${email}`);
+    await expectErrorMessage(page, "auth/user-not-found");
+  });
+
+  test("Successfully sent email", async () => {
+    await fillInForm(email);
+    await page.waitForTimeout(TIMEOUT);
+
+    const response = await axios.get(
+      `http://127.0.0.1:9099/emulator/v1/projects/arc-backend-bac77/oobCodes`
+    );
+    expect(response.status).toBe(200);
+    expect(response.data).toBeDefined();
+    expect(response.data.oobCodes).toBeDefined();
+    expect(response.data.oobCodes).toBeInstanceOf(Array);
+
+    const oobRequest = response.data.oobCodes[0];
+    expect(oobRequest).toBeDefined();
+    expect(oobRequest).toBeInstanceOf(Object);
+    expect(oobRequest.email).toBe(email);
+    expect(oobRequest.requestType).toBe("PASSWORD_RESET");
   });
 });
 /* -------------------------------------------------------------------------- */
