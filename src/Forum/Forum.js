@@ -89,7 +89,10 @@ export function Forum() {
                           width: "90vw",
                         }}
                       >
-                        <CardActionArea sx={{ height: "25vh" }}>
+                        <CardActionArea
+                          id="view-post-button"
+                          sx={{ height: "25vh" }}
+                        >
                           <CardContent>
                             <Grid
                               container
