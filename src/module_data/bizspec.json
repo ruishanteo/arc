@@ -1,0 +1,52 @@
+{
+    "Business Analytics": [
+        ["DBA3702", "DBA3803", "IT3010"], [
+          "DBA3701", "DBA3711", "DBA3712", "DBA3713", "DBA3751", "DBA3752", "DBA3761", "DBA4711", "DBA4712", "DBA4713",
+          "DBA4751", "DBA4752", "DBA4761", "DBA4811", "DBA4812", "DBA4761A", "DBA4813", "DOS3811", "DOS4811", "DOS4813",
+          "MKT3811", "MKT4812", "MNO4716", "IE4214", "IS3221", "IS4241", "BT4212", "BT4222"
+        ]
+      ],
+      "Innovation and Entrepreneurship": [
+        [["BSN3701", "TR3008"], ["BSN3702", "TR3002N"]], [
+          "BSN3703", "BSN3711", "BSN3712", "BSN3713", "BSN3714", "BSN3715", "BSN3716", "BSN3717", "BSN3751", "BSN3811",
+          "BSN4711", "BSN4712", "BSN4751", "BSN4811", "BSN4811A", "MNO3811", "MNO4761C", "MNO4861C", "TR3001"
+        ]
+      ],
+      "Business Economics": [
+        ["BSE3702", "BSE3703"], [
+          "BSE3701", "BSE3711", "BSE3712", "BSE3751", "BSE3761", "BSE3761A", "BSE4711", "BSE4712", "BSE4751", "BSE4761",
+          "BSN4811", "BSN4811A", "DBA3702", "DBA3803", "DBA4811", "DOS4811", "DOS4812", "MKT3812", "MKT4811", "MNO4711",
+          "EC3322", "EC3332", "EC3373", "EC3375", "EC3378", "EC3394", "EC3396"
+        ]
+      ],
+      "Leadership and Human Capital Management": [
+        ["MNO3701", "MNO3702", "MNO3703"], [
+          "MNO3711", "MNO3712", "MNO3713", "MNO3714", "MNO3715", "MNO3716", "MNO3751", "MNO3752", "MNO3761", "MNO3761A",
+          "MNO3761B", "MNO3761C", "MNO3811", "BSN3811", "MNO4711", "MNO4712", "MNO4713", "MNO4714", "MNO4715", "MNO4716",
+          "MNO4717", "MNO4751", "MNO4752", "MNO4761", "MNO4761A", "MNO4761B", "MNO4761C", "MNO4761D", "MNO4861C"
+        ]
+      ],
+      "Finance": [
+        ["FIN3701", "FIN3702", "FIN3703"], [
+          "FIN3711", "FIN3712", "FIN3713", "FIN3714", "FIN3715", "FIN3716", "FIN3717", "FIN3718", "FIN3719", "FIN3720",
+          "FIN3721", "FIN3751", "FIN3752", "FIN3761", "FIN3761A", "FIN3761B", "FIN3761C", "FIN3761D", "FIN4711", "FIN4713",
+          "FIN4714", "FIN4715", "FIN4716", "FIN4717", "FIN4718", "FIN4719", "FIN4720", "FIN4721", "FIN4722", "FIN4751",
+          "FIN4752", "FIN4761", "FIN4761A", "FIN4761B", "FIN4761C", "FIN4761D"
+        ]
+      ],
+      "Marketing": [
+        ["MKT3701", "MKT3702"], [
+          "MKT3711", "MKT3714", "MKT3715", "MKT3716", "MKT3717", "MKT3718", "MKT3720", "MKT3722", "MKT3761A", "MKT3761D",
+          "MKT3751", "MKT3752", "MKT3761", "MKT3761B", "MKT3761C", "MKT3761E", "MKT3811", "MKT3812", "MKT4714", "MKT4716",
+          "MKT4761E", "MKT4761G", "MKT4761B", "MKT4761D", "MKT4761H", "MKT4761J", "MKT4723", "MKT4751", "MKT4752", "MKT4761",
+          "MKT4761A", "MKT4761C", "MKT4761F", "MKT4811", "MKT4812"
+        ]
+      ],
+      "Operations and Supply Chain Management": [
+        ["DOS3701", "DOS3703", "DOS3704"], [
+          "DOS3702", "DOS3712", "DOS3713", "DOS3714", "DOS3751", "DOS3752", "DOS3761", "DOS3811", "DOS4711", "DOS4712",
+          "DOS4714", "DOS4715", "DOS4751", "DOS4752", "DOS4761", "DOS4811", "DOS4812", "DOS4813", "DBA3701", "DBA3711",
+          "DBA3712", "DBA4811", "DBA4812", "DBA4761A", "DBA4813", "IE4214"
+        ]
+      ]
+}

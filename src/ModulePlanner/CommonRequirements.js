@@ -67,9 +67,17 @@ export function CommonRequirements() {
     function checkPresentCommonMod(inputString) {
       let commonMod = require('../module_data/' + inputString + '.json');
       const arr = semesters.flatMap((semester) =>
-      semester.modules.map((module) => module.modInfo.moduleCode));;
+      semester.modules.map((module) => module.modInfo.moduleCode));
       if (inputString === "cdid") {
         if (cdid_check(arr, commonMod)) {
+          return color;
+        } else {
+          return "#FFFFFF";
+        }
+      } else if (inputString === "integratedproj") {
+        commonMod = commonMod[degrees[0].title];
+        const hasCommonElement = arr.includes(commonMod.title);
+        if (hasCommonElement) {
           return color;
         } else {
           return "#FFFFFF";

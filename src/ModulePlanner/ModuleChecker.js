@@ -109,7 +109,6 @@ progs.forEach((prog, index) => {
 export function ModuleChecker() {
 
   const [open, setOpen] = useState(false);
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isActionLoading, setIsActionLoading] = useState(false);
   const [isFetchingData, setIsFetchingData] = useState(true);
   const [visible, setVisible] = useState(true);
@@ -163,17 +162,7 @@ export function ModuleChecker() {
   useEffect(() => {
     onUpdate();
 
-    const handleBeforeUnload = (event) => {
-      if (hasUnsavedChanges) {
-        event.preventDefault();
-        event.returnValue = '';
-      }
-    };
-    window.onbeforeunload = handleBeforeUnload;
-    return () => {
-      window.onbeforeunload = null;
-    };
-  }, [user, hasUnsavedChanges, onUpdate]);
+  }, [user,  onUpdate]);
 
   function updateDegree(degreeInd, value) {
     store.dispatch(updateDegrees(degreeInd, value));
@@ -305,7 +294,6 @@ export function ModuleChecker() {
             value={degrees[0] || null}         
             onChange={(_, value) => {
               updateDegree(0, value);
-              setHasUnsavedChanges(true);
             }}
             renderInput={(params) => <TextField {...params} label="Select Degree" variant='standard' />}
             ListboxProps={{style:{
@@ -326,7 +314,6 @@ export function ModuleChecker() {
             value={degrees[1] || null}         
             onChange={(_, value) => {
               updateDegree(1, value);
-              setHasUnsavedChanges(true);
             }}
             renderInput={(params) => <TextField {...params} label="2nd Degree/Major?" variant='standard' />}
             ListboxProps={{style:{
@@ -345,7 +332,6 @@ export function ModuleChecker() {
             value={degrees[2] || null}         
             onChange={(_, value) => {
               updateDegree(2, value);
-              setHasUnsavedChanges(true);
             }}
             renderInput={(params) => <TextField {...params} label="Select Programme" variant='standard' />}
             ListboxProps={{style:{

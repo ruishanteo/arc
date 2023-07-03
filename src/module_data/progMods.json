@@ -184,7 +184,7 @@
       "moduleCode": [
         "Programme Electives"
       ],
-      "title": "Programme Electives"
+      "title": "BZA Programme Electives"
     }
   ],
   "Information Systems": [
@@ -280,7 +280,7 @@
       "moduleCode": [
         "Programme Electives"
       ],
-      "title": "Programme Electives"
+      "title": "IS Programme Electives"
     }
   ],
   "Computer Engineering": [
@@ -492,9 +492,9 @@
     },
     {
       "moduleCode": [
-        "Programme Electives"
+        "min", "12", "InfoSec Programme Electives"
       ],
-      "title": "Programme Electives"
+      "title": "InfoSec Programme Electives"
     },
     {
       "moduleCode": [
@@ -551,15 +551,27 @@
         ]
     },
     {
-        "title": "a minimum of 36 units at level-3000 (including CL3104) or higher (max 2 level-5000 courses), with a minimum of 20 units at level-4000 or higher",
+        "title": "A minimum of 36 units at level-3000 (including CL3104) or higher",
         "moduleCode": [
-            "a minimum of 36 units at level-3000 (including CL3104) or higher (max 2 level-5000 courses), with a minimum of 20 units at level-4000 or higher"
+            "min", "36", "CH", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "CH", "4"
+        ]
+    },
+    {
+        "title": "Maximum of 2 level-5000 courses",
+        "moduleCode": [
+            "max", "10", "CH", "5"
         ]
     },
     {
         "title": "a maximum of 8 units (in total) of the following: CH-recognised courses (excluding CL2101 and CL3104), CH courses that are taught in English",
         "moduleCode": [
-            "a maximum of 8 units (in total) of the following: CH-recognised courses (excluding CL2101 and CL3104), CH courses that are taught in English"
+            "max", "8", "CH-recognised"
         ]
     }
 ],
@@ -613,21 +625,27 @@
         ]
     },
     {
-        "title": "a minimum of 16 units at level-3000 (including CL3104) or higher",
+        "title": "A minimum of 16 units at level-3000 (including CL3104) or higher",
         "moduleCode": [
-            "a minimum of 16 units at level-3000 (including CL3104) or higher"
+            "min", "16", "CL", "3"
         ]
     },
     {
-        "title": "a minimum of 20 units of CH courses at level-4000 or higher (max 2 level-5000 courses)",
+        "title": "A minimum of 20 units of CL courses at level-4000 or higher",
         "moduleCode": [
-            "a minimum of 20 units of CH courses at level-4000 or higher (max 2 level-5000 courses)"
+            "min", "20", "CL", "4"
         ]
     },
     {
-        "title": "a maximum of 8 units (in total) of the following: CL-recognised courses (excluding CH2121 and CH2141), CL courses that are taught in English",
+        "title": "Maximum of 2 level-5000 courses",
         "moduleCode": [
-            "a maximum of 8 units (in total) of the following: CL-recognised courses (excluding CH2121 and CH2141), CL courses that are taught in English"
+            "max", "10", "CL", "5"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units (in total) of the following: CL-recognised courses (excluding CH2121 and CH2141), CL courses that are taught in English",
+        "moduleCode": [
+            "max", "8", "CL-recognised"
         ]
     }
 ],
@@ -635,31 +653,49 @@
     {
         "title": "Pass at least 60 units of TS courses or TS recognised courses which include the following:",
         "moduleCode": [
-            "Pass at least 60 units of TS courses or TS recognised courses which include the following:"
+            
         ]
     },
     {
-        "title": "A minimum of 4 units from each of the following strands: (i) Framing Histories, (ii) Cultures in Practice, (iii) Researching Performance (including TS3103)",
+        "title": "A minimum of 4 units from Framing Histories",
         "moduleCode": [
-            "A minimum of 4 units from each of the following strands: (i) Framing Histories, (ii) Cultures in Practice, (iii) Researching Performance (including TS3103)"
+            "min", "4", "Framing Histories"
         ]
     },
     {
-        "title": "A minimum of 36 units at level-3000 or higher (including TS3103), with: (i) a minimum of 20 units of TS courses at level-4000 or higher, (ii) a maximum of 4 units at TS level-5000 (subject to the department\u2019s approval)",
+        "title": "A minimum of 4 units from Cultures in Practice",
         "moduleCode": [
-            "A minimum of 36 units at level-3000 or higher (including TS3103), with: (i) a minimum of 20 units of TS courses at level-4000 or higher, (ii) a maximum of 4 units at TS level-5000 (subject to the department\u2019s approval)"
+            "min", "4", "Cultures in Practice"
+        ]
+    },
+    {
+        "title": "A minimum of 4 units from Researching Performance (including TS3103)",
+        "moduleCode": [
+            "min", "4", "Researching Performance"
+        ]
+    },
+    {
+        "title": "A minimum of 36 units at level-3000 or higher (including TS3103)",
+        "moduleCode": [
+            "min", "36", "TS", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units of TS courses at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "TS", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 4 units at TS level-5000 (subject to the department\u2019s approval)",
+        "moduleCode": [
+            "max", "4", "TS", "5"
         ]
     },
     {
         "title": "A maximum of 8 units of TS-recognised courses",
         "moduleCode": [
-            "A maximum of 8 units of TS-recognised courses"
-        ]
-    },
-    {
-        "title": "List of TS-recognised courses: EL4222 Stylistics and Drama, EN2203 Introduction to Film Studies, EN3226 Shakespeare, EN3242 History of Film, EN3248 Reading the Horror Film, EN4242 Modern Critical Theory, EN4244 Topics in Cultural Studies, EN4271 Research Workshop, GESS1021 Singapore Film: Performance of Identity, SE2224 Unmasked! An Introduction to Traditional Dance in SEA",
-        "moduleCode": [
-            "List of TS-recognised courses: EL4222 Stylistics and Drama, EN2203 Introduction to Film Studies, EN3226 Shakespeare, EN3242 History of Film, EN3248 Reading the Horror Film, EN4242 Modern Critical Theory, EN4244 Topics in Cultural Studies, EN4271 Research Workshop, GESS1021 Singapore Film: Performance of Identity, SE2224 Unmasked! An Introduction to Traditional Dance in SEA"
+            "max", "8", "TS-recognised"
         ]
     }
 ],
@@ -679,31 +715,34 @@
     {
         "title": "A minimum of 12 units at level-2000 from the following: (i)  EL2101 Structure of Sentences and Meanings, (ii) EL2102 Sound Patterns in Language, (iii) EL2111 Historical Variation in English, (iv) EL2151 Social Variation in English",
         "moduleCode": [
-            "A minimum of 12 units at level-2000 from the following: (i)  EL2101 Structure of Sentences and Meanings, (ii) EL2102 Sound Patterns in Language, (iii) EL2111 Historical Variation in English, (iv) EL2151 Social Variation in English"
+            ["EL2101", "EL2102", "EL2111"],
+            ["EL2101", "EL2102", "EL2151"],
+            ["EL2101", "EL2111", "EL2151"],
+            ["EL2102", "EL2111", "EL2151"]
         ]
     },
     {
-        "title": "A minimum of 36 units at level-3000 or higher, with: (i)  a minimum of 20 units at level-4000 or higher, (ii)  a maximum of 4 units at EL level-5000 (subject to the Department's approval)",
+        "title": "A minimum of 36 units at level-3000 or higher",
         "moduleCode": [
-            "A minimum of 36 units at level-3000 or higher, with: (i)  a minimum of 20 units at level-4000 or higher, (ii)  a maximum of 4 units at EL level-5000 (subject to the Department's approval)"
+            "min", "36", "EL", "3"
         ]
     },
     {
-        "title": "List of TS-recognised courses: EL4222 Stylistics and Drama, EN2203 Introduction to Film Studies, EN3226 Shakespeare, EN3242 History of Film, EN3248 Reading the Horror Film, EN4242 Modern Critical Theory, EN4244 Topics in Cultural Studies, EN4271 Research Workshop, GESS1021 Singapore Film: Performance of Identity, SE2224 Unmasked! An Introduction to Traditional Dance in SEA",
+        "title": "A minimum of 20 units at level-4000 or higher",
         "moduleCode": [
-            "List of TS-recognised courses: EL4222 Stylistics and Drama, EN2203 Introduction to Film Studies, EN3226 Shakespeare, EN3242 History of Film, EN3248 Reading the Horror Film, EN4242 Modern Critical Theory, EN4244 Topics in Cultural Studies, EN4271 Research Workshop, GESS1021 Singapore Film: Performance of Identity, SE2224 Unmasked! An Introduction to Traditional Dance in SEA"
+            "min", "20", "EL", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 4 units at EL level-5000 (subject to the Department's approval)",
+        "moduleCode": [
+            "max", "4", "EL", "5"
         ]
     },
     {
         "title": "A maximum of 8 units of EL-recognised courses",
         "moduleCode": [
-            "A maximum of 8 units of EL-recognised courses"
-        ]
-    },
-    {
-        "title": "A maximum of 8 units from the following EL-recognised courses may be read to fulfil EL Major requirements: CL2280 Basic Translation or TRA2101 Basic Translation, CL2281 Translation and Interpretation or INT2101 Basic Interpreting, CL2291 Chinese Anthropolinguistics (in English), CL3201 Communicating through Chinese Rhetoric and Metaphors, CL3207 Chinese Sociolinguistics, CL3213 Chinese Semantics, CL3214 Aspects of Chinese Linguistics, CL3217 The Analysis of Chinese Morphosyntax, EN3245 Feminism: Text and Theory, NM2301 Persuasive Communication: Theory and Application, NM3207 Philosophy in Communications and New Media, NM3222 Interactive Storytelling, PH2242 Philosophy of Language, PH3245 Language and Thought, PH4242 Issues in the Philosophy of Language, PS4220 Rhetoric and Politics",
-        "moduleCode": [
-            "A maximum of 8 units from the following EL-recognised courses may be read to fulfil EL Major requirements: CL2280 Basic Translation or TRA2101 Basic Translation, CL2281 Translation and Interpretation or INT2101 Basic Interpreting, CL2291 Chinese Anthropolinguistics (in English), CL3201 Communicating through Chinese Rhetoric and Metaphors, CL3207 Chinese Sociolinguistics, CL3213 Chinese Semantics, CL3214 Aspects of Chinese Linguistics, CL3217 The Analysis of Chinese Morphosyntax, EN3245 Feminism: Text and Theory, NM2301 Persuasive Communication: Theory and Application, NM3207 Philosophy in Communications and New Media, NM3222 Interactive Storytelling, PH2242 Philosophy of Language, PH3245 Language and Thought, PH4242 Issues in the Philosophy of Language, PS4220 Rhetoric and Politics"
+            "max", "8", "EL-recognised"
         ]
     }
 ],
@@ -723,25 +762,19 @@
     {
         "title": "A minimum of 4 units from the following: EN2201 Backgrounds to Western Literature and Culture, EN2202 Critical Reading, EN2203 Introduction to Film Studies, EN2205 Late Medieval Literature and Culture, EN2206 Art and Social Justice, EN2207 Gender and Sexuality in Literature, EN2275 Writing about Literature, EN2277 Love\u2019s Word: Reading across Literature and Philosophy",
         "moduleCode": [
-            "A minimum of 4 units from the following: EN2201 Backgrounds to Western Literature and Culture, EN2202 Critical Reading, EN2203 Introduction to Film Studies, EN2205 Late Medieval Literature and Culture, EN2206 Art and Social Justice, EN2207 Gender and Sexuality in Literature, EN2275 Writing about Literature, EN2277 Love\u2019s Word: Reading across Literature and Philosophy"
+            "EN2201", "EN2202", "EN2205", "EN2206", "EN2207", "EN2275", "EN2277"
         ]
     },
     {
         "title": "A minimum of 8 units from literature before 1800",
         "moduleCode": [
-            "A minimum of 8 units from literature before 1800"
+            "min", "8", "literature before 1800"
         ]
     },
     {
-        "title": "List of literature before 1800 courses: EN2205 Late Medieval Literature and Culture, EN3220 From the 'Age of Epic' to the 'Age of TV', EN3221 The English Renaissance, EN3222 The Eighteenth Century, EN3226 Shakespeare, EN3227 Romanticism, EN3228 Women Novelists: 1750 - 1800, EN3229 Shakespeare in His Time and Ours, EN4221 Topics in the Seventeenth Century, EN4222 Topics in the Eighteenth Century, EN4227 Five Years in the Eighteenth Century, EN4251 Jonathan Swift, EN4880A Usurpation and Authority, 1558-1674",
+        "title": "A maximum of 8 units from EN-recognised courses",
         "moduleCode": [
-            "List of literature before 1800 courses: EN2205 Late Medieval Literature and Culture, EN3220 From the 'Age of Epic' to the 'Age of TV', EN3221 The English Renaissance, EN3222 The Eighteenth Century, EN3226 Shakespeare, EN3227 Romanticism, EN3228 Women Novelists: 1750 - 1800, EN3229 Shakespeare in His Time and Ours, EN4221 Topics in the Seventeenth Century, EN4222 Topics in the Eighteenth Century, EN4227 Five Years in the Eighteenth Century, EN4251 Jonathan Swift, EN4880A Usurpation and Authority, 1558-1674"
-        ]
-    },
-    {
-        "title": "A maximum of 8 units from the following EN-recognised courses may be read to fulfil EN Major requirements: EL3222 Cinematic Discourse and Language, EL3258 The Sociolinguistics of Humour: Jokes and Comedies, EL4221 Narrative Structures, EL4253 Language, Gender and Text, PH2209 Philosophy of Art, PH2219 Critical Theory and Hermeneutics, PH2224 Philosophy and Film, PH3214 Philosophy and Literature, PS4220 Rhetoric and Politics, TS2239 Major Playwrights of the 20th Century, TS2241 Writing the Short Film, TS3246 Shakespeare and Asian Performances, TS4220 Shakespeare and Film",
-        "moduleCode": [
-            "A maximum of 8 units from the following EN-recognised courses may be read to fulfil EN Major requirements: EL3222 Cinematic Discourse and Language, EL3258 The Sociolinguistics of Humour: Jokes and Comedies, EL4221 Narrative Structures, EL4253 Language, Gender and Text, PH2209 Philosophy of Art, PH2219 Critical Theory and Hermeneutics, PH2224 Philosophy and Film, PH3214 Philosophy and Literature, PS4220 Rhetoric and Politics, TS2239 Major Playwrights of the 20th Century, TS2241 Writing the Short Film, TS3246 Shakespeare and Asian Performances, TS4220 Shakespeare and Film"
+            "max", "8", "EN-recognised"
         ]
     }
 ],
@@ -785,7 +818,7 @@
     {
         "title": "One of the following courses for the advanced methodology requirement: NM4102 (4 Units), GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PD3257, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units)",
         "moduleCode": [
-            "One of the following courses for the advanced methodology requirement: NM4102 (4 Units), GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PD3257, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units)"
+            "NM4102", "GE3230A", "GE3233", "GE3240", "GL3201", "MS4101", "PH3201", "PD3257", "SC3101", "SC3209", "SC3213", "SC3221", "SC3227", "SN4101", "SE4101", "HY4230"
         ]
     },
     {
@@ -803,25 +836,31 @@
     {
         "title": "A minimum of 12 Units from ONE of the following themes: Colonialism, Security, and Global Order; Global Health, Environment, and Technology; Global Political Economy; Peoples, Cultures, and Globalisation",
         "moduleCode": [
-            "A minimum of 12 Units from ONE of the following themes: Colonialism, Security, and Global Order; Global Health, Environment, and Technology; Global Political Economy; Peoples, Cultures, and Globalisation"
+            "GL theme"
         ]
     },
     {
-        "title": "A minimum of 16 Units of 3000-level GL or GL recognised courses (such as GE3230A, GE3233, GE3240, GL3201, PH3201, PS3257, SC3101, SC3209, SC3213, SC3221 or SC3227)",
+        "title": "A minimum of 16 Units of level-3000 GL or GL recognised courses (such as GE3230A, GE3233, GE3240, GL3201, PH3201, PS3257, SC3101, SC3209, SC3213, SC3221 or SC3227)",
         "moduleCode": [
-            "A minimum of 16 Units of 3000-level GL or GL recognised courses (such as GE3230A, GE3233, GE3240, GL3201, PH3201, PS3257, SC3101, SC3209, SC3213, SC3221 or SC3227)"
+            "min", "16", "GL", "3"
         ]
     },
     {
-        "title": "A minimum of 20 Units of level-4000 or higher GL or GL-recognised non-language courses (including GL4101 (4 Units) and GL4102 (4 Units), NM4102 (4 Units), MS4101 (4 Units), SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units)) with at most 1 level-5000 course to be counted towards major requirements (subject to Department's approval)",
+        "title": "A minimum of 20 Units of level-4000 or higher GL or GL-recognised non-language courses (including GL4101 (4 Units) and GL4102 (4 Units), NM4102 (4 Units), MS4101 (4 Units), SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units))",
         "moduleCode": [
-            "A minimum of 20 Units of level-4000 or higher GL or GL-recognised non-language courses (including GL4101 (4 Units) and GL4102 (4 Units), NM4102 (4 Units), MS4101 (4 Units), SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units)) with at most 1 level-5000 course to be counted towards major requirements (subject to Department's approval)"
+            "min", "20", "GL", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 1 level-5000 course (subject to Department's approval)",
+        "moduleCode": [
+            "max", "5", "GL", "5"
         ]
     },
     {
         "title": "No more than 16 Units of the electives may be from a single discipline (excluding NM4102 (4 Units), GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PS3257, SC2101, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units))",
         "moduleCode": [
-            "No more than 16 Units of the electives may be from a single discipline (excluding NM4102 (4 Units), GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PS3257, SC2101, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units))"
+            "max", "16", "GL elective"
         ]
     }
 ],
@@ -845,21 +884,27 @@
         ]
     },
     {
-        "title": "a minimum of 36 units at Level-3000 or higher, with a minimum of 20 units at Level-4000 or higher",
+        "title": "A minimum of 36 units at Level-3000 or higher",
         "moduleCode": [
-            "a minimum of 36 units at Level-3000 or higher, with a minimum of 20 units at Level-4000 or higher"
+            "min", "36", "HY", "3"
         ]
     },
     {
-        "title": "a maximum of 8 units of HY-recognised courses",
+        "title": "A minimum of 20 units at Level-4000 or higher",
         "moduleCode": [
-            "a maximum of 8 units of HY-recognised courses"
+            "min", "20", "HY", "4"
         ]
     },
     {
-        "title": "a maximum of 4 units at Level-5000 (with department permission)",
+        "title": "A maximum of 8 units of HY-recognised courses",
         "moduleCode": [
-            "a maximum of 4 units at Level-5000 (with department permission)"
+            "max", "8", "HY-recognised"
+        ]
+    },
+    {
+        "title": "A maximum of 4 units at Level-5000 (with department permission)",
+        "moduleCode": [
+            "max", "4", "HY", "5"
         ]
     }
 ],
@@ -919,15 +964,27 @@
         ]
     },
     {
-        "title": "a minimum of 36 units at level-3000 (including JS3101 and LAJ3201 or LAJ3203 or LAJ3202 or LAJ3204 or LAJ3205) or higher, with: i. a minimum of 20 units at level-4000 or higher, ii. a maximum of 1 level-5000 JS course (subject to department's approval)",
+        "title": "A minimum of 36 units at level-3000 (including JS3101 and LAJ3201 or LAJ3203 or LAJ3202 or LAJ3204 or LAJ3205) or higher",
         "moduleCode": [
-            "a minimum of 36 units at level-3000 (including JS3101 and LAJ3201 or LAJ3203 or LAJ3202 or LAJ3204 or LAJ3205) or higher, with: i. a minimum of 20 units at level-4000 or higher, ii. a maximum of 1 level-5000 JS course (subject to department's approval)"
+            "min", "36", "JS", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "JS", "4000"
+        ]
+    },
+    {
+        "title": "A maximum of 1 level-5000 JS course (subject to department's approval)",
+        "moduleCode": [
+            "max", "5", "JS", "5"
         ]
     },
     {
         "title": "maximum of 8 units of JS-recognised courses",
         "moduleCode": [
-            "maximum of 8 units of JS-recognised courses"
+            "max", "8", "JS-recognised"
         ]
     }
 ],
@@ -958,13 +1015,13 @@
     {
         "title": "A minimum of 16 Units at level-3000",
         "moduleCode": [
-            "A minimum of 16 Units at level-3000"
+            "min", "16", "MS", "3000"
         ]
     },
     {
         "title": "A minimum of 20 Units at level-4000 or higher.",
         "moduleCode": [
-            "A minimum of 20 Units at level-4000 or higher."
+            "min", "20", "MS", "4000"
         ]
     }
 ],
@@ -987,21 +1044,27 @@
         ]
     },
     {
-        "title": "A minimum of 36 MCs at level-3000 or higher, with a minimum of 20 MCs at level-4000 or higher",
+        "title": "A minimum of 36 MCs at level-3000 or higher",
         "moduleCode": [
-            "A minimum of 36 MCs at level-3000 or higher, with a minimum of 20 MCs at level-4000 or higher"
+            "min", "36", "PH", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 MCs at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "PH", "4000"
         ]
     },
     {
         "title": "A maximum of 2 PH course at level-5000 (subject to department's approval)",
         "moduleCode": [
-            "A maximum of 2 PH course at level-5000 (subject to department's approval)"
+            "max", "10", "PH", "5"
         ]
     },
     {
         "title": "A maximum of 8 MCs of PH-recognised courses",
         "moduleCode": [
-            "A maximum of 8 MCs of PH-recognised courses"
+            "max", "8", "PH-recognised"
         ]
     }
 ],
@@ -1020,25 +1083,31 @@
     {
         "title": "A minimum of 36 Units of SN courses",
         "moduleCode": [
-            "A minimum of 36 Units of SN courses"
+            "min", "36", "SN", "1000"
         ]
     },
     {
-        "title": "A minimum of 36 Units at level-3000 or higher, with a minimum of 20 Units at level-4000 or higher",
+        "title": "A minimum of 36 Units at level-3000 or higher",
         "moduleCode": [
-            "A minimum of 36 Units at level-3000 or higher, with a minimum of 20 Units at level-4000 or higher"
+            "min", "36", "SN", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "SN", "4000"
         ]
     },
     {
         "title": "A maximum of 1 SN or SN-recognised course at level 5000 (subject to department\u2019s approval)",
         "moduleCode": [
-            "A maximum of 1 SN or SN-recognised course at level 5000 (subject to department\u2019s approval)"
+            "max", "5", "SN", "5"
         ]
     },
     {
         "title": "A maximum of 8 Units of Tamil or Hindi track language courses offered by CLS",
         "moduleCode": [
-            "A maximum of 8 Units of Tamil or Hindi track language courses offered by CLS"
+            "max", "8", "SN Languages"
         ]
     }
 ],
@@ -1063,25 +1132,38 @@
     {
         "title": "A minimum of 12 Units of Southeast Asian language courses (i.e. Bahasa Indonesia, Malay, Thai or Vietnamese)",
         "moduleCode": [
-            "A minimum of 12 Units of Southeast Asian language courses (i.e. Bahasa Indonesia, Malay, Thai or Vietnamese)"
+            "min", "12", "SE Languages"
         ]
     },
     {
-        "title": "A minimum of 36 Units at level-3000 or higher (excluding language courses (See Note 1)) with a minimum of 20 Units at level-4000 or higher (including SE4101)",
+        "title": "A minimum of 36 Units at level-3000 or higher (excluding language courses)",
         "moduleCode": [
-            "A minimum of 36 Units at level-3000 or higher (excluding language courses (See Note 1)) with a minimum of 20 Units at level-4000 or higher (including SE4101)"
+            "min", "36", "SE", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units at level-4000 or higher (including SE4101)",
+        "moduleCode": [
+            "min", "20", "SE", "4"
         ]
     },
     {
         "title": "A maximum of 2 level-5000 SE courses",
         "moduleCode": [
-            "A maximum of 2 level-5000 SE courses"
+            "max", "10", "SE", "5"
         ]
     },
     {
-        "title": "A maximum of 8 Units SE-recognised courses, of which 4 Units may be at level-4000 (excluding language courses)",
+        "title": "A maximum of 8 Units SE-recognised courses",
         "moduleCode": [
-            "A maximum of 8 Units SE-recognised courses, of which 4 Units may be at level-4000 (excluding language courses)"
+            "max", "8", "SE-recognised", "1"
+        ]
+    }
+    ,
+    {
+        "title": "of which 4 Units may be at level-4000 (excluding language courses)",
+        "moduleCode": [
+            "max", "4", "SE-recognised", "4"
         ]
     }
 ],
@@ -1116,15 +1198,33 @@
         ]
     },
     {
-        "title": "A minimum of 36 units at Level-3000 or higher (including AN3101 and SC4101) with: a minimum of 20 unitss at Level-4000 or higher (including SC4101), a maximum of 8 unitss of AN-recognised courses at level-4000 (excluding SC4101), a maximum of 8 units of AN-recognised courses at level-5000 (subject to Department's approval)",
+        "title": "A minimum of 36 units at Level-3000 or higher (including AN3101 and SC4101)",
         "moduleCode": [
-            "A minimum of 36 units at Level-3000 or higher (including AN3101 and SC4101) with: a minimum of 20 unitss at Level-4000 or higher (including SC4101), a maximum of 8 unitss of AN-recognised courses at level-4000 (excluding SC4101), a maximum of 8 units of AN-recognised courses at level-5000 (subject to Department's approval)"
+            "min", "36", "AN", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at Level-4000 or higher (including SC4101)",
+        "moduleCode": [
+            "min", "20", "AN", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units of AN-recognised courses at level-4000 (excluding SC4101)",
+        "moduleCode": [
+            "max", "8", "AN-recognised", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units of AN-recognised courses at level-5000 (subject to Department's approval)",
+        "moduleCode": [
+            "max", "8", "AN-recognised", "5"
         ]
     },
     {
         "title": "A maximum of 20 units of AN-recognised courses (including SC4101)",
         "moduleCode": [
-            "A maximum of 20 units of AN-recognised courses (including SC4101)"
+            "max", "20", "AN-recognised"
         ]
     }
 ],
@@ -1167,13 +1267,20 @@
     {
         "title": "A minimum of 16 Units from Level 3000 (not inclusive of NM3550C)",
         "moduleCode": [
-            "A minimum of 16 Units from Level 3000 (not inclusive of NM3550C)"
+            "min", "16", "NM", "3",
+            "(not inclusive of NM3550C)"
         ]
     },
     {
-        "title": "A minimum of 20 Units from Level 4000 or above (up to a maximum of 2 Level 5000 NM course, subject to department's approval)",
+        "title": "A minimum of 20 Units from Level 4000 or above",
         "moduleCode": [
-            "A minimum of 20 Units from Level 4000 or above (up to a maximum of 2 Level 5000 NM course, subject to department's approval)"
+            "min", "20", "NM", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 2 Level 5000 NM course (subject to department's approval)",
+        "moduleCode": [
+            "max", "10", "NM", "5"
         ]
     }
 ],
@@ -1181,7 +1288,7 @@
     {
         "title": "EC Major students are required to pass at least 60 units of EC-coded or EC-recognised courses which include the following:",
         "moduleCode": [
-            "EC Major students are required to pass at least 60 units of EC-coded or EC-recognised courses which include the following:"
+            
         ]
     },
     {
@@ -1235,13 +1342,13 @@
     {
         "title": "A minimum of 16 units of EC courses at Level-3000 (including EC3101, EC3102, and EC3303)",
         "moduleCode": [
-            "A minimum of 16 units of EC courses at Level-3000 (including EC3101, EC3102, and EC3303)"
+            "min", "16", "EC", "3"
         ]
     },
     {
         "title": "A minimum of 20 units of EC courses at level-4000 or higher",
         "moduleCode": [
-            "A minimum of 20 units of EC courses at level-4000 or higher"
+            "min", "20", "EC", "4"
         ]
     }
 ],
@@ -1290,19 +1397,19 @@
     {
         "title": "A minimum of 16 MCs at level-3000",
         "moduleCode": [
-            "A minimum of 16 MCs at level-3000"
+            "min", "16", "GE", "3"
         ]
     },
     {
         "title": "A minimum of 20 MCs at level-4000 or higher",
         "moduleCode": [
-            "A minimum of 20 MCs at level-4000 or higher"
+            "min", "20", "GE", "4"
         ]
     },
     {
         "title": "A maximum of one level-5000 GE module (subject to departmental approval)",
         "moduleCode": [
-            "A maximum of one level-5000 GE module (subject to departmental approval)"
+            "max", "5", "GE", "5"
         ]
     }
 ],
@@ -1310,7 +1417,6 @@
     {
         "title": "Pass at least 60 Units of PS Courses or PS-recognised Courses which include the following:",
         "moduleCode": [
-            "Pass at least 60 Units of PS Courses or PS-recognised Courses which include the following:"
         ]
     },
     {
@@ -1328,19 +1434,37 @@
     {
         "title": "A minimum of One Course from the following (Singapore Politics):  I. PS2249 (CP), II. PS2244 (GPP), III. PS3249 (IR)",
         "moduleCode": [
-            "A minimum of One Course from the following (Singapore Politics):  I. PS2249 (CP), II. PS2244 (GPP), III. PS3249 (IR)"
+            "PS2249", "PS2244", "PS3249"
         ]
     },
     {
-        "title": "A minimum of One Course from each of the following subfields: I. Comparative Politics (CP), II. International Relations (IR), III. Political Theory (PT), IV. Governance and Public Policy (GPP)",
+        "title": "A minimum of One Course from Comparative Politics (CP)",
         "moduleCode": [
-            "A minimum of One Course from each of the following subfields: I. Comparative Politics (CP), II. International Relations (IR), III. Political Theory (PT), IV. Governance and Public Policy (GPP)"
+            "min", "1", "Comparative Politics", "1"
+        ]
+    },
+    {
+        "title": "A minimum of One Course from International Relations (IR)",
+        "moduleCode": [
+            "min", "1", "International Relations", "1"
+        ]
+    },
+    {
+        "title": "A minimum of One Course from Political Theory (PT)",
+        "moduleCode": [
+            "min", "1", "Political Theory", "1"
+        ]
+    },
+    {
+        "title": "A minimum of One Course from Governance and Public Policy (GPP)",
+        "moduleCode": [
+            "min", "1", "Governance and Public Policy", "1"
         ]
     },
     {
         "title": "A minimum of 16 Units of 3000-level Courses",
         "moduleCode": [
-            "A minimum of 16 Units of 3000-level Courses"
+            "min", "16", "PS", "3"
         ]
     },
     {
@@ -1352,19 +1476,19 @@
     {
         "title": "A minimum of 20 Units at level-4000 or higher",
         "moduleCode": [
-            "A minimum of 20 Units at level-4000 or higher"
+            "min", "20", "PS", "4"
         ]
     },
     {
         "title": "A maximum of 1 level-5000 PS Courses (subject to department's approval)",
         "moduleCode": [
-            "A maximum of 1 level-5000 PS Courses (subject to department's approval)"
+            "max", "5", "PS", "5"
         ]
     },
     {
         "title": "A minimum of 52 Units in PS-coded Courses (including PS3257)",
         "moduleCode": [
-            "A minimum of 52 Units in PS-coded Courses (including PS3257)"
+            "min", "52", "PS"
         ]
     }
 ],
@@ -1429,15 +1553,27 @@
         ]
     },
     {
-        "title": "A minimum of 4 units at levels-2000 or 3000 (excluding the courses above), with a maximum of 1 PL-recognised course.",
+        "title": "A minimum of 4 units at levels-2000 or 3000 (excluding the courses above)",
         "moduleCode": [
-            "A minimum of 4 units at levels-2000 or 3000 (excluding the courses above), with a maximum of 1 PL-recognised course."
+            "min", "4", "PL", "2"
         ]
     },
     {
-        "title": "A minimum of 20 units at level-4000 or higher, with: a minimum of 4 units from the Capstone group; a minimum of 4 units from the Biological, Cognitive and Developmental group; a minimum of 4 units from the Abnormal/Clinical, Social and Applied group; a maximum of 4 units at level-4000 mapped from exchange; a maximum of 4 units at level-5000.",
+        "title": "A maximum of 1 PL-recognised course.",
         "moduleCode": [
-            "A minimum of 20 units at level-4000 or higher, with: a minimum of 4 units from the Capstone group; a minimum of 4 units from the Biological, Cognitive and Developmental group; a minimum of 4 units from the Abnormal/Clinical, Social and Applied group; a maximum of 4 units at level-4000 mapped from exchange; a maximum of 4 units at level-5000."
+            "max", "4", "PL-recognised", "1"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at level-4000 or higher, with: a minimum of 4 units from the Capstone group; a minimum of 4 units from the Biological, Cognitive and Developmental group; a minimum of 4 units from the Abnormal/Clinical, Social and Applied group; a maximum of 4 units at level-4000 mapped from exchange.",
+        "moduleCode": [
+            "min", "20", "PL", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 4 units at level-5000.",
+        "moduleCode": [
+            "max", "4", "PL", "5"
         ]
     }
 ],
@@ -1514,9 +1650,21 @@
         ]
     },
     {
-        "title": "Read and pass a minimum of 36 Units at level 3000 or higher (including courses listed above), with: (i) A minimum of 20 Units at level-4000 or higher; (ii) A maximum of 1 SW course at level-5000 can be read (subject to Department\u2019s approval)",
+        "title": "Read and pass a minimum of 36 Units at level 3000 or higher (including courses listed above)",
         "moduleCode": [
-            "Read and pass a minimum of 36 Units at level 3000 or higher (including courses listed above), with: (i) A minimum of 20 Units at level-4000 or higher; (ii) A maximum of 1 SW course at level-5000 can be read (subject to Department\u2019s approval)"
+            "min", "36", "SW", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "SW", "4000"
+        ]
+    },
+    {
+        "title": "A maximum of 1 SW course at level-5000 can be read (subject to Department\u2019s approval)",
+        "moduleCode": [
+            "max", "5", "SW", "5"
         ]
     }
 ],
@@ -1551,21 +1699,27 @@
         ]
     },
     {
-        "title": "a minimum of 36 units at Level-3000 or higher (including courses SC3101 and SC4101) with a minimum of 20 units at Level-4000 or higher (including SC4101)",
+        "title": "a minimum of 36 units at Level-3000 or higher (including courses SC3101 and SC4101)",
         "moduleCode": [
-            "a minimum of 36 units at Level-3000 or higher (including courses SC3101 and SC4101) with a minimum of 20 units at Level-4000 or higher (including SC4101)"
+            "min", "36", "SC", "3"
+        ]
+    },
+    {
+        "title": "a minimum of 20 units at Level-4000 or higher (including SC4101)",
+        "moduleCode": [
+            "min", "20", "SC", "4"
         ]
     },
     {
         "title": "a maximum of any 2 level-4000 SC-recognised courses",
         "moduleCode": [
-            "a maximum of any 2 level-4000 SC-recognised courses"
+            "max", "10", "SC", "4"
         ]
     },
     {
         "title": "a maximum of two Level-5000 SC courses (subject to Department's approval)",
         "moduleCode": [
-            "a maximum of two Level-5000 SC courses (subject to Department's approval)"
+            "max", "10", "SC", "5"
         ]
     }
 ],
@@ -1645,7 +1799,7 @@
     {
         "title": "Any four CM modules at Level 3000 or 4000 excluding CM3288, CM3288N, CM3289, CM4288 and any UPIP modules",
         "moduleCode": [
-            "Any four CM modules at Level 3000 or 4000 excluding CM3288, CM3288N, CM3289, CM4288 and any UPIP modules"
+            "min", "16", "CM", "3"
         ]
     }
 ],
@@ -1841,7 +1995,7 @@
     {
         "title": "Specialisation",
         "moduleCode": [
-            "Specialisation"
+            "Food Sci Specialisation"
         ]
     }
 ],
@@ -1877,15 +2031,16 @@
         ]
     },
     {
-        "title": "LSM4288 variant (e.g., LSM4288M, LSM4288C, LSM4288E, LSM4288X; 8 Units), or LSM3288 (4 Units)",
+        "title": "LSM4288 variant (e.g., LSM4288M, LSM4288C, LSM4288E, LSM4288X), or LSM32888/LSM3288R, or LSM2288/LSM2288R",
         "moduleCode": [
-            "LSM4288 variant (e.g., LSM4288M, LSM4288C, LSM4288E, LSM4288X; 8 Units), or LSM3288 (4 Units)"
+            "LSM4288M", "LSM4288C", "LSM4288E", "LSM4288X", "LSM3288",
+            "LSM3288R", "LSM2288", "LSM2288R"
         ]
     },
     {
         "title": "32-36 Units of LSM22xx/32xx/42xx/3991/4991 (excluding LSM2288, LSM2289, LSM3289, and  LSM4288), where: a. At most 8 Units of LSM22xx; b. At least 12 Units of LSM42xx/4991; c. Only 4 Units can be fulfilled with either LSM3991 or LSM4991",
         "moduleCode": [
-            "32-36 Units of LSM22xx/32xx/42xx/3991/4991 (excluding LSM2288, LSM2289, LSM3289, and  LSM4288), where: a. At most 8 Units of LSM22xx; b. At least 12 Units of LSM42xx/4991; c. Only 4 Units can be fulfilled with either LSM3991 or LSM4991"
+            "LSM Specific"
         ]
     }
 ],
@@ -1935,13 +2090,13 @@
     {
         "title": "2 additional modules coded MA22xx/MA32xx/MA42xx (except MAx288/MAx289/MA4288x)",
         "moduleCode": [
-            "2 additional modules coded MA22xx/MA32xx/MA42xx (except MAx288/MAx289/MA4288x)"
+            "MA 2 additional"
         ]
     },
     {
         "title": "5 modules coded MA32xx/MA42xx/MA52xx/MA62xx (except MAx288/MAx289/MA4288x/MA5232/MA5266) or ST3236 or ST4238",
         "moduleCode": [
-            "5 modules coded MA32xx/MA42xx/MA52xx/MA62xx (except MAx288/MAx289/MA4288x/MA5232/MA5266) or ST3236 or ST4238"
+            "MA 5 additional"
         ]
     },
     {
@@ -2090,7 +2245,7 @@
     {
         "title": "32 Units of PC courses",
         "moduleCode": [
-            "32 Units of PC courses"
+            "min", "32", "PC", "1"
         ]
     },
     {
@@ -2220,13 +2375,13 @@
     {
         "title": "3 modules from ST32xx (except ST328*) or ST42xx (except ST4288) modules",
         "moduleCode": [
-            "3 modules from ST32xx (except ST328*) or ST42xx (except ST4288) modules"
+            "ST 3 additional"
         ]
     },
     {
         "title": "4 modules from ST42xx (except ST4288) OR (2 modules from ST42xx AND ST4288)",
         "moduleCode": [
-            "4 modules from ST42xx (except ST4288) OR (2 modules from ST42xx AND ST4288)"
+            "ST 4 additional"
         ]
     },
     {
@@ -2304,9 +2459,9 @@
         ]
     },
     {
-        "title": "TWO Level 4000 & Above Arch Related Elective (in lieu of Design)",
+        "title": "4 Electives (Information coming soon!)",
         "moduleCode": [
-            "TWO Level 4000 & Above Arch Related Elective (in lieu of Design)"
+            "Archi 4 electives"
         ]
     },
     {
@@ -2420,9 +2575,9 @@
         ]
     },
     {
-        "title": "Technical Electives",
+        "title": "8 units of Technical Electives",
         "moduleCode": [
-            "Technical Electives"
+            "min", "8", "BN Technical Electives"
         ]
     }
 ],
@@ -2660,9 +2815,9 @@
         ]
     },
     {
-        "title": "Technical Electives",
+        "title": "8 units of Technical Electives",
         "moduleCode": [
-            "Technical Electives"
+            "min", "8", "EE Technical Electives"
         ]
     }
 ],
@@ -2886,9 +3041,9 @@
         ]
     },
     {
-        "title": "Technical Electives",
+        "title": "8 units of Technical Electives",
         "moduleCode": [
-            "Technical Electives"
+            "min", "8", "Env Technical Electives"
         ]
     }
 ],
@@ -3124,9 +3279,9 @@
         ]
     },
     {
-        "title": "Technical Electives",
+        "title": "8 units of Technical Electives",
         "moduleCode": [
-            "Technical Electives"
+            "min", "8", "ISE Technical Electives"
         ]
     }
 ],
@@ -3484,9 +3639,9 @@
         ]
     },
     {
-        "title": "Technical Electives",
+        "title": "8 units of Technical Electives",
         "moduleCode": [
-            "Technical Electives"
+            "min", "8", "MS Technical Electives"
         ]
     }
 ],
@@ -3594,9 +3749,9 @@
         ]
     },
     {
-        "title": "Technical Electives",
+        "title": "4 units of Technical Electives",
         "moduleCode": [
-            "Technical Electives"
+            "min", "4", "ME Technical Electives"
         ]
     }
 ],
@@ -3718,13 +3873,13 @@
     {
         "title": "Specialisation",
         "moduleCode": [
-            "Specialisation"
+            "Biz Specialisation"
         ]
     },
     {
         "title": "Honours Programme",
         "moduleCode": [
-            "Honours Programme"
+            "Biz Honours Programme"
         ]
     }
 ],
@@ -3912,7 +4067,7 @@
     {
         "title": "Honours Programme",
         "moduleCode": [
-            "Honours Programme"
+            "Biz Honours Programme"
         ]
     }
 ]
