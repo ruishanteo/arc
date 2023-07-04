@@ -47,7 +47,6 @@ export function NewComment({ postId, posterId, onUpdate }) {
               type="text"
               id="comment"
               formikProps={formikProps}
-              inputProps={{ maxLength: 100 }}
               placeholder="Enter reply here"
               multiline
               rows={3}
@@ -56,7 +55,7 @@ export function NewComment({ postId, posterId, onUpdate }) {
 
             <LoadingButton
               type="submit"
-              id="submit-button"
+              id="new-comment-button"
               sx={{ mt: 3, mb: 3, backgroundColor: "#cff8df" }}
               variant="contained"
               disabled={formikProps.isSubmitting}

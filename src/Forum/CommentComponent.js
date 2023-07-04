@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 import { deleteComment, editComment } from "./ForumStore";
 
 import { useAuth } from "../UserAuth/FirebaseHooks";
+import { FormTextField } from "../Components/FormTextField.js";
 
 import {
   Avatar,
@@ -14,8 +17,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Grid,
   IconButton,
-  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -64,25 +67,12 @@ export function CommentComponent({
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [text, setText] = useState("");
 
   const users = useSelector((state) => state.users.users);
 
   const handleDeleteComment = () => {
     setLoading(true);
     dispatch(deleteComment(id)).finally(() => onUpdate());
-  };
-
-  const handleEditComment = () => {
-    setLoading(true);
-    dispatch(
-      editComment(
-        {
-          text: text,
-        },
-        id
-      )
-    ).finally(() => onUpdate());
   };
 
   if (!user) {
@@ -92,12 +82,7 @@ export function CommentComponent({
   return (
     <Box display="flex" flexDirection="row" sx={{ mt: 2, mb: 2 }}>
       <Box display="flex" flexDirection="column">
-        <Box
-          display="flex"
-          flexDirection="row"
-          sx={{ width: "70vw" }}
-          align="left"
-        >
+        <Box display="flex" flexDirection="row" align="left">
           <Avatar
             src={users[comment.author.userId]?.photoURL}
             sx={{
@@ -109,61 +94,84 @@ export function CommentComponent({
           />
 
           {editMode ? (
-            <>
-              <Box width="100vw">
-                <TextField
-                  fullWidth
-                  defaultValue={comment.text}
-                  onChange={(e) => setText(e.target.value)}
-                  multiline
-                  rows={Math.max(1, Math.floor(comment.text.length / 105))}
-                />
-              </Box>
+            <Formik
+              initialValues={{ text: comment.text }}
+              validationSchema={Yup.object().shape({
+                text: Yup.string().required("Required"),
+              })}
+              onSubmit={async (values) => {
+                await dispatch(editComment(values, id)).finally(() =>
+                  onUpdate()
+                );
+                setEditMode(false);
+                setLoading(false);
+              }}
+            >
+              {(formikProps) => (
+                <Form id="comment-form">
+                  <Box width="58vw">
+                    <FormTextField
+                      label="text"
+                      type="text"
+                      id="comment"
+                      formikProps={formikProps}
+                      placeholder="Enter comment here"
+                      multiline
+                      fullWidth
+                      rows={Math.max(1, Math.floor(comment.text.length / 105))}
+                    />
+                  </Box>
 
-              <Box width="5vw" />
+                  <Box width="5vw" />
 
-              <Box display="flex" flexDirection="row" height="5vh">
-                <IconButton
-                  aria-label="delete"
-                  variant="contained"
-                  size="medium"
-                  sx={{
-                    backgroundColor: "#fcf4d4",
-                    mr: 1,
-                    borderRadius: 1,
-                  }}
-                  onClick={() => setEditMode(false)}
-                >
-                  <Close />
-                </IconButton>
-                <IconButton
-                  aria-label="edit"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#ffe0f7",
-                    borderRadius: 1,
-                  }}
-                  disabled={!text}
-                  onClick={handleEditComment}
-                >
-                  <Done />
-                </IconButton>
-              </Box>
-            </>
+                  <Box display="flex" flexDirection="row" height="5vh">
+                    <IconButton
+                      aria-label="delete"
+                      variant="contained"
+                      size="medium"
+                      sx={{
+                        backgroundColor: "#fcf4d4",
+                        mr: 1,
+                        borderRadius: 1,
+                      }}
+                      onClick={() => setEditMode(false)}
+                    >
+                      <Close />
+                    </IconButton>
+                    <IconButton
+                      type="submit"
+                      aria-label="edit"
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "#ffe0f7",
+                        borderRadius: 1,
+                      }}
+                      disabled={
+                        !formikProps.dirty ||
+                        formikProps.isSubmitting ||
+                        loading
+                      }
+                    >
+                      <Done />
+                    </IconButton>
+                  </Box>
+                </Form>
+              )}
+            </Formik>
           ) : (
-            <>
-              <Box width="60vw">
+            <Grid container direction="row">
+              <Grid item width="58vw">
                 <Typography
                   sx={{ wordBreak: "break-word" }}
                   variant="subtitle1"
                 >
                   {comment.text}
                 </Typography>
-              </Box>
-              <Box width="30vw" />
+              </Grid>
+
               {(user.uid === comment.posterId ||
                 user.uid === comment.author.userId) && (
-                <Box display="flex" flexDirection="row" height="5vh">
+                <Grid item>
                   <IconButton
                     aria-label="delete"
                     variant="contained"
@@ -177,6 +185,7 @@ export function CommentComponent({
                   >
                     <DeleteOutline />
                   </IconButton>
+
                   {user.uid === comment.author.userId && (
                     <IconButton
                       aria-label="edit"
@@ -190,14 +199,15 @@ export function CommentComponent({
                       <ModeEditOutline />
                     </IconButton>
                   )}
+
                   <DeleteCommentDialog
                     open={open}
                     setOpen={setOpen}
                     confirmAction={handleDeleteComment}
                   />
-                </Box>
+                </Grid>
               )}
-            </>
+            </Grid>
           )}
         </Box>
 

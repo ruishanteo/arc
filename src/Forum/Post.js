@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 import { Timestamp } from "firebase/firestore";
 
@@ -8,6 +10,7 @@ import { deletePost, editPost, fetchPost } from "./ForumStore.js";
 import { store } from "../stores/store.js";
 
 import { useAuth } from "../UserAuth/FirebaseHooks.js";
+import { FormTextField } from "../Components/FormTextField.js";
 
 import { Comment } from "./Comment.js";
 import { LoadingSpinner } from "../Components/LoadingSpinner.js";
@@ -25,7 +28,6 @@ import {
   DialogTitle,
   Grid,
   IconButton,
-  TextField,
   Typography,
 } from "@mui/material";
 
@@ -46,8 +48,6 @@ export function Post() {
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
 
   const post = useSelector((state) => state.forum.post);
   const users = useSelector((state) => state.users.users);
@@ -64,22 +64,6 @@ export function Post() {
   const handleDeletePost = () => {
     setLoading(true);
     store.dispatch(deletePost(id)).finally(() => navigate("/forum"));
-  };
-
-  const handleEditPost = () => {
-    setLoading(true);
-    store
-      .dispatch(
-        editPost(
-          {
-            title: title,
-            post: text,
-            datetime: Timestamp.fromDate(new Date()),
-          },
-          id
-        )
-      )
-      .finally(() => onUpdate());
   };
 
   if (loading) return <LoadingSpinner />;
@@ -121,42 +105,70 @@ export function Post() {
             />
 
             {editMode ? (
-              <Box display="flex" flexDirection="column" width="60vw">
-                <TextField
-                  fullWidth
-                  type="text"
-                  name="title"
-                  defaultValue={post.title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  inputProps={{ maxLength: 100 }}
-                />
-                <TextField
-                  fullWidth
-                  type="text"
-                  name="thread"
-                  defaultValue={post.post}
-                  onChange={(e) => setText(e.target.value)}
-                  sx={{ mt: 2 }}
-                  multiline
-                  rows={10}
-                />
+              <Formik
+                initialValues={{ title: post.title, post: post.post }}
+                validationSchema={Yup.object().shape({
+                  title: Yup.string().required("Required"),
+                  post: Yup.string().required("Required"),
+                })}
+                onSubmit={async (values) => {
+                  await store
+                    .dispatch(
+                      editPost(
+                        {
+                          ...values,
+                          datetime: Timestamp.fromDate(new Date()),
+                        },
+                        id
+                      )
+                    )
+                    .finally(() => onUpdate());
+                  setEditMode(false);
+                }}
+              >
+                {(formikProps) => (
+                  <Form id="post-form">
+                    <Box display="flex" flexDirection="column" width="60vw">
+                      <FormTextField
+                        label="title"
+                        type="text"
+                        id="title"
+                        formikProps={formikProps}
+                        inputProps={{ maxLength: 100 }}
+                        placeholder="Enter title here"
+                      />
 
-                <Box display="flex" flexDirection="row">
-                  <IconButton
-                    onClick={() => {
-                      handleEditPost();
-                      setEditMode(false);
-                    }}
-                    disabled={!title && !text}
-                  >
-                    <Done />
-                  </IconButton>
+                      <FormTextField
+                        label="post"
+                        type="text"
+                        id="post"
+                        formikProps={formikProps}
+                        placeholder="Enter text here"
+                        sx={{ mt: 2 }}
+                        rows={5}
+                        multiline
+                      />
 
-                  <IconButton onClick={() => setEditMode(false)}>
-                    <Close />
-                  </IconButton>
-                </Box>
-              </Box>
+                      <Box display="flex" flexDirection="row">
+                        <IconButton
+                          type="submit"
+                          disabled={
+                            !formikProps.dirty ||
+                            formikProps.isSubmitting ||
+                            loading
+                          }
+                        >
+                          <Done />
+                        </IconButton>
+
+                        <IconButton onClick={() => setEditMode(false)}>
+                          <Close />
+                        </IconButton>
+                      </Box>
+                    </Box>
+                  </Form>
+                )}
+              </Formik>
             ) : (
               <Grid container direction="row">
                 <Grid item xs={10}>
