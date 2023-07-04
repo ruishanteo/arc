@@ -38,9 +38,10 @@ export function CommonRequirements() {
 
     const prog = getProg();
 
-    function cdid_check(arr, data) {
+    function cdid_check(arr) {
         let idCount = 0;
         let cdCount = 0;
+        let data = require('../module_data/cdid.json');
     
         arr.forEach(code => {
           if (idCount === 3 || (idCount === 2 && cdCount === 1)) {
@@ -58,31 +59,56 @@ export function CommonRequirements() {
         });
     
         if (idCount === 3 || (idCount === 2 && cdCount === 1)) {
-          return true;
+          return color;
         } else {
-          return false;
+          return "#FFFFFF";
         }
+    }
+
+    function checkIntegratedProj(arr) {
+      let commonMod = require('../module_data/integratedproj.json')[degrees[0].title];
+      if (degrees[0].title === "Chemical Engineering") {
+        return "#FFFFFF";
+      } 
+      const flattenedFirstArray = commonMod["moduleCode"].flat();
+      const result = flattenedFirstArray.some(element => {
+        if (Array.isArray(element)) {
+          return element.some(item => arr.includes(item));
+        }
+        return arr.includes(element);
+      });
+      if (result) {
+        return color;
+      }
+      return "#FFFFFF";
+    }
+
+    function checkCHSCDE(inputString, arr) {
+      let commonMod = require('../module_data/chscde.json')[inputString]["title"];
+      if (inputString === "chs8") {
+        const present = arr.filter(moduleCodes => commonMod.includes(moduleCodes));
+        if (present.length >= 2) {
+          return "#FFFFFF";
+        }
+      } 
+      const present = arr.filter(moduleCodes => commonMod.includes(moduleCodes));
+      if (present.length >= 1) {
+        return color;
+      }
+      return "#FFFFFF";
     }
       
     function checkPresentCommonMod(inputString) {
-      let commonMod = require('../module_data/' + inputString + '.json');
       const arr = semesters.flatMap((semester) =>
       semester.modules.map((module) => module.modInfo.moduleCode));
       if (inputString === "cdid") {
-        if (cdid_check(arr, commonMod)) {
-          return color;
-        } else {
-          return "#FFFFFF";
-        }
+        return cdid_check(arr);        
       } else if (inputString === "integratedproj") {
-        commonMod = commonMod[degrees[0].title];
-        const hasCommonElement = arr.includes(commonMod.title);
-        if (hasCommonElement) {
-          return color;
-        } else {
-          return "#FFFFFF";
-        }
+        return checkIntegratedProj(arr);
+      } else if (inputString.includes("chs") || inputString.includes("cde")) {
+        return checkCHSCDE(inputString, arr);
       } else {
+        let commonMod = require('../module_data/' + inputString + '.json');
         const hasCommonElement = commonMod.some((element) => arr.includes(element.moduleCode));
         if (hasCommonElement) {
           return color;

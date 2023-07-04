@@ -1,44 +1,58 @@
 {
     "Architecture" : {
-        "title" :"AR3102"
+        "title" : "AR3102",
+        "moduleCode" : ["AR3102"]
     },
     "Biomedical Engineering" : {
-        "title" :"8MC of: BN4101 / XFE4401 / EG4301 / EG4301A"
+        "title" :"BN4101 / XFE4401 / EG4301 / EG4301A",
+        "moduleCode" : ["BN4101", "XFE4401", "EG4301", "EG4301A"]
     },
     "Chemical Engineering" : {
-        "title" :"Sorry unfortunately this information is unavailable"
+        "title" :"Sorry unfortunately this information is unavailable",
+        "moduleCode" : []
     },
     "Civil Engineering" : {
-        "title" :"8MC of: CE4103R / CE4104 / XFE4401 / EG4301 / EG4301A"
+        "title" :"8MC of: CE4103R / CE4104 / XFE4401 / EG4301 / EG4301A",
+        "moduleCode" : [["CE4103R", "CE4104"], ["CE4103R", "XFE4401"],["CE4103R", "EG4301"], ["CE4103R", "EG4301A"], "CE4104", "XFE4401", "EG4301", "EG4301A"]
     },
     "Computer Engineering" : {
-        "title" :"CG4002"
+        "title" :"CG4002",
+        "moduleCode" : ["CG4002"]
     },
     "Electrical Engineering" : {
-        "title" :"EE4002D / EE4002R"
+        "title" :"EE4002D / EE4002R",
+        "moduleCode" : ["EE4002D", "EE4002R"]
     },
     "Engineering Science" : {
-        "title" :"8MC of: ESP4901 / XFE4401 / EG4301 / EG4301A"
+        "title" : "ESP4901 / XFE4401 / EG4301 / EG4301A",
+        "moduleCode" : ["ESP4901", "XFE4401", "EG4301", "EG4301A"]
     },
     "Environmental Engineering" : {
-        "title" :"8MC of: ESE4502R / ESE4501R / XFE4401 / EG4301 / EG4301A"
+        "title" :"ESE4502R / ESE4501R / XFE4401 / EG4301 / EG4301A",
+        "moduleCode" : ["ESE4502R", "ESE4501R", "XFE4401", "EG4301", "EG4301A"]
     },
     "Industrial Design" : {
-        "title" :"ID3109 & ID3110"
+        "title" :"ID3109 & ID3110",
+        "moduleCode" : [["ID3109", "ID3110"]]
     },
     "Industrial & Systems Engineering" : {
-        "title" :"IE3100R"
+        "title" :"IE3100R",
+        "moduleCode" : ["IE3100R"]
     },
     "Infrastructure & Project Management" : {
-        "title" :"PF4101 / IPM4101"
+        "title" :"PF4101 / IPM4101",
+        "moduleCode" : ["PF4101", "IPM4101"]
     },
     "Landscape Architecture" : {
-        "title" :"ISD5101"
+        "title" :"ISD5101",
+        "moduleCode" : ["ISD5101"]
     },
     "Materials Science & Engineering" : {
-        "title" :"8MC of: MLE4101B / MLE4102A / XFE4401 / EG4301"
+        "title" :"MLE4101B / MLE4102A / XFE4401 / EG4301",
+        "moduleCode" : ["MLE4101B", "MLE4102A", "XFE4401", "EG4301"]
     },
     "Mechanical Engineering" : {
-        "title" :"ME4101A / ME4101B / EG4301"
+        "title" :"ME4101A / ME4101B / EG4301",
+        "moduleCode" : ["ME4101A", "ME4101B", "EG4301"]
     }
 }
