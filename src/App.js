@@ -17,6 +17,7 @@ import { Header } from "./NavBar/Header.js";
 import { Home } from "./NavPages/Home.js";
 import { Landing } from "./NavPages/Landing.js";
 import { Login } from "./UserAuth/Login.js";
+import { NotFound } from "./Components/NotFound.js";
 import { Profile } from "./UserAuth/Profile.js";
 import { Register } from "./UserAuth/Register.js";
 import { Reset } from "./UserAuth/Reset.js";
@@ -30,6 +31,21 @@ import desktopImage from "./Images/backgroundDesktop.jpg";
 import mobileImage from "./Images/backgroundMobile.jpg";
 
 const theme = createTheme({
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          fontSize: "14px",
+          padding: "8px 12px",
+          borderRadius: "50px",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.4)",
+          opacity: "0.9",
+          color: "black",
+          backgroundColor: "#DBD4F0",
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: [
       "-apple-system",
@@ -123,7 +139,6 @@ function App() {
                   <Header />
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/profile" element={<Profile />} />
@@ -138,7 +153,7 @@ function App() {
                     <Route path="/forum" element={<Forum />} />
                     <Route exact path="/forum/new" element={<NewPost />} />
                     <Route exact path="forum/:id" element={<Post />} />
-                    <Route path="*" element={<Home />} />
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
                 </>
               ) : (

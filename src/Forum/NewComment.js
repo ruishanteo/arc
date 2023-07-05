@@ -1,74 +1,72 @@
-import { useState } from "react";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 import { useAuth } from "../UserAuth/FirebaseHooks.js";
 
 import { store } from "../stores/store.js";
 import { createComment } from "./ForumStore.js";
-import { addNotification } from "../Notifications/index.js";
+
+import { FormTextField } from "../Components/FormTextField.js";
 
 import { LoadingButton } from "@mui/lab";
-import { Box, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import { Send } from "@mui/icons-material";
 
 export function NewComment({ postId, posterId, onUpdate }) {
   const user = useAuth();
-  const [comment, setComment] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleCreateComment = () => {
-    setLoading(true);
-    if (!comment) {
-      store.dispatch(
-        addNotification({
-          message: "Please fill in the field.",
-          variant: "error",
-        })
-      );
-    } else {
-      store
-        .dispatch(
-          createComment({
-            postId: postId,
-            posterId: posterId,
-            text: comment,
-            author: {
-              userId: user.uid,
-            },
-          })
-        )
-        .finally(() => {
-          onUpdate();
-          setLoading(false);
-        });
-    }
-  };
 
   return (
     <Box align="center">
-      <TextField
-        type="text"
-        name="thread"
-        required
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        placeholder="Enter reply here."
-        multiline
-        rows={3}
-        fullWidth
-      />
-
-      <LoadingButton
-        sx={{ mt: 3, mb: 3, backgroundColor: "#cff8df" }}
-        variant="contained"
-        onClick={() => {
-          handleCreateComment();
-          setComment("");
+      <Formik
+        initialValues={{ comment: "" }}
+        validationSchema={Yup.object().shape({
+          comment: Yup.string().required("Required"),
+        })}
+        onSubmit={async (values, { resetForm }) => {
+          await store
+            .dispatch(
+              createComment({
+                postId: postId,
+                posterId: posterId,
+                text: values.comment,
+                author: {
+                  userId: user.uid,
+                },
+              })
+            )
+            .finally(() => {
+              resetForm();
+              onUpdate();
+            });
         }}
-        loading={loading}
       >
-        Submit
-        <Send />
-      </LoadingButton>
+        {(formikProps) => (
+          <Form id="login-form">
+            <FormTextField
+              label="comment"
+              type="text"
+              id="comment"
+              formikProps={formikProps}
+              placeholder="Enter reply here"
+              multiline
+              rows={3}
+              fullWidth
+            />
+
+            <LoadingButton
+              type="submit"
+              id="new-comment-button"
+              sx={{ mt: 3, mb: 3, backgroundColor: "#cff8df" }}
+              variant="contained"
+              disabled={formikProps.isSubmitting}
+              loading={formikProps.isSubmitting}
+            >
+              Submit
+              <Send />
+            </LoadingButton>
+          </Form>
+        )}
+      </Formik>
     </Box>
   );
 }

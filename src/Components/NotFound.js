@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 
-import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import notFoundPic from "../Images/notFound.jpg";
 
 export const NotFound = () => {
   return (
@@ -15,20 +15,23 @@ export const NotFound = () => {
           width: "40vw",
         }}
       >
-        <Grid item xs={3} />
         <Grid item xs={3} align="center">
-          <Typography sx={{ fontSize: 70 }}>
-            4 <SentimentDissatisfiedIcon sx={{ fontSize: 50 }} /> 4
-          </Typography>
+          <Grid item>
+            <img width="250px" src={notFoundPic} alt="Page not found" />
+          </Grid>
 
-          <Typography>The page you are looking for can't be found.</Typography>
-          <Button
-            variant="contained"
-            href="/home"
-            sx={{ mt: 2, backgroundColor: "#b7b0f5", color: "white" }}
-          >
-            Go to home
-          </Button>
+          <Grid item>
+            <Typography>
+              The page you are looking for can't be found.
+            </Typography>
+            <Button
+              variant="contained"
+              href="/home"
+              sx={{ mt: 2, backgroundColor: "#b7b0f5", color: "white" }}
+            >
+              Go to home
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </Box>

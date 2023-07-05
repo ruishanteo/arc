@@ -40,15 +40,17 @@ export function Home() {
 
   useEffect(() => {
     if (user) {
-      if (!user.displayName) {
-        setTimeout(() => {
-          // window.location.reload();
-        }, 1000);
-      } else {
+      if (user.displayName) {
         setName(user.displayName);
       }
     }
   }, [user]);
+
+  if (user) {
+    user.reload().then(() => {
+      setName(user.displayName);
+    });
+  }
 
   return (
     <div

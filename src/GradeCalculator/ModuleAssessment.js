@@ -1,16 +1,19 @@
 import { useEffect, useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
-
-import { doc, setDoc, getDoc } from "firebase/firestore";
-
-import { Assessment } from "./Assessment";
-import { db } from "../UserAuth/Firebase.js";
-import { deleteContent, useAuth } from "../UserAuth/FirebaseHooks";
-
-import { LoadingSpinner } from "../Components/LoadingSpinner";
+import { useSelector } from "react-redux";
 
 import { store } from "../stores/store";
-import { addNotification } from "../Notifications";
+import {
+  addAssessment,
+  clearCalculator,
+  fetchCalculator,
+  saveCalculator,
+} from "./GradeStore";
+
+import { Assessment } from "./Assessment";
+import { useAuth } from "../UserAuth/FirebaseHooks";
+
+import { LoadingSpinner } from "../Components/LoadingSpinner";
+import { NoData } from "./NoData";
 
 import {
   Box,
@@ -25,138 +28,43 @@ import {
   Typography,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { Add, Save } from "@mui/icons-material";
+import { Add, Cancel, Save } from "@mui/icons-material";
 
 export function ModuleAssessment() {
   const user = useAuth();
-  const dispatch = useDispatch();
 
-  const [assessments, setAssessments] = useState([]);
   const [open, setOpen] = useState(false);
   const [isActionLoading, setIsActionLoading] = useState(false);
   const [isFetchingData, setIsFetchingData] = useState(true);
 
+  const assessments = useSelector((state) => state.calculator.assessments);
+
+  const onUpdate = useCallback(() => {
+    if (user) {
+      setIsFetchingData(true);
+      store
+        .dispatch(fetchCalculator(user.uid))
+        .finally(() => setIsFetchingData(false));
+    }
+  }, [user]);
+
+  useEffect(() => {
+    onUpdate();
+  }, [user, onUpdate]);
+
   const saveAll = async (e) => {
     setIsActionLoading(true);
-    e.preventDefault();
-    await setDoc(doc(db, "assessments", user.uid), {
-      assessments: assessments
-        .filter((assessment) => !assessment.isDeleted)
-        .map((assessment) => {
-          return {
-            ...assessment,
-            components: assessment.components.filter(
-              (component) => !component.isDeleted
-            ),
-          };
-        }),
-    })
-      .then(() =>
-        dispatch(
-          addNotification({
-            message: "Saved successfully!",
-            variant: "success",
-          })
-        )
-      )
-      .catch((err) =>
-        dispatch(
-          addNotification({
-            message: `Failed to save: ${err}`,
-            variant: "error",
-          })
-        )
-      )
+    store
+      .dispatch(saveCalculator(user.uid))
       .finally(() => setIsActionLoading(false));
   };
 
   const clearAll = async () => {
     setIsActionLoading(true);
-    await deleteContent(user.uid);
-    setIsActionLoading(false);
+    store
+      .dispatch(clearCalculator(user.uid))
+      .finally(() => setIsActionLoading(false));
     setOpen(false);
-    setAssessments([]);
-
-    store.dispatch(
-      addNotification({
-        message: "Deleted successfully!",
-        variant: "success",
-      })
-    );
-  };
-
-  const getAll = useCallback(async () => {
-    setIsFetchingData(true);
-    const docRef = doc(db, "assessments", user.uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      setAssessments(docSnap.data().assessments);
-    }
-    setIsFetchingData(false);
-  }, [user]);
-
-  useEffect(() => {
-    if (user) getAll();
-  }, [user, getAll]);
-
-  function getComponents(assessmentIndex) {
-    return assessments[assessmentIndex].components;
-  }
-
-  function getText(assessmentIndex, componentIndex, dataKey) {
-    const value =
-      assessments[assessmentIndex].components[componentIndex][dataKey];
-    return value;
-  }
-
-  function updateText(assessmentIndex, componentIndex, dataKey, value) {
-    if (value != null) {
-      assessments[assessmentIndex].components[componentIndex][dataKey] = value;
-      setAssessments([...assessments]);
-    }
-  }
-
-  function newComponent(assessmentIndex) {
-    assessments[assessmentIndex].components.push({
-      componentTitle: "",
-      score: 0,
-      total: 0,
-      weight: 0,
-      isDeleted: false,
-    });
-    setAssessments([...assessments]);
-  }
-
-  function deleteComponent(assessmentIndex, componentIndex) {
-    assessments[assessmentIndex].components[componentIndex].isDeleted = true;
-    setAssessments([...assessments]);
-  }
-
-  const addModule = () => {
-    setAssessments([
-      ...assessments,
-      {
-        title: "",
-        isDeleted: false,
-        components: [],
-      },
-    ]);
-  };
-
-  const deleteModule = (index) => {
-    const updatedAssessments = [...assessments];
-    updatedAssessments[index].isDeleted = true;
-    setAssessments(updatedAssessments);
-  };
-
-  const setModuleTitle = (index, moduleTitle) => {
-    const updatedAssessments = [...assessments];
-    updatedAssessments[index].title = moduleTitle;
-    setAssessments(updatedAssessments);
-  };
-
-  const getModuleTitle = (index) => {
-    return assessments[index].title;
   };
 
   if (!user) {
@@ -191,6 +99,7 @@ export function ModuleAssessment() {
             onClick={() => setOpen(true)}
             loading={isActionLoading}
             disabled={assessments.length === 0}
+            endIcon={<Cancel />}
           >
             <span>Clear</span>
           </LoadingButton>
@@ -234,35 +143,37 @@ export function ModuleAssessment() {
         </Dialog>
       </Box>
 
-      {assessments.map((_, assessmentIndex) => {
-        return (
-          <div key={assessmentIndex}>
-            {!assessments[assessmentIndex].isDeleted && (
-              <Assessment
-                key={assessmentIndex}
-                assessmentIndex={assessmentIndex}
-                deleteModule={deleteModule}
-                newComponent={newComponent}
-                deleteComponent={deleteComponent}
-                getText={getText}
-                updateText={updateText}
-                getComponents={getComponents}
-                setModuleTitle={setModuleTitle}
-                getModuleTitle={getModuleTitle}
-              />
-            )}
-          </div>
-        );
-      })}
-      <Button
-        variant="contained"
-        onClick={addModule}
-        sx={{ mt: 2, mb: 10 }}
-        color="neutral"
-        startIcon={<Add />}
-      >
-        Module
-      </Button>
+      {assessments.length === 0 ? (
+        <Box>
+          <Button
+            variant="contained"
+            onClick={() => store.dispatch(addAssessment)}
+            sx={{ mt: 2, ml: 10 }}
+            color="neutral"
+            startIcon={<Add />}
+          >
+            Module
+          </Button>
+          <NoData />
+        </Box>
+      ) : (
+        <Box>
+          {assessments.map((_, assessmentIndex) => (
+            <Box key={assessmentIndex}>
+              <Assessment assessmentIndex={assessmentIndex} />
+            </Box>
+          ))}
+          <Button
+            variant="contained"
+            onClick={() => store.dispatch(addAssessment)}
+            sx={{ mt: 2, mb: 10 }}
+            color="neutral"
+            startIcon={<Add />}
+          >
+            Module
+          </Button>
+        </Box>
+      )}
     </Container>
   );
 }
