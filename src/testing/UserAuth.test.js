@@ -13,6 +13,7 @@ const EMAIL_FIELD_SELECTOR = "#email";
 const PASSWORD_FIELD_SELECTOR = "#password";
 const LOGIN_FORM_SELECTOR = "#login-form";
 const REGISTER_FORM_SELECTOR = "#register-form";
+const RESET_FORM_SELECTOR = "#reset-form";
 const SUBMIT_BUTTON_SELECTOR = "#submit-button";
 const GOOGLE_SIGNIN_BUTTON_SELECTOR = "#google-signin-button";
 
@@ -220,9 +221,8 @@ describe("Login Page", () => {
 /* -------------------------------------------------------------------------- */
 describe("Reset Password Page", () => {
   async function fillInForm(inputEmail) {
-    await page.waitForSelector(EMAIL_FIELD_SELECTOR);
+    await page.waitForSelector(RESET_FORM_SELECTOR);
     await page.type(EMAIL_FIELD_SELECTOR, inputEmail);
-
     await page.click(SUBMIT_BUTTON_SELECTOR);
   }
 
@@ -237,12 +237,16 @@ describe("Reset Password Page", () => {
 
   test("Empty form fields", async () => {
     await fillInForm("");
-    await expectErrorMessage(page, "auth/missing-email");
+    await expectValidationErrorMessage(page, "email", "Required");
   });
 
   test("Invalid email", async () => {
     await fillInForm("123");
-    await expectErrorMessage(page, "auth/user-not-found");
+    await expectValidationErrorMessage(
+      page,
+      "email",
+      "Please enter a valid email"
+    );
   });
 
   test("Wrong email", async () => {

@@ -76,6 +76,7 @@ export function Reset() {
                 <FormTextField
                   label="email"
                   type="email"
+                  id="email"
                   autoComplete="on"
                   formikProps={formikProps}
                   placeholder="E-mail Address"
@@ -85,6 +86,7 @@ export function Reset() {
 
                 <Button
                   type="submit"
+                  id="submit-button"
                   sx={{
                     mt: 4,
                     mb: 3,
