@@ -69,7 +69,7 @@ export function ProgRequirements() {
         const pres2 = arr.filter(moduleCode => data[recog].includes(moduleCode))
         pres = Array.from(new Set(pres1.concat(pres2)));
       } else {
-        pres = arr.filter(moduleCode => data[recog].includes(moduleCode))
+        pres = arr.filter(moduleCode => data[titleArr[2]].includes(moduleCode))
       }
       if (titleArr.length >= 4) {
         pres = pres.filter(moduleCode => {
