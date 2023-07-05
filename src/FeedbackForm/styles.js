@@ -5,7 +5,7 @@ export const styles = {
         // Border
         borderRadius: '50%',
         // Background 
-        backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/arc-backend-bac77.appspot.com/o/GuCM6dhsBNfIyFxGAQPR2IYKOmq1.png?alt=media&token=e78fd915-0a19-40a0-aa83-cab7741f1e91)`, 
+
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: '84px',

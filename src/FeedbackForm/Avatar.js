@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { styles } from './styles'
+import background from "../Images/feedback_logo.png";
 
 const Avatar = props => {
     const [hovered, setHovered] = useState(false)
@@ -24,7 +25,8 @@ const Avatar = props => {
                 className='transition-3'
                 style={{
                     ...styles.chatWithMeButton,
-                    ...{ border: hovered ? '1px solid #f9f0ff' : '5px solid #DFD1F5' }
+                    ...{ border: hovered ? '1px solid #f9f0ff' : '5px solid #DFD1F5',
+                    backgroundImage: `url(${background})`,  }
                 }}
             />
         </div>
