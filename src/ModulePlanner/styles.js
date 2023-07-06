@@ -1,18 +1,4 @@
 export const styles = {
-    chatWithMeButton: {
-        cursor: 'pointer',
-        boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.33)',
-        // Border
-        borderRadius: '50%',
-        // Background 
-        backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/arc-backend-bac77.appspot.com/o/GuCM6dhsBNfIyFxGAQPR2IYKOmq1.png?alt=media&token=e78fd915-0a19-40a0-aa83-cab7741f1e91)`, 
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: '84px',
-        // Size
-        width: '84px',
-        height: '84px',
-    },
     avatarHello: { 
         // Position
         position: 'absolute', 
@@ -31,12 +17,12 @@ export const styles = {
     supportWindow: {
         // Position
         position: 'fixed',
-        bottom: '24px',
-        right: '24px',
-        left: '24px',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
         // Size
-        width: '1872px',
-        height: '770px',
+        width: '1180px',
+        height: '100%',
         maxWidth: 'calc(100% - 48px)',
         maxHeight: 'calc(100% - 48px)',
         backgroundColor: 'white',
@@ -46,6 +32,11 @@ export const styles = {
         overflow: 'hidden',
         // Shadow
         boxShadow: '0px 0px 16px 6px rgba(0, 0, 0, 0.33)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      
     },
     emailFormWindow: { 
         width: '100%',  
@@ -67,7 +58,7 @@ export const styles = {
         width: '100%', 
         top: '5%', 
         color: 'black', 
-        fontSize: '30px', 
+        fontSize: '1.5rem', 
         fontWeight: '600',
     },
     emailInput: { 
@@ -79,12 +70,19 @@ export const styles = {
         border: '4px solid #DFD1F5',
         height: '350px'
     },
+    instructionContainer: {
+        position: 'absolute',
+        width: '100%',
+        top: '18%',
+        bottom: '12%',
+        overflow: 'auto', // Enable vertical scrolling
+      },
     instructionText: { 
-        position: 'absolute', 
+        //position: 'absolute', 
         width: '100%', 
-        top: '15%', 
-        //color: '#7a39e0', 
-        fontSize: '24px', 
+        top: '18%', 
+        //color: '#7a39e0',  
+        fontSize: '1rem',
         fontWeight: '400' 
     },
     instructionNoteText: { 
@@ -96,20 +94,25 @@ export const styles = {
         fontWeight: '400',
         fontStyle: 'italic' 
     },
+    bottomContainer: {
+        position: 'absolute',
+        width: '100%',
+        bottom: '5%', // Adjust as needed to leave space for the content
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'visible',
+        backgroundColor: 'white',
+    },
     bottomText: { 
-        position: 'absolute', 
-        width: '100%', 
-        top: '83%', 
-        //color: '#7a39e0', 
-        fontSize: '18px', 
+        fontSize: '0.8rem', 
         fontWeight: '300',
-        fontStyle: 'italic' 
+        fontStyle: 'italic',
+        backgroundColor: 'white',
     },
     bottomButton: { 
-        position: 'absolute', 
-        width: '100%', 
-        top: '88%', 
-        //color: '#7a39e0', 
+        marginTop: '8px', // Adjust as needed to add space between the text and button
         fontSize: '24px', 
         fontWeight: '600' 
     },
