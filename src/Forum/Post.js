@@ -169,6 +169,7 @@ export function Post() {
                       </Grid>
                       <Grid item>
                         <IconButton
+                          id="submit-post-button"
                           type="submit"
                           disabled={
                             !formikProps.dirty ||

@@ -21,6 +21,13 @@ const SUBMIT_EDIT_POST_BUTTON_SELECTOR = "#submit-post-button";
 const DELETE_POST_BUTTON_SELECTOR = "#delete-post-button";
 const CONFIRM_DELETE_POST_BUTTON_SELECTOR = "#confirm-delete-post-button";
 
+const EDIT_COMMENT_FORM_SELECTOR = "#edit-comment-form";
+const EDIT_COMMENT_FIELD_SELECTOR = "#edit-comment";
+const EDIT_COMMENT_BUTTON_SELECTOR = "#edit-comment-button";
+const SUBMIT_EDIT_COMMENT_BUTTON_SELECTOR = "#submit-comment-button";
+const DELETE_COMMENT_BUTTON_SELECTOR = "#delete-comment-button";
+const CONFIRM_DELETE_COMMENT_BUTTON_SELECTOR = "#confirm-delete-comment-button";
+
 const NAME_FIELD_SELECTOR = "#name";
 const EMAIL_FIELD_SELECTOR = "#email";
 const PASSWORD_FIELD_SELECTOR = "#password";
@@ -42,7 +49,7 @@ let consoleMessages = [];
 /* -------------------------------------------------------------------------- */
 async function newBrowser() {
   if (browser) await browser.close();
-  browser = await puppeteer.launch();
+  browser = await puppeteer.launch({ defaultViewport: null });
   page = null;
 }
 
@@ -87,7 +94,9 @@ async function expectText(text) {
 }
 
 async function clearInputFromField(fieldSelector) {
-  await page.$eval(fieldSelector, (el) => (el.value = ""));
+  const input = await page.$(fieldSelector);
+  await input.click({ clickCount: 3 });
+  await page.keyboard.press("Backspace");
 }
 
 async function registerAccount() {
@@ -109,6 +118,14 @@ async function loginAccount() {
   await page.click(SUBMIT_BUTTON_SELECTOR);
   await page.waitForNavigation();
 }
+
+async function fillInPostForm(inputTitle, inputPost) {
+  await page.goto(NEW_FORUM_PAGE_URL);
+  await page.waitForSelector(POST_FORM_SELECTOR);
+  await page.type(TITLE_FIELD_SELECTOR, inputTitle);
+  await page.type(POST_FIELD_SELECTOR, inputPost);
+  await page.click(SUBMIT_BUTTON_SELECTOR);
+}
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
@@ -122,24 +139,12 @@ describe("Forum Page: Post", () => {
   const edited_title = `edited_title`;
   const edited_post = `edited_post`;
 
-  async function fillInForm(inputTitle, inputPost) {
-    await page.goto(NEW_FORUM_PAGE_URL);
-    await page.waitForSelector(POST_FORM_SELECTOR);
-    await page.type(TITLE_FIELD_SELECTOR, inputTitle);
-    await page.type(POST_FIELD_SELECTOR, inputPost);
-    await page.click(SUBMIT_BUTTON_SELECTOR);
-  }
-
   beforeAll(async () => {
     if (user_registered) {
       await loginAccount();
     } else {
       await registerAccount();
     }
-  });
-
-  afterAll(async () => {
-    await browser.close();
   });
 
   test("Empty form fields", async () => {
@@ -154,7 +159,7 @@ describe("Forum Page: Post", () => {
   });
 
   test("Create new post", async () => {
-    await fillInForm(title, post);
+    await fillInPostForm(title, post);
     await page.waitForNavigation();
     await expectText(title);
     await expectText(post);
@@ -168,17 +173,24 @@ describe("Forum Page: Post", () => {
     await expectText(post);
   });
 
-  test("Edit post", async () => {
+  test("Edit post with blank", async () => {
     await page.click(EDIT_POST_BUTTON_SELECTOR);
     await page.waitForSelector(POST_FORM_SELECTOR);
     await clearInputFromField(TITLE_FIELD_SELECTOR);
     await clearInputFromField(POST_FIELD_SELECTOR);
+    await page.click(SUBMIT_EDIT_POST_BUTTON_SELECTOR);
+    await page.waitForTimeout(TIMEOUT);
+    await expectValidationErrorMessage(page, "title", "Required");
+    await expectValidationErrorMessage(page, "post", "Required");
+  });
+
+  test("Edit post", async () => {
     await page.type(TITLE_FIELD_SELECTOR, edited_title);
     await page.type(POST_FIELD_SELECTOR, edited_post);
     await page.click(SUBMIT_EDIT_POST_BUTTON_SELECTOR);
 
-    await page.waitForTimeout(2000);
-
+    await page.waitForTimeout(TIMEOUT);
+    await page.reload();
     await expectText(edited_title);
     await expectText(edited_post);
   });
@@ -188,6 +200,69 @@ describe("Forum Page: Post", () => {
     await page.click(CONFIRM_DELETE_POST_BUTTON_SELECTOR);
     await page.waitForNavigation();
     await expectText("No posts found.");
+  });
+});
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                POST: COMMENT                               */
+/* -------------------------------------------------------------------------- */
+describe("Forum Page: Comment", () => {
+  const text =
+    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.";
+
+  const edited_text = "edited_comment";
+
+  async function fillInForm(inputText) {
+    await page.waitForSelector(COMMENT_FORM_SELECTOR);
+    await page.type(COMMENT_FIELD_SELECTOR, inputText);
+    await page.click("#new-comment-button");
+  }
+
+  beforeAll(async () => {
+    fillInPostForm("post", "post body");
+    await page.waitForSelector(VIEW_POST_BUTTON_SELECTOR);
+    await page.click(VIEW_POST_BUTTON_SELECTOR);
+    await page.waitForTimeout(TIMEOUT);
+  });
+
+  afterAll(async () => {
+    await browser.close();
+  });
+
+  test("Empty form fields", async () => {
+    await page.click("#new-comment-button");
+    await expectValidationErrorMessage(page, "comment", "Required");
+  });
+
+  test("Create new comment", async () => {
+    await fillInForm(text);
+    await page.waitForTimeout(TIMEOUT);
+    await expectText(text);
+  });
+
+  test("Edit comment with blank", async () => {
+    await page.click(EDIT_COMMENT_BUTTON_SELECTOR);
+    await page.waitForSelector(EDIT_COMMENT_FORM_SELECTOR);
+    await clearInputFromField(EDIT_COMMENT_FIELD_SELECTOR);
+    await page.click(SUBMIT_EDIT_COMMENT_BUTTON_SELECTOR);
+    await page.waitForTimeout(TIMEOUT);
+    await expectValidationErrorMessage(page, "edit-comment", "Required");
+  });
+
+  test("Edit comment", async () => {
+    await page.type(EDIT_COMMENT_FIELD_SELECTOR, edited_text);
+    await page.click(SUBMIT_EDIT_COMMENT_BUTTON_SELECTOR);
+
+    await page.waitForTimeout(TIMEOUT);
+    await page.reload();
+    await expectText(edited_text);
+  });
+
+  test("Delete comment", async () => {
+    await page.click(DELETE_COMMENT_BUTTON_SELECTOR);
+    await page.click(CONFIRM_DELETE_COMMENT_BUTTON_SELECTOR);
+    await expectText("No comments... Be the first to comment!");
   });
 });
 /* -------------------------------------------------------------------------- */
