@@ -140,7 +140,7 @@ export function Home() {
             }}
             sx={{ maxWidth: "20vw", overflow: "auto" }}
           >
-            <CardActionArea>
+            <CardActionArea href="/ModulePlanner">
               <Box
                 align="center"
                 sx={{

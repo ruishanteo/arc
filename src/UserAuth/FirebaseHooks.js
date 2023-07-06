@@ -209,6 +209,8 @@ async function onReAuth(user, password) {
 
 const deleteContent = async (key) => {
   await handleApiCall(deleteDoc(doc(db, "assessments", key)));
+  await handleApiCall(deleteDoc(doc(db, "programme", key)));
+  await handleApiCall(deleteDoc(doc(db, "semesters", key)));
   await handleApiCall(deleteDoc(doc(db, "users", key)));
 };
 

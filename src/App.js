@@ -7,6 +7,7 @@ import { SnackbarProvider } from "notistack";
 
 import { auth } from "./UserAuth/Firebase.js";
 import { GradeCalculator } from "./GradeCalculator/GradeCalculator.js";
+import { ModulePlanner } from "./ModulePlanner/ModulePlanner.js";
 
 import { Forum } from "./Forum/Forum.js";
 import { NewPost } from "./Forum/NewPost.js";
@@ -72,6 +73,22 @@ const theme = createTheme({
       contrastText: "#fff",
     },
   },
+  breakpoints: {
+    // Define custom breakpoint values.
+    // These will apply to Material-UI components that use responsive
+    // breakpoints, such as `Grid` and `Hidden`. You can also use the
+    // theme breakpoint functions `up`, `down`, and `between` to create
+    // media queries for these breakpoints
+    values: {
+      xs: 0,
+      sm: 600,
+      smm: 820,
+      md: 900,
+      mdl: 990,
+      lg: 1200,
+      xl: 1536
+    }
+  }
 });
 
 function App() {
@@ -128,6 +145,10 @@ function App() {
                     <Route
                       path="/GradeCalculator"
                       element={<GradeCalculator />}
+                    />
+                    <Route
+                      path="/ModulePlanner"
+                      element={<ModulePlanner />}
                     />
                     <Route path="/forum" element={<Forum />} />
                     <Route exact path="/forum/new" element={<NewPost />} />

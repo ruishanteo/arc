@@ -1,0 +1,32 @@
+{
+"SOC" : [
+    { "title": "GEN", "code":"gen"},
+    { "title": "Computer Ethics", "code":"computerethics"},
+    { "title": "Interdisciplinary & Cross-Disciplinary Education", "code":"cdid"}
+],
+"CHS" : [
+    { "title": "GEN", "code":"gen"},
+    { "title": "CS2109S / HS1501 / HS1502 / IT1244", "code":"chs1"},
+    { "title": "DTK1234", "code":"chs2"},
+    { "title": "SP1541 / SP2271 / FAS1101", "code":"chs3"},
+    { "title": "HSA1000", "code":"chs4"},
+    { "title": "HSH1000", "code":"chs5"},
+    { "title": "HSI1000 / SP2274", "code":"chs6"},
+    { "title": "HSI20XX / SP3275", "code":"chs7"},
+    { "title": "2x HS29XX", "code":"chs8"}
+],
+"CDE" : [
+    { "title": "GEN", "code":"gen"},
+    { "title": "DTK1234", "code":"cde1"},
+    { "title": "EG1311", "code":"cde2"},
+    { "title": "IE2141", "code":"cde3"},
+    { "title": "EE2211", "code":"cde4"},
+    { "title": "EG2501", "code":"cde5"},
+    { "title": "CDE2000", "code":"cde6"},
+    { "title": "PF1101", "code":"cde7"},
+    { "title": "Integrated Project", "code":"integratedproj"}
+],
+"BIZ" : [    { "title": "GEN", "code":"gen"}],
+"FOS (exempted from GEN)" : [],
+"others" : []
+}

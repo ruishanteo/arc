@@ -1,0 +1,4074 @@
+{
+  "Computer Science": [
+    {
+      "moduleCode": [
+        "CS1101S"
+      ],
+      "title": "CS1101S"
+    },
+    {
+      "moduleCode": [
+        "CS1231S"
+      ],
+      "title": "CS1231S"
+    },
+    {
+      "moduleCode": [
+        "CS2030S"
+      ],
+      "title": "CS2030S"
+    },
+    {
+      "moduleCode": [
+        "CS2040S"
+      ],
+      "title": "CS2040S"
+    },
+    {
+      "moduleCode": [
+        "CS2100"
+      ],
+      "title": "CS2100"
+    },
+    {
+      "moduleCode": [
+        "CS2101"
+      ],
+      "title": "CS2101"
+    },
+    {
+      "moduleCode": [
+        "CS2103T"
+      ],
+      "title": "CS2103T"
+    },
+    {
+      "moduleCode": [
+        "CS2109S"
+      ],
+      "title": "CS2109S"
+    },
+    {
+      "moduleCode": [
+        "CS3230"
+      ],
+      "title": "CS3230"
+    },
+    {
+      "moduleCode": [
+        "ES2660"
+      ],
+      "title": "ES2660"
+    },
+    {
+      "moduleCode": [
+        "MA1521"
+      ],
+      "title": "MA1521"
+    },
+    {
+      "moduleCode": [
+        "MA1522",
+        "MA2001"
+      ],
+      "title": "MA1522 / MA2001"
+    },
+    {
+      "moduleCode": [
+        "ST2334"
+      ],
+      "title": "ST2334"
+    },
+    {
+      "moduleCode": [
+        "Computer Science Breadth & Depth"
+      ],
+      "title": "Computer Science Breadth & Depth"
+    },
+    {
+      "moduleCode": [
+        "Industry Experience Requirement"
+      ],
+      "title": "Industry Experience Requirement"
+    }
+  ],
+  "Business Analytics": [
+    {
+      "moduleCode": [
+        "BT1101"
+      ],
+      "title": "BT1101"
+    },
+    {
+      "moduleCode": [
+        "BT2101"
+      ],
+      "title": "BT2101"
+    },
+    {
+      "moduleCode": [
+        "BT2102"
+      ],
+      "title": "BT2102"
+    },
+    {
+      "moduleCode": [
+        "BT3103"
+      ],
+      "title": "BT3103"
+    },
+    {
+      "moduleCode": [
+        "BT4103"
+      ],
+      "title": "BT4103"
+    },
+    {
+      "moduleCode": [
+        "CS1010S"
+      ],
+      "title": "CS1010S"
+    },
+    {
+      "moduleCode": [
+        "CS2030"
+      ],
+      "title": "CS2030"
+    },
+    {
+      "moduleCode": [
+        "CS2040"
+      ],
+      "title": "CS2040"
+    },
+    {
+      "moduleCode": [
+        "IS2101"
+      ],
+      "title": "IS2101"
+    },
+    {
+      "moduleCode": [
+        "IS3103"
+      ],
+      "title": "IS3103"
+    },
+    {
+      "moduleCode": [
+        "MA1311",
+        "MA2001"
+      ],
+      "title": "MA1311 / MA2001"
+    },
+    {
+      "moduleCode": [
+        "MA1521",
+        "MA2002"
+      ],
+      "title": "MA1521 / MA2002"
+    },
+    {
+      "moduleCode": [
+        "ST2334"
+      ],
+      "title": "ST2334"
+    },
+    {
+      "moduleCode": [
+        "BT4101",
+        "Industry Experience Requirement"
+      ],
+      "title": "BT4101 / Industry Experience Requirement"
+    },
+    {
+      "moduleCode": [
+        "Programme Electives"
+      ],
+      "title": "BZA Programme Electives"
+    }
+  ],
+  "Information Systems": [
+    {
+      "moduleCode": [
+        "BT1101"
+      ],
+      "title": "BT1101"
+    },
+    {
+      "moduleCode": [
+        "BT2102",
+        "CS2102"
+      ],
+      "title": "BT2102 / CS2102"
+    },
+    {
+      "moduleCode": [
+        "CS1010J"
+      ],
+      "title": "CS1010J"
+    },
+    {
+      "moduleCode": [
+        "CS2030"
+      ],
+      "title": "CS2030"
+    },
+    {
+      "moduleCode": [
+        "CS2040"
+      ],
+      "title": "CS2040"
+    },
+    {
+      "moduleCode": [
+        "IS2101"
+      ],
+      "title": "IS2101"
+    },
+    {
+      "moduleCode": [
+        "IS2102"
+      ],
+      "title": "IS2102"
+    },
+    {
+      "moduleCode": [
+        "IS2103"
+      ],
+      "title": "IS2103"
+    },
+    {
+      "moduleCode": [
+        "IS3103"
+      ],
+      "title": "IS3103"
+    },
+    {
+      "moduleCode": [
+        "IS3106"
+      ],
+      "title": "IS3106"
+    },
+    {
+      "moduleCode": [
+        "IS4103"
+      ],
+      "title": "IS4103"
+    },
+    {
+      "moduleCode": [
+        "MA1312",
+        "MA1521",
+        "MA2002"
+      ],
+      "title": "MA1312 / MA1521 / MA2002"
+    },
+    {
+      "moduleCode": [
+        "ST2334"
+      ],
+      "title": "ST2334"
+    },
+    {
+      "moduleCode": [
+        "CP4101",
+        "Industry Experience Requirement"
+      ],
+      "title": "CP4101 / Industry Experience Requirement"
+    },
+    {
+      "moduleCode": [
+        "Programme Electives"
+      ],
+      "title": "IS Programme Electives"
+    }
+  ],
+  "Computer Engineering": [
+    {
+      "moduleCode": [
+        "CG1111A"
+      ],
+      "title": "CG1111A"
+    },
+    {
+      "moduleCode": [
+        "CG2111A"
+      ],
+      "title": "CG2111A"
+    },
+    {
+      "moduleCode": [
+        "CG2023"
+      ],
+      "title": "CG2023"
+    },
+    {
+      "moduleCode": [
+        "CG2027"
+      ],
+      "title": "CG2027"
+    },
+    {
+      "moduleCode": [
+        "CG2028"
+      ],
+      "title": "CG2028"
+    },
+    {
+      "moduleCode": [
+        "CG2271"
+      ],
+      "title": "CG2271"
+    },
+    {
+      "moduleCode": [
+        "CS1010"
+      ],
+      "title": "CS1010"
+    },
+    {
+      "moduleCode": [
+        "CS1231"
+      ],
+      "title": "CS1231"
+    },
+    {
+      "moduleCode": [
+        "CS2040C"
+      ],
+      "title": "CS2040C"
+    },
+    {
+      "moduleCode": [
+        "EE2026"
+      ],
+      "title": "EE2026"
+    },
+    {
+      "moduleCode": [
+        "EE4204"
+      ],
+      "title": "EE4204"
+    },
+    {
+      "moduleCode": [
+        "ES2631"
+      ],
+      "title": "ES2631"
+    },
+    {
+      "moduleCode": [
+        "GEA1000"
+      ],
+      "title": "GEA1000"
+    },
+    {
+      "moduleCode": [
+        "MA1511"
+      ],
+      "title": "MA1511"
+    },
+    {
+      "moduleCode": [
+        "MA1512"
+      ],
+      "title": "MA1512"
+    },
+    {
+      "moduleCode": [
+        "MA1508E"
+      ],
+      "title": "MA1508E"
+    },
+    {
+      "moduleCode": [
+        "EG2401A"
+      ],
+      "title": "EG2401A"
+    },
+    {
+      "moduleCode": [
+        "CP3880",
+        "EG3611A",
+        "Equivalent"
+      ],
+      "title": "CP3880 / EG3611A / Equivalent"
+    }
+  ],
+  "Information Security": [
+    {
+      "moduleCode": [
+        "CS1010"
+      ],
+      "title": "CS1010"
+    },
+    {
+      "moduleCode": [
+        "CS1231S"
+      ],
+      "title": "CS1231S"
+    },
+    {
+      "moduleCode": [
+        "CS2040C"
+      ],
+      "title": "CS2040C"
+    },
+    {
+      "moduleCode": [
+        "CS2100"
+      ],
+      "title": "CS2100"
+    },
+    {
+      "moduleCode": [
+        "CS2101"
+      ],
+      "title": "CS2101"
+    },
+    {
+      "moduleCode": [
+        "CS2113T"
+      ],
+      "title": "CS2113T"
+    },
+    {
+      "moduleCode": [
+        "CS2105"
+      ],
+      "title": "CS2105"
+    },
+    {
+      "moduleCode": [
+        "CS2106"
+      ],
+      "title": "CS2106"
+    },
+    {
+      "moduleCode": [
+        "CS2107"
+      ],
+      "title": "CS2107"
+    },
+    {
+      "moduleCode": [
+        "CS3235"
+      ],
+      "title": "CS3235"
+    },
+    {
+      "moduleCode": [
+        "IFS4205",
+        [
+          "CS4238",
+          "IFS4103"
+        ]
+      ],
+      "title": "IFS4205 / (CS4238 + IFS4103)"
+    },
+    {
+      "moduleCode": [
+        "IS4231"
+      ],
+      "title": "IS4231"
+    },
+    {
+      "moduleCode": [
+        "MA1521"
+      ],
+      "title": "MA1521"
+    },
+    {
+      "moduleCode": [
+        "MA2001"
+      ],
+      "title": "MA2001"
+    },
+    {
+      "moduleCode": [
+        "ST2334"
+      ],
+      "title": "ST2334"
+    },
+    {
+      "moduleCode": [
+        "min", "12", "InfoSec Programme Electives"
+      ],
+      "title": "InfoSec Programme Electives"
+    },
+    {
+      "moduleCode": [
+        "Computing Requirements"
+      ],
+      "title": "Computing Requirements"
+    }
+  ],
+  "Chinese Studies": [
+    {
+        "title": "Pass at least 60 units of CH or CH-recognised courses which include the following:",
+        "moduleCode": [ ]
+    },
+    {
+        "title": "CH1101E",
+        "moduleCode": [
+            "CH1101E"
+        ]
+    },
+    {
+        "title": "CH2121",
+        "moduleCode": [
+            "CH2121"
+        ]
+    },
+    {
+        "title": "CH2141",
+        "moduleCode": [
+            "CH2141"
+        ]
+    },
+    {
+        "title": "CH2161",
+        "moduleCode": [
+            "CH2161"
+        ]
+    },
+    {
+        "title": "CL2101",
+        "moduleCode": [
+            "CL2101"
+        ]
+    },
+    {
+        "title": "CL3104",
+        "moduleCode": [
+            "CL3104"
+        ]
+    },
+    {
+        "title": "CH2162 or CH2221 or CH2243 or CH2252",
+        "moduleCode": [
+            "CH2162", "CH2221", "CH2243", "CH2252"
+        ]
+    },
+    {
+        "title": "A minimum of 36 units at level-3000 (including CL3104) or higher",
+        "moduleCode": [
+            "min", "36", "CH", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "CH", "4"
+        ]
+    },
+    {
+        "title": "Maximum of 2 level-5000 courses",
+        "moduleCode": [
+            "max", "10", "CH", "5"
+        ]
+    },
+    {
+        "title": "a maximum of 8 units (in total) of the following: CH-recognised courses (excluding CL2101 and CL3104), CH courses that are taught in English",
+        "moduleCode": [
+            "max", "8", "CH-recognised"
+        ]
+    }
+],
+"Chinese Language": [
+    {
+        "title": "Pass at least 60 units of CL or CL-recognised courses which include the following:",
+        "moduleCode": [
+            
+        ]
+    },
+    {
+        "title": "CL1101E",
+        "moduleCode": [
+            "CL1101E"
+        ]
+    },
+    {
+        "title": "CL2101",
+        "moduleCode": [
+            "CL2101"
+        ]
+    },
+    {
+        "title": "CL2102",
+        "moduleCode": [
+            "CL2102"
+        ]
+    },
+    {
+        "title": "CL2103",
+        "moduleCode": [
+            "CL2103"
+        ]
+    },
+    {
+        "title": "CL3104",
+        "moduleCode": [
+            "CL3104"
+        ]
+    },
+    {
+        "title": "CH2121",
+        "moduleCode": [
+            "CH2121"
+        ]
+    },
+    {
+        "title": "CH2141",
+        "moduleCode": [
+            "CH2141"
+        ]
+    },
+    {
+        "title": "A minimum of 16 units at level-3000 (including CL3104) or higher",
+        "moduleCode": [
+            "min", "16", "CL", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units of CL courses at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "CL", "4"
+        ]
+    },
+    {
+        "title": "Maximum of 2 level-5000 courses",
+        "moduleCode": [
+            "max", "10", "CL", "5"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units (in total) of the following: CL-recognised courses (excluding CH2121 and CH2141), CL courses that are taught in English",
+        "moduleCode": [
+            "max", "8", "CL-recognised"
+        ]
+    }
+],
+"Theatre and Performance Studies": [
+    {
+        "title": "Pass at least 60 units of TS courses or TS recognised courses which include the following:",
+        "moduleCode": [
+            
+        ]
+    },
+    {
+        "title": "A minimum of 4 units from Framing Histories",
+        "moduleCode": [
+            "min", "4", "Framing Histories"
+        ]
+    },
+    {
+        "title": "A minimum of 4 units from Cultures in Practice",
+        "moduleCode": [
+            "min", "4", "Cultures in Practice"
+        ]
+    },
+    {
+        "title": "A minimum of 4 units from Researching Performance (including TS3103)",
+        "moduleCode": [
+            "min", "4", "Researching Performance"
+        ]
+    },
+    {
+        "title": "A minimum of 36 units at level-3000 or higher (including TS3103)",
+        "moduleCode": [
+            "min", "36", "TS", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units of TS courses at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "TS", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 4 units at TS level-5000 (subject to the department\u2019s approval)",
+        "moduleCode": [
+            "max", "4", "TS", "5"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units of TS-recognised courses",
+        "moduleCode": [
+            "max", "8", "TS-recognised"
+        ]
+    }
+],
+"English Language and Linguistics": [
+    {
+        "title": "Pass at least 60 units of EL or EL-recognised courses which include the following:",
+        "moduleCode": [
+            
+        ]
+    },
+    {
+        "title": "EL1101E",
+        "moduleCode": [
+            "EL1101E"
+        ]
+    },
+    {
+        "title": "A minimum of 12 units at level-2000 from the following: (i)  EL2101 Structure of Sentences and Meanings, (ii) EL2102 Sound Patterns in Language, (iii) EL2111 Historical Variation in English, (iv) EL2151 Social Variation in English",
+        "moduleCode": [
+            ["EL2101", "EL2102", "EL2111"],
+            ["EL2101", "EL2102", "EL2151"],
+            ["EL2101", "EL2111", "EL2151"],
+            ["EL2102", "EL2111", "EL2151"]
+        ]
+    },
+    {
+        "title": "A minimum of 36 units at level-3000 or higher",
+        "moduleCode": [
+            "min", "36", "EL", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "EL", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 4 units at EL level-5000 (subject to the Department's approval)",
+        "moduleCode": [
+            "max", "4", "EL", "5"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units of EL-recognised courses",
+        "moduleCode": [
+            "max", "8", "EL-recognised"
+        ]
+    }
+],
+"English Literature": [
+    {
+        "title": "Pass at least 60 units of EN or EN-recognised courses which include the following:",
+        "moduleCode": [
+            
+        ]
+    },
+    {
+        "title": "EL1101E",
+        "moduleCode": [
+            "EL1101E"
+        ]
+    },
+    {
+        "title": "A minimum of 4 units from the following: EN2201 Backgrounds to Western Literature and Culture, EN2202 Critical Reading, EN2203 Introduction to Film Studies, EN2205 Late Medieval Literature and Culture, EN2206 Art and Social Justice, EN2207 Gender and Sexuality in Literature, EN2275 Writing about Literature, EN2277 Love\u2019s Word: Reading across Literature and Philosophy",
+        "moduleCode": [
+            "EN2201", "EN2202", "EN2205", "EN2206", "EN2207", "EN2275", "EN2277"
+        ]
+    },
+    {
+        "title": "A minimum of 8 units from literature before 1800",
+        "moduleCode": [
+            "min", "8", "literature before 1800"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units from EN-recognised courses",
+        "moduleCode": [
+            "max", "8", "EN-recognised"
+        ]
+    }
+],
+"Global Studies": [
+    {
+        "title": "Pass at least 60 Units of GL courses or GL-recognised non-language courses which include the following:",
+        "moduleCode": [
+            
+        ]
+    },
+    {
+        "title": "GL1101E",
+        "moduleCode": [
+            "GL1101E"
+        ]
+    },
+    {
+        "title": "GL2101",
+        "moduleCode": [
+            "GL2101"
+        ]
+    },
+    {
+        "title": "GL2102",
+        "moduleCode": [
+            "GL2102"
+        ]
+    },
+    {
+        "title": "GL2103",
+        "moduleCode": [
+            "GL2103"
+        ]
+    },
+    {
+        "title": "GL2104 or SC2101",
+        "moduleCode": [
+            "GL2104", "SC2101"
+        ]
+    },
+    {
+        "title": "One of the following courses for the advanced methodology requirement: NM4102 (4 Units), GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PD3257, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units)",
+        "moduleCode": [
+            "NM4102", "GE3230A", "GE3233", "GE3240", "GL3201", "MS4101", "PH3201", "PD3257", "SC3101", "SC3209", "SC3213", "SC3221", "SC3227", "SN4101", "SE4101", "HY4230"
+        ]
+    },
+    {
+        "title": "GL4101 (4 Units)",
+        "moduleCode": [
+            "GL4101"
+        ]
+    },
+    {
+        "title": "GL4102 (4 Units)",
+        "moduleCode": [
+            "GL4102"
+        ]
+    },
+    {
+        "title": "A minimum of 12 Units from ONE of the following themes: Colonialism, Security, and Global Order; Global Health, Environment, and Technology; Global Political Economy; Peoples, Cultures, and Globalisation",
+        "moduleCode": [
+            "GL theme"
+        ]
+    },
+    {
+        "title": "A minimum of 16 Units of level-3000 GL or GL recognised courses (such as GE3230A, GE3233, GE3240, GL3201, PH3201, PS3257, SC3101, SC3209, SC3213, SC3221 or SC3227)",
+        "moduleCode": [
+            "min", "16", "GL", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units of level-4000 or higher GL or GL-recognised non-language courses (including GL4101 (4 Units) and GL4102 (4 Units), NM4102 (4 Units), MS4101 (4 Units), SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units))",
+        "moduleCode": [
+            "min", "20", "GL", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 1 level-5000 course (subject to Department's approval)",
+        "moduleCode": [
+            "max", "5", "GL", "5"
+        ]
+    },
+    {
+        "title": "No more than 16 Units of the electives may be from a single discipline (excluding NM4102 (4 Units), GE3230A, GE3233, GE3240, GL3201, MS4101 (4 Units), PH3201, PS3257, SC2101, SC3101, SC3209, SC3213, SC3221, SC3227, SN4101 (4 Units), SE4101 (4 Units) or HY4230 (4 Units))",
+        "moduleCode": [
+            "max", "16", "GL elective"
+        ]
+    }
+],
+"History": [
+    {
+        "title": "Pass at least 60 units of HY courses or HY-recognised courses which include the following:",
+        "moduleCode": [
+            
+        ]
+    },
+    {
+        "title": "HY1101E",
+        "moduleCode": [
+            "HY1101E"
+        ]
+    },
+    {
+        "title": "HY2259",
+        "moduleCode": [
+            "HY2259"
+        ]
+    },
+    {
+        "title": "A minimum of 36 units at Level-3000 or higher",
+        "moduleCode": [
+            "min", "36", "HY", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at Level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "HY", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units of HY-recognised courses",
+        "moduleCode": [
+            "max", "8", "HY-recognised"
+        ]
+    },
+    {
+        "title": "A maximum of 4 units at Level-5000 (with department permission)",
+        "moduleCode": [
+            "max", "4", "HY", "5"
+        ]
+    }
+],
+"Japanese Studies": [
+    {
+        "title": "Pass at least 60 units of JS courses or JS-recognised courses or LAJ courses which include the following:",
+        "moduleCode": [
+            
+        ]
+    },
+    {
+        "title": "JS1101E",
+        "moduleCode": [
+            "JS1101E"
+        ]
+    },
+    {
+        "title": "JS2101",
+        "moduleCode": [
+            "JS2101"
+        ]
+    },
+    {
+        "title": "JS3101",
+        "moduleCode": [
+            "JS3101"
+        ]
+    },
+    {
+        "title": "LAJ1201",
+        "moduleCode": [
+            "LAJ1201"
+        ]
+    },
+    {
+        "title": "LAJ2201",
+        "moduleCode": [
+            "LAJ2201"
+        ]
+    },
+    {
+        "title": "LAJ2202",
+        "moduleCode": [
+            "LAJ2202"
+        ]
+    },
+    {
+        "title": "LAJ2203",
+        "moduleCode": [
+            "LAJ2203"
+        ]
+    },
+    {
+        "title": "LAJ3201 or LAJ3203 or LAJ3202 or LAJ3204 or LAJ3205",
+        "moduleCode": [
+            "LAJ3201", "LAJ3203", "LAJ3202", "LAJ3204", "LAJ3205"
+        ]
+    },
+    {
+        "title": "A minimum of 36 units at level-3000 (including JS3101 and LAJ3201 or LAJ3203 or LAJ3202 or LAJ3204 or LAJ3205) or higher",
+        "moduleCode": [
+            "min", "36", "JS", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "JS", "4000"
+        ]
+    },
+    {
+        "title": "A maximum of 1 level-5000 JS course (subject to department's approval)",
+        "moduleCode": [
+            "max", "5", "JS", "5"
+        ]
+    },
+    {
+        "title": "maximum of 8 units of JS-recognised courses",
+        "moduleCode": [
+            "max", "8", "JS-recognised"
+        ]
+    }
+],
+"Malay Studies": [
+    {
+        "title": "Pass at least 60 Units of MS courses which include the following:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "MS1102E",
+        "moduleCode": [
+            "MS1102E"
+        ]
+    },
+    {
+        "title": "MS3550",
+        "moduleCode": [
+            "MS3550"
+        ]
+    },
+    {
+        "title": "MS4101",
+        "moduleCode": [
+            "MS4101"
+        ]
+    },
+    {
+        "title": "A minimum of 16 Units at level-3000",
+        "moduleCode": [
+            "min", "16", "MS", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units at level-4000 or higher.",
+        "moduleCode": [
+            "min", "20", "MS", "4000"
+        ]
+    }
+],
+"Philosophy": [
+    {
+        "title": "Pass at least 60 MCs of PH courses or PH-recognised courses which include the following:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "GEX1015",
+        "moduleCode": [
+            "GEX1015"
+        ]
+    },
+    {
+        "title": "GEX1014",
+        "moduleCode": [
+            "GEX1014"
+        ]
+    },
+    {
+        "title": "A minimum of 36 MCs at level-3000 or higher",
+        "moduleCode": [
+            "min", "36", "PH", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 MCs at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "PH", "4000"
+        ]
+    },
+    {
+        "title": "A maximum of 2 PH course at level-5000 (subject to department's approval)",
+        "moduleCode": [
+            "max", "10", "PH", "5"
+        ]
+    },
+    {
+        "title": "A maximum of 8 MCs of PH-recognised courses",
+        "moduleCode": [
+            "max", "8", "PH-recognised"
+        ]
+    }
+],
+"South Asian Studies": [
+    {
+        "title": "Pass at least 60 Units of SN courses or SN-recognised courses (including Tamil or Hindi language modules), which include:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "SN1101E",
+        "moduleCode": [
+            "SN1101E"
+        ]
+    },
+    {
+        "title": "A minimum of 36 Units of SN courses",
+        "moduleCode": [
+            "min", "36", "SN", "1000"
+        ]
+    },
+    {
+        "title": "A minimum of 36 Units at level-3000 or higher",
+        "moduleCode": [
+            "min", "36", "SN", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "SN", "4000"
+        ]
+    },
+    {
+        "title": "A maximum of 1 SN or SN-recognised course at level 5000 (subject to department\u2019s approval)",
+        "moduleCode": [
+            "max", "5", "SN", "5"
+        ]
+    },
+    {
+        "title": "A maximum of 8 Units of Tamil or Hindi track language courses offered by CLS",
+        "moduleCode": [
+            "max", "8", "SN Languages"
+        ]
+    }
+],
+"Southeast Asian Studies": [
+    {
+        "title": "Pass at least 60 Units of SE and SE-recognised courses, which include:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "SE1101E",
+        "moduleCode": [
+            "SE1101E"
+        ]
+    },
+    {
+        "title": "SE4101",
+        "moduleCode": [
+            "SE4101"
+        ]
+    },
+    {
+        "title": "A minimum of 12 Units of Southeast Asian language courses (i.e. Bahasa Indonesia, Malay, Thai or Vietnamese)",
+        "moduleCode": [
+            "min", "12", "SE Languages"
+        ]
+    },
+    {
+        "title": "A minimum of 36 Units at level-3000 or higher (excluding language courses)",
+        "moduleCode": [
+            "min", "36", "SE", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units at level-4000 or higher (including SE4101)",
+        "moduleCode": [
+            "min", "20", "SE", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 2 level-5000 SE courses",
+        "moduleCode": [
+            "max", "10", "SE", "5"
+        ]
+    },
+    {
+        "title": "A maximum of 8 Units SE-recognised courses",
+        "moduleCode": [
+            "max", "8", "SE-recognised", "1"
+        ]
+    }
+    ,
+    {
+        "title": "of which 4 Units may be at level-4000 (excluding language courses)",
+        "moduleCode": [
+            "max", "4", "SE-recognised", "4"
+        ]
+    }
+],
+"Anthropology": [
+    {
+        "title": "Pass at least 60 units of AN courses or AN-recognised courses which include the following:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "AN1101E",
+        "moduleCode": [
+            "AN1101E"
+        ]
+    },
+    {
+        "title": "AN2101",
+        "moduleCode": [
+            "AN2101"
+        ]
+    },
+    {
+        "title": "AN3101",
+        "moduleCode": [
+            "AN3101"
+        ]
+    },
+    {
+        "title": "SC4101",
+        "moduleCode": [
+            "SC4101"
+        ]
+    },
+    {
+        "title": "A minimum of 36 units at Level-3000 or higher (including AN3101 and SC4101)",
+        "moduleCode": [
+            "min", "36", "AN", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at Level-4000 or higher (including SC4101)",
+        "moduleCode": [
+            "min", "20", "AN", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units of AN-recognised courses at level-4000 (excluding SC4101)",
+        "moduleCode": [
+            "max", "8", "AN-recognised", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 8 units of AN-recognised courses at level-5000 (subject to Department's approval)",
+        "moduleCode": [
+            "max", "8", "AN-recognised", "5"
+        ]
+    },
+    {
+        "title": "A maximum of 20 units of AN-recognised courses (including SC4101)",
+        "moduleCode": [
+            "max", "20", "AN-recognised"
+        ]
+    }
+],
+"Communications and New Media": [
+    {
+        "title": "To graduate with B.Soc.Sci (Hons), students need to pass at least 60 Units of NM or NM-recognised courses, in addition to an 8 Units internship course (NM3550C) which falls under the CHS 'project requirement':",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "NM1101E / NM1101X",
+        "moduleCode": [
+            "NM1101E", "NM1101X"
+        ]
+    },
+    {
+        "title": "NM2101",
+        "moduleCode": [
+            "NM2101"
+        ]
+    },
+    {
+        "title": "NM2103",
+        "moduleCode": [
+            "NM2103"
+        ]
+    },
+    {
+        "title": "NM2104",
+        "moduleCode": [
+            "NM2104"
+        ]
+    },
+    {
+        "title": "NM3550C",
+        "moduleCode": [
+            "NM3550C"
+        ]
+    },
+    {
+        "title": "A minimum of 16 Units from Level 3000 (not inclusive of NM3550C)",
+        "moduleCode": [
+            "min", "16", "NM", "3",
+            "(not inclusive of NM3550C)"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units from Level 4000 or above",
+        "moduleCode": [
+            "min", "20", "NM", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 2 Level 5000 NM course (subject to department's approval)",
+        "moduleCode": [
+            "max", "10", "NM", "5"
+        ]
+    }
+],
+"Economics": [
+    {
+        "title": "EC Major students are required to pass at least 60 units of EC-coded or EC-recognised courses which include the following:",
+        "moduleCode": [
+            
+        ]
+    },
+    {
+        "title": "EC1101E",
+        "moduleCode": [
+            "EC1101E"
+        ]
+    },
+    {
+        "title": "EC2101",
+        "moduleCode": [
+            "EC2101"
+        ]
+    },
+    {
+        "title": "EC2102",
+        "moduleCode": [
+            "EC2102"
+        ]
+    },
+    {
+        "title": "EC2104",
+        "moduleCode": [
+            "EC2104"
+        ]
+    },
+    {
+        "title": "EC2303",
+        "moduleCode": [
+            "EC2303"
+        ]
+    },
+    {
+        "title": "EC3101",
+        "moduleCode": [
+            "EC3101"
+        ]
+    },
+    {
+        "title": "EC3102",
+        "moduleCode": [
+            "EC3102"
+        ]
+    },
+    {
+        "title": "EC3303",
+        "moduleCode": [
+            "EC3303"
+        ]
+    },
+    {
+        "title": "A minimum of 16 units of EC courses at Level-3000 (including EC3101, EC3102, and EC3303)",
+        "moduleCode": [
+            "min", "16", "EC", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units of EC courses at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "EC", "4"
+        ]
+    }
+],
+"Geography": [
+    {
+        "title": "Pass at least 60 MCs of GE modules or GE-recognised modules which include the following:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "GE1101E",
+        "moduleCode": [
+            "GE1101E"
+        ]
+    },
+    {
+        "title": "GE2101",
+        "moduleCode": [
+            "GE2101"
+        ]
+    },
+    {
+        "title": "GE2102",
+        "moduleCode": [
+            "GE2102"
+        ]
+    },
+    {
+        "title": "GE2103",
+        "moduleCode": [
+            "GE2103"
+        ]
+    },
+    {
+        "title": "GE2215",
+        "moduleCode": [
+            "GE2215"
+        ]
+    },
+    {
+        "title": "GE2231",
+        "moduleCode": [
+            "GE2231"
+        ]
+    },
+    {
+        "title": "A minimum of 16 MCs at level-3000",
+        "moduleCode": [
+            "min", "16", "GE", "3"
+        ]
+    },
+    {
+        "title": "A minimum of 20 MCs at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "GE", "4"
+        ]
+    },
+    {
+        "title": "A maximum of one level-5000 GE module (subject to departmental approval)",
+        "moduleCode": [
+            "max", "5", "GE", "5"
+        ]
+    }
+],
+"Political Science": [
+    {
+        "title": "Pass at least 60 Units of PS Courses or PS-recognised Courses which include the following:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "PS1101E",
+        "moduleCode": [
+            "PS1101E"
+        ]
+    },
+    {
+        "title": "PS3257",
+        "moduleCode": [
+            "PS3257"
+        ]
+    },
+    {
+        "title": "A minimum of One Course from the following (Singapore Politics):  I. PS2249 (CP), II. PS2244 (GPP), III. PS3249 (IR)",
+        "moduleCode": [
+            "PS2249", "PS2244", "PS3249"
+        ]
+    },
+    {
+        "title": "A minimum of One Course from Comparative Politics (CP)",
+        "moduleCode": [
+            "min", "1", "Comparative Politics", "1"
+        ]
+    },
+    {
+        "title": "A minimum of One Course from International Relations (IR)",
+        "moduleCode": [
+            "min", "1", "International Relations", "1"
+        ]
+    },
+    {
+        "title": "A minimum of One Course from Political Theory (PT)",
+        "moduleCode": [
+            "min", "1", "Political Theory", "1"
+        ]
+    },
+    {
+        "title": "A minimum of One Course from Governance and Public Policy (GPP)",
+        "moduleCode": [
+            "min", "1", "Governance and Public Policy", "1"
+        ]
+    },
+    {
+        "title": "A minimum of 16 Units of 3000-level Courses",
+        "moduleCode": [
+            "min", "16", "PS", "3"
+        ]
+    },
+    {
+        "title": "GE2231",
+        "moduleCode": [
+            "GE2231"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "PS", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 1 level-5000 PS Courses (subject to department's approval)",
+        "moduleCode": [
+            "max", "5", "PS", "5"
+        ]
+    },
+    {
+        "title": "A minimum of 52 Units in PS-coded Courses (including PS3257)",
+        "moduleCode": [
+            "min", "52", "PS"
+        ]
+    }
+],
+"Psychology": [
+    {
+        "title": "Pass at least 60 units of PL courses or PL-recognised courses, which include the following:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "PL1101E",
+        "moduleCode": [
+            "PL1101E"
+        ]
+    },
+    {
+        "title": "PL2131",
+        "moduleCode": [
+            "PL2131"
+        ]
+    },
+    {
+        "title": "PL2132",
+        "moduleCode": [
+            "PL2132"
+        ]
+    },
+    {
+        "title": "PL3102",
+        "moduleCode": [
+            "PL3102"
+        ]
+    },
+    {
+        "title": "PL3103",
+        "moduleCode": [
+            "PL3103"
+        ]
+    },
+    {
+        "title": "PL3104",
+        "moduleCode": [
+            "PL3104"
+        ]
+    },
+    {
+        "title": "PL3105",
+        "moduleCode": [
+            "PL3105"
+        ]
+    },
+    {
+        "title": "PL3106",
+        "moduleCode": [
+            "PL3106"
+        ]
+    },
+    {
+        "title": "PL3231 / one of the PL328x lab courses",
+        "moduleCode": [
+            "PL3231", "PL3281", "PL3282", "PL3283", "PL3284", "PL3287", "PL3281A", "PL3281C", "PL3281D", "PL3281E", "PL3281F", "PL3283A", "PL3287A"
+        ]
+    },
+    {
+        "title": "A minimum of 4 units at levels-2000 or 3000 (excluding the courses above)",
+        "moduleCode": [
+            "min", "4", "PL", "2"
+        ]
+    },
+    {
+        "title": "A maximum of 1 PL-recognised course.",
+        "moduleCode": [
+            "max", "4", "PL-recognised", "1"
+        ]
+    },
+    {
+        "title": "A minimum of 20 units at level-4000 or higher, with: a minimum of 4 units from the Capstone group; a minimum of 4 units from the Biological, Cognitive and Developmental group; a minimum of 4 units from the Abnormal/Clinical, Social and Applied group; a maximum of 4 units at level-4000 mapped from exchange.",
+        "moduleCode": [
+            "min", "20", "PL", "4"
+        ]
+    },
+    {
+        "title": "A maximum of 4 units at level-5000.",
+        "moduleCode": [
+            "max", "4", "PL", "5"
+        ]
+    }
+],
+"Social Work": [
+    {
+        "title": "SW3103C",
+        "moduleCode": [
+            "SW3103C"
+        ]
+    },
+    {
+        "title": "SW3104B",
+        "moduleCode": [
+            "SW3104B"
+        ]
+    },
+    {
+        "title": "Pass at least 60 units of SW or SW-recognised courses, which include the following:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "SW1101E",
+        "moduleCode": [
+            "SW1101E"
+        ]
+    },
+    {
+        "title": "SW2101",
+        "moduleCode": [
+            "SW2101"
+        ]
+    },
+    {
+        "title": "SW2104",
+        "moduleCode": [
+            "SW2104"
+        ]
+    },
+    {
+        "title": "SW2105",
+        "moduleCode": [
+            "SW2105"
+        ]
+    },
+    {
+        "title": "SW2106",
+        "moduleCode": [
+            "SW2106"
+        ]
+    },
+    {
+        "title": "SW3101 / PL2131 / SC2101",
+        "moduleCode": [
+            "SW3101", "PL2131", "SC2101"
+        ]
+    },
+    {
+        "title": "SW3105",
+        "moduleCode": [
+            "SW3105"
+        ]
+    },
+    {
+        "title": "SW4102",
+        "moduleCode": [
+            "SW4102"
+        ]
+    },
+    {
+        "title": "SW4103",
+        "moduleCode": [
+            "SW4103"
+        ]
+    },
+    {
+        "title": "Read and pass a minimum of 36 Units at level 3000 or higher (including courses listed above)",
+        "moduleCode": [
+            "min", "36", "SW", "3000"
+        ]
+    },
+    {
+        "title": "A minimum of 20 Units at level-4000 or higher",
+        "moduleCode": [
+            "min", "20", "SW", "4000"
+        ]
+    },
+    {
+        "title": "A maximum of 1 SW course at level-5000 can be read (subject to Department\u2019s approval)",
+        "moduleCode": [
+            "max", "5", "SW", "5"
+        ]
+    }
+],
+"Sociology": [
+    {
+        "title": "Pass at least 60 units of SC courses or SC-recognised courses which include the following:",
+        "moduleCode": [
+        ]
+    },
+    {
+        "title": "SC1101E",
+        "moduleCode": [
+            "SC1101E"
+        ]
+    },
+    {
+        "title": "SC2101",
+        "moduleCode": [
+            "SC2101"
+        ]
+    },
+    {
+        "title": "SC3101",
+        "moduleCode": [
+            "SC3101"
+        ]
+    },
+    {
+        "title": "SC4101",
+        "moduleCode": [
+            "SC4101"
+        ]
+    },
+    {
+        "title": "a minimum of 36 units at Level-3000 or higher (including courses SC3101 and SC4101)",
+        "moduleCode": [
+            "min", "36", "SC", "3"
+        ]
+    },
+    {
+        "title": "a minimum of 20 units at Level-4000 or higher (including SC4101)",
+        "moduleCode": [
+            "min", "20", "SC", "4"
+        ]
+    },
+    {
+        "title": "a maximum of any 2 level-4000 SC-recognised courses",
+        "moduleCode": [
+            "max", "10", "SC", "4"
+        ]
+    },
+    {
+        "title": "a maximum of two Level-5000 SC courses (subject to Department's approval)",
+        "moduleCode": [
+            "max", "10", "SC", "5"
+        ]
+    }
+],
+"Chemistry": [
+    {
+        "title": "CM1102",
+        "moduleCode": [
+            "CM1102"
+        ]
+    },
+    {
+        "title": "CM2112",
+        "moduleCode": [
+            "CM2112"
+        ]
+    },
+    {
+        "title": "CM2122",
+        "moduleCode": [
+            "CM2122"
+        ]
+    },
+    {
+        "title": "CM2133",
+        "moduleCode": [
+            "CM2133"
+        ]
+    },
+    {
+        "title": "SC4101",
+        "moduleCode": [
+            "SC4101"
+        ]
+    },
+    {
+        "title": "CM2143",
+        "moduleCode": [
+            "CM2143"
+        ]
+    },
+    {
+        "title": "CM3111",
+        "moduleCode": [
+            "CM3111"
+        ]
+    },
+    {
+        "title": "CM3121",
+        "moduleCode": [
+            "CM3121"
+        ]
+    },
+    {
+        "title": "CM3131",
+        "moduleCode": [
+            "CM3131"
+        ]
+    },
+    {
+        "title": "CM3141",
+        "moduleCode": [
+            "CM3141"
+        ]
+    },
+    {
+        "title": "CM3191",
+        "moduleCode": [
+            "CM3191"
+        ]
+    },
+    {
+        "title": "CM3192",
+        "moduleCode": [
+            "CM3192"
+        ]
+    },
+    {
+        "title": "Any four CM modules at Level 3000 or 4000 excluding CM3288, CM3288N, CM3289, CM4288 and any UPIP modules",
+        "moduleCode": [
+            "min", "16", "CM", "3"
+        ]
+    }
+],
+"Data Science and Analytics": [
+    {
+        "title": "DSA1101",
+        "moduleCode": [
+            "DSA1101"
+        ]
+    },
+    {
+        "title": "CS2040",
+        "moduleCode": [
+            "CS2040"
+        ]
+    },
+    {
+        "title": "DSA2101",
+        "moduleCode": [
+            "DSA2101"
+        ]
+    },
+    {
+        "title": "DSA2101",
+        "moduleCode": [
+            "DSA2101"
+        ]
+    },
+    {
+        "title": "MA2001",
+        "moduleCode": [
+            "MA2001"
+        ]
+    },
+    {
+        "title": "MA2002",
+        "moduleCode": [
+            "MA2002"
+        ]
+    },
+    {
+        "title": "MA2311 / MA2104",
+        "moduleCode": [
+            "MA2311", "MA2104"
+        ]
+    },
+    {
+        "title": "ST2131 / MA2116 / MA2216",
+        "moduleCode": [
+            "ST2131", "MA2116", "MA2216"
+        ]
+    },
+    {
+        "title": "ST2132",
+        "moduleCode": [
+            "ST2132"
+        ]
+    },
+    {
+        "title": "CS3244",
+        "moduleCode": [
+            "CS3244"
+        ]
+    },
+    {
+        "title": "DSA3101",
+        "moduleCode": [
+            "DSA3101"
+        ]
+    },
+    {
+        "title": "DSA3102",
+        "moduleCode": [
+            "DSA3102"
+        ]
+    },
+    {
+        "title": "ST3131",
+        "moduleCode": [
+            "ST3131"
+        ]
+    },
+    {
+        "title": "DSA3288 / DSA4288 / DSA4288x / Any UPIP/FASSIP module",
+        "moduleCode": [
+            "DSA3288", "DSA4288", "DSA4288x", "Any UPIP/FASSIP module"
+        ]
+    },
+    {
+        "title": "(One module from DSA42xx modules (except DSA4288 / DSA4288x) OR (DSE4211 / QF4211) OR DSA426x) OR (DSA4288 / DSA4288M / DSA4288S)",
+        "moduleCode": [
+            "DSA4211", "DSA4212", "DSA4262", "DSA4263", "DSA4266", "DSA4299", "DSA4299C", "DSA4288", "DSA4288M", "DSA4288S"
+        ]
+    }
+],
+"Food Science and Technology": [
+    {
+        "title": "FST1101B",
+        "moduleCode": [
+            "FST1101B"
+        ]
+    },
+    {
+        "title": "FST2102B",
+        "moduleCode": [
+            "FST2102B"
+        ]
+    },
+    {
+        "title": "FST2106",
+        "moduleCode": [
+            "FST2106"
+        ]
+    },
+    {
+        "title": "FST2109",
+        "moduleCode": [
+            "FST2109"
+        ]
+    },
+    {
+        "title": "FST2110",
+        "moduleCode": [
+            "FST2110"
+        ]
+    },
+    {
+        "title": "FST2201",
+        "moduleCode": [
+            "FST2201"
+        ]
+    },
+    {
+        "title": "FST3103",
+        "moduleCode": [
+            "FST3103"
+        ]
+    },
+    {
+        "title": "FST3107",
+        "moduleCode": [
+            "FST3107"
+        ]
+    },
+    {
+        "title": "FST3108",
+        "moduleCode": [
+            "FST3108"
+        ]
+    },
+    {
+        "title": "FST3109",
+        "moduleCode": [
+            "FST3109"
+        ]
+    },
+    {
+        "title": "FST3110",
+        "moduleCode": [
+            "FST3110"
+        ]
+    },
+    {
+        "title": "FST3111",
+        "moduleCode": [
+            "FST3111"
+        ]
+    },
+    {
+        "title": "FST3112",
+        "moduleCode": [
+            "FST3112"
+        ]
+    },
+    {
+        "title": "FST4103",
+        "moduleCode": [
+            "FST4103"
+        ]
+    },
+    {
+        "title": "FST4104",
+        "moduleCode": [
+            "FST4104"
+        ]
+    },
+    {
+        "title": "FST3288 / FST4288 / FST3287 / Any UPIP/FASSIP course",
+        "moduleCode": [
+            "FST3288", "FST4288", "FST3287", "Any UPIP/FASSIP course"
+        ]
+    },
+    {
+        "title": "Specialisation",
+        "moduleCode": [
+            "Food Sci Specialisation"
+        ]
+    }
+],
+"Life Sciences": [
+    {
+        "title": "LSM1111",
+        "moduleCode": [
+            "LSM1111"
+        ]
+    },
+    {
+        "title": "LSM2105",
+        "moduleCode": [
+            "LSM2105"
+        ]
+    },
+    {
+        "title": "LSM2106",
+        "moduleCode": [
+            "LSM2106"
+        ]
+    },
+    {
+        "title": "LSM2107",
+        "moduleCode": [
+            "LSM2107"
+        ]
+    },
+    {
+        "title": "LSM2191",
+        "moduleCode": [
+            "LSM2191"
+        ]
+    },
+    {
+        "title": "LSM4288 variant (e.g., LSM4288M, LSM4288C, LSM4288E, LSM4288X), or LSM32888/LSM3288R, or LSM2288/LSM2288R",
+        "moduleCode": [
+            "LSM4288M", "LSM4288C", "LSM4288E", "LSM4288X", "LSM3288",
+            "LSM3288R", "LSM2288", "LSM2288R"
+        ]
+    },
+    {
+        "title": "32-36 Units of LSM22xx/32xx/42xx/3991/4991 (excluding LSM2288, LSM2289, LSM3289, and  LSM4288), where: a. At most 8 Units of LSM22xx; b. At least 12 Units of LSM42xx/4991; c. Only 4 Units can be fulfilled with either LSM3991 or LSM4991",
+        "moduleCode": [
+            "LSM Specific"
+        ]
+    }
+],
+"Mathematics": [
+    {
+        "title": "MA1100 / MA1100T",
+        "moduleCode": [
+            "MA1100", "MA1100T"
+        ]
+    },
+    {
+        "title": "MA2001",
+        "moduleCode": [
+            "MA2001"
+        ]
+    },
+    {
+        "title": "MA2002",
+        "moduleCode": [
+            "MA2002"
+        ]
+    },
+    {
+        "title": "MA2101 / MA2101S",
+        "moduleCode": [
+            "MA2101", "MA2101S"
+        ]
+    },
+    {
+        "title": "MA2104",
+        "moduleCode": [
+            "MA2104"
+        ]
+    },
+    {
+        "title": "MA2108 / MA2108S",
+        "moduleCode": [
+            "MA2108", "MA2108S"
+        ]
+    },
+    {
+        "title": "MA2116 / MA2216 / ST2131",
+        "moduleCode": [
+            "MA2116", "MA2216", "ST2131"
+        ]
+    },
+    {
+        "title": "2 additional modules coded MA22xx/MA32xx/MA42xx (except MAx288/MAx289/MA4288x)",
+        "moduleCode": [
+            "MA 2 additional"
+        ]
+    },
+    {
+        "title": "5 modules coded MA32xx/MA42xx/MA52xx/MA62xx (except MAx288/MAx289/MA4288x/MA5232/MA5266) or ST3236 or ST4238",
+        "moduleCode": [
+            "MA 5 additional"
+        ]
+    },
+    {
+        "title": "MA4198",
+        "moduleCode": [
+            "MA4198"
+        ]
+    }
+],
+"Pharmaceutical Science": [
+    {
+        "title": "PHS1101",
+        "moduleCode": [
+            "PHS1101"
+        ]
+    },
+    {
+        "title": "PHS2101",
+        "moduleCode": [
+            "PHS2101"
+        ]
+    },
+    {
+        "title": "PHS2102",
+        "moduleCode": [
+            "PHS2102"
+        ]
+    },
+    {
+        "title": "PHS2103",
+        "moduleCode": [
+            "PHS2103"
+        ]
+    },
+    {
+        "title": "PHS2104",
+        "moduleCode": [
+            "PHS2104"
+        ]
+    },
+    {
+        "title": "PHS2105",
+        "moduleCode": [
+            "PHS2105"
+        ]
+    },
+    {
+        "title": "PHS2191",
+        "moduleCode": [
+            "PHS2191"
+        ]
+    },
+    {
+        "title": "PHS3101",
+        "moduleCode": [
+            "PHS3101"
+        ]
+    },
+    {
+        "title": "PHS3102",
+        "moduleCode": [
+            "PHS3102"
+        ]
+    },
+    {
+        "title": "PHS3191",
+        "moduleCode": [
+            "PHS3191"
+        ]
+    },
+    {
+        "title": "LSM3211",
+        "moduleCode": [
+            "LSM3211"
+        ]
+    },
+    {
+        "title": "PHS4101",
+        "moduleCode": [
+            "PHS4101"
+        ]
+    },
+    {
+        "title": "PHS4121",
+        "moduleCode": [
+            "PHS4121"
+        ]
+    },
+    {
+        "title": "Elective Courses (8 MCs): PHS4201 / PR4204 / PR4207 / PHS4288 / PHS4991",
+        "moduleCode": [
+            ["PHS4201", "PR4204"], ["PHS4201", "PR4207"], ["PHS4201", "PHS4288"], ["PHS4201", "PHS4991"], ["PR4204", "PR4207"], 
+            ["PR4204", "PHS4288"], ["PR4204", "PHS4991"], ["PR4207", "PHS4288"], ["PR4207", "PHS4991"], ["PHS4288", "PHS4991"]
+        ]
+    },
+    {
+        "title": "PHS3288 / PHS3288R / PHS4288 / Any UPIP/FASSIP course / Any NOC Internship Course",
+        "moduleCode": [
+            "PHS3288", "PHS3288R", "PHS4288", "Any UPIP/FASSIP course", "Any NOC Internship Course"
+        ]
+    }
+],
+"Physics": [
+    {
+        "title": "PC1101",
+        "moduleCode": [
+            "PC1101"
+        ]
+    },
+    {
+        "title": "PC2031",
+        "moduleCode": [
+            "PC2031"
+        ]
+    },
+    {
+        "title": "PC2032",
+        "moduleCode": [
+            "PC2032"
+        ]
+    },
+    {
+        "title": "PC2130",
+        "moduleCode": [
+            "PC2130"
+        ]
+    },
+    {
+        "title": "PC2135",
+        "moduleCode": [
+            "PC2135"
+        ]
+    },
+    {
+        "title": "PC2174A / MA2104",
+        "moduleCode": [
+            "PC2174A", "MA2104"
+        ]
+    },
+    {
+        "title": "PC2193",
+        "moduleCode": [
+            "PC2193"
+        ]
+    },
+    {
+        "title": "32 Units of PC courses",
+        "moduleCode": [
+            "min", "32", "PC", "1"
+        ]
+    },
+    {
+        "title": "PC4288 (or its variants) / PC UPIP course / NOC Internship Course",
+        "moduleCode": [
+            "PC4288", "PC UPIP course", "NOC Internship Course"
+        ]
+    }
+],
+"Quantitative Finance": [
+    {
+        "title": "QF1100",
+        "moduleCode": [
+            "QF1100"
+        ]
+    },
+    {
+        "title": "MA2001",
+        "moduleCode": [
+            "MA2001"
+        ]
+    },
+    {
+        "title": "MA2002",
+        "moduleCode": [
+            "MA2002"
+        ]
+    },
+    {
+        "title": "MA2104",
+        "moduleCode": [
+            "MA2104"
+        ]
+    },
+    {
+        "title": "MA2213 / DSA2102",
+        "moduleCode": [
+            "MA2213", "DSA2102"
+        ]
+    },
+    {
+        "title": "MA2116 / ST2131",
+        "moduleCode": [
+            "MA2116", "ST2131"
+        ]
+    },
+    {
+        "title": "QF2103",
+        "moduleCode": [
+            "QF2103"
+        ]
+    },
+    {
+        "title": "QF2104",
+        "moduleCode": [
+            "QF2104"
+        ]
+    },
+    {
+        "title": "QF3101",
+        "moduleCode": [
+            "QF3101"
+        ]
+    },
+    {
+        "title": "QF3103",
+        "moduleCode": [
+            "QF3103"
+        ]
+    },
+    {
+        "title": "ST3131",
+        "moduleCode": [
+            "ST3131"
+        ]
+    },
+    {
+        "title": "4 from the following: QF4102 / QF4103 / QF4104 / (QF4211 / DSE4211 / QF4212 / DSE4212)",
+        "moduleCode": [
+            ["QF4102", "QF4103", "QF4104", "QF4211"], ["QF4102", "QF4103", "QF4104", "DSE4211"], ["QF4102", "QF4103", "QF4104", "QF4212"],  ["QF4102", "QF4103", "QF4104", "DSE4212"]
+        ]
+    }
+],
+"Statistics": [
+    {
+        "title": "ST1131",
+        "moduleCode": [
+            "ST1131"
+        ]
+    },
+    {
+        "title": "ST2131 / MA2116 / MA2216",
+        "moduleCode": [
+            "ST2131", "MA2116", "MA2216"
+        ]
+    },
+    {
+        "title": "ST2132",
+        "moduleCode": [
+            "ST2132"
+        ]
+    },
+    {
+        "title": "ST2137",
+        "moduleCode": [
+            "ST2137"
+        ]
+    },
+    {
+        "title": "MA2001",
+        "moduleCode": [
+            "MA2001"
+        ]
+    },
+    {
+        "title": "MA2002",
+        "moduleCode": [
+            "MA2002"
+        ]
+    },
+    {
+        "title": "MA2311 / MA2104",
+        "moduleCode": [
+            "MA2311", "MA2104"
+        ]
+    },
+    {
+        "title": "3 modules from ST32xx (except ST328*) or ST42xx (except ST4288) modules",
+        "moduleCode": [
+            "ST 3 additional"
+        ]
+    },
+    {
+        "title": "4 modules from ST42xx (except ST4288) OR (2 modules from ST42xx AND ST4288)",
+        "moduleCode": [
+            "ST 4 additional"
+        ]
+    },
+    {
+        "title": "ST3288 / ST4288 / Any UPIP/FASSIP module",
+        "moduleCode": [
+            "ST3288", "ST4288", "Any UPIP/FASSIP module"
+        ]
+    }
+],
+"Architecture": [
+    {
+        "title": "AR1101",
+        "moduleCode": [
+            "AR1101"
+        ]
+    },
+    {
+        "title": "AR1102",
+        "moduleCode": [
+            "AR1102"
+        ]
+    },
+    {
+        "title": "AR2227",
+        "moduleCode": [
+            "AR2227"
+        ]
+    },
+    {
+        "title": "AR2101",
+        "moduleCode": [
+            "AR2101"
+        ]
+    },
+    {
+        "title": "AR2228",
+        "moduleCode": [
+            "AR2228"
+        ]
+    },
+    {
+        "title": "AR2328",
+        "moduleCode": [
+            "AR2328"
+        ]
+    },
+    {
+        "title": "AR2102",
+        "moduleCode": [
+            "AR2102"
+        ]
+    },
+    {
+        "title": "AR1329",
+        "moduleCode": [
+            "AR1329"
+        ]
+    },
+    {
+        "title": "AR3101",
+        "moduleCode": [
+            "AR3101"
+        ]
+    },
+    {
+        "title": "AR3223",
+        "moduleCode": [
+            "AR3223"
+        ]
+    },
+    {
+        "title": "AR3722",
+        "moduleCode": [
+            "AR3722"
+        ]
+    },
+    {
+        "title": "4 Electives (Information coming soon!)",
+        "moduleCode": [
+            "Archi 4 electives"
+        ]
+    },
+    {
+        "title": "AR5601",
+        "moduleCode": [
+            "AR5601"
+        ]
+    }
+],
+"Biomedical Engineering": [
+    {
+        "title": "ES2531",
+        "moduleCode": [
+            "ES2531"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GER1000",
+        "moduleCode": [
+            "GER1000"
+        ]
+    },
+    {
+        "title": "MA1511",
+        "moduleCode": [
+            "MA1511"
+        ]
+    },
+    {
+        "title": "CE2407A",
+        "moduleCode": [
+            "CE2407A"
+        ]
+    },
+    {
+        "title": "CE2407B",
+        "moduleCode": [
+            "CE2407B"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A / Equivalent",
+        "moduleCode": [
+            "EG3611A", "Equivalent"
+        ]
+    },
+    {
+        "title": "BN1111",
+        "moduleCode": [
+            "BN1111"
+        ]
+    },
+    {
+        "title": "BN2111",
+        "moduleCode": [
+            "BN2111"
+        ]
+    },
+    {
+        "title": "BN2301",
+        "moduleCode": [
+            "BN2301"
+        ]
+    },
+    {
+        "title": "BN2102",
+        "moduleCode": [
+            "BN2102"
+        ]
+    },
+    {
+        "title": "BN2201",
+        "moduleCode": [
+            "BN2201"
+        ]
+    },
+    {
+        "title": "BN2204",
+        "moduleCode": [
+            "BN2204"
+        ]
+    },
+    {
+        "title": "BN2403",
+        "moduleCode": [
+            "BN2403"
+        ]
+    },
+    {
+        "title": "BN3101A",
+        "moduleCode": [
+            "BN3101A"
+        ]
+    },
+    {
+        "title": "8 units of Technical Electives",
+        "moduleCode": [
+            "min", "8", "BN Technical Electives"
+        ]
+    }
+],
+"Chemical Engineering": [
+    {
+        "title": "Sorry unfortunately this information is unavailable",
+        "moduleCode": [
+            "Sorry unfortunately this information is unavailable"
+        ]
+    }
+],
+"Civil Engineering": [
+    {
+        "title": "ES2531",
+        "moduleCode": [
+            "ES2531"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GER1000",
+        "moduleCode": [
+            "GER1000"
+        ]
+    },
+    {
+        "title": "MA1511",
+        "moduleCode": [
+            "MA1511"
+        ]
+    },
+    {
+        "title": "CE2407A",
+        "moduleCode": [
+            "CE2407A"
+        ]
+    },
+    {
+        "title": "CE2407B",
+        "moduleCode": [
+            "CE2407B"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A / Equivalent",
+        "moduleCode": [
+            "EG3611A", "Equivalent"
+        ]
+    },
+    {
+        "title": "CE1103",
+        "moduleCode": [
+            "CE1103"
+        ]
+    },
+    {
+        "title": "CE2155",
+        "moduleCode": [
+            "CE2155"
+        ]
+    },
+    {
+        "title": "CE2134",
+        "moduleCode": [
+            "CE2134"
+        ]
+    },
+    {
+        "title": "CE3115",
+        "moduleCode": [
+            "CE3115"
+        ]
+    },
+    {
+        "title": "CE3116",
+        "moduleCode": [
+            "CE3116"
+        ]
+    },
+    {
+        "title": "CE3121",
+        "moduleCode": [
+            "CE3121"
+        ]
+    },
+    {
+        "title": "CE3132",
+        "moduleCode": [
+            "CE3132"
+        ]
+    },
+    {
+        "title": "CE3155A",
+        "moduleCode": [
+            "CE3155A"
+        ]
+    },
+    {
+        "title": "CE3155B",
+        "moduleCode": [
+            "CE3155B"
+        ]
+    },
+    {
+        "title": "CE3165",
+        "moduleCode": [
+            "CE3165"
+        ]
+    },
+    {
+        "title": "CE3166",
+        "moduleCode": [
+            "CE3166"
+        ]
+    }
+],
+"Electrical Engineering": [
+    {
+        "title": "ES2531",
+        "moduleCode": [
+            "ES2531"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GER1000",
+        "moduleCode": [
+            "GER1000"
+        ]
+    },
+    {
+        "title": "MA1511",
+        "moduleCode": [
+            "MA1511"
+        ]
+    },
+    {
+        "title": "CE2407A",
+        "moduleCode": [
+            "CE2407A"
+        ]
+    },
+    {
+        "title": "CE2407B",
+        "moduleCode": [
+            "CE2407B"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A",
+        "moduleCode": [
+            "EG3611A"
+        ]
+    },
+    {
+        "title": "EE1111A",
+        "moduleCode": [
+            "EE1111A"
+        ]
+    },
+    {
+        "title": "EE2111A",
+        "moduleCode": [
+            "EE2111A"
+        ]
+    },
+    {
+        "title": "EE2012",
+        "moduleCode": [
+            "EE2012"
+        ]
+    },
+    {
+        "title": "EE2023",
+        "moduleCode": [
+            "EE2023"
+        ]
+    },
+    {
+        "title": "EE2026 / EE2028",
+        "moduleCode": [
+            "EE2026", "EE2028"
+        ]
+    },
+    {
+        "title": "EE2027",
+        "moduleCode": [
+            "EE2027"
+        ]
+    },
+    {
+        "title": "EE2022",
+        "moduleCode": [
+            "EE2022"
+        ]
+    },
+    {
+        "title": "PC2020",
+        "moduleCode": [
+            "PC2020"
+        ]
+    },
+    {
+        "title": "8 units of Technical Electives",
+        "moduleCode": [
+            "min", "8", "EE Technical Electives"
+        ]
+    }
+],
+"Engineering Science": [
+    {
+        "title": "ES2531",
+        "moduleCode": [
+            "ES2531"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GER1000",
+        "moduleCode": [
+            "GER1000"
+        ]
+    },
+    {
+        "title": "MA1511",
+        "moduleCode": [
+            "MA1511"
+        ]
+    },
+    {
+        "title": "CE2407A",
+        "moduleCode": [
+            "CE2407A"
+        ]
+    },
+    {
+        "title": "CE2407B",
+        "moduleCode": [
+            "CE2407B"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A / Equivalent",
+        "moduleCode": [
+            "EG3611A", "Equivalent"
+        ]
+    },
+    {
+        "title": "ESP1111",
+        "moduleCode": [
+            "ESP1111"
+        ]
+    },
+    {
+        "title": "ESP2111",
+        "moduleCode": [
+            "ESP2111"
+        ]
+    },
+    {
+        "title": "ESP2106",
+        "moduleCode": [
+            "ESP2106"
+        ]
+    },
+    {
+        "title": "ESP2107",
+        "moduleCode": [
+            "ESP2107"
+        ]
+    },
+    {
+        "title": "ESP2110",
+        "moduleCode": [
+            "ESP2110"
+        ]
+    },
+    {
+        "title": "ESP3903",
+        "moduleCode": [
+            "ESP3903"
+        ]
+    },
+    {
+        "title": "ME2121",
+        "moduleCode": [
+            "ME2121"
+        ]
+    },
+    {
+        "title": "PC2020 / EE2023",
+        "moduleCode": [
+            "PC2020", "EE2023"
+        ]
+    },
+    {
+        "title": "PC2130B",
+        "moduleCode": [
+            "PC2130B"
+        ]
+    },
+    {
+        "title": "PC3235B",
+        "moduleCode": [
+            "PC3235B"
+        ]
+    }
+],
+"Environmental Engineering": [
+    {
+        "title": "ES2531",
+        "moduleCode": [
+            "ES2531"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GER1000",
+        "moduleCode": [
+            "GER1000"
+        ]
+    },
+    {
+        "title": "MA1511",
+        "moduleCode": [
+            "MA1511"
+        ]
+    },
+    {
+        "title": "CE2407A",
+        "moduleCode": [
+            "CE2407A"
+        ]
+    },
+    {
+        "title": "CE2407B",
+        "moduleCode": [
+            "CE2407B"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A / Equivalent",
+        "moduleCode": [
+            "EG3611A", "Equivalent"
+        ]
+    },
+    {
+        "title": "ESE2101",
+        "moduleCode": [
+            "ESE2101"
+        ]
+    },
+    {
+        "title": "ESE2102",
+        "moduleCode": [
+            "ESE2102"
+        ]
+    },
+    {
+        "title": "ESE2000",
+        "moduleCode": [
+            "ESE2000"
+        ]
+    },
+    {
+        "title": "ESE3101",
+        "moduleCode": [
+            "ESE3101"
+        ]
+    },
+    {
+        "title": "ESE2001",
+        "moduleCode": [
+            "ESE2001"
+        ]
+    },
+    {
+        "title": "ESE3301",
+        "moduleCode": [
+            "ESE3301"
+        ]
+    },
+    {
+        "title": "ESE3201",
+        "moduleCode": [
+            "ESE3201"
+        ]
+    },
+    {
+        "title": "ESE3401",
+        "moduleCode": [
+            "ESE3401"
+        ]
+    },
+    {
+        "title": "8 units of Technical Electives",
+        "moduleCode": [
+            "min", "8", "Env Technical Electives"
+        ]
+    }
+],
+"Industrial Design": [
+    {
+        "title": "GEA1000",
+        "moduleCode": [
+            "GEA1000"
+        ]
+    },
+    {
+        "title": "ID1114",
+        "moduleCode": [
+            "ID1114"
+        ]
+    },
+    {
+        "title": "ID1115",
+        "moduleCode": [
+            "ID1115"
+        ]
+    },
+    {
+        "title": "ID1223",
+        "moduleCode": [
+            "ID1223"
+        ]
+    },
+    {
+        "title": "ID1300",
+        "moduleCode": [
+            "ID1300"
+        ]
+    },
+    {
+        "title": "ID1116",
+        "moduleCode": [
+            "ID1116"
+        ]
+    },
+    {
+        "title": "ID1117",
+        "moduleCode": [
+            "ID1117"
+        ]
+    },
+    {
+        "title": "ID1118",
+        "moduleCode": [
+            "ID1118"
+        ]
+    },
+    {
+        "title": "ID1119",
+        "moduleCode": [
+            "ID1119"
+        ]
+    },
+    {
+        "title": "ID1121",
+        "moduleCode": [
+            "ID1121"
+        ]
+    },
+    {
+        "title": "ID2107",
+        "moduleCode": [
+            "ID2107"
+        ]
+    },
+    {
+        "title": "ID2108",
+        "moduleCode": [
+            "ID2108"
+        ]
+    },
+    {
+        "title": "ID2322",
+        "moduleCode": [
+            "ID2322"
+        ]
+    },
+    {
+        "title": "ID2109",
+        "moduleCode": [
+            "ID2109"
+        ]
+    },
+    {
+        "title": "ID2110",
+        "moduleCode": [
+            "ID2110"
+        ]
+    },
+    {
+        "title": "ID2116",
+        "moduleCode": [
+            "ID2116"
+        ]
+    },
+    {
+        "title": "ID3107",
+        "moduleCode": [
+            "ID3107"
+        ]
+    },
+    {
+        "title": "ID3108",
+        "moduleCode": [
+            "ID3108"
+        ]
+    },
+    {
+        "title": "ID3111",
+        "moduleCode": [
+            "ID3111"
+        ]
+    },
+    {
+        "title": "ID4107",
+        "moduleCode": [
+            "ID4107"
+        ]
+    },
+    {
+        "title": "ID4122",
+        "moduleCode": [
+            "ID4122"
+        ]
+    }
+],
+"Industrial & Systems Engineering": [
+    {
+        "title": "ES2531",
+        "moduleCode": [
+            "ES2531"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GER1000",
+        "moduleCode": [
+            "GER1000"
+        ]
+    },
+    {
+        "title": "MA1511",
+        "moduleCode": [
+            "MA1511"
+        ]
+    },
+    {
+        "title": "CE2407A",
+        "moduleCode": [
+            "CE2407A"
+        ]
+    },
+    {
+        "title": "CE2407B",
+        "moduleCode": [
+            "CE2407B"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A / Equivalent",
+        "moduleCode": [
+            "EG3611A", "Equivalent"
+        ]
+    },
+    {
+        "title": "IE1111R",
+        "moduleCode": [
+            "IE1111R"
+        ]
+    },
+    {
+        "title": "IE2111",
+        "moduleCode": [
+            "IE2111"
+        ]
+    },
+    {
+        "title": "IE2100",
+        "moduleCode": [
+            "IE2100"
+        ]
+    },
+    {
+        "title": "IE2110",
+        "moduleCode": [
+            "IE2110"
+        ]
+    },
+    {
+        "title": "IE3101",
+        "moduleCode": [
+            "IE3101"
+        ]
+    },
+    {
+        "title": "IE3110R",
+        "moduleCode": [
+            "IE3110R"
+        ]
+    },
+    {
+        "title": "CS2040",
+        "moduleCode": [
+            "CS2040"
+        ]
+    },
+    {
+        "title": "ST2334",
+        "moduleCode": [
+            "ST2334"
+        ]
+    },
+    {
+        "title": "8 units of Technical Electives",
+        "moduleCode": [
+            "min", "8", "ISE Technical Electives"
+        ]
+    }
+],
+"Infrastructure & Project Management": [
+    {
+        "title": "ES2531",
+        "moduleCode": [
+            "ES2531"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GER1000",
+        "moduleCode": [
+            "GER1000"
+        ]
+    },
+    {
+        "title": "MA1511",
+        "moduleCode": [
+            "MA1511"
+        ]
+    },
+    {
+        "title": "CE2407A",
+        "moduleCode": [
+            "CE2407A"
+        ]
+    },
+    {
+        "title": "CE2407B",
+        "moduleCode": [
+            "CE2407B"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A / Equivalent",
+        "moduleCode": [
+            "EG3611A", "Equivalent"
+        ]
+    },
+    {
+        "title": "IPM1102",
+        "moduleCode": [
+            "IPM1102"
+        ]
+    },
+    {
+        "title": "IPM1103",
+        "moduleCode": [
+            "IPM1103"
+        ]
+    },
+    {
+        "title": "IPM2101",
+        "moduleCode": [
+            "IPM2101"
+        ]
+    },
+    {
+        "title": "IPM2102",
+        "moduleCode": [
+            "IPM2102"
+        ]
+    },
+    {
+        "title": "IPM2103",
+        "moduleCode": [
+            "IPM2103"
+        ]
+    },
+    {
+        "title": "IPM2104",
+        "moduleCode": [
+            "IPM2104"
+        ]
+    },
+    {
+        "title": "IPM3101",
+        "moduleCode": [
+            "IPM3101"
+        ]
+    },
+    {
+        "title": "IPM3102",
+        "moduleCode": [
+            "IPM3102"
+        ]
+    },
+    {
+        "title": "IPM4102",
+        "moduleCode": [
+            "IPM4102"
+        ]
+    },
+    {
+        "title": "IPM4103",
+        "moduleCode": [
+            "IPM4103"
+        ]
+    }
+],
+"Landscape Architecture": [
+    {
+        "title": "LAD1001",
+        "moduleCode": [
+            "LAD1001"
+        ]
+    },
+    {
+        "title": "LAD1003",
+        "moduleCode": [
+            "LAD1003"
+        ]
+    },
+    {
+        "title": "LAD1005",
+        "moduleCode": [
+            "LAD1005"
+        ]
+    },
+    {
+        "title": "LAD1004",
+        "moduleCode": [
+            "LAD1004"
+        ]
+    },
+    {
+        "title": "LAD2006",
+        "moduleCode": [
+            "LAD2006"
+        ]
+    },
+    {
+        "title": "LAD2004",
+        "moduleCode": [
+            "LAD2004"
+        ]
+    },
+    {
+        "title": "LAD2005",
+        "moduleCode": [
+            "LAD2005"
+        ]
+    },
+    {
+        "title": "LAD2007",
+        "moduleCode": [
+            "LAD2007"
+        ]
+    },
+    {
+        "title": "LAD2003",
+        "moduleCode": [
+            "LAD2003"
+        ]
+    },
+    {
+        "title": "LAD3001",
+        "moduleCode": [
+            "LAD3001"
+        ]
+    },
+    {
+        "title": "LAD3006",
+        "moduleCode": [
+            "LAD3006"
+        ]
+    },
+    {
+        "title": "LAD3002",
+        "moduleCode": [
+            "LAD3002"
+        ]
+    },
+    {
+        "title": "LAD3005",
+        "moduleCode": [
+            "LAD3005"
+        ]
+    },
+    {
+        "title": "LAD4001",
+        "moduleCode": [
+            "LAD4001"
+        ]
+    },
+    {
+        "title": "LAD4006",
+        "moduleCode": [
+            "LAD4006"
+        ]
+    },
+    {
+        "title": "LAD4004",
+        "moduleCode": [
+            "LAD4004"
+        ]
+    },
+    {
+        "title": "LAD5222",
+        "moduleCode": [
+            "LAD5222"
+        ]
+    },
+    {
+        "title": "LAD4002",
+        "moduleCode": [
+            "LAD4002"
+        ]
+    },
+    {
+        "title": "LAD4003",
+        "moduleCode": [
+            "LAD4003"
+        ]
+    },
+    {
+        "title": "LAD4012",
+        "moduleCode": [
+            "LAD4012"
+        ]
+    }
+],
+"Materials Science & Engineering": [
+    {
+        "title": "ES2631",
+        "moduleCode": [
+            "ES2631"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GER1000",
+        "moduleCode": [
+            "GER1000"
+        ]
+    },
+    {
+        "title": "MA1511",
+        "moduleCode": [
+            "MA1511"
+        ]
+    },
+    {
+        "title": "CE2407A",
+        "moduleCode": [
+            "CE2407A"
+        ]
+    },
+    {
+        "title": "CE2407B",
+        "moduleCode": [
+            "CE2407B"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A / Equivalent",
+        "moduleCode": [
+            "EG3611A", "Equivalent"
+        ]
+    },
+    {
+        "title": "MLE1001B",
+        "moduleCode": [
+            "MLE1001B"
+        ]
+    },
+    {
+        "title": "MLE2001A",
+        "moduleCode": [
+            "MLE2001A"
+        ]
+    },
+    {
+        "title": "MLE2102",
+        "moduleCode": [
+            "MLE2102"
+        ]
+    },
+    {
+        "title": "MLE2103A",
+        "moduleCode": [
+            "MLE2103A"
+        ]
+    },
+    {
+        "title": "MLE2105",
+        "moduleCode": [
+            "MLE2105"
+        ]
+    },
+    {
+        "title": "MLE3101A",
+        "moduleCode": [
+            "MLE3101A"
+        ]
+    },
+    {
+        "title": "MLE3101",
+        "moduleCode": [
+            "MLE3101"
+        ]
+    },
+    {
+        "title": "MLE3103",
+        "moduleCode": [
+            "MLE3103"
+        ]
+    },
+    {
+        "title": "MLE3111A",
+        "moduleCode": [
+            "MLE3111A"
+        ]
+    },
+    {
+        "title": "MLE3112",
+        "moduleCode": [
+            "MLE3112"
+        ]
+    },
+    {
+        "title": "8 units of Technical Electives",
+        "moduleCode": [
+            "min", "8", "MS Technical Electives"
+        ]
+    }
+],
+"Mechanical Engineering": [
+    {
+        "title": "ES2631",
+        "moduleCode": [
+            "ES2631"
+        ]
+    },
+    {
+        "title": "CS1010E",
+        "moduleCode": [
+            "CS1010E"
+        ]
+    },
+    {
+        "title": "GEA1000",
+        "moduleCode": [
+            "GEA1000"
+        ]
+    },
+    {
+        "title": "MA1505",
+        "moduleCode": [
+            "MA1505"
+        ]
+    },
+    {
+        "title": "MA1512",
+        "moduleCode": [
+            "MA1512"
+        ]
+    },
+    {
+        "title": "MA1513",
+        "moduleCode": [
+            "MA1513"
+        ]
+    },
+    {
+        "title": "EG2401A",
+        "moduleCode": [
+            "EG2401A"
+        ]
+    },
+    {
+        "title": "EG3611A / Equivalent",
+        "moduleCode": [
+            "EG3611A", "Equivalent"
+        ]
+    },
+    {
+        "title": "ME1102",
+        "moduleCode": [
+            "ME1102"
+        ]
+    },
+    {
+        "title": "ME2104",
+        "moduleCode": [
+            "ME2104"
+        ]
+    },
+    {
+        "title": "ME2102",
+        "moduleCode": [
+            "ME2102"
+        ]
+    },
+    {
+        "title": "ME2112",
+        "moduleCode": [
+            "ME2112"
+        ]
+    },
+    {
+        "title": "ME2121",
+        "moduleCode": [
+            "ME2121"
+        ]
+    },
+    {
+        "title": "ME2115",
+        "moduleCode": [
+            "ME2115"
+        ]
+    },
+    {
+        "title": "ME2134",
+        "moduleCode": [
+            "ME2134"
+        ]
+    },
+    {
+        "title": "ME2142",
+        "moduleCode": [
+            "ME2142"
+        ]
+    },
+    {
+        "title": "ME2162",
+        "moduleCode": [
+            "ME2162"
+        ]
+    },
+    {
+        "title": "4 units of Technical Electives",
+        "moduleCode": [
+            "min", "4", "ME Technical Electives"
+        ]
+    }
+],
+"Business Administration": [
+    {
+        "title": "BPM1701",
+        "moduleCode": [
+            "BPM1701"
+        ]
+    },
+    {
+        "title": "BPM1702",
+        "moduleCode": [
+            "BPM1702"
+        ]
+    },
+    {
+        "title": "BPM1705",
+        "moduleCode": [
+            "BPM1705"
+        ]
+    },
+    {
+        "title": "STR1000",
+        "moduleCode": [
+            "STR1000"
+        ]
+    },
+    {
+        "title": "STR2000",
+        "moduleCode": [
+            "STR2000"
+        ]
+    },
+    {
+        "title": "Global Immersion and Study",
+        "moduleCode": [
+            "Global Immersion and Study"
+        ]
+    },
+    {
+        "title": "DAO1704",
+        "moduleCode": [
+            "DAO1704"
+        ]
+    },
+    {
+        "title": "DAO2702",
+        "moduleCode": [
+            "DAO2702"
+        ]
+    },
+    {
+        "title": "BSP1703",
+        "moduleCode": [
+            "BSP1703"
+        ]
+    },
+    {
+        "title": "BSP2701",
+        "moduleCode": [
+            "BSP2701"
+        ]
+    },
+    {
+        "title": "ACC1701",
+        "moduleCode": [
+            "ACC1701"
+        ]
+    },
+    {
+        "title": "BSP1702",
+        "moduleCode": [
+            "BSP1702"
+        ]
+    },
+    {
+        "title": "MKT1705",
+        "moduleCode": [
+            "MKT1705"
+        ]
+    },
+    {
+        "title": "MNO1706",
+        "moduleCode": [
+            "MNO1706"
+        ]
+    },
+    {
+        "title": "FIN2704",
+        "moduleCode": [
+            "FIN2704"
+        ]
+    },
+    {
+        "title": "DAO2703",
+        "moduleCode": [
+            "DAO2703"
+        ]
+    },
+    {
+        "title": "MNO2705",
+        "moduleCode": [
+            "MNO2705"
+        ]
+    },
+    {
+        "title": "BSP3701",
+        "moduleCode": [
+            "BSP3701"
+        ]
+    },
+    {
+        "title": "ES2002",
+        "moduleCode": [
+            "ES2002"
+        ]
+    },
+    {
+        "title": "Specialisation",
+        "moduleCode": [
+            "Biz Specialisation"
+        ]
+    },
+    {
+        "title": "Honours Programme",
+        "moduleCode": [
+            "Biz Honours Programme"
+        ]
+    }
+],
+"Business Administration (Accountancy)": [
+    {
+        "title": "BPM1701",
+        "moduleCode": [
+            "BPM1701"
+        ]
+    },
+    {
+        "title": "BPM1702",
+        "moduleCode": [
+            "BPM1702"
+        ]
+    },
+    {
+        "title": "BPM1705",
+        "moduleCode": [
+            "BPM1705"
+        ]
+    },
+    {
+        "title": "STR1000",
+        "moduleCode": [
+            "STR1000"
+        ]
+    },
+    {
+        "title": "STR2000",
+        "moduleCode": [
+            "STR2000"
+        ]
+    },
+    {
+        "title": "Global Immersion and Study",
+        "moduleCode": [
+            "Global Immersion and Study"
+        ]
+    },
+    {
+        "title": "DAO1704",
+        "moduleCode": [
+            "DAO1704"
+        ]
+    },
+    {
+        "title": "DAO2702",
+        "moduleCode": [
+            "DAO2702"
+        ]
+    },
+    {
+        "title": "BSP1703",
+        "moduleCode": [
+            "BSP1703"
+        ]
+    },
+    {
+        "title": "BSP2701",
+        "moduleCode": [
+            "BSP2701"
+        ]
+    },
+    {
+        "title": "ACC1701",
+        "moduleCode": [
+            "ACC1701"
+        ]
+    },
+    {
+        "title": "BSP1702",
+        "moduleCode": [
+            "BSP1702"
+        ]
+    },
+    {
+        "title": "MKT1705",
+        "moduleCode": [
+            "MKT1705"
+        ]
+    },
+    {
+        "title": "MNO1706",
+        "moduleCode": [
+            "MNO1706"
+        ]
+    },
+    {
+        "title": "FIN2704",
+        "moduleCode": [
+            "FIN2704"
+        ]
+    },
+    {
+        "title": "DAO2703",
+        "moduleCode": [
+            "DAO2703"
+        ]
+    },
+    {
+        "title": "MNO2706",
+        "moduleCode": [
+            "MNO2706"
+        ]
+    },
+    {
+        "title": "ACC2706",
+        "moduleCode": [
+            "ACC2706"
+        ]
+    },
+    {
+        "title": "ACC2707",
+        "moduleCode": [
+            "ACC2707"
+        ]
+    },
+    {
+        "title": "ACC2708",
+        "moduleCode": [
+            "ACC2708"
+        ]
+    },
+    {
+        "title": "ACC2709",
+        "moduleCode": [
+            "ACC2709"
+        ]
+    },
+    {
+        "title": "ACC3701",
+        "moduleCode": [
+            "ACC3701"
+        ]
+    },
+    {
+        "title": "ACC1701",
+        "moduleCode": [
+            "ACC1701"
+        ]
+    },
+    {
+        "title": "ACC3702",
+        "moduleCode": [
+            "ACC3702"
+        ]
+    },
+    {
+        "title": "ACC3703",
+        "moduleCode": [
+            "ACC3703"
+        ]
+    },
+    {
+        "title": "ACC3704",
+        "moduleCode": [
+            "ACC3704"
+        ]
+    },
+    {
+        "title": "ACC3705",
+        "moduleCode": [
+            "ACC3705"
+        ]
+    },
+    {
+        "title": "ACC3706",
+        "moduleCode": [
+            "ACC3706"
+        ]
+    },
+    {
+        "title": "ACC3707",
+        "moduleCode": [
+            "ACC3707"
+        ]
+    },
+    {
+        "title": "Internship",
+        "moduleCode": [
+            "Internship"
+        ]
+    },
+    {
+        "title": "Honours Programme",
+        "moduleCode": [
+            "Biz Honours Programme"
+        ]
+    }
+]
+}

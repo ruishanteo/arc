@@ -1,0 +1,17 @@
+{
+    "chs1": { "title": ["CS2109S", "HS1501", "HS1502", "IT1244"]},
+    "chs2": { "title": ["DTK1234"]},
+    "chs3": { "title": ["SP1541", "SP2271", "FAS1101"]},
+    "chs4": { "title": ["HSA1000"]},
+    "chs5": { "title": ["HSH1000"]},
+    "chs6": { "title": ["HSI1000", "SP2274"]},
+    "chs7": { "title": ["HSI2001", "HSI2002", "HSI2003", "HSI2004", "HSI2005", "HSI2007", "HSI2008", "HSI2009", "HSI2010", "HSI2011", "HSI2012", "HSI2013", "HSI2014", "HSI2015", "HSI2016", "SP3275"]},
+    "chs8": { "title": ["HSI2902", "HSI2903", "HSI2904", "HSI2905", "HSI2906", "HSI2907", "HSI2908", "HSI2909", "HSI2911", "HSI2912", "HSI2913", "HSI2914"]},
+    "cde1": { "title": ["DTK1234"]},
+    "cde2": { "title": ["EG1311"]},
+    "cde3": { "title": ["IE2141"]},
+    "cde4": { "title": ["EE2211"]},
+    "cde5": { "title": ["EG2501"]},
+    "cde6": { "title": ["CDE2000"]},
+    "cde7": { "title": ["PF1101"]}
+}

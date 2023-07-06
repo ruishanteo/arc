@@ -1,0 +1,95 @@
+[
+    {
+        "moduleCode": "GEN2000"
+    },
+    {
+        "moduleCode": "GEN2001"
+    },
+    {
+        "moduleCode": "GEN2002X"
+    },
+    {
+        "moduleCode": "GEN2002Y"
+    },
+    {
+        "moduleCode": "GEN2050X"
+    },
+    {
+        "moduleCode": "GEN2050Y"
+    },
+    {
+        "moduleCode": "GEN2060X"
+    },
+    {
+        "moduleCode": "GEN2060Y"
+    },
+    {
+        "moduleCode": "GEN2061X"
+    },
+    {
+        "moduleCode": "GEN2061Y"
+    },
+    {
+        "moduleCode": "GEN2062X"
+    },
+    {
+        "moduleCode": "GEN2062Y"
+    },
+    {
+        "moduleCode": "GEN2070X"
+    },
+    {
+        "moduleCode": "GEN2070Y"
+    },
+    {
+        "moduleCode": "BN4102"
+    },
+    {
+        "moduleCode": "BN4103"
+    },
+    {
+        "moduleCode": "CLC1101"
+    },
+    {
+        "moduleCode": "CLC2204"
+    },
+    {
+        "moduleCode": "CLC3303"
+    },
+    {
+        "moduleCode": "MUA2163"
+    },
+    {
+        "moduleCode": "NEP3001"
+    },
+    {
+        "moduleCode": "NEP3001A"
+    },
+    {
+        "moduleCode": "RVN1000"
+    },
+    {
+        "moduleCode": "RVN1001"
+    },
+    {
+        "moduleCode": "RVN2002"
+    },
+    {
+        "moduleCode": "SE3216"
+    },
+    {
+        "moduleCode": "SE3226"
+    },
+    {
+        "moduleCode": "UCV2209"
+    },
+    {
+        "moduleCode": "NHS2053"
+    },
+    {
+        "moduleCode": "UHB2213"
+    },
+    {
+        "moduleCode": "NHS202"
+    }
+]
