@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 
 // Configurations
-const TIMEOUT = 4000;
+const TIMEOUT = 1500;
 const FORUM_PAGE_URL = "http://localhost:3000/forum";
 const NEW_FORUM_PAGE_URL = `${FORUM_PAGE_URL}/new`;
 const LOGIN_PAGE_URL = "http://localhost:3000/login";

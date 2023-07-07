@@ -2,7 +2,7 @@ const axios = require("axios");
 const puppeteer = require("puppeteer");
 
 // Configurations
-const TIMEOUT = 4000;
+const TIMEOUT = 1500;
 const REGISTER_PAGE_URL = "http://localhost:3000/register";
 const LOGIN_PAGE_URL = "http://localhost:3000/login";
 const RESET_PAGE_URL = "http://localhost:3000/reset";
