@@ -5,7 +5,7 @@ export const styles = {
         // Border
         borderRadius: '50%',
         // Background 
-
+        backgroundColor: '#DFD1F5',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: '84px',
