@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isUser() {
+      return request.auth != null;
+    }
+    
+    match /users/{user} {
+      allow create: if true;
+      allow read: if isUser();
+      allow update, delete: if isUser() && request.auth.uid == user;
+    }
+    
+    match /posts/{post} {
+      allow update, delete: if isUser()  && request.auth.uid == resource.data.author.userId;
+      allow create, read: if isUser();
+    }
+
+    match /comments/{comment} {
+      allow update: if isUser() && request.auth.uid == resource.data.author.userId;
+      allow delete: if (isUser() && request.auth.uid == resource.data.author.userId)
+        || (isUser() && request.auth.uid == resource.data.posterId);
+      allow create, read: if isUser();
+    }
+    
+    match /assessments/{assessment} {
+      allow create, read, update, delete: if isUser() && request.auth.uid == assessment
+    }
+    
+    match /semesters/{semester} {
+      allow create, read, update, delete: if isUser() && request.auth.uid == semester
+    }
+    
+    match /programme/{prog} {
+      allow create, read, update, delete: if isUser() && request.auth.uid == prog
+    }
+    
+    match /feedbacks/{feedback} {
+      allow create: if true;
+    }
+  }
+}

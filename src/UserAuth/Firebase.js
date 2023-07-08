@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { connectStorageEmulator, getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -24,6 +24,7 @@ const storage = getStorage();
 if (process.env.REACT_APP_USE_FIREBASE_EMULATOR) {
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
   connectFirestoreEmulator(db, "127.0.0.1", 8080);
+  connectStorageEmulator(storage, "127.0.0.1", 9199);
 }
 
 const googleProvider = new GoogleAuthProvider();
