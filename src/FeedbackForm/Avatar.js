@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../UserAuth/Firebase.js";
 
 import { styles } from './styles'
 import background from "../Images/bubble2.png";
 
 const Avatar = props => {
+    const [user] = useAuthState(auth);
     const [hovered, setHovered] = useState(false)
+
+    if (!user) {
+        return null;
+    }
 
     return (
         <div style={props.style}>
