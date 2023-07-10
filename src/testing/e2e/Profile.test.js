@@ -152,7 +152,6 @@ async function confirmPasswordField(inputPassword) {
   await page.click(SUBMIT_PASSWORD_BUTTON_SELECTOR);
   await page.waitForTimeout(TIMEOUT);
 }
-
 /* -------------------------------------------------------------------------- */
 
 describe("Profile Page", () => {
