@@ -8,15 +8,11 @@ import {
 import { addNotification } from "../Notifications";
 
 import { db } from "../UserAuth/Firebase";
-import { handleErrorMessage } from "../UserAuth/FirebaseHooks";
+import { handleApiCall } from "../UserAuth/FirebaseHooks";
 
 const RATE_LIMIT_DURATION = 10000;
 
 let lastFeedbackTimestamp = 0;
-
-const handleApiCall = async (func) => {
-  return func.then((res) => res).catch(handleErrorMessage);
-};
 
 const feedbackSlice = createSlice({
   name: "feedback",
