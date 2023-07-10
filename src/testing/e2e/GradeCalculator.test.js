@@ -54,7 +54,6 @@ let consoleMessages = [];
 /* -------------------------------------------------------------------------- */
 /*                               HELPER METHODS                               */
 /* -------------------------------------------------------------------------- */
-
 async function newBrowser() {
   if (browser) await browser.close();
   browser = await puppeteer.launch({ defaultViewport: null, headless: false });
@@ -77,15 +76,6 @@ async function reset(url) {
   await page.goto(url);
 }
 
-async function expectValidationErrorMessage(page, field, message) {
-  const helperTextElement = await page.$(`#${field}-helper-text`);
-  const validationError = await page.evaluate(
-    (e) => e.textContent,
-    helperTextElement
-  );
-  expect(validationError).toBe(message);
-}
-
 async function expectTextMessageIn(selector, message) {
   const element = await page.$(selector);
   const textContent = await page.evaluate((e) => e.textContent, element);
@@ -98,45 +88,10 @@ async function expectExactTextMessageIn(selector, message) {
   expect(textContent).toBe(message);
 }
 
-async function expectErrorMessage(page, errorCode) {
-  await page.waitForTimeout(TIMEOUT);
-  const errorMessages = consoleMessages.filter((message) =>
-    message.startsWith("Err")
-  );
-  expect(errorMessages.length).toBeGreaterThan(0);
-  expect(errorMessages[0]).toContain(errorCode);
-}
-
 async function expectText(text) {
   await page.waitForFunction(
     `document.querySelector("body").innerText.includes("${text}")`
   );
-}
-
-async function clearInputFromField(fieldSelector) {
-  const input = await page.$(fieldSelector);
-  await input.click({ clickCount: 3 });
-  await page.keyboard.press("Backspace");
-}
-
-async function autoScroll() {
-  await page.waitForTimeout(TIMEOUT);
-  await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      var totalHeight = 0;
-      var distance = 100;
-      var timer = setInterval(() => {
-        var scrollHeight = document.body.scrollHeight;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-
-        if (totalHeight >= scrollHeight - window.innerHeight) {
-          clearInterval(timer);
-          resolve();
-        }
-      }, 100);
-    });
-  });
 }
 
 async function registerAccount() {
@@ -163,10 +118,6 @@ function appendAssessmentIndex(selector, assessmentIndex) {
   return `${selector}-${assessmentIndex}`;
 }
 
-function appendComponentIndex(selector, assessmentIndex, componentIndex) {
-  console.log(selector, assessmentIndex, componentIndex);
-  return `${appendAssessmentIndex(assessmentIndex)}-${componentIndex}`;
-}
 /* -------------------------------------------------------------------------- */
 
 describe("Grade Calculator", () => {
