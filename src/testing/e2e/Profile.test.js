@@ -1,3 +1,4 @@
+import "core-js";
 const puppeteer = require("puppeteer");
 
 // Configurations
@@ -25,8 +26,8 @@ const SUBMIT_PASSWORD_BUTTON_SELECTOR = "#submit-password-button";
 let browser;
 let page;
 
-let name = "tester";
-let email = `tester@test.com`;
+let name = "profiletester";
+let email = "profiletester@test.com";
 let password = "123456";
 const user_registered = false;
 let consoleMessages = [];
@@ -36,7 +37,7 @@ let consoleMessages = [];
 /* -------------------------------------------------------------------------- */
 async function newBrowser() {
   if (browser) await browser.close();
-  browser = await puppeteer.launch({ defaultViewport: null });
+  browser = await puppeteer.launch({ defaultViewport: null, headless: "old" });
   page = null;
 }
 
@@ -86,26 +87,6 @@ async function clearInputFromField(fieldSelector) {
   await page.keyboard.press("Backspace");
 }
 
-async function autoScroll() {
-  await page.waitForTimeout(TIMEOUT);
-  await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      var totalHeight = 0;
-      var distance = 100;
-      var timer = setInterval(() => {
-        var scrollHeight = document.body.scrollHeight;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-
-        if (totalHeight >= scrollHeight - window.innerHeight) {
-          clearInterval(timer);
-          resolve();
-        }
-      }, 100);
-    });
-  });
-}
-
 async function registerAccount() {
   await reset(REGISTER_PAGE_URL);
   await page.waitForSelector(REGISTER_FORM_SELECTOR);
@@ -138,6 +119,7 @@ async function updateParticularField(userProp, newInput, editMode) {
   if (editMode) {
     await page.waitForSelector(`#${userProp}-edit-button`);
     await page.click(`#${userProp}-edit-button`);
+    await page.waitForTimeout(TIMEOUT);
   }
   await page.waitForSelector(`#${userProp}-particular-form`);
   const inputSelector = `#${userProp}-particular-field`;
@@ -217,7 +199,7 @@ describe("Profile Page", () => {
 
   test("Successful email change", async () => {
     const old_email = email;
-    email = "test@test.com";
+    email = "newprofiletester@test.com";
     await updateParticularField("email", email);
     await confirmPasswordField(password);
 
@@ -232,8 +214,13 @@ describe("Profile Page", () => {
 
   test("Invalid password change", async () => {
     await page.goto(PROFILE_URL);
+    await page.waitForTimeout(TIMEOUT);
+
+    await page.focus("#password-edit-button");
+    await page.waitForTimeout(TIMEOUT);
 
     await updateParticularField("password", "123", true);
+
     await expectValidationErrorMessage(
       page,
       "password-particular-field",
@@ -258,10 +245,15 @@ describe("Profile Page", () => {
 
   test("Invalid password confirmation", async () => {
     await page.goto(PROFILE_URL);
-    await autoScroll();
+    await page.waitForTimeout(TIMEOUT);
+
+    await page.focus(DELETE_ACCOUNT_BUTTON_SELECTOR);
 
     await page.click(DELETE_ACCOUNT_BUTTON_SELECTOR);
+
+    await page.waitForTimeout(TIMEOUT);
     await confirmPasswordField("111111");
+
     await page.waitForTimeout(TIMEOUT);
 
     await expectErrorMessage(page, "auth/wrong-password");

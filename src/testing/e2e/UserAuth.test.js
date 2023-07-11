@@ -1,3 +1,4 @@
+import "core-js";
 const axios = require("axios");
 const puppeteer = require("puppeteer");
 
@@ -21,8 +22,8 @@ const GOOGLE_SIGNIN_BUTTON_SELECTOR = "#google-signin-button";
 let browser;
 let page;
 
-const name = "tester";
-const email = `tester@test.com`;
+const name = "userauthtester";
+const email = `userauthtester@test.com`;
 const password = "123456";
 let consoleMessages = [];
 
@@ -31,7 +32,7 @@ let consoleMessages = [];
 /* -------------------------------------------------------------------------- */
 async function newBrowser() {
   if (browser) await browser.close();
-  browser = await puppeteer.launch();
+  browser = await puppeteer.launch({ headless: "old" });
   page = null;
 }
 
@@ -266,7 +267,7 @@ describe("Reset Password Page", () => {
     expect(response.data.oobCodes).toBeDefined();
     expect(response.data.oobCodes).toBeInstanceOf(Array);
 
-    const oobRequest = response.data.oobCodes[0];
+    const oobRequest = response.data.oobCodes.pop();
     expect(oobRequest).toBeDefined();
     expect(oobRequest).toBeInstanceOf(Object);
     expect(oobRequest.email).toBe(email);

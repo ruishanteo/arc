@@ -1,3 +1,4 @@
+import "core-js";
 const puppeteer = require("puppeteer");
 
 // Configurations
@@ -38,8 +39,8 @@ const REGISTER_FORM_SELECTOR = "#register-form";
 let browser;
 let page;
 
-const name = "tester";
-const email = "tester@test.com";
+const name = "forumtester";
+const email = "forumtester@test.com";
 const password = "123456";
 const user_registered = false;
 let consoleMessages = [];
@@ -49,7 +50,7 @@ let consoleMessages = [];
 /* -------------------------------------------------------------------------- */
 async function newBrowser() {
   if (browser) await browser.close();
-  browser = await puppeteer.launch({ defaultViewport: null });
+  browser = await puppeteer.launch({ defaultViewport: null, headless: "old" });
   page = null;
 }
 

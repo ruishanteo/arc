@@ -1,3 +1,4 @@
+import "core-js";
 const puppeteer = require("puppeteer");
 
 // Configurations
@@ -45,10 +46,10 @@ const COMPONENT_WEIGHT_VALIDATION_SELECTOR = "#weight-helper-text";
 let browser;
 let page;
 
-let name = "tester";
-let email = `tester@test.com`;
+let name = "calculatortester";
+let email = `calculatortester@test.com`;
 let password = "123456";
-const user_registered = true;
+const user_registered = false;
 let consoleMessages = [];
 
 /* -------------------------------------------------------------------------- */
@@ -56,7 +57,7 @@ let consoleMessages = [];
 /* -------------------------------------------------------------------------- */
 async function newBrowser() {
   if (browser) await browser.close();
-  browser = await puppeteer.launch({ defaultViewport: null, headless: false });
+  browser = await puppeteer.launch({ defaultViewport: null, headless: "old" });
   page = null;
 }
 
