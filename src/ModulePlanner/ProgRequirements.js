@@ -511,7 +511,10 @@ export function ProgRequirements() {
           progMods[deg].map((module, index) => {
             return (
               <TableRow key={index}>
-              <TableCell align="center" sx={{
+              <TableCell 
+                id={`prog-mod-table1-${index}`}
+                align="center" 
+                sx={{
                   backgroundColor: checkPresent(module.moduleCode),
                   color: "black",
                   fontSize: "1.0rem",
@@ -524,7 +527,10 @@ export function ProgRequirements() {
       } else {
         return (
               <TableRow key = {1}>
-              <TableCell align="center" sx={{
+              <TableCell 
+                id={`prog-mod-table1`}
+                align="center" 
+                sx={{
                   backgroundColor: '#FFFFFF',
                   color: "black",
                   fontSize: "1.0rem",
@@ -542,7 +548,10 @@ export function ProgRequirements() {
           secondProg[secDeg].map((module, index) => {
             return (
               <TableRow key={index}>
-              <TableCell align="center" sx={{
+              <TableCell 
+                id={`prog-mod-table2-${index}`}
+                align="center" 
+                sx={{
                   backgroundColor: checkPresent(module.moduleCode),
                   color: "black",
                   fontSize: "1.0rem",

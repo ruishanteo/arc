@@ -42,7 +42,10 @@ export function UnrestrictedRequirements() {
             {mods.map((module, index) => {
                 return (
                 <TableRow key={index}>
-                <TableCell align="center" sx={{
+                <TableCell 
+                  id={`unrestricted-mod-${index}`}
+                  align="center" 
+                  sx={{
                     backgroundColor: "#cff8df",
                     color: "black",
                     fontSize: "1.0rem",

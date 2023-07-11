@@ -50,6 +50,7 @@ export function Semester({
               <TableCell align="center" colSpan={6}>
                 {" "}
                 <Typography 
+                id={`table-header-${semIndex}`}
                 sx={{
                   fontSize: {
                     lg: 18,
@@ -77,6 +78,7 @@ export function Semester({
             <TableRow>
             <TableCell align="left">
                 <Button
+                  id={`add-module-planner-button-${semIndex}`}
                   type="button" 
                   variant="contained"
                   onClick={() => store.dispatch(addModule(semIndex))}

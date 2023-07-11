@@ -145,6 +145,7 @@ export function ModuleComponent({
       <TableCell align="center">
         <Grid item xs={6}>
           <Button
+            id={`delete-module-planner-button-${semIndex}-${moduleIndex}`}
             type="button"
             onClick={() => store.dispatch(deleteModule(semIndex, moduleIndex))}
             sx={{ 

@@ -76,6 +76,7 @@ const Instructions = ({ toggleVisibility }) => {
 
                     <Box style={styles.bottomButton}>
                         <Button
+                        id="instruction-clear-button"
                         variant="contained"
                         onClick={handleExitButtonClick}>
                             Exit
