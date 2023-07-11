@@ -41,9 +41,10 @@ export function UnrestrictedRequirements() {
             <TableBody>
             {mods.map((module, index) => {
                 return (
-                <TableRow key={index}>
+                <TableRow key={index} className="UeTableRows">
                 <TableCell 
                   id={`unrestricted-mod-${index}`}
+                  className="UeTableCell"
                   align="center" 
                   sx={{
                     backgroundColor: "#cff8df",

@@ -65,7 +65,9 @@ export function Semester({
           <TableBody>
             {mods.map((_, moduleIndex) => {
               return (
-                <TableRow key={moduleIndex}>
+                <TableRow 
+                  key={moduleIndex}
+                  className={`module-card-${semIndex}`}>
                   {<ModuleComponent
                     semIndex={semIndex}
                     moduleIndex={moduleIndex}

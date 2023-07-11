@@ -389,7 +389,10 @@ export function ModuleChecker() {
       <Grid container spacing={{ xs: 0, sm: 2 }}>
         {semesters.map((_, semIndex) => {
         return (
-          <Grid item xs={12} mdl={12} lg={6} key={semIndex}>
+          <Grid 
+            item xs={12} mdl={12} lg={6} 
+            key={semIndex}
+            className="semester-card">
             {<Semester
                 key={semIndex}
                 semIndex={semIndex}
