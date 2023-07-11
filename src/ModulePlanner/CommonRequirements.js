@@ -154,12 +154,12 @@ export function CommonRequirements() {
         let specProg = require("../module_data/utcp.json");
         return specProg.map((module, index) => {
               return (
-              <TableRow key={index} className="commonTable1Rows">
-              <TableCell 
-                id={`common-mod-table1-${index}`}
-                className="commonTable1Cell"
-                align="center" 
-                sx={{
+                <TableRow key={index} className="commonTable1Rows">
+                <TableCell 
+                  id={`common-mod-table1-${index}`}
+                  className="commonTable1Cell"
+                  align="center" 
+                  sx={{
                   backgroundColor: checkPresentCommonModRC(prog, module.code),
                   color: "black",
                   fontSize: "1.0rem",
@@ -174,12 +174,12 @@ export function CommonRequirements() {
         let specProg = require("../module_data/nusc.json");
         return specProg.map((module, index) => {
               return (
-              <TableRow key={index} className="commonTable1Rows">
-              <TableCell 
-                id={`common-mod-table1-${index}`}
-                className="commonTable1Cell"
-                align="center" 
-                sx={{
+                <TableRow key={index} className="commonTable1Rows">
+                <TableCell 
+                  id={`common-mod-table1-${index}`}
+                  className="commonTable1Cell"
+                  align="center" 
+                  sx={{
                   backgroundColor: checkPresentCommonMod(module.code),
                   color: "black",
                   fontSize: "1.0rem",
@@ -195,12 +195,12 @@ export function CommonRequirements() {
             return (
                 nonProg.map((module, index) => {
                     return (
-                    <TableRow key={index} className="commonTable1Rows">
-                    <TableCell 
-                      id={`common-mod-table1-${index}`}
-                      className="commonTable1Cell"
-                      align="center" 
-                      sx={{
+                      <TableRow key={index} className="commonTable1Rows">
+                      <TableCell 
+                        id={`common-mod-table1-${index}`}
+                        className="commonTable1Cell"
+                        align="center" 
+                        sx={{
                         backgroundColor: checkPresentCommonMod(module.code),
                         color: "black",
                         fontSize: "1.0rem",
@@ -242,12 +242,12 @@ export function CommonRequirements() {
         return (
         commonMods[deg].map((module, index) => {
             return (
-            <TableRow key={index} className="commonTable2Rows">
-            <TableCell 
-              id={`common-mod-table2-${index}`}
-              className="commonTable2Cell"
-              align="center" 
-              sx={{
+              <TableRow key={index} className="commonTable2Rows">
+              <TableCell 
+                id={`common-mod-table2-${index}`}
+                className="commonTable2Cell"
+                align="center" 
+                sx={{
                 backgroundColor: checkPresentCommonMod(module.code),
                 color: "black",
                 fontSize: "1.0rem",

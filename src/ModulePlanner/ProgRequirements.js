@@ -617,7 +617,7 @@ export function ProgRequirements() {
       return (
         progMods[deg].map((module, index) => {
           return (
-            <TableRow 
+            <TableRow
               key={index}
               className="progTable1Rows">
             <TableCell 
@@ -660,10 +660,10 @@ export function ProgRequirements() {
     if (secDeg in secondProg) {
       return secondProg[secDeg].map((module, index) => {
             return (
-              <TableRow 
+              <TableRow
                 key={index}
                 className="progTable2Rows">
-              <TableCell 
+              <TableCell
                 id={`prog-mod-table2-${index}`}
                 data-testid={`prog-mod-table2-${index}`}
                 className="progTable2Cell"
