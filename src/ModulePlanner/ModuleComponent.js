@@ -96,7 +96,7 @@ export function ModuleComponent({
   };
 
   const selector = () => {
-    if (semesterNum === 0) {
+    if (semesterNum !== 0) {
       return (
         <Autocomplete
         disablePortal
