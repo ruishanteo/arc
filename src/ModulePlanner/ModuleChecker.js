@@ -410,7 +410,7 @@ export function ModuleChecker() {
       variant='determinate'
       color="neutral"
       size="sm"
-      value={(totalModuleCredits/160)*100}
+      value={totalModuleCredits > 160 ? 100 : (totalModuleCredits / 160) * 100}
       sx={{
         height: '2.5rem',
         borderRadius: 10,
