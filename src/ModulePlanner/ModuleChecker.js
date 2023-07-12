@@ -120,8 +120,13 @@ export function ModuleChecker() {
   const semesters = useSelector((state) => state.plannerSem.semesters);
 
   const totalModuleCredits = semesters.reduce((total, semester) => {
+    const uniqueModules = new Set();
     const semesterCredits = semester.modules.reduce((sum, module) => {
-      return sum + parseInt(module.modInfo.moduleCredit, 10);
+      if (!uniqueModules.has(module.modInfo.moduleId)) {
+        uniqueModules.add(module.modInfo.moduleId);
+        return sum + parseInt(module.modInfo.moduleCredit, 10);
+      }
+      return sum;
     }, 0);
     return total + semesterCredits;
   }, 0);
