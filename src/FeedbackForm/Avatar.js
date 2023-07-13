@@ -29,6 +29,7 @@ const Avatar = props => {
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 onClick={() => props.onClick && props.onClick()}
+                id="feedback-avatar"
                 className='transition-3'
                 style={{
                     ...styles.chatWithMeButton,

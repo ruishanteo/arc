@@ -29,7 +29,9 @@ const FeedbackForm = () => {
 
     return (
         <div>
-        <div ref = { ref }>
+        <div 
+          ref = { ref }
+          id="feedback-form-div">
             <FeedbackWindow visible={visible} />
             <Avatar 
                 style={{

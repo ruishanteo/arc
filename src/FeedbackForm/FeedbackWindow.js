@@ -7,6 +7,7 @@ import FeedbackFill from "./FeedbackFill.js";
 const FeedbackWindow = props => {
     return (
         <div 
+            id="feedback-window"
             className='transition-5'
             style={{
                 ...styles.supportWindow,

@@ -88,6 +88,7 @@ const FeedbackFill = props => {
                     <TextField
                     type="text"
                     name="feedback"
+                    id="feedback-textfield"
                     required
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
@@ -100,12 +101,15 @@ const FeedbackFill = props => {
                     />
                 </form>
                 
-                <div style={styles.characterCounter}>
+                <div 
+                  style={styles.characterCounter}
+                  id="character-count">
                     {charactersLeft} characters left
                 </div>
 
                 <div style={styles.bottomText}>
                     <Button 
+                    id="feedback-submit-button"
                     sx={{ backgroundColor: "#cff8df", 
                     color: "black",
                     "&:hover": {
