@@ -19,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage();
+const storage = getStorage(app);
 
 if (process.env.REACT_APP_USE_FIREBASE_EMULATOR) {
   connectAuthEmulator(auth, "http://127.0.0.1:9099", { disableWarnings: true });
