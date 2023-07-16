@@ -4,6 +4,7 @@ export const LoadingSpinner = () => {
   return (
     <Grid
       container
+      data-testid="loading-spinner"
       spacing={0}
       direction="column"
       alignItems="center"
