@@ -92,6 +92,8 @@ describe("Feedback Form", () => {
       await browser.close();
     });
 
+    jest.setTimeout(10000)
+
     test('Feedback form button', async () => {
         await page.waitForSelector(FEEDBACK_AVATAR);
         await page.click(FEEDBACK_AVATAR);
@@ -119,7 +121,15 @@ describe("Feedback Form", () => {
         expect(textContent).toBe(`${charCount} characters left`);
     });
 
-    test('Successfully submit feedback', async () => {
+    test('Character limit exists', async () => {
+      const inputElement = await page.$(FEEDBACK_TEXTFILL);
+      await inputElement.type('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id magna egestas dolor tincidunt varius. Quisque faucibus purus mi, ut auctor lorem vehicula sed. Maecenas fringilla posuere elit et rhoncus. Nunc tellus sem, tristique vitae blandit eget, eleifend vel odio. Vestibulum orci justo, mollis non sapien at, aliquet faucibus nisl. Mauris ac purus feugiat urna tincidunt fermentum. Ut sodales hendrerit nunc, vitae vehicula magna varius in. Nam ac diam et ante sagittis pretium eu quis diam.');
+      const enteredText = await page.$eval(FEEDBACK_TEXTFILL, (element) => element.value);
+      const maxLength = 270;
+      expect(enteredText.length).toBe(maxLength);
+    });
+
+    test('Submit feedback button', async () => {
         await page.waitForSelector(FEEDBACK_SUBMIT_BUTTON);
         await page.click(FEEDBACK_SUBMIT_BUTTON);
         await page.waitForSelector(FEEDBACK_TEXTFILL)
@@ -130,15 +140,44 @@ describe("Feedback Form", () => {
         expect(textContent).toBe(`270 characters left`);
     });
 
+    test('Rate limit exists', async () => {
+      await page.waitForSelector('#feedback-textfield');
+      await page.focus('#feedback-textfield');
+      await page.type('#feedback-textfield', 'Test feedback');
+
+      await page.click('#feedback-submit-button');
+
+      // Assert that the rate limit error notification appears
+      await page.waitForSelector('#notistack-snackbar');
+      const notificationMessage = await page.$eval('#notistack-snackbar', (el) => el.innerText);
+      expect(notificationMessage).toBe('Your feedback has been submitted.');       
+  
+      // Enter feedback text
+      await page.$eval(FEEDBACK_TEXTFILL, (element) => element.value = '');
+    
+      await page.waitForSelector('#feedback-textfield');
+      await page.waitForTimeout(6000);
+      await page.focus('#feedback-textfield');
+      await page.type('#feedback-textfield', 'Test feedback');
+  
+      // Submit the feedback
+      await page.click('#feedback-submit-button');
+  
+      // Assert that the success notification appears
+      await page.waitForSelector('#notistack-snackbar');
+      const notificationMessage2 = await page.$eval('#notistack-snackbar', (el) => el.innerText);
+      expect(notificationMessage2).toBe('Please wait before submitting another feedback.');
+    });
+
     test('Successfully close feedback form', async () => {          
         const clickX = 200;
         const clickY = 200;
       
         // Click the random point
         await page.mouse.click(clickX, clickY);
-      
+    
         const feedbackWindowVisible = await page.$eval(FEEDBACK_WINDOW, (element) => window.getComputedStyle(element).display === 'none');
         await page.waitForTimeout(1000);
         expect(feedbackWindowVisible).toBe(false);
-      });
+    });
 });
