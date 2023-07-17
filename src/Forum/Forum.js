@@ -70,6 +70,7 @@ export function Forum() {
               return (
                 <Box alignItems="center" key={row.id}>
                   <Link
+                    data-testid={`go-to-post-${row.id}`}
                     to={`/forum/${row.id}`}
                     style={{ color: "black", textDecoration: "none" }}
                   >
