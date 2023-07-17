@@ -12,6 +12,14 @@ export const mockUser = {
   ],
   sendEmailVerification: jest.fn(),
 };
+export const mockAssessment = {
+  title: "Module 1",
+  components: [
+    { componentTitle: "Test 1", score: "30", total: "40", weight: "20" },
+  ],
+  desiredGrade: "90",
+  requiredGrade: "93.75",
+};
 
 export const mockPost = {
   id: "post-1",
@@ -31,6 +39,7 @@ export const mockComment = {
 export function getMockData() {
   return {
     users: [mockUser],
+    assessments: [],
     posts: [],
     comments: [],
   };
