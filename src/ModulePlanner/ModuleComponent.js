@@ -101,7 +101,8 @@ export function ModuleComponent({
         <Autocomplete
         disablePortal
         disableClearable
-        id={`module-selector-${semIndex}-${moduleIndex}`}     
+        id={`module-selector-${semIndex}-${moduleIndex}`}
+        data-testid={`module-selector-${semIndex}-${moduleIndex}`}     
         options={sem1Mods}
         filterOptions={handleFilterOptions}
         groupBy={(sem1Mods) => sem1Mods.code}
@@ -121,7 +122,8 @@ export function ModuleComponent({
         <Autocomplete
         disablePortal
         disableClearable
-        id={`module-selector-${semIndex}-${moduleIndex}`}           
+        id={`module-selector-${semIndex}-${moduleIndex}`}
+        data-testid={`module-selector-${semIndex}-${moduleIndex}`}           
         options={sem2Mods}
         filterOptions={handleFilterOptions}
         groupBy={(sem2Mods) => sem2Mods.code}

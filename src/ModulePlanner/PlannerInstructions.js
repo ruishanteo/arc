@@ -30,7 +30,7 @@ export function PlannerInstructions({
 
 
     return (
-        <div ref = { ref } >
+        <div ref = { ref } data-testid="instruction-panel" >
             <InstructionWindow visible={visible} toggleVisibility={toggleVisibility}/>
         </div>
     )

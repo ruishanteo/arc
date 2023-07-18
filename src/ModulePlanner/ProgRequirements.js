@@ -515,6 +515,7 @@ export function ProgRequirements() {
                 className="progTable1Rows">
               <TableCell 
                 id={`prog-mod-table1-${index}`}
+                data-testid={`prog-mod-table1-${index}`}
                 className="progTable1Cell"
                 align="center" 
                 sx={{
@@ -532,6 +533,7 @@ export function ProgRequirements() {
               <TableRow key = {1} className="progTable1Rows">
               <TableCell 
                 id={`prog-mod-table1`}
+                data-testid={`prog-mod-table1`}
                 className="progTable1Cell"
                 align="center" 
                 sx={{
@@ -556,6 +558,7 @@ export function ProgRequirements() {
                 className="progTable2Rows">
               <TableCell 
                 id={`prog-mod-table2-${index}`}
+                data-testid={`prog-mod-table2-${index}`}
                 className="progTable2Cell"
                 align="center" 
                 sx={{

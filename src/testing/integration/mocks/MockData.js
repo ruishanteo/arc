@@ -36,10 +36,33 @@ export const mockComment = {
   author: { userId: mockUser.uid },
 };
 
+export const mockDegree = {
+  degrees: [
+    { faculty: 'SOC', firstLetter: 'SOC', id: 48, title: 'Computer Science' },
+  ],
+};
+
+export const mockSemester = {
+  semesters: [
+    {
+      count: 1,
+      header: 'Y1S1',
+      modules: [
+        {
+          modInfo: { moduleCode: 'CS1101S', moduleCredit: '4', semester: [1, 2], code: 'CS', id: 645 },
+          category: { id: 3, title: 'Programme' },
+        },
+      ],
+    },
+  ],
+}
+
 export function getMockData() {
   return {
     users: [mockUser],
     assessments: [],
+    programme: [], 
+    semesters: [],
     posts: [],
     comments: [],
   };

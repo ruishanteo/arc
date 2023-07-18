@@ -289,9 +289,10 @@ export function ModuleChecker() {
       
      <Box sx={{ flexGrow: 1}}>
         <Grid container spacing={4} direction={isNarrowScreen ? 'column' : 'row'}>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={4} >
             <Autocomplete
             disablePortal
+            data-testid="degree-selector"
             id="degree-selector"           
             options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
@@ -444,6 +445,7 @@ export function ModuleChecker() {
     </Box>
 
     <PlannerInstructions
+        data-testid="instruction-panel"
         visible={visible} 
         setVisible={setVisible}
         sx={{zIndex: 2 }}

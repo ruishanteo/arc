@@ -139,8 +139,6 @@ export function fetchPlanner(id) {
           ...degreeData,
         })
       );
-    } else {
-      dispatch(plannerDegSlice.actions.resetDegreesInStore());
     }
 
     if (semestersResponse.exists()) {
@@ -150,8 +148,6 @@ export function fetchPlanner(id) {
           ...semData,
         })
       );
-    } else {
-      dispatch(plannerSemSlice.actions.resetSemsInStore());
     }
   };
 }
@@ -166,8 +162,6 @@ export function fetchDegrees(id) {
             ...degreeData,
             })
         );
-        } else {
-        dispatch(plannerDegSlice.actions.resetDegreesInStore());
         }
     };
 }  
@@ -182,8 +176,6 @@ export function fetchSemesters(id) {
             ...semData,
             })
         );
-        } else {
-        dispatch(plannerDegSlice.actions.resetSemsInStore());
         }
     };
 }  
