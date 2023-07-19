@@ -49,7 +49,7 @@ export function ModuleComponent({
   const handleFilterOptions = (options, state) => {
     const { inputValue } = state;
   
-    if (degrees.length > 0 && module.category.title === "UE" && degrees[0] !== null) {
+    if (degrees.length > 0 && module.category.title === "UE" && degrees[0] !== null && typeof degrees[0] !== 'undefined') {
       const deg = degrees[0].title;
       const moduleCodes = progMods[deg].flatMap((item) => item.moduleCode);
   
@@ -77,7 +77,7 @@ export function ModuleComponent({
   const handleFilterOptionsCateg = (options, state) => {
     const { inputValue } = state;
   
-    if (degrees.length > 0 && degrees[0] !== null) {
+    if (degrees.length > 0 && degrees[0] !== null && typeof degrees[0] !== 'undefined') {
       const deg = degrees[0].title;
       const moduleCodes = progMods[deg].flatMap((item) => item.moduleCode);
   
