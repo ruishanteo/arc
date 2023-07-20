@@ -53,10 +53,13 @@ function ConfirmPasswordDialog({
   };
 
   const handleSubmit = async () => {
-    await onReAuth(user, password);
-    await handleConfirmChange();
-    setDialogOpen(false);
-    if (setEditMode) setEditMode(false);
+    await onReAuth(user, password)
+      .then(async () => {
+        await handleConfirmChange();
+        setDialogOpen(false);
+        if (setEditMode) setEditMode(false);
+      })
+      .catch(() => {});
   };
 
   return (
