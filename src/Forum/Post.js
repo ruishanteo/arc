@@ -169,6 +169,7 @@ export function Post() {
                       </Grid>
                       <Grid item>
                         <IconButton
+                          id="submit-post-button"
                           type="submit"
                           disabled={
                             !formikProps.dirty ||
@@ -206,6 +207,7 @@ export function Post() {
               {user.uid === post.author.userId && (
                 <Grid item>
                   <IconButton
+                    id="delete-post-button"
                     onClick={() => setOpen(true)}
                     aria-label="delete"
                     variant="contained"
@@ -218,6 +220,7 @@ export function Post() {
                     <DeleteOutline />
                   </IconButton>
                   <IconButton
+                    id="edit-post-button"
                     aria-label="edit"
                     variant="contained"
                     sx={{ backgroundColor: "#ffe0f7", borderRadius: 1 }}
@@ -232,6 +235,7 @@ export function Post() {
         </Box>
         <Box align="right" sx={{ mr: 4 }}>
           <Typography variant="subtitle1" sx={{ wordBreak: "break-word" }}>
+            {" "}
             - {users[post.author.userId]?.name}
           </Typography>
           <Typography variant="caption">{post.datetime}</Typography>
@@ -254,7 +258,12 @@ export function Post() {
           <Button onClick={() => setOpen(false)} sx={{ color: "#b7b0f5" }}>
             Cancel
           </Button>
-          <Button onClick={handleDeletePost} autoFocus variant="contained">
+          <Button
+            id="confirm-delete-post-button"
+            onClick={handleDeletePost}
+            autoFocus
+            variant="contained"
+          >
             Confirm
           </Button>
         </DialogActions>

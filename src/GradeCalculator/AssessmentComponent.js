@@ -53,6 +53,7 @@ export function AssessmentComponent({
           }}
         >
           <IconButton
+            id={`delete-component-button-${assessmentIndex}-${componentIndex}`}
             type="button"
             onClick={() =>
               store.dispatch(deleteComponent(assessmentIndex, componentIndex))
@@ -70,6 +71,7 @@ export function AssessmentComponent({
           </IconButton>
 
           <FormTextField
+            id={`component-title-${assessmentIndex}-${componentIndex}`}
             label={`components[${componentIndex}].componentTitle`}
             type="text"
             formikProps={formikProps}
@@ -91,6 +93,7 @@ export function AssessmentComponent({
 
         <Grid item xs={2} lg={1.8}>
           <FormTextField
+            id={`component-score-${assessmentIndex}-${componentIndex}`}
             label={`components[${componentIndex}].score`}
             type="number"
             formikProps={formikProps}
@@ -112,6 +115,7 @@ export function AssessmentComponent({
 
         <Grid item xs={2} lg={1.8}>
           <FormTextField
+            id={`component-total-${assessmentIndex}-${componentIndex}`}
             label={`components[${componentIndex}].total`}
             type="number"
             formikProps={formikProps}
@@ -133,6 +137,7 @@ export function AssessmentComponent({
 
         <Grid item xs={2} lg={1.8}>
           <FormTextField
+            id={`component-weight-${assessmentIndex}-${componentIndex}`}
             label={`components[${componentIndex}].weight`}
             type="number"
             formikProps={formikProps}
@@ -175,7 +180,12 @@ export function AssessmentComponent({
                     const value =
                       formikProps.errors.components[componentIndex][key];
                     return (
-                      <Typography key={index} align="left" variant="body2">
+                      <Typography
+                        key={index}
+                        id={`${key}-helper-text-${assessmentIndex}-${componentIndex}`}
+                        align="left"
+                        variant="body2"
+                      >
                         {`\n\u2022 ${DISPLAY_NAMES[key]}: ${value}`}
                       </Typography>
                     );

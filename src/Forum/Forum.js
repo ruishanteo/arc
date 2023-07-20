@@ -70,6 +70,7 @@ export function Forum() {
               return (
                 <Box alignItems="center" key={row.id}>
                   <Link
+                    data-testid={`go-to-post-${row.id}`}
                     to={`/forum/${row.id}`}
                     style={{ color: "black", textDecoration: "none" }}
                   >
@@ -89,7 +90,10 @@ export function Forum() {
                           width: "90vw",
                         }}
                       >
-                        <CardActionArea sx={{ height: "25vh" }}>
+                        <CardActionArea
+                          id="view-post-button"
+                          sx={{ height: "25vh" }}
+                        >
                           <CardContent>
                             <Grid
                               container

@@ -66,8 +66,9 @@ function ConfirmPasswordDialog({
     <Dialog open={dialogOpen} onClose={handleClose} justifycontent="center">
       <DialogTitle>{"Please enter your password to confirm."}</DialogTitle>
       <DialogContent>
-        <form>
+        <form id="password-form">
           <TextField
+            id="password-field"
             label="Password"
             type="password"
             autoComplete="on"
@@ -77,6 +78,7 @@ function ConfirmPasswordDialog({
       </DialogContent>
       <DialogActions>
         <Button
+          id="submit-password-button"
           variant="contained"
           sx={{ backgroundColor: "#cff8df" }}
           onClick={handleSubmit}
@@ -132,10 +134,12 @@ function ParticularField({
               validationSchema={userPropSchema}
             >
               {(formikProps) => (
-                <Form>
+                <Form id={`${userProp}-particular-form`}>
                   <Grid container alignItems="center">
                     <Grid item>
                       <FormTextField
+                        id={`${userProp}-particular-field`}
+                        name={userProp}
                         label={userProp}
                         type={userPropType}
                         autoComplete="on"
@@ -163,6 +167,7 @@ function ParticularField({
 
                     <Grid item>
                       <IconButton
+                        id={`${userProp}-submit-edit-button`}
                         aria-label="edit"
                         variant="contained"
                         type="submit"
@@ -196,6 +201,7 @@ function ParticularField({
               </Grid>
               <Grid item>
                 <IconButton
+                  id={`${userProp}-edit-button`}
                   aria-label="edit"
                   variant="contained"
                   size="edit"
@@ -224,12 +230,14 @@ function DeleteAccount({ user, handleUpdate }) {
   return (
     <>
       <Button
+        id="delete-account-button"
         variant="contained"
         onClick={() => setDialogOpen(true)}
         sx={{
           backgroundColor: "#ffe0f7",
           mt: 4,
           minWidth: "20vw",
+          mb: 6,
         }}
       >
         <Typography>Delete Account</Typography>
@@ -283,7 +291,11 @@ export function Profile() {
         alignItems: "center",
       }}
     >
-      <Button component="label" onChange={handlePicChange}>
+      <Button
+        id="profile-picture-button"
+        component="label"
+        onChange={handlePicChange}
+      >
         <Avatar
           src={photoURL}
           sx={{
@@ -304,6 +316,7 @@ export function Profile() {
       </Button>
       {photo && (
         <Button
+          id="confirm-profile-picture-button"
           variant="contained"
           onClick={() =>
             updateUserProfilePicture(user, photo).then(updateState)
@@ -359,7 +372,7 @@ export function Profile() {
           userPropPlaceholder={"Change password"}
           userPropInitialValue={""}
           userPropSchema={Yup.object().shape({
-            password: Yup.string().required("Required"),
+            password: Yup.string().required("Required").min(6, "Too short!"),
           })}
           handleUpdate={async (values) =>
             updateUserPassword(user, values.password)

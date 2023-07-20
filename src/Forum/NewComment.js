@@ -41,7 +41,7 @@ export function NewComment({ postId, posterId, onUpdate }) {
         }}
       >
         {(formikProps) => (
-          <Form id="login-form">
+          <Form id="comment-form">
             <FormTextField
               label="comment"
               type="text"

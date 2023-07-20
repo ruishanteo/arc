@@ -106,8 +106,6 @@ export function fetchCalculator(id) {
           datetime: convertTimeFromData(calculatorData),
         })
       );
-    } else {
-      dispatch(calculatorSlice.actions.resetCalculatorInStore());
     }
   };
 }

@@ -34,11 +34,11 @@ export function NewPost() {
                 },
               })
             )
-            .then(() => navigate("/forum"))
+            .then(() => navigate("/forum"));
         }}
       >
         {(formikProps) => (
-          <Form id="login-form">
+          <Form id="post-form">
             <Box align="center">
               <Box sx={{ mt: 5, mb: 2 }} align="left">
                 <Typography variant="h4">New Post</Typography>
