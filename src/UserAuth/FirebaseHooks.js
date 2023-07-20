@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   EmailAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   deleteUser,
   onAuthStateChanged,
@@ -169,8 +170,8 @@ function updatedParticulars() {
 async function updateUserDisplayName(user, newDisplayName) {
   await handleApiCall(
     updateProfile(user, { displayName: newDisplayName }).then(async () => {
-      updatedParticulars();
       await updateDoc(doc(db, "users", user.uid), { name: newDisplayName });
+      updatedParticulars();
     })
   );
 }
@@ -178,8 +179,8 @@ async function updateUserDisplayName(user, newDisplayName) {
 async function updateUserEmail(user, newEmail) {
   await handleApiCall(
     updateEmail(user, newEmail).then(async () => {
-      updatedParticulars();
       await updateDoc(doc(db, "users", user.uid), { email: newEmail });
+      updatedParticulars();
     })
   );
 }
@@ -194,10 +195,10 @@ async function updateUserProfilePicture(user, newProfilePicture) {
   const photoURL = await getDownloadURL(fileRef);
   await handleApiCall(updateProfile(user, { photoURL: photoURL })).then(
     async () => {
-      updatedParticulars();
       await updateDoc(doc(db, "users", user.uid), {
         photoURL: photoURL,
       });
+      updatedParticulars();
     }
   );
 }
@@ -207,6 +208,15 @@ async function onReAuth(user, password) {
   return await handleApiCall(reauthenticateWithCredential(user, credential));
 }
 
+async function onReAuthGoogle(user) {
+  return await handleApiCall(
+    signInWithPopup(auth, googleProvider).then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      reauthenticateWithCredential(user, credential);
+    })
+  );
+}
+
 const deleteContent = async (key) => {
   await handleApiCall(deleteDoc(doc(db, "assessments", key)));
   await handleApiCall(deleteDoc(doc(db, "programme", key)));
@@ -214,8 +224,8 @@ const deleteContent = async (key) => {
   await handleApiCall(deleteDoc(doc(db, "users", key)));
 };
 
-function onDeleteUser(currentUser) {
-  deleteContent(currentUser.uid);
+async function onDeleteUser(currentUser) {
+  await deleteContent(currentUser.uid);
   setTimeout(async () => {
     await handleApiCall(deleteUser(currentUser)).then(() =>
       store.dispatch(
@@ -240,6 +250,7 @@ export {
   deleteContent,
   onDeleteUser,
   onReAuth,
+  onReAuthGoogle,
   useSignInWithGoogle as signInWithGoogle,
   useLogInWithEmailAndPassword as logInWithEmailAndPassword,
   registerWithEmailAndPassword,

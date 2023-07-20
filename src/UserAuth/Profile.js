@@ -9,6 +9,7 @@ import {
   onDeleteUser,
   onReAuth,
   useAuth,
+  onReAuthGoogle,
 } from "./FirebaseHooks.js";
 
 import {
@@ -25,6 +26,7 @@ import {
   Tooltip,
   Typography,
   Divider,
+  DialogContentText,
 } from "@mui/material";
 
 import {
@@ -113,6 +115,15 @@ function ParticularField({
   const [editMode, setEditMode] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  const handleSubmitGoogle = async (handleConfirmChange) => {
+    await onReAuthGoogle(user)
+      .then(async () => {
+        await handleConfirmChange();
+        if (setEditMode) setEditMode(false);
+      })
+      .catch(() => {});
+  };
+
   return (
     <Grid
       container
@@ -129,7 +140,11 @@ function ParticularField({
               enableReinitialize={true}
               initialValues={{ [userProp]: userPropInitialValue }}
               onSubmit={async (values, { setSubmitting }) => {
-                setDialogOpen(true);
+                if (user.providerData[0].providerId === "password") {
+                  setDialogOpen(true);
+                } else {
+                  await handleSubmitGoogle(() => handleUpdate(values));
+                }
               }}
               validationSchema={userPropSchema}
             >
@@ -226,13 +241,29 @@ function ParticularField({
 }
 
 function DeleteAccount({ user, handleUpdate }) {
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [confirmPWDialogOpen, setConfirmPWDialogOpen] = useState(false);
+  const [confirmDeleteAccOpen, setConfirmDeleteAccOpen] = useState(false);
+
+  const handleSubmitGoogle = async (handleConfirmChange) => {
+    await onReAuthGoogle(user)
+      .then(async () => {
+        await handleConfirmChange();
+      })
+      .catch(() => {});
+  };
+
+  const handleClick = (isEmail) => {
+    isEmail ? setConfirmPWDialogOpen(true) : setConfirmDeleteAccOpen(true);
+  };
+
   return (
     <>
       <Button
         id="delete-account-button"
         variant="contained"
-        onClick={() => setDialogOpen(true)}
+        onClick={() =>
+          handleClick(user.providerData[0].providerId === "password")
+        }
         sx={{
           backgroundColor: "#ffe0f7",
           mt: 4,
@@ -245,10 +276,37 @@ function DeleteAccount({ user, handleUpdate }) {
       </Button>
       <ConfirmPasswordDialog
         user={user}
-        dialogOpen={dialogOpen}
-        setDialogOpen={setDialogOpen}
+        dialogOpen={confirmPWDialogOpen}
+        setDialogOpen={setConfirmPWDialogOpen}
         handleConfirmChange={() => onDeleteUser(user)}
       />
+      <Dialog
+        open={confirmDeleteAccOpen}
+        onClose={() => setConfirmDeleteAccOpen(false)}
+      >
+        <DialogTitle>{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Doing so will delete your account and all its data. Click confirm to
+            proceed.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setConfirmDeleteAccOpen(false)}
+            sx={{ color: "#b7b0f5" }}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={() => handleSubmitGoogle(() => onDeleteUser(user))}
+            autoFocus
+            variant="contained"
+          >
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
@@ -350,34 +408,40 @@ export function Profile() {
           }
         />
 
-        <ParticularField
-          user={user}
-          userProp="email"
-          userPropLabel="Email"
-          userPropType="email"
-          userPropInitialValue={email}
-          userPropSchema={Yup.object().shape({
-            email: Yup.string().email("Invalid email").required("Required"),
-          })}
-          handleUpdate={async (values) =>
-            updateUserEmail(user, values.email).then(updateState)
-          }
-        />
+        {user.providerData[0].providerId === "password" && (
+          <>
+            <ParticularField
+              user={user}
+              userProp="email"
+              userPropLabel="Email"
+              userPropType="email"
+              userPropInitialValue={email}
+              userPropSchema={Yup.object().shape({
+                email: Yup.string().email("Invalid email").required("Required"),
+              })}
+              handleUpdate={async (values) =>
+                updateUserEmail(user, values.email).then(updateState)
+              }
+            />
 
-        <ParticularField
-          user={user}
-          userProp="password"
-          userPropLabel="Password"
-          userPropType="password"
-          userPropPlaceholder={"Change password"}
-          userPropInitialValue={""}
-          userPropSchema={Yup.object().shape({
-            password: Yup.string().required("Required").min(6, "Too short!"),
-          })}
-          handleUpdate={async (values) =>
-            updateUserPassword(user, values.password)
-          }
-        />
+            <ParticularField
+              user={user}
+              userProp="password"
+              userPropLabel="Password"
+              userPropType="password"
+              userPropPlaceholder={"Change password"}
+              userPropInitialValue={""}
+              userPropSchema={Yup.object().shape({
+                password: Yup.string()
+                  .required("Required")
+                  .min(6, "Too short!"),
+              })}
+              handleUpdate={async (values) =>
+                updateUserPassword(user, values.password)
+              }
+            />
+          </>
+        )}
       </Box>
 
       <DeleteAccount user={user} />
