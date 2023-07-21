@@ -48,7 +48,12 @@ function DeleteCommentDialog({ open, setOpen, confirmAction }) {
         <Button onClick={() => setOpen(false)} sx={{ color: "#b7b0f5" }}>
           Cancel
         </Button>
-        <Button onClick={confirmAction} autoFocus variant="contained">
+        <Button
+          id="confirm-delete-comment-button"
+          onClick={confirmAction}
+          autoFocus
+          variant="contained"
+        >
           Confirm
         </Button>
       </DialogActions>
@@ -108,12 +113,12 @@ export function CommentComponent({
               }}
             >
               {(formikProps) => (
-                <Form id="comment-form">
+                <Form id="edit-comment-form">
                   <Box width="58vw">
                     <FormTextField
                       label="text"
                       type="text"
-                      id="comment"
+                      id="edit-comment"
                       formikProps={formikProps}
                       placeholder="Enter comment here"
                       multiline
@@ -139,6 +144,7 @@ export function CommentComponent({
                       <Close />
                     </IconButton>
                     <IconButton
+                      id="submit-comment-button"
                       type="submit"
                       aria-label="edit"
                       variant="contained"
@@ -173,6 +179,7 @@ export function CommentComponent({
                 user.uid === comment.author.userId) && (
                 <Grid item>
                   <IconButton
+                    id="delete-comment-button"
                     aria-label="delete"
                     variant="contained"
                     size="medium"
@@ -188,6 +195,7 @@ export function CommentComponent({
 
                   {user.uid === comment.author.userId && (
                     <IconButton
+                      id="edit-comment-button"
                       aria-label="edit"
                       variant="contained"
                       sx={{

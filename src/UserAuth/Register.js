@@ -95,11 +95,12 @@ export function Register() {
             }}
           >
             {(formikProps) => (
-              <Form>
+              <Form id="register-form">
                 <Box sx={{ display: "flex", flexDirection: "column", mt: 1 }}>
                   <FormTextField
                     label="name"
                     type="name"
+                    id="name"
                     formikProps={formikProps}
                     inputProps={{ maxLength: 20 }}
                     placeholder="Name"
@@ -108,6 +109,7 @@ export function Register() {
                   <FormTextField
                     label="email"
                     type="email"
+                    id="email"
                     autoComplete="on"
                     formikProps={formikProps}
                     inputProps={{ maxLength: 50 }}
@@ -118,6 +120,7 @@ export function Register() {
                   <FormTextField
                     label="password"
                     type="password"
+                    id="password"
                     autoComplete="on"
                     formikProps={formikProps}
                     placeholder="Password"
@@ -125,6 +128,7 @@ export function Register() {
                     sx={{ mt: 1 }}
                   />
                   <Button
+                    id="submit-button"
                     type="submit"
                     disabled={formikProps.isSubmitting}
                     sx={{ mt: 4, backgroundColor: "#b7b0f5", color: "black" }}
@@ -133,6 +137,7 @@ export function Register() {
                     Register
                   </Button>
                   <Button
+                    id="google-signin-button"
                     align="center"
                     onClick={signInWithGoogle}
                     disabled={formikProps.isSubmitting}

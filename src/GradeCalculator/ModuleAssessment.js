@@ -91,6 +91,7 @@ export function ModuleAssessment() {
         </Typography>
         <Grid container sx={{ display: "flex", justifyContent: "right" }}>
           <LoadingButton
+            id="clear-calculator-button"
             variant="contained"
             sx={{
               backgroundColor: "#fcf4d4",
@@ -105,6 +106,7 @@ export function ModuleAssessment() {
           </LoadingButton>
 
           <LoadingButton
+            id="save-calculator-button"
             variant="contained"
             sx={{
               ml: 2,
@@ -136,7 +138,12 @@ export function ModuleAssessment() {
             <Button onClick={() => setOpen(false)} sx={{ color: "#b7b0f5" }}>
               Cancel
             </Button>
-            <Button onClick={clearAll} autoFocus variant="contained">
+            <Button
+              id="confirm-clear-calculator-button"
+              onClick={clearAll}
+              autoFocus
+              variant="contained"
+            >
               Confirm
             </Button>
           </DialogActions>
@@ -146,6 +153,7 @@ export function ModuleAssessment() {
       {assessments.length === 0 ? (
         <Box>
           <Button
+            id="add-module-button"
             variant="contained"
             onClick={() => store.dispatch(addAssessment)}
             sx={{ mt: 2, ml: 10 }}
@@ -157,9 +165,9 @@ export function ModuleAssessment() {
           <NoData />
         </Box>
       ) : (
-        <Box>
+        <Box id="modules-cards">
           {assessments.map((_, assessmentIndex) => (
-            <Box key={assessmentIndex}>
+            <Box key={assessmentIndex} className="module-card">
               <Assessment assessmentIndex={assessmentIndex} />
             </Box>
           ))}

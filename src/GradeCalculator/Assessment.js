@@ -141,10 +141,11 @@ export function Assessment({ assessmentIndex }) {
             validationSchema={assesmentSchema}
           >
             {(formikProps) => (
-              <Form>
+              <Form id={`calculator-form-${assessmentIndex}`}>
                 <Stack align="center">
                   <Box align="left">
                     <Button
+                      id={`delete-module-button-${assessmentIndex}`}
                       type="button"
                       onClick={() =>
                         store.dispatch(deleteAssessment(assessmentIndex))
@@ -157,6 +158,7 @@ export function Assessment({ assessmentIndex }) {
 
                   <Box align="center">
                     <FormTextField
+                      id={`module-title-${assessmentIndex}`}
                       label="title"
                       type="text"
                       autoComplete="on"
@@ -179,6 +181,7 @@ export function Assessment({ assessmentIndex }) {
 
                   <Box align="left">
                     <Button
+                      id={`add-component-button-${assessmentIndex}`}
                       variant="contained"
                       onClick={() =>
                         store.dispatch(addComponent(assessmentIndex))
@@ -296,7 +299,11 @@ export function Assessment({ assessmentIndex }) {
                   <Box>
                     {components.map((element, componentIndex) => {
                       return (
-                        <Box key={componentIndex} sx={{ mb: 2 }}>
+                        <Box
+                          key={componentIndex}
+                          sx={{ mb: 2 }}
+                          className={`assessment-card-${assessmentIndex}`}
+                        >
                           {!element.isDeleted && (
                             <AssessmentComponent
                               componentIndex={componentIndex}
@@ -316,6 +323,7 @@ export function Assessment({ assessmentIndex }) {
 
                     <Grid item>
                       <FormTextField
+                        id={`desired-score-${assessmentIndex}`}
                         label="desired"
                         type="number"
                         autoComplete="on"
@@ -343,20 +351,23 @@ export function Assessment({ assessmentIndex }) {
 
                     <Grid item>
                       <Button
+                        id={`calculate-grade-button-${assessmentIndex}`}
                         type="submit"
-                        // onClick={calculateGrade}
                         sx={{ mt: 3, backgroundColor: "#fcf4d4" }}
                         variant="contained"
                       >
-                        {" "}
-                        Calculate{" "}
+                        Calculate
                       </Button>
                     </Grid>
                   </Grid>
 
                   <Box align="left">
                     {curr && <Typography sx={{ mt: 2 }}>{curr}</Typography>}
-                    {result && <Typography>{result}</Typography>}
+                    {result && (
+                      <Typography id={`grade-result-${assessmentIndex}`}>
+                        {result}
+                      </Typography>
+                    )}
                   </Box>
                 </Stack>
               </Form>
