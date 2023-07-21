@@ -16,7 +16,6 @@
     "@testing-library/user-event": "^13.2.1",
     "firebase": "^9.22.0",
     "formik": "^2.4.1",
-    "fs": "^0.0.1-security",
     "jest": "^29.6.1",
     "moment": "^2.29.4",
     "nodeenv": "^3.0.75",

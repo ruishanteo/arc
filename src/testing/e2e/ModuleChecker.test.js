@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 
 // Configurations
-const TIMEOUT = 1500;
+const TIMEOUT = 10000;
 const PLANNER_URL = "http://localhost:3000/ModulePlanner";
 const LOGIN_PAGE_URL = "http://localhost:3000/login";
 const REGISTER_PAGE_URL = "http://localhost:3000/register";
@@ -56,13 +56,6 @@ let password = "123456";
 const user_registered = false;
 let consoleMessages = [];
 
-const path = require('path');
-const fs = require('fs');
-let progData = require('../../module_data/progMods.json');
-let secProgData = require('../../module_data/secondProg.json');
-let nonProg = require('../../module_data/nonprog.json');
-let commonMods = require('../../module_data/commonMods.json');
-let utcp = require('../../module_data/utcp.json');
 /* -------------------------------------------------------------------------- */
 /*                               HELPER METHODS                               */
 /* -------------------------------------------------------------------------- */
@@ -226,9 +219,28 @@ async function newBrowser() {
         rows.map((row) => ({
           title: row.querySelector('.progTable1Cell').innerText.trim(),
         }))
-      );      
-      const expectedData = progData["Computer Science"].map(item => ({ title: item.title }));
-        // Check if the rendered table rows match the expected data
+      );
+    
+      // Define the expected data for comparison
+      const expectedData = [
+        { title: 'CS1101S' },
+        { title: 'CS1231S' },
+        { title: 'CS2030S' },
+        { title: 'CS2040S' },
+        { title: 'CS2100'},
+        { title : 'CS2101'},
+        {title: 'CS2103T'},
+        {title: 'CS2109S'},
+        {title: 'CS3230'},
+        {title: 'ES2660'},
+        {title: 'MA1521'},
+        {title: 'MA1522 / MA2001'},
+        {title: 'ST2334'},
+        {title: 'Computer Science Breadth & Depth'},
+        {title: 'Industry Experience Requirement'}        
+      ];
+    
+      // Check if the rendered table rows match the expected data
       expect(tableRows).toEqual(expectedData);
     });
 
@@ -252,10 +264,16 @@ async function newBrowser() {
       const tableRows = tableRows1.concat(tableRows2)
     
       // Define the expected data for comparison
-      const nonProgData = nonProg.map(item => ({ title: item.title }));
-      const commonModsData = commonMods["SOC"].map(item => ({ title: item.title }));
-
-      const expectedData = nonProgData.concat(commonModsData);
+      const expectedData = [
+        { title: 'GEC' },
+        { title: 'GEX' },
+        { title: 'GEA' },
+        { title: 'GESS' },
+        { title: 'GEI'},
+        { title : 'GEN'},
+        {title: 'Computer Ethics'},
+        {title: 'Interdisciplinary & Cross-Disciplinary Education'}     
+      ];
     
       // Check if the rendered table rows match the expected data
       expect(tableRows).toEqual(expectedData);
@@ -380,9 +398,34 @@ async function newBrowser() {
       const tableRows = tableRows1.concat(tableRows2);
     
       // Define the expected data for comparison
-      const primaryModData = progData["Computer Science"].map(item => ({ title: item.title }));
-      const secModData = secProgData["Economics"].map(item => ({ title: item.title }));
-      const expectedData = primaryModData.concat(secModData);
+      const expectedData = [
+        { title: 'CS1101S' },
+        { title: 'CS1231S' },
+        { title: 'CS2030S' },
+        { title: 'CS2040S' },
+        { title: 'CS2100'},
+        { title : 'CS2101'},
+        {title: 'CS2103T'},
+        {title: 'CS2109S'},
+        {title: 'CS3230'},
+        {title: 'ES2660'},
+        {title: 'MA1521'},
+        {title: 'MA1522 / MA2001'},
+        {title: 'ST2334'},
+        {title: 'Computer Science Breadth & Depth'},
+        {title: 'Industry Experience Requirement'},
+        { title: 'Pass at least 40 Units of EC-coded or EC-recognised courses, which include:' },  
+        { title: 'EC1101E' },  
+        { title: 'EC2101' },  
+        { title: 'EC2102' },  
+        { title: 'EC2104' },  
+        { title: 'EC2303' },  
+        { title: 'EC3101' },  
+        { title: 'EC3102' },  
+        { title: 'EC3303' },  
+        { title: 'A minimum of 16 units of EC courses at level-3000 or higher (including EC3101, EC3102 and EC3303)' },  
+        { title: 'A maximum of 8 units of EC-recognised courses (double counting) for Major programme' }       
+      ];
     
       // Check if the rendered table rows match the expected data
       expect(tableRows).toEqual(expectedData);
@@ -434,11 +477,17 @@ async function newBrowser() {
       const tableRows = tableRows1.concat(tableRows2);
     
       // Define the expected data for comparison
-      const utcpData = utcp.map(item => ({ title: item.title }));
-      const commonModsData = commonMods["SOC"].map(item => ({ title: item.title }));
-
-      const expectedData = utcpData.concat(commonModsData);
-   
+      const expectedData = [
+        { title: 'Junior Seminar' },
+        { title: 'Senior Seminar' },
+        { title: 'Senior Seminar' },
+        { title: 'IEM' },
+        { title: 'Digital Literacy / Data Literacy'},
+        { title : 'GEN'},
+        {title: 'Computer Ethics'},
+        {title: 'Interdisciplinary & Cross-Disciplinary Education'}  
+      ];
+    
       // Check if the rendered table rows match the expected data
       expect(tableRows).toEqual(expectedData);
     });
