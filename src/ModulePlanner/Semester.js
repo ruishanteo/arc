@@ -16,47 +16,41 @@ import {
 import { Add } from "@mui/icons-material";
 
 import { store } from "../stores/store";
-import {
-  addModule,
-} from "./PlannerStore";
+import { addModule } from "./PlannerStore";
 
-export function Semester({
-  semIndex,
-}) {
-  const sems = useSelector(
-    (state) =>
-      state.plannerSem.semesters[semIndex]
-  );
+export function Semester({ semIndex }) {
+  const sems = useSelector((state) => state.plannerSem.semesters[semIndex]);
 
-  const mods = sems.modules
+  const mods = sems.modules;
 
   const semesterNum = sems.count % 2;
 
   return (
-    
     <TableContainer>
       <form>
         <Table aria-label="mod-table">
           <TableHead
-          sx={{
-            "& th": {
-              backgroundColor: "#cff8df",
-              color: "black",
-              fontSize: "1.2rem",
-            },
-          }}>
+            sx={{
+              "& th": {
+                backgroundColor: "#cff8df",
+                color: "black",
+                fontSize: "1.2rem",
+              },
+            }}
+          >
             <TableRow>
-
               <TableCell align="center" colSpan={6}>
                 {" "}
-                <Typography 
-                sx={{
-                  fontSize: {
-                    lg: 18,
-                    md: 18,
-                  },
-                }}
-                >{sems.header}</Typography>{" "}
+                <Typography
+                  sx={{
+                    fontSize: {
+                      lg: 18,
+                      md: 18,
+                    },
+                  }}
+                >
+                  {sems.header}
+                </Typography>{" "}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -65,42 +59,43 @@ export function Semester({
             {mods.map((_, moduleIndex) => {
               return (
                 <TableRow key={moduleIndex}>
-                  {<ModuleComponent
-                    semIndex={semIndex}
-                    moduleIndex={moduleIndex}
-                    semesterNum={semesterNum}
+                  {
+                    <ModuleComponent
+                      semIndex={semIndex}
+                      moduleIndex={moduleIndex}
+                      semesterNum={semesterNum}
                     />
                   }
                 </TableRow>
-              )
+              );
             })}
             <TableRow>
-            <TableCell align="left">
+              <TableCell align="left">
                 <Button
-                  type="button" 
+                  type="button"
                   variant="contained"
                   onClick={() => store.dispatch(addModule(semIndex))}
-                  startIcon={<Add />}  
-                  sx={{ backgroundColor: "#fcf4d4", color: "neutral",  }}
+                  startIcon={<Add />}
+                  sx={{ backgroundColor: "#fcf4d4", color: "neutral" }}
                 >
-                <Typography
-                sx={{
-                  fontSize: {
-                    lg: 16,
-                    md: 16,
-                    sm: 15,
-                    xs: 14
-                  },
-                }}
-                >Module</Typography>{" "}
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        lg: 16,
+                        md: 16,
+                        sm: 15,
+                        xs: 14,
+                      },
+                    }}
+                  >
+                    Module
+                  </Typography>{" "}
                 </Button>
-            </TableCell>
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </form>
     </TableContainer>
-    
-  )
+  );
 }
-  
