@@ -39,7 +39,7 @@ import {
 
 import { Formik, Form } from "formik";
 
-import { FormTextField } from "../Components";
+import { FormTextField, LoadingSpinner } from "../Components";
 
 function ConfirmPasswordDialog({
   user,
@@ -49,53 +49,62 @@ function ConfirmPasswordDialog({
   handleConfirmChange,
 }) {
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setDialogOpen(false);
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     await onReAuth(user, password)
       .then(async () => {
         await handleConfirmChange();
         setDialogOpen(false);
         if (setEditMode) setEditMode(false);
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setLoading(false));
   };
 
   return (
     <Dialog open={dialogOpen} onClose={handleClose} justifycontent="center">
       <DialogTitle>{"Please enter your password to confirm."}</DialogTitle>
       <DialogContent>
-        <form id="password-form">
-          <TextField
-            id="password-field"
-            label="Password"
-            type="password"
-            autoComplete="on"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </form>
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <form id="password-form">
+            <TextField
+              id="password-field"
+              label="Password"
+              type="password"
+              autoComplete="on"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </form>
+        )}
       </DialogContent>
-      <DialogActions>
-        <Button
-          id="submit-password-button"
-          variant="contained"
-          sx={{ backgroundColor: "#cff8df" }}
-          onClick={handleSubmit}
-        >
-          Confirm
-        </Button>
-        <Button
-          variant="contained"
-          onClick={handleClose}
-          sx={{ backgroundColor: "#fcf4d4" }}
-          autoFocus
-        >
-          Close
-        </Button>
-      </DialogActions>
+      {!loading && (
+        <DialogActions>
+          <Button
+            id="submit-password-button"
+            variant="contained"
+            sx={{ backgroundColor: "#cff8df" }}
+            onClick={handleSubmit}
+          >
+            Confirm
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            sx={{ backgroundColor: "#fcf4d4" }}
+            autoFocus
+          >
+            Close
+          </Button>
+        </DialogActions>
+      )}
     </Dialog>
   );
 }
@@ -139,7 +148,7 @@ function ParticularField({
             <Formik
               enableReinitialize={true}
               initialValues={{ [userProp]: userPropInitialValue }}
-              onSubmit={async (values, { setSubmitting }) => {
+              onSubmit={async (values) => {
                 if (user.providerData[0].providerId === "password") {
                   setDialogOpen(true);
                 } else {
@@ -190,6 +199,7 @@ function ParticularField({
                           backgroundColor: "#cff8df",
                           borderRadius: 1,
                         }}
+                        disabled={!formikProps.dirty}
                       >
                         <Done />
                       </IconButton>
@@ -315,6 +325,7 @@ export function Profile() {
   const user = useAuth();
   const [photo, setPhoto] = useState(null);
   const [photoURL, setPhotoURL] = useState();
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
 
@@ -349,37 +360,56 @@ export function Profile() {
         alignItems: "center",
       }}
     >
-      <Button
-        id="profile-picture-button"
-        component="label"
-        onChange={handlePicChange}
-      >
-        <Avatar
-          src={photoURL}
+      {!loading ? (
+        <Button
+          id="profile-picture-button"
+          component="label"
+          onChange={handlePicChange}
+        >
+          <Avatar
+            src={photoURL}
+            sx={{
+              width: 100,
+              height: 100,
+              cursor: "pointer",
+              marginBottom: 2,
+              marginLeft: 5,
+            }}
+          />
+          <Box sx={{ mt: 5 }}>
+            <IconButton aria-label="upload picture" component="label">
+              <input hidden accept="image/*" type="file" />
+              <PhotoCamera />
+            </IconButton>
+          </Box>
+          <input hidden accept="image/*" multiple type="file" />
+        </Button>
+      ) : (
+        <Box
           sx={{
             width: 100,
             height: 100,
-            cursor: "pointer",
             marginBottom: 2,
-            marginLeft: 5,
           }}
-        />
-        <Box sx={{ mt: 5 }}>
-          <IconButton aria-label="upload picture" component="label">
-            <input hidden accept="image/*" type="file" />
-            <PhotoCamera />
-          </IconButton>
+        >
+          <LoadingSpinner />
         </Box>
-        <input hidden accept="image/*" multiple type="file" />
-      </Button>
+      )}
       {photo && (
         <Button
           id="confirm-profile-picture-button"
           variant="contained"
-          onClick={() =>
-            updateUserProfilePicture(user, photo).then(updateState)
-          }
+          onClick={() => {
+            setLoading(true);
+            updateUserProfilePicture(user, photo)
+              .then(updateState)
+              .finally(() => {
+                setPhoto(null);
+                setLoading(false);
+              });
+          }}
           sx={{ backgroundColor: "#cff8df" }}
+          disabled={loading}
         >
           Update Profile Picture
         </Button>
