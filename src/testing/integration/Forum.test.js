@@ -14,8 +14,8 @@ import {
 import { Route, Routes } from "react-router-dom";
 
 import "./mocks/MockFirebase";
-import { MockProvider, mockStore } from "./mocks/MockProvider";
 import { mockComment, mockPost } from "./mocks/MockData";
+import { TestProviderWithStore, testStore } from "../utils/TestProvider";
 
 import { Forum } from "../../Forum/Forum.js";
 import { Post } from "../../Forum/Post";
@@ -31,12 +31,12 @@ import {
 describe("Integration Test: Forum Page", () => {
   const WrappedForum = () => {
     return (
-      <MockProvider initialRoute="/forum">
+      <TestProviderWithStore initialRoute="/forum">
         <Routes>
           <Route path="/forum" element={<Forum />} />
           <Route path="/forum/:id" element={<Post />} />
         </Routes>
-      </MockProvider>
+      </TestProviderWithStore>
     );
   };
 
@@ -67,7 +67,7 @@ describe("Integration Test: Forum Page", () => {
 
   it("Create post successfully", async () => {
     // Create post
-    await act(() => mockStore.dispatch(createPost(mockPost)));
+    await act(() => testStore.dispatch(createPost(mockPost)));
     await act(() => render(<WrappedForum />));
 
     // Verify that forum view is not empty
@@ -95,7 +95,7 @@ describe("Integration Test: Forum Page", () => {
       title: "edited1",
       post: "edited2",
     };
-    await act(() => mockStore.dispatch(editPost(editedPost, mockPost.id)));
+    await act(() => testStore.dispatch(editPost(editedPost, mockPost.id)));
     await act(() => render(<WrappedForum />));
     await navigateToPost();
 
@@ -106,7 +106,7 @@ describe("Integration Test: Forum Page", () => {
 
   it("Create and render comment successfully", async () => {
     // Create comment
-    await act(() => mockStore.dispatch(createComment(mockComment)));
+    await act(() => testStore.dispatch(createComment(mockComment)));
     await act(() => render(<WrappedForum />));
     await navigateToPost();
 
@@ -124,7 +124,7 @@ describe("Integration Test: Forum Page", () => {
       text: "edited3",
     };
     await act(() =>
-      mockStore.dispatch(editComment(editedComment, mockComment.id))
+      testStore.dispatch(editComment(editedComment, mockComment.id))
     );
     await act(() => render(<WrappedForum />));
     await navigateToPost();
@@ -138,7 +138,7 @@ describe("Integration Test: Forum Page", () => {
 
   it("Delete and render no comments successfully", async () => {
     // Delete comment
-    await act(() => mockStore.dispatch(deleteComment(mockComment.id)));
+    await act(() => testStore.dispatch(deleteComment(mockComment.id)));
     await act(() => render(<WrappedForum />));
     await navigateToPost();
 
@@ -150,7 +150,7 @@ describe("Integration Test: Forum Page", () => {
 
   it("Delete and render no posts correctly", async () => {
     // Delete post
-    await act(() => mockStore.dispatch(deletePost(mockPost.id)));
+    await act(() => testStore.dispatch(deletePost(mockPost.id)));
     await act(() => render(<WrappedForum />));
 
     // Verify that forum view is empty

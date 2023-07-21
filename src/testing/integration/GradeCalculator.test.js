@@ -14,10 +14,10 @@ import {
 } from "@testing-library/react";
 
 import "./mocks/MockFirebase";
-import { MockProvider, delay, mockStore } from "./mocks/MockProvider";
 import { GradeCalculator } from "../../GradeCalculator/GradeCalculator.js";
 import { mockAssessment, mockUser } from "./mocks/MockData";
 import { mockDB } from "./mocks/MockFirestore";
+import { delay, testStore, TestProviderWithStore } from "../utils/TestProvider";
 
 import {
   addAssessment,
@@ -36,9 +36,9 @@ describe("Integration Test: Grade Calculator Page", () => {
 
   const WrappedCalculator = () => {
     return (
-      <MockProvider>
+      <TestProviderWithStore>
         <GradeCalculator />
-      </MockProvider>
+      </TestProviderWithStore>
     );
   };
 
@@ -59,7 +59,7 @@ describe("Integration Test: Grade Calculator Page", () => {
 
   it("Add module successfully", async () => {
     // Add assessment
-    await act(() => mockStore.dispatch(addAssessment));
+    await act(() => testStore.dispatch(addAssessment));
     assessmentIndex = 0;
     componentIndex = 0;
 
@@ -76,7 +76,7 @@ describe("Integration Test: Grade Calculator Page", () => {
 
   it("Add component successfully", async () => {
     // Add component
-    await act(() => mockStore.dispatch(addComponent(assessmentIndex)));
+    await act(() => testStore.dispatch(addComponent(assessmentIndex)));
     componentIndex += 1;
 
     let container;
@@ -95,7 +95,7 @@ describe("Integration Test: Grade Calculator Page", () => {
   it("Delete component successfully", async () => {
     // Delete component
     await act(() =>
-      mockStore.dispatch(deleteComponent(assessmentIndex, componentIndex))
+      testStore.dispatch(deleteComponent(assessmentIndex, componentIndex))
     );
     componentIndex -= 1;
 
@@ -117,13 +117,13 @@ describe("Integration Test: Grade Calculator Page", () => {
     for (const key in mockAssessment.components[componentIndex]) {
       const value = mockAssessment.components[componentIndex][key];
       await act(() =>
-        mockStore.dispatch(
+        testStore.dispatch(
           updateComponent(assessmentIndex, componentIndex, key, value)
         )
       );
     }
     await act(() =>
-      mockStore.dispatch(
+      testStore.dispatch(
         updateAssessment(assessmentIndex, mockAssessment.title)
       )
     );
@@ -152,7 +152,7 @@ describe("Integration Test: Grade Calculator Page", () => {
 
   it("Delete module successfully", async () => {
     // Delete component
-    await act(() => mockStore.dispatch(deleteAssessment(assessmentIndex)));
+    await act(() => testStore.dispatch(deleteAssessment(assessmentIndex)));
     assessmentIndex -= 1;
     await act(() => render(<WrappedCalculator />));
 
@@ -164,7 +164,7 @@ describe("Integration Test: Grade Calculator Page", () => {
 
   it("Save calculator successfully", async () => {
     // Add module
-    await act(() => mockStore.dispatch(addAssessment));
+    await act(() => testStore.dispatch(addAssessment));
     assessmentIndex = 0;
 
     let container;
@@ -180,13 +180,13 @@ describe("Integration Test: Grade Calculator Page", () => {
     );
 
     // Save calculator
-    await act(() => mockStore.dispatch(saveCalculator(mockUser.uid)));
+    await act(() => testStore.dispatch(saveCalculator(mockUser.uid)));
     expect(mockDB.assessments.length).toBeGreaterThan(0);
   });
 
   it("Clear calculator successfully", async () => {
     // Clear calculator
-    await act(() => mockStore.dispatch(clearCalculator(mockUser.uid)));
+    await act(() => testStore.dispatch(clearCalculator(mockUser.uid)));
     await act(() => render(<WrappedCalculator />));
 
     expect(

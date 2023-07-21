@@ -2,7 +2,7 @@ import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider, createTheme } from "@mui/material";
 
-import { store } from "../../../stores/store.js";
+import { store } from "../../stores/store.js";
 
 const theme = createTheme({
   components: {
@@ -49,7 +49,17 @@ const theme = createTheme({
   },
 });
 
-export const MockProvider = ({ initialRoute = "/", children }) => {
+export const testStore = store;
+
+export const TestProvider = ({ initialRoute = "/", children }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <MemoryRouter initialEntries={[initialRoute]}>{children}</MemoryRouter>
+    </ThemeProvider>
+  );
+};
+
+export const TestProviderWithStore = ({ initialRoute = "/", children }) => {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
@@ -62,5 +72,3 @@ export const MockProvider = ({ initialRoute = "/", children }) => {
 export async function delay(t) {
   await new Promise((r) => setTimeout(r, t));
 }
-
-export const mockStore = store;

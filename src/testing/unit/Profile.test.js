@@ -5,9 +5,11 @@ jest.mock("../../UserAuth/FirebaseHooks");
 
 import React from "react";
 import "@testing-library/jest-dom";
+import { Route, Routes } from "react-router-dom";
 import { act, fireEvent, render } from "@testing-library/react";
 
 import { Profile } from "../../UserAuth/Profile";
+import { TestProvider } from "../utils/TestProvider";
 
 import {
   updateUserProfilePicture,
@@ -23,11 +25,26 @@ let password = "123456";
 const mockUser = {
   displayName: "Tester",
   email: "tester@test.com",
+  providerData: [
+    {
+      providerId: "password",
+    },
+  ],
   password: "123456",
   photoURL: "",
 };
 
 describe("Profile", () => {
+  const WrappedProfile = () => {
+    return (
+      <TestProvider initialRoute="/">
+        <Routes>
+          <Route path="/" element={<Profile />} />
+        </Routes>
+      </TestProvider>
+    );
+  };
+
   beforeEach(() => {
     useAuth.mockReturnValue(mockUser);
   });
@@ -47,7 +64,7 @@ describe("Profile", () => {
   test("Render profile page correctly", async () => {
     let container;
     await act(() => {
-      const { container: renderedContainer } = render(<Profile />);
+      const { container: renderedContainer } = render(<WrappedProfile />);
       container = renderedContainer;
     });
 
@@ -71,7 +88,7 @@ describe("Profile", () => {
 
     let container;
     await act(() => {
-      const { baseElement: renderedContainer } = render(<Profile />);
+      const { baseElement: renderedContainer } = render(<WrappedProfile />);
       container = renderedContainer;
     });
 
@@ -96,7 +113,7 @@ describe("Profile", () => {
 
     let container;
     await act(() => {
-      const { baseElement: renderedContainer } = render(<Profile />);
+      const { baseElement: renderedContainer } = render(<WrappedProfile />);
       container = renderedContainer;
     });
 
@@ -126,7 +143,7 @@ describe("Profile", () => {
 
     let container;
     await act(() => {
-      const { baseElement: renderedContainer } = render(<Profile />);
+      const { baseElement: renderedContainer } = render(<WrappedProfile />);
       container = renderedContainer;
     });
 
@@ -154,7 +171,7 @@ describe("Profile", () => {
 
     let container;
     await act(() => {
-      const { baseElement: renderedContainer } = render(<Profile />);
+      const { baseElement: renderedContainer } = render(<WrappedProfile />);
       container = renderedContainer;
     });
 
@@ -186,7 +203,7 @@ describe("Profile", () => {
 
     let container;
     await act(() => {
-      const { baseElement: renderedContainer } = render(<Profile />);
+      const { baseElement: renderedContainer } = render(<WrappedProfile />);
       container = renderedContainer;
     });
 
