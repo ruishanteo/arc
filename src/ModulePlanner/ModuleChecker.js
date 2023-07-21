@@ -325,6 +325,7 @@ export function ModuleChecker() {
             options={secOptions.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             filterOptions={handleFilterOptions}
             sx={{ width: isNarrowScreen ? '100%' : 300 }}
             value={degrees[1] || null}         
@@ -344,6 +345,7 @@ export function ModuleChecker() {
             id="addon2-selector"           
             options={progs.sort((a, b) => -b.title.localeCompare(a.title))}
             getOptionLabel={(option) => option.title}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             sx={{ width: isNarrowScreen ? '100%' : 300, zIndex: 1 }}
             value={degrees[2] || null}         
             onChange={(_, value) => {
