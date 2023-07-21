@@ -50,10 +50,10 @@ const MODULE_COMPONENT_SELECTOR = ".module-card";
 let browser;
 let page;
 
-let name = "tester";
-let email = `tester@test.com`;
+let name = "plannertester";
+let email = `plannertester@test.com`;
 let password = "123456";
-const user_registered = true;
+const user_registered = false;
 let consoleMessages = [];
 
 const path = require('path');
@@ -131,14 +131,6 @@ async function newBrowser() {
     await optionHandle.click();
   }
   
-  function appendSemIndex(selector, semIndex) {
-    return `${selector}-${semIndex}`;
-  }
-  
-  function appendModuleIndex(selector, semIndex, moduleIndex) {
-    console.log(selector, semIndex, moduleIndex);
-    return `${appendSemIndex(semIndex)}-${moduleIndex}`;
-  }
   /* -------------------------------------------------------------------------- */
 
   describe("Module Planner", () => {
