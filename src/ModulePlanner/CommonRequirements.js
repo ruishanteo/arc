@@ -216,7 +216,6 @@ export function CommonRequirements() {
               <TableRow key = {1}>
               <TableCell 
                 id={`common-mod-table1`}
-                className="commonTable1Cell"
                 align="center" 
                 sx={{
                   backgroundColor: '#FFFFFF',
@@ -234,7 +233,7 @@ export function CommonRequirements() {
     const tab2 = () => {
         if (prog === "NUSC") {
             return (
-                <TableRow key = {2} className="commonTable2Rows">
+                <TableRow key = {2}>
     
                 </TableRow>
             );
@@ -260,7 +259,7 @@ export function CommonRequirements() {
         }))
       } else {
         return (
-              <TableRow key = {2} className="commonTable2Rows">
+              <TableRow key = {2}>
               </TableRow>
           );
       }

@@ -612,7 +612,7 @@ export function ProgRequirements() {
     }
   }
 
-  const tab = () => {
+  const tab = () => { 
     if (deg in progMods) {
       return (
         progMods[deg].map((module, index) => {
@@ -665,7 +665,7 @@ export function ProgRequirements() {
                 className="progTable2Rows">
               <TableCell
                 id={`prog-mod-table2-${index}`}
-                data-testid={`prog-mod-table2-${index}`}
+                data-testid={`prog-mod-table2-${index}`} 
                 className="progTable2Cell"
                 align="center" 
                 sx={{
