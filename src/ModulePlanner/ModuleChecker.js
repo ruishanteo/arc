@@ -119,17 +119,28 @@ export function ModuleChecker() {
   const degrees = useSelector((state) => state.plannerDeg.degrees);
   const semesters = useSelector((state) => state.plannerSem.semesters);
 
-  const totalModuleCredits = semesters.reduce((total, semester) => {
-    const uniqueModules = new Set();
-    const semesterCredits = semester.modules.reduce((sum, module) => {
-      if (!uniqueModules.has(module.modInfo.moduleId)) {
-        uniqueModules.add(module.modInfo.moduleId);
-        return sum + parseInt(module.modInfo.moduleCredit, 10);
+  const modulesList = semesters.reduce((modules, semester) => {
+    return modules.concat(semester.modules);
+  }, []);
+
+  function calculateTotalModuleCredits(modulesList) {
+    let uniqueModuleCreditsMap = [];
+    let totalModuleCredits = 0;
+  
+    modulesList.forEach((moduleObj) => {
+      const moduleCode = moduleObj.modInfo.moduleCode;
+      const moduleCredit = parseInt(moduleObj.modInfo.moduleCredit, 10);
+  
+      if (!uniqueModuleCreditsMap.includes(moduleCode)) {
+        uniqueModuleCreditsMap.push(moduleCode);
+        totalModuleCredits += moduleCredit;
       }
-      return sum;
-    }, 0);
-    return total + semesterCredits;
-  }, 0);
+    });
+
+    return totalModuleCredits;
+  }
+
+  const totalModuleCredits = calculateTotalModuleCredits(modulesList);
 
   const handleClickOpen = () => {
     setOpen(true);
