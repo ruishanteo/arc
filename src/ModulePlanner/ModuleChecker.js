@@ -217,7 +217,7 @@ export function ModuleChecker() {
   };
  
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ paddingBottom: "3rem" }}>
       
       <Box
         align="center"
