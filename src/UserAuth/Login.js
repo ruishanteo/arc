@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import {
   logInWithEmailAndPassword,
+  useAuth,
   signInWithGoogle,
 } from "./FirebaseHooks.js";
 
@@ -14,7 +15,13 @@ import LooksIcon from "@mui/icons-material/Looks";
 import { FormTextField } from "../Components/FormTextField.js";
 
 export function Login() {
+  const user = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) navigate("/home");
+  }, [user, navigate]);
+
   return (
     <Box align="center">
       <Box

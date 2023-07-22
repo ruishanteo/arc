@@ -19,6 +19,15 @@ import desktopImage from "../Images/homeDesktop.jpeg";
 import mobileImage from "../Images/homeMobile.jpeg";
 
 import Typewriter from "typewriter-effect";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../UserAuth/Firebase.js";
 
 export function Home() {
   const user = useAuth();
@@ -30,7 +39,6 @@ export function Home() {
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth);
     };
-
     window.addEventListener("resize", handleWindowResize);
 
     return () => {
@@ -43,6 +51,24 @@ export function Home() {
       if (user.displayName) {
         setName(user.displayName);
       }
+
+      async function createUserCollection() {
+        const q = query(collection(db, "users"), where("uid", "==", user.uid));
+        const docs = await getDocs(q);
+        if (docs.docs.length === 0) {
+          await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
+            name: user.displayName,
+            authProvider:
+              user.providerData[0].providerId === "password"
+                ? "local"
+                : "google",
+            email: user.email,
+            photoURL: user.photoURL,
+          });
+        }
+      }
+      createUserCollection();
     }
   }, [user]);
 

@@ -258,6 +258,7 @@ function DeleteAccount({ user, handleUpdate }) {
     await onReAuthGoogle(user)
       .then(async () => {
         await handleConfirmChange();
+        setConfirmDeleteAccOpen(false);
       })
       .catch(() => {});
   };

@@ -86,9 +86,9 @@ const theme = createTheme({
       md: 900,
       mdl: 990,
       lg: 1200,
-      xl: 1536
-    }
-  }
+      xl: 1536,
+    },
+  },
 });
 
 function App() {
@@ -140,16 +140,14 @@ function App() {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route
                       path="/GradeCalculator"
                       element={<GradeCalculator />}
                     />
-                    <Route
-                      path="/ModulePlanner"
-                      element={<ModulePlanner />}
-                    />
+                    <Route path="/ModulePlanner" element={<ModulePlanner />} />
                     <Route path="/forum" element={<Forum />} />
                     <Route exact path="/forum/new" element={<NewPost />} />
                     <Route exact path="forum/:id" element={<Post />} />
