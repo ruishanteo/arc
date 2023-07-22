@@ -9,6 +9,7 @@ import {
   onDeleteUser,
   onReAuth,
   useAuth,
+  onReAuthGoogle,
 } from "./FirebaseHooks.js";
 
 import {
@@ -25,6 +26,7 @@ import {
   Tooltip,
   Typography,
   Divider,
+  DialogContentText,
 } from "@mui/material";
 
 import {
@@ -37,7 +39,7 @@ import {
 
 import { Formik, Form } from "formik";
 
-import { FormTextField } from "../Components";
+import { FormTextField, LoadingSpinner } from "../Components";
 
 function ConfirmPasswordDialog({
   user,
@@ -47,53 +49,62 @@ function ConfirmPasswordDialog({
   handleConfirmChange,
 }) {
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setDialogOpen(false);
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     await onReAuth(user, password)
       .then(async () => {
         await handleConfirmChange();
         setDialogOpen(false);
         if (setEditMode) setEditMode(false);
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setLoading(false));
   };
 
   return (
     <Dialog open={dialogOpen} onClose={handleClose} justifycontent="center">
       <DialogTitle>{"Please enter your password to confirm."}</DialogTitle>
       <DialogContent>
-        <form id="password-form">
-          <TextField
-            id="password-field"
-            label="Password"
-            type="password"
-            autoComplete="on"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </form>
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <form id="password-form">
+            <TextField
+              id="password-field"
+              label="Password"
+              type="password"
+              autoComplete="on"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </form>
+        )}
       </DialogContent>
-      <DialogActions>
-        <Button
-          id="submit-password-button"
-          variant="contained"
-          sx={{ backgroundColor: "#cff8df" }}
-          onClick={handleSubmit}
-        >
-          Confirm
-        </Button>
-        <Button
-          variant="contained"
-          onClick={handleClose}
-          sx={{ backgroundColor: "#fcf4d4" }}
-          autoFocus
-        >
-          Close
-        </Button>
-      </DialogActions>
+      {!loading && (
+        <DialogActions>
+          <Button
+            id="submit-password-button"
+            variant="contained"
+            sx={{ backgroundColor: "#cff8df" }}
+            onClick={handleSubmit}
+          >
+            Confirm
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            sx={{ backgroundColor: "#fcf4d4" }}
+            autoFocus
+          >
+            Close
+          </Button>
+        </DialogActions>
+      )}
     </Dialog>
   );
 }
@@ -113,6 +124,15 @@ function ParticularField({
   const [editMode, setEditMode] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  const handleSubmitGoogle = async (handleConfirmChange) => {
+    await onReAuthGoogle(user)
+      .then(async () => {
+        await handleConfirmChange();
+        if (setEditMode) setEditMode(false);
+      })
+      .catch(() => {});
+  };
+
   return (
     <Grid
       container
@@ -128,8 +148,12 @@ function ParticularField({
             <Formik
               enableReinitialize={true}
               initialValues={{ [userProp]: userPropInitialValue }}
-              onSubmit={async (values, { setSubmitting }) => {
-                setDialogOpen(true);
+              onSubmit={async (values) => {
+                if (user.providerData[0].providerId === "password") {
+                  setDialogOpen(true);
+                } else {
+                  await handleSubmitGoogle(() => handleUpdate(values));
+                }
               }}
               validationSchema={userPropSchema}
             >
@@ -175,6 +199,7 @@ function ParticularField({
                           backgroundColor: "#cff8df",
                           borderRadius: 1,
                         }}
+                        disabled={!formikProps.dirty}
                       >
                         <Done />
                       </IconButton>
@@ -226,13 +251,30 @@ function ParticularField({
 }
 
 function DeleteAccount({ user, handleUpdate }) {
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [confirmPWDialogOpen, setConfirmPWDialogOpen] = useState(false);
+  const [confirmDeleteAccOpen, setConfirmDeleteAccOpen] = useState(false);
+
+  const handleSubmitGoogle = async (handleConfirmChange) => {
+    await onReAuthGoogle(user)
+      .then(async () => {
+        await handleConfirmChange();
+        setConfirmDeleteAccOpen(false);
+      })
+      .catch(() => {});
+  };
+
+  const handleClick = (isEmail) => {
+    isEmail ? setConfirmPWDialogOpen(true) : setConfirmDeleteAccOpen(true);
+  };
+
   return (
     <>
       <Button
         id="delete-account-button"
         variant="contained"
-        onClick={() => setDialogOpen(true)}
+        onClick={() =>
+          handleClick(user.providerData[0].providerId === "password")
+        }
         sx={{
           backgroundColor: "#ffe0f7",
           mt: 4,
@@ -245,10 +287,37 @@ function DeleteAccount({ user, handleUpdate }) {
       </Button>
       <ConfirmPasswordDialog
         user={user}
-        dialogOpen={dialogOpen}
-        setDialogOpen={setDialogOpen}
+        dialogOpen={confirmPWDialogOpen}
+        setDialogOpen={setConfirmPWDialogOpen}
         handleConfirmChange={() => onDeleteUser(user)}
       />
+      <Dialog
+        open={confirmDeleteAccOpen}
+        onClose={() => setConfirmDeleteAccOpen(false)}
+      >
+        <DialogTitle>{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Doing so will delete your account and all its data. Click confirm to
+            proceed.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setConfirmDeleteAccOpen(false)}
+            sx={{ color: "#b7b0f5" }}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={() => handleSubmitGoogle(() => onDeleteUser(user))}
+            autoFocus
+            variant="contained"
+          >
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
@@ -257,6 +326,7 @@ export function Profile() {
   const user = useAuth();
   const [photo, setPhoto] = useState(null);
   const [photoURL, setPhotoURL] = useState();
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
 
@@ -291,37 +361,56 @@ export function Profile() {
         alignItems: "center",
       }}
     >
-      <Button
-        id="profile-picture-button"
-        component="label"
-        onChange={handlePicChange}
-      >
-        <Avatar
-          src={photoURL}
+      {!loading ? (
+        <Button
+          id="profile-picture-button"
+          component="label"
+          onChange={handlePicChange}
+        >
+          <Avatar
+            src={photoURL}
+            sx={{
+              width: 100,
+              height: 100,
+              cursor: "pointer",
+              marginBottom: 2,
+              marginLeft: 5,
+            }}
+          />
+          <Box sx={{ mt: 5 }}>
+            <IconButton aria-label="upload picture" component="label">
+              <input hidden accept="image/*" type="file" />
+              <PhotoCamera />
+            </IconButton>
+          </Box>
+          <input hidden accept="image/*" multiple type="file" />
+        </Button>
+      ) : (
+        <Box
           sx={{
             width: 100,
             height: 100,
-            cursor: "pointer",
             marginBottom: 2,
-            marginLeft: 5,
           }}
-        />
-        <Box sx={{ mt: 5 }}>
-          <IconButton aria-label="upload picture" component="label">
-            <input hidden accept="image/*" type="file" />
-            <PhotoCamera />
-          </IconButton>
+        >
+          <LoadingSpinner />
         </Box>
-        <input hidden accept="image/*" multiple type="file" />
-      </Button>
+      )}
       {photo && (
         <Button
           id="confirm-profile-picture-button"
           variant="contained"
-          onClick={() =>
-            updateUserProfilePicture(user, photo).then(updateState)
-          }
+          onClick={() => {
+            setLoading(true);
+            updateUserProfilePicture(user, photo)
+              .then(updateState)
+              .finally(() => {
+                setPhoto(null);
+                setLoading(false);
+              });
+          }}
           sx={{ backgroundColor: "#cff8df" }}
+          disabled={loading}
         >
           Update Profile Picture
         </Button>
@@ -350,34 +439,40 @@ export function Profile() {
           }
         />
 
-        <ParticularField
-          user={user}
-          userProp="email"
-          userPropLabel="Email"
-          userPropType="email"
-          userPropInitialValue={email}
-          userPropSchema={Yup.object().shape({
-            email: Yup.string().email("Invalid email").required("Required"),
-          })}
-          handleUpdate={async (values) =>
-            updateUserEmail(user, values.email).then(updateState)
-          }
-        />
+        {user.providerData[0].providerId === "password" && (
+          <>
+            <ParticularField
+              user={user}
+              userProp="email"
+              userPropLabel="Email"
+              userPropType="email"
+              userPropInitialValue={email}
+              userPropSchema={Yup.object().shape({
+                email: Yup.string().email("Invalid email").required("Required"),
+              })}
+              handleUpdate={async (values) =>
+                updateUserEmail(user, values.email).then(updateState)
+              }
+            />
 
-        <ParticularField
-          user={user}
-          userProp="password"
-          userPropLabel="Password"
-          userPropType="password"
-          userPropPlaceholder={"Change password"}
-          userPropInitialValue={""}
-          userPropSchema={Yup.object().shape({
-            password: Yup.string().required("Required").min(6, "Too short!"),
-          })}
-          handleUpdate={async (values) =>
-            updateUserPassword(user, values.password)
-          }
-        />
+            <ParticularField
+              user={user}
+              userProp="password"
+              userPropLabel="Password"
+              userPropType="password"
+              userPropPlaceholder={"Change password"}
+              userPropInitialValue={""}
+              userPropSchema={Yup.object().shape({
+                password: Yup.string()
+                  .required("Required")
+                  .min(6, "Too short!"),
+              })}
+              handleUpdate={async (values) =>
+                updateUserPassword(user, values.password)
+              }
+            />
+          </>
+        )}
       </Box>
 
       <DeleteAccount user={user} />
