@@ -119,12 +119,28 @@ export function ModuleChecker() {
   const degrees = useSelector((state) => state.plannerDeg.degrees);
   const semesters = useSelector((state) => state.plannerSem.semesters);
 
-  const totalModuleCredits = semesters.reduce((total, semester) => {
-    const semesterCredits = semester.modules.reduce((sum, module) => {
-      return sum + parseInt(module.modInfo.moduleCredit, 10);
-    }, 0);
-    return total + semesterCredits;
-  }, 0);
+  const modulesList = semesters.reduce((modules, semester) => {
+    return modules.concat(semester.modules);
+  }, []);
+
+  function calculateTotalModuleCredits(modulesList) {
+    let uniqueModuleCreditsMap = [];
+    let totalModuleCredits = 0;
+  
+    modulesList.forEach((moduleObj) => {
+      const moduleCode = moduleObj.modInfo.moduleCode;
+      const moduleCredit = parseInt(moduleObj.modInfo.moduleCredit, 10);
+  
+      if (!uniqueModuleCreditsMap.includes(moduleCode)) {
+        uniqueModuleCreditsMap.push(moduleCode);
+        totalModuleCredits += moduleCredit;
+      }
+    });
+
+    return totalModuleCredits;
+  }
+
+  const totalModuleCredits = calculateTotalModuleCredits(modulesList);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -201,7 +217,7 @@ export function ModuleChecker() {
   };
  
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ paddingBottom: "3rem" }}>
       
       <Box
         align="center"
@@ -317,6 +333,7 @@ export function ModuleChecker() {
             options={secOptions.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.title}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             filterOptions={handleFilterOptions}
             sx={{ width: isNarrowScreen ? '100%' : 300 }}
             value={degrees[1] || null}         
@@ -336,6 +353,7 @@ export function ModuleChecker() {
             id="addon2-selector"           
             options={progs.sort((a, b) => -b.title.localeCompare(a.title))}
             getOptionLabel={(option) => option.title}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             sx={{ width: isNarrowScreen ? '100%' : 300, zIndex: 1 }}
             value={degrees[2] || null}         
             onChange={(_, value) => {
@@ -424,7 +442,7 @@ export function ModuleChecker() {
       variant='determinate'
       color="neutral"
       size="sm"
-      value={(totalModuleCredits/160)*100}
+      value={totalModuleCredits > 160 ? 100 : (totalModuleCredits / 160) * 100}
       sx={{
         height: '2.5rem',
         borderRadius: 10,

@@ -16,7 +16,7 @@ export function PlannerInstructions({
         }
 
         const showInstructions = localStorage.getItem('showInstructions');
-        setVisible(showInstructions !== 'true');
+        setVisible(showInstructions !== 'false');
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
@@ -26,6 +26,7 @@ export function PlannerInstructions({
 
     function toggleVisibility(v) {
         setVisible(v);
+        localStorage.setItem('showInstructions', v ? 'true' : 'false');
     }
 
 
