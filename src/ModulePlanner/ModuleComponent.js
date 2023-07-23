@@ -49,7 +49,7 @@ export function ModuleComponent({
   const handleFilterOptions = (options, state) => {
     const { inputValue } = state;
   
-    if (degrees.length > 0 && module.category.title === "UE") {
+    if (degrees.length > 0 && module.category.title === "UE" && degrees[0] !== null && typeof degrees[0] !== 'undefined') {
       const deg = degrees[0].title;
       const moduleCodes = progMods[deg].flatMap((item) => item.moduleCode);
   
@@ -77,7 +77,7 @@ export function ModuleComponent({
   const handleFilterOptionsCateg = (options, state) => {
     const { inputValue } = state;
   
-    if (degrees.length > 0) {
+    if (degrees.length > 0 && degrees[0] !== null && typeof degrees[0] !== 'undefined') {
       const deg = degrees[0].title;
       const moduleCodes = progMods[deg].flatMap((item) => item.moduleCode);
   
@@ -96,13 +96,12 @@ export function ModuleComponent({
   };
 
   const selector = () => {
-    if (semesterNum === 0) {
+    if (semesterNum !== 0) {
       return (
         <Autocomplete
         disablePortal
         disableClearable
-        id={`module-selector-${semIndex}-${moduleIndex}`}
-        data-testid={`module-selector-${semIndex}-${moduleIndex}`}     
+        id={`module-selector-${semIndex}-${moduleIndex}`}     
         options={sem1Mods}
         filterOptions={handleFilterOptions}
         groupBy={(sem1Mods) => sem1Mods.code}
@@ -122,8 +121,7 @@ export function ModuleComponent({
         <Autocomplete
         disablePortal
         disableClearable
-        id={`module-selector-${semIndex}-${moduleIndex}`}
-        data-testid={`module-selector-${semIndex}-${moduleIndex}`}           
+        id={`module-selector-${semIndex}-${moduleIndex}`}           
         options={sem2Mods}
         filterOptions={handleFilterOptions}
         groupBy={(sem2Mods) => sem2Mods.code}
@@ -147,7 +145,6 @@ export function ModuleComponent({
       <TableCell align="center">
         <Grid item xs={6}>
           <Button
-            id={`delete-module-planner-button-${semIndex}-${moduleIndex}`}
             type="button"
             onClick={() => store.dispatch(deleteModule(semIndex, moduleIndex))}
             sx={{ 
