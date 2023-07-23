@@ -137,7 +137,9 @@ export function Landing() {
           <Typography sx={{ color: "black" }} variant="h4">
             Boost your productivity.
           </Typography>
-          <Typography>Some description about the place.</Typography>
+          <Typography>
+            Includes grade calculator, module planner and forum.
+          </Typography>
         </Box>
       </Box>
     </div>
