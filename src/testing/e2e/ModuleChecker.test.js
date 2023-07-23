@@ -454,8 +454,8 @@ async function newBrowser() {
       await page.waitForTimeout(TIMEOUT);
       await page.reload();
       await page.waitForTimeout(TIMEOUT);
-      await page.waitForSelector(INSTRUCTION_CLEAR_BUTTON_SELECTOR);
-      await page.click(INSTRUCTION_CLEAR_BUTTON_SELECTOR);
+      //await page.waitForSelector(INSTRUCTION_CLEAR_BUTTON_SELECTOR);
+      //await page.click(INSTRUCTION_CLEAR_BUTTON_SELECTOR);
       await page.waitForSelector("#degree-selector");
       const selectedOption = await page.evaluate(() => {
         const autocompleteInput = document.querySelector("#degree-selector");
@@ -471,8 +471,8 @@ async function newBrowser() {
       await page.waitForTimeout(TIMEOUT);
       await page.reload();
       await page.waitForTimeout(TIMEOUT);
-      await page.waitForSelector(INSTRUCTION_CLEAR_BUTTON_SELECTOR);
-      await page.click(INSTRUCTION_CLEAR_BUTTON_SELECTOR);
+      //await page.waitForSelector(INSTRUCTION_CLEAR_BUTTON_SELECTOR);
+      //await page.click(INSTRUCTION_CLEAR_BUTTON_SELECTOR);
       const emptyTableText = await page.evaluate(() => {
         const emptyTableRow = document.querySelector(".progTable1Cell");
         return emptyTableRow.innerText;
