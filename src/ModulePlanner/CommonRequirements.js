@@ -189,7 +189,7 @@ export function CommonRequirements() {
               </TableCell>
               </TableRow>
               )
-          }))
+          })
         } else {
             let nonProg = require('../module_data/nonprog.json');
             return (
@@ -264,7 +264,6 @@ export function CommonRequirements() {
               </TableRow>
           );
       }
-    }
   };
 
   return (

@@ -612,49 +612,49 @@ export function ProgRequirements() {
     }
   }
 
-    const tab = () => {
-      if (deg in progMods) {
-        return (
-          progMods[deg].map((module, index) => {
-            return (
-              <TableRow 
-                key={index}
-                className="progTable1Rows">
-              <TableCell 
-                id={`prog-mod-table1-${index}`}
-                data-testid={`prog-mod-table1-${index}`}
-                className="progTable1Cell"
-                align="center" 
-                sx={{
-                  backgroundColor: checkPresent(module.moduleCode),
-                  color: "black",
-                  fontSize: "1.0rem",
-              }}>
-                  {module.title}
-              </TableCell>
-              </TableRow>
-            )
-          }))
-      } else {
-        return (
-              <TableRow key = {1} className="progTable1Rows">
-              <TableCell 
-                id={`prog-mod-table1`}
-                data-testid={`prog-mod-table1`}
-                className="progTable1Cell"
-                align="center" 
-                sx={{
-                  backgroundColor: '#FFFFFF',
-                  color: "black",
-                  fontSize: "1.0rem",
-              }}>
-                  {"Please select a degree"}
-              </TableCell>
-              </TableRow>
-          );
-      }
+  const tab = () => {
+    if (deg in progMods) {
+      return (
+        progMods[deg].map((module, index) => {
+          return (
+            <TableRow 
+              key={index}
+              className="progTable1Rows">
+            <TableCell 
+              id={`prog-mod-table1-${index}`}
+              data-testid={`prog-mod-table1-${index}`}
+              className="progTable1Cell"
+              align="center" 
+              sx={{
+                backgroundColor: checkPresent(module.moduleCode),
+                color: "black",
+                fontSize: "1.0rem",
+            }}>
+                {module.title}
+            </TableCell>
+            </TableRow>
+          )
+        }))
+    } else {
+      return (
+            <TableRow key = {1} className="progTable1Rows">
+            <TableCell 
+              id={`prog-mod-table1`}
+              data-testid={`prog-mod-table1`}
+              className="progTable1Cell"
+              align="center" 
+              sx={{
+                backgroundColor: '#FFFFFF',
+                color: "black",
+                fontSize: "1.0rem",
+            }}>
+                {"Please select a degree"}
+            </TableCell>
+            </TableRow>
+        );
     }
   };
+  
 
   const tab2 = () => {
     if (secDeg in secondProg) {
@@ -677,12 +677,13 @@ export function ProgRequirements() {
               </TableCell>
               </TableRow>
             )
-          }))
+          })
       } else {
         return (
               <TableRow key = {2} className="progTable2Rows">
               </TableRow>
-    }
+        )
+      }
   };
 
   return (
