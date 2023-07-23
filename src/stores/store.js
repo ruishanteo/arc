@@ -4,7 +4,6 @@ import thunk from "redux-thunk";
 import { forumReducer } from "../Forum/ForumStore";
 import { notificationsReducer } from "../Notifications";
 import { userReducer } from "../UserAuth/UserStore";
-
 import { calculatorReducer } from "../GradeCalculator/GradeStore";
 import {
   plannerDegReducer,

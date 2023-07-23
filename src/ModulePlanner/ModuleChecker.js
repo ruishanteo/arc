@@ -236,13 +236,15 @@ export function ModuleChecker() {
           justifyContent: "right"}}>
 
           <IconButton
-          variant="contained"
-          color="#fcf4d4"
-          onClick={toggleVisibility}>
-          <Help />
+            id="instruction-open-button"
+            variant="contained"
+            color="#fcf4d4"
+            onClick={toggleVisibility}>
+            <Help />
           </IconButton>
 
           <LoadingButton
+            id="clear-planner-button"
             variant="contained"
             sx={{
               backgroundColor: "#fcf4d4",
@@ -257,6 +259,7 @@ export function ModuleChecker() {
           </LoadingButton>
 
           <LoadingButton
+            id="save-planner-button"
             variant="contained"
             sx={{
               ml: 2,
@@ -289,7 +292,11 @@ export function ModuleChecker() {
             <Button onClick={handleClose} sx={{ color: "#b7b0f5" }}>
               Cancel
             </Button>
-            <Button onClick={handleClear} autoFocus variant="contained">
+            <Button 
+              id="confirm-clear-planner-button"
+              onClick={handleClear} 
+              autoFocus 
+              variant="contained">
               Confirm
             </Button>
           </DialogActions>
@@ -298,9 +305,10 @@ export function ModuleChecker() {
       
      <Box sx={{ flexGrow: 1}}>
         <Grid container spacing={4} direction={isNarrowScreen ? 'column' : 'row'}>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={4} >
             <Autocomplete
             disablePortal
+            data-testid="degree-selector"
             id="degree-selector"           
             options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
@@ -365,6 +373,7 @@ export function ModuleChecker() {
           <Grid container spacing={1}>
             <Grid item xs={4} sm={3} md={2} xl={2}>
               <Button
+                id="add-semester-button"
                 variant="contained"
                 onClick= {() => {
                   store.dispatch(addSem)}}
@@ -380,6 +389,7 @@ export function ModuleChecker() {
 
             <Grid item xs={4} sm={3} md={2} xl={2}>
               <Button
+                id="remove-semester-button"
                 variant="contained"
                 onClick= {() => {
                   store.dispatch(deleteSem(semesters.length-1))}}
@@ -398,7 +408,10 @@ export function ModuleChecker() {
       <Grid container spacing={{ xs: 0, sm: 2 }}>
         {semesters.map((_, semIndex) => {
         return (
-          <Grid item xs={12} mdl={12} lg={6} key={semIndex}>
+          <Grid 
+            item xs={12} mdl={12} lg={6} 
+            key={semIndex}
+            className="semester-card">
             {<Semester
                 key={semIndex}
                 semIndex={semIndex}
@@ -425,6 +438,7 @@ export function ModuleChecker() {
     
     <Box>
     <LinearProgress 
+      id="linear-progress-credits"
       variant='determinate'
       color="neutral"
       size="sm"
@@ -437,6 +451,7 @@ export function ModuleChecker() {
       }}
     ></LinearProgress>
       <Typography
+        id="progress-total-credits"
         level="body3"
         fontWeight="xl"
         sx={{ fontWeight: 450, minWidth: 250 }}
@@ -448,6 +463,7 @@ export function ModuleChecker() {
     </Box>
 
     <PlannerInstructions
+        data-testid="instruction-panel"
         visible={visible} 
         setVisible={setVisible}
         sx={{zIndex: 2 }}

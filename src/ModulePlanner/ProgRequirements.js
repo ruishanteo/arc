@@ -614,61 +614,76 @@ export function ProgRequirements() {
 
   const tab = () => {
     if (deg in progMods) {
-      return progMods[deg].map((module, index) => {
-        return (
-          <TableRow key={index}>
-            <TableCell
-              align="center"
+      return (
+        progMods[deg].map((module, index) => {
+          return (
+            <TableRow 
+              key={index}
+              className="progTable1Rows">
+            <TableCell 
+              id={`prog-mod-table1-${index}`}
+              data-testid={`prog-mod-table1-${index}`}
+              className="progTable1Cell"
+              align="center" 
               sx={{
                 backgroundColor: checkPresent(module.moduleCode),
                 color: "black",
                 fontSize: "1.0rem",
-              }}
-            >
-              {module.title}
+            }}>
+                {module.title}
             </TableCell>
-          </TableRow>
-        );
-      });
+            </TableRow>
+          )
+        }))
     } else {
       return (
-        <TableRow key={1}>
-          <TableCell
-            align="center"
-            sx={{
-              backgroundColor: "#FFFFFF",
-              color: "black",
-              fontSize: "1.0rem",
-            }}
-          >
-            {"Please select a degree"}
-          </TableCell>
-        </TableRow>
-      );
+            <TableRow key = {1} className="progTable1Rows">
+            <TableCell 
+              id={`prog-mod-table1`}
+              data-testid={`prog-mod-table1`}
+              className="progTable1Cell"
+              align="center" 
+              sx={{
+                backgroundColor: '#FFFFFF',
+                color: "black",
+                fontSize: "1.0rem",
+            }}>
+                {"Please select a degree"}
+            </TableCell>
+            </TableRow>
+        );
     }
   };
+  
 
   const tab2 = () => {
     if (secDeg in secondProg) {
       return secondProg[secDeg].map((module, index) => {
+            return (
+              <TableRow 
+                key={index}
+                className="progTable2Rows">
+              <TableCell 
+                id={`prog-mod-table2-${index}`}
+                data-testid={`prog-mod-table2-${index}`}
+                className="progTable2Cell"
+                align="center" 
+                sx={{
+                  backgroundColor: checkPresent(module.moduleCode),
+                  color: "black",
+                  fontSize: "1.0rem",
+              }}>
+                  {module.title}
+              </TableCell>
+              </TableRow>
+            )
+          })
+      } else {
         return (
-          <TableRow key={index}>
-            <TableCell
-              align="center"
-              sx={{
-                backgroundColor: checkPresent(module.moduleCode),
-                color: "black",
-                fontSize: "1.0rem",
-              }}
-            >
-              {module.title}
-            </TableCell>
-          </TableRow>
-        );
-      });
-    } else {
-      return <TableRow key={2}></TableRow>;
-    }
+              <TableRow key = {2} className="progTable2Rows">
+              </TableRow>
+        )
+      }
   };
 
   return (

@@ -41,16 +41,16 @@ export function Semester({ semIndex }) {
             <TableRow>
               <TableCell align="center" colSpan={6}>
                 {" "}
-                <Typography
-                  sx={{
-                    fontSize: {
-                      lg: 18,
-                      md: 18,
-                    },
-                  }}
-                >
-                  {sems.header}
-                </Typography>{" "}
+                <Typography 
+                id={`table-header-${semIndex}`}
+                sx={{
+                  fontSize: {
+                    lg: 18,
+                    md: 18,
+                  },
+                }}
+                >{sems.header}</Typography>{" "}
+
               </TableCell>
             </TableRow>
           </TableHead>
@@ -58,12 +58,13 @@ export function Semester({ semIndex }) {
           <TableBody>
             {mods.map((_, moduleIndex) => {
               return (
-                <TableRow key={moduleIndex}>
-                  {
-                    <ModuleComponent
-                      semIndex={semIndex}
-                      moduleIndex={moduleIndex}
-                      semesterNum={semesterNum}
+                <TableRow 
+                  key={moduleIndex}
+                  className={`module-card-${semIndex}`}>
+                  {<ModuleComponent
+                    semIndex={semIndex}
+                    moduleIndex={moduleIndex}
+                    semesterNum={semesterNum}
                     />
                   }
                 </TableRow>
@@ -72,7 +73,8 @@ export function Semester({ semIndex }) {
             <TableRow>
               <TableCell align="left">
                 <Button
-                  type="button"
+                  id={`add-module-planner-button-${semIndex}`}
+                  type="button" 
                   variant="contained"
                   onClick={() => store.dispatch(addModule(semIndex))}
                   startIcon={<Add />}

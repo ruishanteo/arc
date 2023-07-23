@@ -153,10 +153,12 @@ export function CommonRequirements() {
       if (prog === "RC4" || prog === "Tembusu" || prog === "CAPT") {
         let specProg = require("../module_data/utcp.json");
         return specProg.map((module, index) => {
-          return (
-            <TableRow key={index}>
-              <TableCell
-                align="center"
+              return (
+              <TableRow key={index} className="commonTable1Rows">
+              <TableCell 
+                id={`common-mod-table1-${index}`}
+                className="commonTable1Cell"
+                align="center" 
                 sx={{
                   backgroundColor: checkPresentCommonModRC(prog, module.code),
                   color: "black",
@@ -171,10 +173,12 @@ export function CommonRequirements() {
       } else if (prog === "NUSC") {
         let specProg = require("../module_data/nusc.json");
         return specProg.map((module, index) => {
-          return (
-            <TableRow key={index}>
-              <TableCell
-                align="center"
+              return (
+              <TableRow key={index} className="commonTable1Rows">
+              <TableCell 
+                id={`common-mod-table1-${index}`}
+                className="commonTable1Cell"
+                align="center" 
                 sx={{
                   backgroundColor: checkPresentCommonMod(module.code),
                   color: "black",
@@ -183,35 +187,39 @@ export function CommonRequirements() {
               >
                 {module.title}
               </TableCell>
-            </TableRow>
-          );
-        });
+              </TableRow>
+              )
+          })
+        } else {
+            let nonProg = require('../module_data/nonprog.json');
+            return (
+                nonProg.map((module, index) => {
+                    return (
+                    <TableRow key={index} className="commonTable1Rows">
+                    <TableCell 
+                      id={`common-mod-table1-${index}`}
+                      className="commonTable1Cell"
+                      align="center" 
+                      sx={{
+                        backgroundColor: checkPresentCommonMod(module.code),
+                        color: "black",
+                        fontSize: "1.0rem",
+                    }}>
+                        {module.title}
+                    </TableCell>
+                    </TableRow>
+                    )
+                }))
+        }
       } else {
-        let nonProg = require("../module_data/nonprog.json");
-        return nonProg.map((module, index) => {
-          return (
-            <TableRow key={index}>
-              <TableCell
-                align="center"
+        return (
+              <TableRow key = {1}>
+              <TableCell 
+                id={`common-mod-table1`}
+                className="commonTable1Cell"
+                align="center" 
                 sx={{
-                  backgroundColor: checkPresentCommonMod(module.code),
-                  color: "black",
-                  fontSize: "1.0rem",
-                }}
-              >
-                {module.title}
-              </TableCell>
-            </TableRow>
-          );
-        });
-      }
-    } else {
-      return (
-        <TableRow key={1}>
-          <TableCell
-            align="center"
-            sx={{
-              backgroundColor: "#FFFFFF",
+                  backgroundColor: '#FFFFFF',
               color: "black",
               fontSize: "1.0rem",
             }}
@@ -223,15 +231,22 @@ export function CommonRequirements() {
     }
   };
 
-  const tab2 = () => {
-    if (prog === "NUSC") {
-      return <TableRow key={2}></TableRow>;
-    } else if (deg !== "") {
-      return commonMods[deg].map((module, index) => {
+    const tab2 = () => {
+        if (prog === "NUSC") {
+            return (
+                <TableRow key = {2} className="commonTable2Rows">
+    
+                </TableRow>
+            );
+        } else if (deg !== "") {
         return (
-          <TableRow key={index}>
-            <TableCell
-              align="center"
+        commonMods[deg].map((module, index) => {
+            return (
+            <TableRow key={index} className="commonTable2Rows">
+            <TableCell 
+              id={`common-mod-table2-${index}`}
+              className="commonTable2Cell"
+              align="center" 
               sx={{
                 backgroundColor: checkPresentCommonMod(module.code),
                 color: "black",
@@ -240,12 +255,15 @@ export function CommonRequirements() {
             >
               {module.title}
             </TableCell>
-          </TableRow>
-        );
-      });
-    } else {
-      return <TableRow key={2}></TableRow>;
-    }
+            </TableRow>
+            )
+        }))
+      } else {
+        return (
+              <TableRow key = {2} className="commonTable2Rows">
+              </TableRow>
+          );
+      }
   };
 
   return (

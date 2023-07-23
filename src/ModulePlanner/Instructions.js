@@ -73,6 +73,7 @@ const Instructions = ({ toggleVisibility }) => {
           </div>
         </div>
 
+  </div>
         <div style={styles.bottomContainer}>
           <div style={styles.bottomText}>
             <label htmlFor="checkbox-input">
@@ -86,13 +87,16 @@ const Instructions = ({ toggleVisibility }) => {
             </label>
           </div>
 
+
           <Box style={styles.bottomButton}>
-            <Button variant="contained" onClick={handleExitButtonClick}>
-              Exit
-            </Button>
+            <Button
+            id="instruction-clear-button"
+            variant="contained"
+            onClick={handleExitButtonClick}>
+                Exit
+           </Button>
           </Box>
         </div>
-      </div>
     </div>
   );
 };
