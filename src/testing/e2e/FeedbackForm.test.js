@@ -36,7 +36,7 @@ let consoleMessages = [];
 
 async function newBrowser() {
   if (browser) await browser.close();
-  browser = await puppeteer.launch({ defaultViewport: null, headless: false });
+  browser = await puppeteer.launch({ defaultViewport: null, headless: "old" });
   page = null;
 }
 
