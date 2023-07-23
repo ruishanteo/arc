@@ -24,10 +24,10 @@ const FEEDBACK_SUBMIT_BUTTON = "#feedback-submit-button";
 let browser;
 let page;
 
-let name = "tester";
-let email = `tester@test.com`;
+let name = "feedbacktester";
+let email = `feedbacktester@test.com`;
 let password = "123456";
-const user_registered = true;
+const user_registered = false;
 let consoleMessages = [];
 
 /* -------------------------------------------------------------------------- */
@@ -92,9 +92,8 @@ describe("Feedback Form", () => {
       await browser.close();
     });
 
-    jest.setTimeout(10000)
-
     test('Feedback form button', async () => {
+        await page.waitForTimeout(TIMEOUT);
         await page.waitForSelector(FEEDBACK_AVATAR);
         await page.click(FEEDBACK_AVATAR);
         const textContent = await page.evaluate(() => {
@@ -146,6 +145,7 @@ describe("Feedback Form", () => {
       await page.type('#feedback-textfield', 'Test feedback');
 
       await page.click('#feedback-submit-button');
+      await page.waitForTimeout(TIMEOUT);
 
       // Assert that the rate limit error notification appears
       await page.waitForSelector('#notistack-snackbar');
