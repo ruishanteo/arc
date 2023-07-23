@@ -151,7 +151,6 @@ async function newBrowser() {
       await browser.close();
     });
 
-    jest.setTimeout(10000);
     
     test("Add semester button", async () => {
       await page.waitForSelector(INSTRUCTION_CLEAR_BUTTON_SELECTOR);

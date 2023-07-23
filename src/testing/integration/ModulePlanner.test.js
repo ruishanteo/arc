@@ -14,10 +14,10 @@ import {
 } from "@testing-library/react";
 
 import "./mocks/MockFirebase";
-import { MockProvider, delay, mockStore } from "./mocks/MockProvider";
 import { ModulePlanner } from "../../ModulePlanner/ModulePlanner";
 import { mockDegree, mockSemester, mockUser } from "./mocks/MockData";
 import { mockDB } from "./mocks/MockFirestore";
+import { delay, testStore, TestProviderWithStore } from "../utils/TestProvider";
 
 import {
   addSem,
@@ -36,9 +36,9 @@ describe("Integration Test: Module Planner Page", () => {
   
     const WrappedPlanner = () => {
       return (
-        <MockProvider>
+        <TestProviderWithStore>
           <ModulePlanner />
-        </MockProvider>
+        </TestProviderWithStore>
       );
     };
 
@@ -68,7 +68,7 @@ describe("Integration Test: Module Planner Page", () => {
     });
 
     it("Add semester successfully", async () => {
-      await act(() => mockStore.dispatch(addSem));
+      await act(() => testStore.dispatch(addSem));
       semIndex = 0;
       modIndex = 0;
 
@@ -83,7 +83,7 @@ describe("Integration Test: Module Planner Page", () => {
     });
 
     it("Add module successfully", async () => {
-      await act(() => mockStore.dispatch(addModule(semIndex)));
+      await act(() => testStore.dispatch(addModule(semIndex)));
       modIndex += 1;
 
       let container;
@@ -97,7 +97,7 @@ describe("Integration Test: Module Planner Page", () => {
     });
 
     it("Delete module successfully", async () => {
-      await act(() => mockStore.dispatch(deleteModule(semIndex, modIndex)));
+      await act(() => testStore.dispatch(deleteModule(semIndex, modIndex)));
       modIndex -= 1;
 
       let container;
@@ -111,7 +111,7 @@ describe("Integration Test: Module Planner Page", () => {
     });
 
     it("Delete semester successfully", async () => {
-      await act(() => mockStore.dispatch(deleteSem(semIndex)));
+      await act(() => testStore.dispatch(deleteSem(semIndex)));
 
       let container;
       await act(() => {
@@ -140,7 +140,7 @@ describe("Integration Test: Module Planner Page", () => {
     });
 
     it("Table renders correctly", async () => {
-      await act(() => mockStore.dispatch(updateDegrees(0, mockDegree.degrees[0])));
+      await act(() => testStore.dispatch(updateDegrees(0, mockDegree.degrees[0])));
       await act(() => render(<WrappedPlanner />));
 
       modIndex = 0;
@@ -151,9 +151,9 @@ describe("Integration Test: Module Planner Page", () => {
     it("Select module successfully", async () => {
       modIndex = 0;
       semIndex = 0;
-      await act(() => mockStore.dispatch(addSem))
-      await act(() => mockStore.dispatch(addModule(semIndex)))
-      await act(() => mockStore.dispatch(updateModule(semIndex, modIndex, mockSemester.semesters[0].modules[0].modInfo)));
+      await act(() => testStore.dispatch(addSem))
+      await act(() => testStore.dispatch(addModule(semIndex)))
+      await act(() => testStore.dispatch(updateModule(semIndex, modIndex, mockSemester.semesters[0].modules[0].modInfo)));
       await act(() => render(<WrappedPlanner />));
       
       const selectedValue = screen.getByTestId(`module-selector-${semIndex}-${modIndex}`).querySelector("input").value;
@@ -163,10 +163,10 @@ describe("Integration Test: Module Planner Page", () => {
     it("Table updates and renders correctly", async () => {
       modIndex = 0;
       semIndex = 0;
-      await act(() => mockStore.dispatch(updateDegrees(0, mockDegree.degrees[0])));
-      await act(() => mockStore.dispatch(addSem))
-      await act(() => mockStore.dispatch(addModule(semIndex)))
-      await act(() => mockStore.dispatch(updateModule(semIndex, modIndex, mockSemester.semesters[0].modules[0].modInfo)));
+      await act(() => testStore.dispatch(updateDegrees(0, mockDegree.degrees[0])));
+      await act(() => testStore.dispatch(addSem))
+      await act(() => testStore.dispatch(addModule(semIndex)))
+      await act(() => testStore.dispatch(updateModule(semIndex, modIndex, mockSemester.semesters[0].modules[0].modInfo)));
       await act(() => render(<WrappedPlanner />));
       
       const firstRow = screen.getByTestId(`prog-mod-table1-${modIndex}`);
@@ -176,8 +176,7 @@ describe("Integration Test: Module Planner Page", () => {
     });
 
     it("Save planner successfully", async () => {
-      semIndex = 0;
-      await act(() => mockStore.dispatch(addSem));
+      await act(() => testStore.dispatch(addSem));
       let container;
       await act(() => {
         const { container: renderedContainer } = render(<WrappedPlanner />);
@@ -185,13 +184,13 @@ describe("Integration Test: Module Planner Page", () => {
       });
   
       const semesters = container.getElementsByClassName("semester-card");
-      expect(semesters.length).toBe(semIndex + 1);
-      await act(() => mockStore.dispatch(savePlanner(mockUser.uid)));
+      expect(semesters.length).toBe(3);
+      await act(() => testStore.dispatch(savePlanner(mockUser.uid)));
       expect(mockDB.semesters.length).toBeGreaterThan(0);
     });
 
     it("Clear planner successfully", async () => {
-      await act(() => mockStore.dispatch(clearPlanner(mockUser.uid)));
+      await act(() => testStore.dispatch(clearPlanner(mockUser.uid)));
       
       let container;
       await act(() => {
