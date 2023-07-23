@@ -97,7 +97,6 @@ const Instructions = ({ toggleVisibility }) => {
            </Button>
           </Box>
         </div>
-      </div>
     </div>
   );
 };
