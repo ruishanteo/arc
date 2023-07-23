@@ -148,6 +148,7 @@ export function ModuleComponent({
         <Grid item xs={6}>
           <Button
             type="button"
+            id={`delete-module-planner-button-${semIndex}-${moduleIndex}`}
             onClick={() => store.dispatch(deleteModule(semIndex, moduleIndex))}
             sx={{ 
               backgroundColor: "#fcf4d4", 
