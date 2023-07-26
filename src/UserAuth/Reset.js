@@ -101,6 +101,9 @@ export function Reset() {
                   Don't have an account? <Link to="/register">Register</Link>{" "}
                   now.
                 </Typography>
+                <Typography>
+                  <Link to="/Login">Login</Link> instead.
+                </Typography>
               </Box>
             </Box>
           </Box>
