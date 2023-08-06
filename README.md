@@ -45,7 +45,7 @@ The test suite covers various scenarios and ensures thorough testing of the core
 
 To run ARC locally on your machine, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/arc.git`
+1. Clone the repository: `[git clone https://github.com/ruishanteo/arc`
 2. Install the necessary dependencies: `yarn install`
 3. Start the development server: `yarn start`
 4. Open your browser and navigate to `http://localhost:3000` to access ARC.
